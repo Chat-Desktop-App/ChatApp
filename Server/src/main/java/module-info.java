@@ -1,7 +1,8 @@
-module gov.iti.jets {
+module gov.iti.jets.server {
     requires javafx.controls;
     requires javafx.fxml;
-    requires javafx.graphics;
-    opens gov.iti.jets to javafx.fxml;
-    exports gov.iti.jets;
+
+
+    opens gov.iti.jets.server to javafx.fxml;
+    exports gov.iti.jets.server;
 }
