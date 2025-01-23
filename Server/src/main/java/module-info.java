@@ -3,6 +3,6 @@ module gov.iti.jets.server {
     requires javafx.fxml;
 
 
-    opens gov.iti.jets.server to javafx.fxml;
-    exports gov.iti.jets.server;
+    opens gov.iti.jets to javafx.fxml;
+    exports gov.iti.jets;
 }
