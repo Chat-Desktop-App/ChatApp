@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.client.controller.LoginController">
    <center>
       <VBox fx:id="loginVbox" alignment="TOP_CENTER" fillWidth="false" maxHeight="500.0" maxWidth="500.0" prefHeight="200.0" prefWidth="100.0" spacing="20.0" BorderPane.alignment="CENTER">
          <children>
@@ -24,11 +24,11 @@
                   <TextField fx:id="password" VBox.vgrow="SOMETIMES" />
                </children>
             </VBox>
-            <Button fx:id="logIn" mnemonicParsing="false" prefHeight="30.0" prefWidth="211.0" styleClass="buttonStyle" text="LOG IN">
+            <Button fx:id="login" mnemonicParsing="false" onAction="#handleLoginButton" prefHeight="30.0" prefWidth="211.0" styleClass="buttonStyle" text="LOG IN">
                <VBox.margin>
                   <Insets top="15.0" />
                </VBox.margin></Button>
-            <Button fx:id="signUp" mnemonicParsing="false" prefHeight="30.0" prefWidth="210.0" styleClass="buttonStyle" text="SIGN UP">
+            <Button fx:id="signUp" mnemonicParsing="false" onAction="#handleSignupButton" prefHeight="30.0" prefWidth="210.0" styleClass="buttonStyle" text="SIGN UP">
                <VBox.margin>
                   <Insets bottom="15.0" left="15.0" right="15.0" />
                </VBox.margin></Button>
