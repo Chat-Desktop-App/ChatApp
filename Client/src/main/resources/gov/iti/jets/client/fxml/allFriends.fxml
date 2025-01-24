@@ -8,7 +8,6 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-
 <fx:root prefHeight="348.0" prefWidth="377.0" type="VBox" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.client.allFriendController">
    <children>
       <AnchorPane prefHeight="350.0" prefWidth="378.0" VBox.vgrow="ALWAYS">
@@ -24,6 +23,11 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
+            <ImageView fx:id="inboxIcon" fitHeight="25.0" fitWidth="25.0" layoutX="300.0" layoutY="51.0">
+               <image>
+                  <Image url="@../images/icons8-message-50.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </children>
