@@ -1,4 +1,4 @@
-package gov.iti.jets.client.controller;
+package gov.iti.jets.client;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -11,10 +11,10 @@ public class AllFriendController {
     private ImageView friendIcon;
 
     @FXML
-    private Circle status;
+    private Label friendName;
 
     @FXML
-    private Label friendName;
+    private Circle status;
 
     @FXML
     private ImageView inboxIcon;
@@ -22,8 +22,8 @@ public class AllFriendController {
     @FXML
     void initialize() {
         assert friendIcon != null : "fx:id=\"friendIcon\" was not injected: check your FXML file 'allFriends.fxml'.";
-        assert status != null : "fx:id=\"status\" was not injected: check your FXML file 'allFriends.fxml'.";
         assert friendName != null : "fx:id=\"friendName\" was not injected: check your FXML file 'allFriends.fxml'.";
+        assert status != null : "fx:id=\"status\" was not injected: check your FXML file 'allFriends.fxml'.";
         assert inboxIcon != null : "fx:id=\"inboxIcon\" was not injected: check your FXML file 'allFriends.fxml'.";
 
     }
