@@ -1,0 +1,18 @@
+
+
+.left_pane {
+  -fx-background-color: linear-gradient(to top, #0e4ece, #89CFF0);
+  /* -fx-background-radius: 10; Rounded corners */
+  /* -fx-border-width: 2px; */
+}
+
+.top_pane {
+  -fx-background-color: linear-gradient(to left, #0e4ece, #89CFF0);
+}
+
+.chats {
+  -fx-background-color: linear-gradient(45deg, #0000FF, #89CFF0);
+}
+.top_panee {
+  -fx-background-color: linear-gradient(to left, #0e4ece, #89CFF0);
+}

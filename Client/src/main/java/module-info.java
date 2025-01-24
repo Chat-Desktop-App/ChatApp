@@ -1,8 +1,8 @@
-module iti.jets.client {
+module gov.iti.jets.client {
     requires javafx.controls;
     requires javafx.fxml;
 
 
-    opens iti.jets.client to javafx.fxml;
-    exports iti.jets.client;
+    opens gov.iti.jets.client to javafx.fxml;
+    exports gov.iti.jets.client;
 }

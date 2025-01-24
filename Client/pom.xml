@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>iti.jets</groupId>
+    <groupId>gov.iti.jets</groupId>
     <artifactId>Client</artifactId>
     <version>1.0-SNAPSHOT</version>
     <name>Client</name>
@@ -60,7 +60,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>iti.jets.client/iti.jets.client.HelloApplication</mainClass>
+                            <mainClass>gov.iti.jets.client/gov.iti.jets.client.HelloApplication</mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
                             <jlinkImageName>app</jlinkImageName>
