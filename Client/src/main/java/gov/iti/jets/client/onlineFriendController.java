@@ -10,12 +10,6 @@ import javafx.scene.shape.Circle;
 public class onlineFriendController {
 
     @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
-
-    @FXML
     private ImageView friendIcon;
 
     @FXML
