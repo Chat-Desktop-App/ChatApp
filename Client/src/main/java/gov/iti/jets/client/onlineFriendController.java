@@ -7,7 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Circle;
 
-public class onlineFriendController {
+public class allFriendController {
 
     @FXML
     private ImageView friendIcon;
@@ -19,10 +19,14 @@ public class onlineFriendController {
     private Label friendName;
 
     @FXML
+    private ImageView inbox;
+
+    @FXML
     void initialize() {
-        assert friendIcon != null : "fx:id=\"friendIcon\" was not injected: check your FXML file 'pending.fxml'.";
-        assert status != null : "fx:id=\"status\" was not injected: check your FXML file 'pending.fxml'.";
-        assert friendName != null : "fx:id=\"friendName\" was not injected: check your FXML file 'pending.fxml'.";
+        assert friendIcon != null : "fx:id=\"friendIcon\" was not injected: check your FXML file 'allFriends.fxml'.";
+        assert status != null : "fx:id=\"status\" was not injected: check your FXML file 'allFriends.fxml'.";
+        assert friendName != null : "fx:id=\"friendName\" was not injected: check your FXML file 'allFriends.fxml'.";
+        assert inbox != null : "fx:id=\"inbox\" was not injected: check your FXML file 'allFriends.fxml'.";
 
     }
 }
