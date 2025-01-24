@@ -1,0 +1,15 @@
+.unblock_button{
+    -fx-background-image: url("../images/block.png");
+    -fx-background-size: 93% 94%; 
+    -fx-border-width: 0;          /* Remove the border */
+    -fx-background-radius: 70%;   /* Make the background rounded */
+    -fx-background-insets: 0;     /* Ensure no insets interfere */
+
+  }
+  .unblock_button:hover {
+    -fx-background-image: url("../images/unblock(1).png"); /* Change background color on hover */
+    -fx-background-size:  92% 92%; 
+  }
+  .unblock_button:focused {
+    -fx-focus-color: transparent; /* Remove focus ring */
+}
