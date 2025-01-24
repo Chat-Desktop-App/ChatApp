@@ -9,6 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
+
 <fx:root alignment="CENTER" prefHeight="438.0" prefWidth="686.0" type="VBox" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.client.addFriendController">
    <children>
       <AnchorPane prefHeight="82.0" prefWidth="686.0" style="-fx-background-color: #edecec;">
