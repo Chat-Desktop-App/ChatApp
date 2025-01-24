@@ -81,11 +81,7 @@
                <top>
                   <HBox spacing="15.0" style="-fx-background-color: lightgray;" BorderPane.alignment="CENTER">
                      <children>
-                        <Button mnemonicParsing="false" style="-fx-background-color: white;" text="Button">
-                           <font>
-                              <Font size="39.0" />
-                           </font>
-                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="70.0" style="-fx-background-color: white;" text="Button" />
                         <Button mnemonicParsing="false" style="-fx-background-color: white;" text="Button" />
                         <Button mnemonicParsing="false" style="-fx-background-color: white;" text="Button" />
                         <Button mnemonicParsing="false" style="-fx-background-color: white;" text="Button" />
