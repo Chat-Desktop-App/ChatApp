@@ -1,11 +1,11 @@
-package gov.iti.jets.client.controller;
+package gov.iti.jets.client;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 
 public class PendingController {
-
 
     @FXML
     private Label friendName;
@@ -18,6 +18,16 @@ public class PendingController {
 
     @FXML
     private ImageView friendIcon;
+
+    @FXML
+    void handleAcceptInvitation(MouseEvent event) {
+
+    }
+
+    @FXML
+    void handleRejectInvetation(MouseEvent event) {
+
+    }
 
     @FXML
     void initialize() {
