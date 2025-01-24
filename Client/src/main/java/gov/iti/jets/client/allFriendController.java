@@ -10,12 +10,6 @@ import javafx.scene.shape.Circle;
 public class allFriendController {
 
     @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
-
-    @FXML
     private ImageView friendIcon;
 
     @FXML
@@ -25,10 +19,14 @@ public class allFriendController {
     private Label friendName;
 
     @FXML
+    private ImageView inbox;
+
+    @FXML
     void initialize() {
         assert friendIcon != null : "fx:id=\"friendIcon\" was not injected: check your FXML file 'allFriends.fxml'.";
         assert status != null : "fx:id=\"status\" was not injected: check your FXML file 'allFriends.fxml'.";
         assert friendName != null : "fx:id=\"friendName\" was not injected: check your FXML file 'allFriends.fxml'.";
+        assert inbox != null : "fx:id=\"inbox\" was not injected: check your FXML file 'allFriends.fxml'.";
 
     }
 }
