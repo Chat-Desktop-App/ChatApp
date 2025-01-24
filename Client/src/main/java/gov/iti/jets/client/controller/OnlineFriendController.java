@@ -1,11 +1,13 @@
-package gov.iti.jets.client.controller;
+package gov.iti.jets.client;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Circle;
 
 public class OnlineFriendController {
+
 
     @FXML
     private ImageView friendIcon;
@@ -18,6 +20,11 @@ public class OnlineFriendController {
 
     @FXML
     private ImageView inboxIcon;
+
+    @FXML
+    void handleInboxIcon(MouseEvent event) {
+
+    }
 
     @FXML
     void initialize() {
