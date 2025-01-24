@@ -1,5 +1,5 @@
 .root {
-    -fx-background-image: url("../images/blue-gradient.jpg");
+    -fx-background-color:  linear-gradient(to top, #0e4ece, #89CFF0);
     -fx-background-size: cover;
     -fx-background-position: center center;
     -fx-background-repeat: no-repeat;
