@@ -98,13 +98,13 @@ public class SignUpController implements Initializable {
                 user.setEmail(email.getText());
                 user.setPasswordHashed(password.getText());
             // change scene
-            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("fxml/SignUp2.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("fxml/signUp2.fxml"));
             nextRoot = fxmlLoader.load();
             // move the user object to signup2
             SignUp2Controller controller = fxmlLoader.getController();
             controller.setUser(user);
             nextScene = new Scene(nextRoot);
-            nextScene.getStylesheets().add(Objects.requireNonNull(HelloApplication.class.getResource("styles/SignUp.css")).toExternalForm());
+            nextScene.getStylesheets().add(Objects.requireNonNull(HelloApplication.class.getResource("styles/signUp.css")).toExternalForm());
             primaryStage = (Stage) ((Node)event.getSource()).getScene().getWindow();
             primaryStage.setScene(nextScene);
         }

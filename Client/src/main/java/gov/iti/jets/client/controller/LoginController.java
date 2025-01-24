@@ -53,7 +53,7 @@ public class LoginController implements Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("fxml/SignUp.fxml"));
         nextRoot = fxmlLoader.load();
         nextScene = new Scene(nextRoot);
-        nextScene.getStylesheets().add(Objects.requireNonNull(HelloApplication.class.getResource("styles/SignUp.css")).toExternalForm());
+        nextScene.getStylesheets().add(Objects.requireNonNull(HelloApplication.class.getResource("styles/signUp.css")).toExternalForm());
         primaryStage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         primaryStage.setScene(nextScene);
     }

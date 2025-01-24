@@ -14,7 +14,7 @@ public class HelloApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("fxml/Login.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 800, 600);
 
-        scene.getStylesheets().add(Objects.requireNonNull(HelloApplication.class.getResource("styles/Login.css")).toExternalForm());
+        scene.getStylesheets().add(Objects.requireNonNull(HelloApplication.class.getResource("styles/login.css")).toExternalForm());
         stage.setTitle("Log in");
         stage.setScene(scene);
         stage.show();
