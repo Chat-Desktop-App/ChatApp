@@ -1,9 +1,7 @@
-#background{
-     -fx-background-image: url("images/blue-gradient.jpg");
-     -fx-background-size: cover;
-     -fx-background-position: center center;
-     -fx-background-repeat: no-repeat;
+.root{
+    -fx-background-color:  linear-gradient(to top, #0e4ece, #89CFF0);
 }
+
 
 #SignUpVbox {
     -fx-background-color: white;
