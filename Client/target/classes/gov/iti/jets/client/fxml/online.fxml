@@ -8,22 +8,22 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<fx:root prefHeight="231.0" prefWidth="384.0" type="VBox" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.client.onlineFriendController">
+<fx:root prefHeight="52.0" prefWidth="504.0" type="VBox" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.client.OnlineFriendController">
    <children>
-      <AnchorPane prefHeight="232.0" prefWidth="384.0">
+      <AnchorPane prefHeight="53.0" prefWidth="504.0">
          <children>
-            <ImageView fx:id="friendIcon" fitHeight="40.0" fitWidth="40.0" layoutX="39.0" layoutY="36.0">
+            <ImageView fx:id="friendIcon" fitHeight="40.0" fitWidth="40.0" layoutX="29.0" layoutY="9.0" AnchorPane.leftAnchor="26.0">
                <image>
                   <Image url="@../images/friendIcon.png" />
                </image>
             </ImageView>
-            <Circle fx:id="status" fill="#22da56" layoutX="74.0" layoutY="45.0" radius="5.0" stroke="#00000007" strokeType="INSIDE" />
-            <Label fx:id="friendName" layoutX="88.0" layoutY="45.0" text="Omer">
+            <Circle fx:id="status" fill="#22da56" layoutX="61.0" layoutY="18.0" radius="5.0" stroke="#00000007" strokeType="INSIDE" AnchorPane.leftAnchor="56.0" />
+            <Label fx:id="friendName" layoutX="79.0" layoutY="18.0" text="Omer" AnchorPane.leftAnchor="79.0">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <ImageView fx:id="inboxIcon" fitHeight="25.0" fitWidth="25.0" layoutX="326.0" layoutY="44.0">
+            <ImageView fx:id="inboxIcon" fitHeight="25.0" fitWidth="25.0" layoutX="442.0" layoutY="16.0" onMouseClicked="#handleInboxIcon" AnchorPane.rightAnchor="37.0">
                <image>
                   <Image url="@../images/icons8-message-50.png" />
                </image>
