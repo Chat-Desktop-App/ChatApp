@@ -1,7 +1,8 @@
 USE chat_app;
 CREATE TABLE `users`(
     `phone_number` VARCHAR(15),
-    `name` VARCHAR(100) NOT NULL,
+    `fname` VARCHAR(100) NOT NULL,
+    `lname` VARCHAR(100) NOT NULL,
     `email` VARCHAR(255) NOT NULL UNIQUE,
     `picture` VARCHAR(255),
     `password` VARCHAR(255) NOT NULL,
