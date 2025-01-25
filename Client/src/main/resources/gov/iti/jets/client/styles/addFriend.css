@@ -4,8 +4,8 @@
 }
 /* Buttons */
 .button {
-    -fx-background-color: #0e4ece; /* Primary1 color */
-    -fx-text-fill: #FFFFFF; /* White text */
+    -fx-background-color: #0ece7b; /* Primary1 color */
+    -fx-text-fill: #ffffff; /* White text */
     -fx-font-family: "Noto Sans";
     -fx-font-size: 14px;
     -fx-padding: 8px 16px;
@@ -14,14 +14,18 @@
     -fx-cursor: hand;
 }
 .button:hover {
-    -fx-background-color: #ffffff; /* Primary2 color on hover */
+    -fx-background-color: #23a885; /* Primary2 color on hover */
 }
 .textField {
-    -fx-background-color: linear-gradient(to left, #0e4ecead, #0a3385ad);
+    -fx-text-fill: #ffffff; 
+    /*-fx-background-color: linear-gradient(to left, #0e4ecead, #0a3385ad);*/
+    -fx-background-color: linear-gradient(to left, #081997e4, #1657d8);
+
 
 }
 
 .textField:hover{
-    -fx-border-color:#ffffff; /* Change border color on hover */
+    -fx-border-color:#03092dbe; /* Change border color on hover */
 }
 
+/* #89CFF0*/
