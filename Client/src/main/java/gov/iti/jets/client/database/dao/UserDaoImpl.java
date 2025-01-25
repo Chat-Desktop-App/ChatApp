@@ -1,13 +1,20 @@
 package gov.iti.jets.client.database.dao;
 
 import gov.iti.jets.client.database.DataBaseConnection;
+import gov.iti.jets.client.model.ContactUser;
+import gov.iti.jets.client.model.Gender;
+import gov.iti.jets.client.model.Status;
 import gov.iti.jets.client.model.User;
 
 import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.security.MessageDigest;
 
@@ -26,24 +33,25 @@ public class UserDaoImpl implements UserDao{
     public int addUser(User user) throws SQLException {
         Connection con = dataBaseConnection.getConnection();
         String query = """ 
-                        INSERT INTO users (phone_number, name, email, password, gender, country, dob, bio, status, num_entries, Last_seen, is_admin) 
-                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                        INSERT INTO users (phone_number, fname, lname, email, password, gender, country, dob, bio, status, num_entries, Last_seen, is_admin) 
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)
                         """;
 
         PreparedStatement ps
                 = con.prepareStatement(query);
         ps.setString(1, user.getPhoneNumber());
-        ps.setString(2, user.getFname()+" "+user.getLname());
-        ps.setString(3, user.getEmail());
-        ps.setString(4, hashPass(user.getPasswordHashed()));
-        ps.setString(5, user.getGender().toString()); // Assuming gender is an enum
-        ps.setString(6, user.getCountry());
-        ps.setDate(7, java.sql.Date.valueOf(user.getDob())); // Convert LocalDate to java.sql.Date
-        ps.setString(8, user.getBio());
-        ps.setString(9, user.getStatus().toString()); // Assuming status is an enum
-        ps.setLong(10, user.getNumberEnteries());
-        ps.setTimestamp(11, java.sql.Timestamp.valueOf(user.getLastSeen())); // Convert LocalDateTime to java.sql.Timestamp
-        ps.setBoolean(12, user.getAdmin());
+        ps.setString(2, user.getFname());
+        ps.setString(3, user.getLname());
+        ps.setString(4, user.getEmail());
+        ps.setString(5, hashPass(user.getPasswordHashed()));
+        ps.setString(6, user.getGender().toString()); // Assuming gender is an enum
+        ps.setString(7, user.getCountry());
+        ps.setDate(8, java.sql.Date.valueOf(user.getDob())); // Convert LocalDate to java.sql.Date
+        ps.setString(9, user.getBio());
+        ps.setString(10, user.getStatus().toString()); // Assuming status is an enum
+        ps.setLong(11, user.getNumberEnteries());
+        ps.setTimestamp(12, java.sql.Timestamp.valueOf(user.getLastSeen())); // Convert LocalDateTime to java.sql.Timestamp
+        ps.setBoolean(13, user.getAdmin());
 
         int n = ps.executeUpdate();
         return n;
@@ -51,17 +59,123 @@ public class UserDaoImpl implements UserDao{
 
     @Override
     public User getUser(String phoneNumber) throws SQLException {
+        Connection con = dataBaseConnection.getConnection();
+        String query = """ 
+                        SELECT * FROM users WHERE phone_number = ?
+                        """;
+        PreparedStatement ps
+                = con.prepareStatement(query);
+        ps.setString(1, phoneNumber);
+        ResultSet rs = ps.executeQuery();
+
+        if(rs.next()){
+            User user = new User();
+            user.setPhoneNumber(rs.getNString(1));
+            user.setFname(rs.getNString(2));
+            user.setLname(rs.getNString(3));
+            user.setEmail(rs.getString(4));
+            user.setPasswordHashed(rs.getString(6));
+            user.setGender(Gender.valueOf(rs.getString(7)));
+            user.setCountry(rs.getString(8));
+            user.setDob(rs.getDate(9).toLocalDate());
+            user.setBio(rs.getString(10));
+            user.setStatus(Status.valueOf(rs.getString(11)));
+            user.setNumberEnteries(rs.getLong(12));
+            user.setLastSeen(rs.getTimestamp(13).toLocalDateTime());
+            user.setAdmin(rs.getBoolean(14));
+            return user;
+        }else{
         return null;
+        }
     }
 
     @Override
     public List<User> getUsers() throws SQLException {
-        return List.of();
+        Connection con = dataBaseConnection.getConnection();
+        String query = """ 
+                        SELECT * FROM users
+                        """;
+        PreparedStatement ps
+                = con.prepareStatement(query);
+        ResultSet rs = ps.executeQuery();
+        List<User> users = new ArrayList<>();
+        while(rs.next()){
+            User user = new User();
+            user.setPhoneNumber(rs.getNString(1));
+            user.setFname(rs.getNString(2));
+            user.setLname(rs.getNString(3));
+            user.setEmail(rs.getString(4));
+            user.setPasswordHashed(rs.getString(6));
+            user.setGender(Gender.valueOf(rs.getString(7)));
+            user.setCountry(rs.getString(8));
+            user.setDob(rs.getDate(9).toLocalDate());
+            user.setBio(rs.getString(10));
+            user.setStatus(Status.valueOf(rs.getString(11)));
+            user.setNumberEnteries(rs.getLong(12));
+            user.setLastSeen(rs.getTimestamp(13).toLocalDateTime());
+            user.setAdmin(rs.getBoolean(14));
+            users.add(user);
+        }
+        return users;
     }
 
     @Override
     public int update(User user) throws SQLException {
-        return 1;
+        Connection con = dataBaseConnection.getConnection();
+        String query =  """
+               UPDATE users 
+               SET phone_number = ?, 
+                   fname = ?, 
+                   lname = ?, 
+                   email = ?, 
+                   password = ?, 
+                   gender = ?, 
+                   country = ?, 
+                   dob = ?, 
+                   bio = ?, 
+                   status = ?, 
+                   num_entries = ?, 
+                   Last_seen = ?, 
+               WHERE phone_number = ? 
+               """;
+        PreparedStatement ps
+                = con.prepareStatement(query);
+        ps.setString(1, user.getPhoneNumber());
+        ps.setString(2, user.getFname());
+        ps.setString(3, user.getLname());
+        ps.setString(4, user.getEmail());
+        ps.setString(5, hashPass(user.getPasswordHashed()));
+        ps.setString(6, user.getGender().toString()); // Assuming gender is an enum
+        ps.setString(7, user.getCountry());
+        ps.setDate(8, java.sql.Date.valueOf(user.getDob())); // Convert LocalDate to java.sql.Date
+        ps.setString(9, user.getBio());
+        ps.setString(10, user.getStatus().toString()); // Assuming status is an enum
+        ps.setLong(11, user.getNumberEnteries());
+        ps.setTimestamp(12, java.sql.Timestamp.valueOf(user.getLastSeen())); // Convert LocalDateTime to java.sql.Timestamp
+
+        int n = ps.executeUpdate();
+        return n;
+    }
+
+    public List<ContactUser> getContacts(int phoneNumber) throws SQLException {
+        Connection con = dataBaseConnection.getConnection();
+        String query = """
+                SELECT c.contact_id, u.fname, u.lname,  u.status AS user_status, u.picture,  c.status, c.user_id
+                FROM contacts c
+                JOIN users u ON c.contact_id = u.phone_number
+                WHERE c.user_id = ? AND c.status = ACCEPTED
+                """;
+        PreparedStatement ps
+                = con.prepareStatement(query);
+        ResultSet rs = ps.executeQuery();
+        List<ContactUser> contactUsers = new ArrayList<>();
+
+        while(rs.next()){
+            ContactUser contactUser = new ContactUser(rs.getString(1),
+                    rs.getString(2), rs.getString(3), Status.valueOf(rs.getString(4)));
+            contactUsers.add(contactUser);
+        }
+        return  contactUsers;
     }
 
     public String hashPass(String pass){
