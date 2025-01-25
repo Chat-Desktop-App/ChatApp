@@ -21,7 +21,7 @@ CREATE TABLE `contacts`(
     `contact_user_id` INT AUTO_INCREMENT PRIMARY KEY,
     `contact_id` VARCHAR(15) NOT NULL,
     `user_id` VARCHAR(15) NOT NULL,
-    `status` ENUM('PENDING','ACCEPTED','REJECTED') NOT NULL,
+    `status` ENUM('PENDING','ACCEPTED','REJECTED','BLOCKED') NOT NULL,
     FOREIGN KEY (`contact_id`) REFERENCES `users` (`phone_number`),
     FOREIGN KEY (`user_id`) REFERENCES `users` (`phone_number`),
     CHECK (`contact_id` != `user_id`)

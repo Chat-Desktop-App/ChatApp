@@ -1,6 +1,7 @@
 package gov.iti.jets.client.controller;
 
 import gov.iti.jets.client.HelloApplication;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -45,7 +46,11 @@ public class LoginController implements Initializable {
 
     @FXML
     void handleLoginButton(ActionEvent event) {
-
+            if(phoneNumber.getText().isBlank() || password.getText().isBlank()){
+                Platform.exit();
+            }else{
+                // go to home page
+            }
     }
 
     @FXML
