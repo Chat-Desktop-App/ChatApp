@@ -31,7 +31,7 @@ CREATE TABLE `groups`(
     `group_id` INT AUTO_INCREMENT PRIMARY KEY,
     `group_name` VARCHAR(255) NOT NULL,
     `admin_id` VARCHAR(255) NOT NULL,
-    `picture` TEXT NOT NULL,
+    `picture` TEXT,
     FOREIGN KEY (`admin_id`) REFERENCES `users` (`phone_number`)
 );
 

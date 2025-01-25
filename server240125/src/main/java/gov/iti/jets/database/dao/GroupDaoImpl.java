@@ -134,7 +134,7 @@ public class GroupDaoImpl implements GroupDao{
                 return;
             }
 
-            // Get the group ID of the newly created group (this should ideally be retrieved dynamically)
+            // Get the group ID of the newly created group 
             int groupId = 1; // Assuming it's auto-incremented and the first group created
             System.out.println("Group ID of newly created group is assumed to be: " + groupId);
 
