@@ -14,7 +14,7 @@
     -fx-cursor: hand;
 }
 .button:hover {
-    -fx-background-color: #ffffff; /* Primary2 color on hover */
+    -fx-background-color: #23a885; /* Primary2 color on hover */
 }
 .textField {
     -fx-text-fill: #ffffff; 
@@ -25,7 +25,7 @@
 }
 
 .textField:hover{
-    -fx-border-color:#ffffff; /* Change border color on hover */
+    -fx-border-color:#03092dbe; /* Change border color on hover */
 }
 
 /* #89CFF0*/
