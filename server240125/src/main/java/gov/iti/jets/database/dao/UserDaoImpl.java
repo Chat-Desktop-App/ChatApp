@@ -187,7 +187,7 @@ public class UserDaoImpl implements UserDao{
         UserDaoImpl userDao = new UserDaoImpl();
 
         try {
-            // Create a test user
+         /*   // Create a test user
             User testUser = new User();
             testUser.setPhoneNumber("+1234567890");
             testUser.setFname("John");
@@ -203,7 +203,9 @@ public class UserDaoImpl implements UserDao{
             //testUser.setLastSeen(LocalDateTime.now()); default
             //testUser.setAdmin(false); default false
 
+
             // Test addUser method
+
             int addResult = userDao.addUser(testUser);
             System.out.println("User Added: " + (addResult > 0));
 
@@ -220,7 +222,20 @@ public class UserDaoImpl implements UserDao{
             retrievedUser.setFname("Jane");
             int updateResult = userDao.update(retrievedUser);
             System.out.println("User Updated: " + (updateResult > 0));
+        */
 
+            User newUser = new User();
+            newUser.setPhoneNumber("+1122334455");
+            newUser.setFname("Alice");
+            newUser.setLname("Johnson");
+            newUser.setEmail("alice.johnson@example.net");
+            newUser.setPasswordHashed("mypassword456");
+            newUser.setGender(Gender.FEMALE);
+            newUser.setCountry("UK");
+            newUser.setDob(LocalDate.of(1995, 3, 25));
+            newUser.setBio("Tech enthusiast and avid traveler, exploring the world one line of code at a time.");
+
+            userDao.addUser(newUser);
 
 
         } catch (SQLException e) {

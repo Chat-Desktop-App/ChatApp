@@ -1,6 +1,7 @@
 package gov.iti.jets.database.dao;
 
 import gov.iti.jets.database.DataBaseConnection;
+import gov.iti.jets.model.ContactStatus;
 import gov.iti.jets.model.ContactUser;
 import gov.iti.jets.model.Status;
 
@@ -114,40 +115,60 @@ public class ContactDaoImpl implements  ContactDao{
 
     @Override
     public int addContact(String phoneNumber, String contactPhoneNumber) throws SQLException {
-        //check contact is a user
-        // add phone number as
+        // add phone number as as a contact to co
         // add contact and set status to ?
-        return 0;
+        Connection con = dataBaseConnection.getConnection();
+        String query = "INSERT INTO contacts (contact_id, user_id, status) VALUES (?, ?, ?)";
+        PreparedStatement ps = con.prepareStatement(query);
+        ps.setString(1, phoneNumber);
+        ps.setString(2, contactPhoneNumber);
+        ps.setString(3,"PENDING");
 
+        int n = ps.executeUpdate();
+        return n;
+
+    }
+
+    @Override
+    public int updateContact(ContactUser contactUser) throws SQLException {
+        Connection con = dataBaseConnection.getConnection();
+        String query = "UPDATE contacts SET status = ? WHERE contact_id = ?";
+        PreparedStatement ps = con.prepareStatement(query);
+        ps.setString(1, contactUser.getStatus().toString());
+        ps.setString(2, contactUser.getPhoneNumber());
+        int n =  ps.executeUpdate();
+        return n;
     }
 
     public static void main(String[] args){
         ContactDaoImpl contactDao = new ContactDaoImpl();
-        String phoneNumber = "+1234567890";  // Jane's phone number
+        String phoneNumber = "+1234567890";  // Janes's phone number
+        String contactPhoneNumber = "+1122334455"; // alice's phone number
         try{
+            //contactDao.addContact(phoneNumber, contactPhoneNumber);
             // Test for friends contacts
-            List<ContactUser> friends = contactDao.getFriendsContacts(phoneNumber);
+            List<ContactUser> friends = contactDao.getFriendsContacts(contactPhoneNumber);
             System.out.println("Friends Contacts: " + friends.size());
             for (ContactUser contact : friends) {
                 System.out.println(contact);
             }
 
             // Test for pending contacts
-            List<ContactUser> pending = contactDao.getPendingContacts(phoneNumber);
+            List<ContactUser> pending = contactDao.getPendingContacts(contactPhoneNumber);
             System.out.println("Pending Contacts: " + pending.size());
             for (ContactUser contact : pending) {
                 System.out.println(contact);
             }
 
             // Test for blocked contacts
-            List<ContactUser> blocked = contactDao.getBlockedContacts(phoneNumber);
+            List<ContactUser> blocked = contactDao.getBlockedContacts(contactPhoneNumber);
             System.out.println("Blocked Contacts: " + blocked.size());
             for (ContactUser contact : blocked) {
                 System.out.println(contact);
             }
 
             // Test for all contacts
-            List<ContactUser> allContacts = contactDao.getAllContacts(phoneNumber);
+            List<ContactUser> allContacts = contactDao.getAllContacts(contactPhoneNumber);
             System.out.println("All Contacts: " + allContacts.size());
             for (ContactUser contact : allContacts) {
                 System.out.println(contact);

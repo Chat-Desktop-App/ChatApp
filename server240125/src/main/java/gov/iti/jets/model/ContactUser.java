@@ -1,10 +1,11 @@
 package gov.iti.jets.model;
 
+
 public class ContactUser {
     private String phoneNumber;
     private String fname;
     private String lname;
-    private Status status; // accepted, pending,blockes
+    private Status status; // available, busy, away
 
 
     public ContactUser(String phoneNumber, String fname, String lname, Status status) {
