@@ -1,5 +1,7 @@
 package gov.iti.jets.client.controller;
 
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -8,12 +10,14 @@ import javafx.scene.shape.Circle;
 
 public class OnlineFriendController {
 
+    @FXML
+    private ResourceBundle resources;
+
+    @FXML
+    private URL location;
 
     @FXML
     private ImageView friendIcon;
-
-    @FXML
-    private Circle status;
 
     @FXML
     private Label friendName;
@@ -22,16 +26,20 @@ public class OnlineFriendController {
     private ImageView inboxIcon;
 
     @FXML
+    private Circle status;
+
+    @FXML
     void handleInboxIcon(MouseEvent event) {
 
     }
 
     @FXML
     void initialize() {
-        assert friendIcon != null : "fx:id=\"friendIcon\" was not injected: check your FXML file 'onlineFriend.fxml'.";
-        assert status != null : "fx:id=\"status\" was not injected: check your FXML file 'onlineFriend.fxml'.";
-        assert friendName != null : "fx:id=\"friendName\" was not injected: check your FXML file 'onlineFriend.fxml'.";
-        assert inboxIcon != null : "fx:id=\"inboxIcon\" was not injected: check your FXML file 'onlineFriend.fxml'.";
+        assert friendIcon != null : "fx:id=\"friendIcon\" was not injected: check your FXML file 'online.fxml'.";
+        assert friendName != null : "fx:id=\"friendName\" was not injected: check your FXML file 'online.fxml'.";
+        assert inboxIcon != null : "fx:id=\"inboxIcon\" was not injected: check your FXML file 'online.fxml'.";
+        assert status != null : "fx:id=\"status\" was not injected: check your FXML file 'online.fxml'.";
 
     }
+
 }
