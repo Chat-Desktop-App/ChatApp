@@ -14,28 +14,33 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="homeBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="500.0" minWidth="800.0" prefHeight="602.0" prefWidth="1062.0" stylesheets="@../styles/home.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.client.HomeController">
+<BorderPane fx:id="homeBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="500.0" minWidth="800.0" prefHeight="602.0" prefWidth="1062.0" stylesheets="@../styles/home.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.client.controller.HomeController">
    <left>
       <AnchorPane fx:id="left_pane" prefHeight="612.0" prefWidth="82.0" styleClass="left_pane" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="20.0" layoutY="97.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="100.0">
+            <ImageView fx:id="userImage" fitHeight="70.0" fitWidth="70.0" layoutX="6.0" layoutY="7.0" onMouseClicked="#handleUserIcon" AnchorPane.topAnchor="13.0">
                <image>
-                  <Image url="@../images/home%20(2).png" />
+                  <Image url="@../images/profile.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="homeIcon" fitHeight="40.0" fitWidth="40.0" layoutX="20.0" layoutY="97.0" onMouseClicked="#handleHomeIcon" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="100.0">
+               <image>
+                  <Image url="@../images/homeIcon.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="16.0" layoutY="342.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="340.0">
                <image>
-                  <Image url="@../images/settings%20(2).png" />
+                  <Image url="@../images/settingsIcon.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="20.0" layoutY="158.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="160.0">
+            <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="20.0" layoutY="158.0" onMouseClicked="#handleNotification" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="160.0">
                <image>
                   <Image url="@../images/nottification.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="20.0" layoutY="215.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="220.0">
                <image>
-                  <Image url="@../images/personAdd%20(1).png" />
+                  <Image url="@../images/personAddIcon.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="20.0" layoutY="270.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="280.0">
@@ -45,12 +50,7 @@
             </ImageView>
             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="17.0" layoutY="495.20000000000005" rotate="180.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="15.0">
                <image>
-                  <Image url="@../images/logout%20(2).png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="70.0" fitWidth="70.0" layoutX="6.0" layoutY="7.0" AnchorPane.topAnchor="13.0">
-               <image>
-                  <Image url="@../images/profile.png" />
+                  <Image url="@../images/logoutIcon.png" />
                </image>
             </ImageView>
          </children>
@@ -66,7 +66,7 @@
                <children>
                   <BorderPane maxWidth="450.0" minWidth="-Infinity" prefWidth="300.0" HBox.hgrow="ALWAYS">
                      <top>
-                        <TextField promptText="Find a conversation" style="-fx-background-color: #edecec;" BorderPane.alignment="CENTER">
+                        <TextField fx:id="searchField" onAction="#handleSearchField" promptText="Find a conversation" style="-fx-background-color: #edecec;" BorderPane.alignment="CENTER">
                            <BorderPane.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="9.0" />
                            </BorderPane.margin>
@@ -76,7 +76,7 @@
                         </TextField>
                      </top>
                      <center>
-                        <ListView style="-fx-background-color: #edecec;" BorderPane.alignment="CENTER" />
+                        <ListView fx:id="chatsListView" style="-fx-background-color: #edecec;" BorderPane.alignment="CENTER" />
                      </center>
                   </BorderPane>
                   <BorderPane HBox.hgrow="ALWAYS">
@@ -98,9 +98,9 @@
                               </Label>
                               <Separator orientation="VERTICAL" prefHeight="200.0" />
                               <Button fx:id="allButton" mnemonicParsing="false" onAction="#allButtonHandling" style="-fx-background-color: white;" text="All" textFill="#183f94" />
-                              <Button mnemonicParsing="false" style="-fx-background-color: white;" text="Online" textFill="#183f94" />
-                              <Button mnemonicParsing="false" style="-fx-background-color: white;" text="Blocked" textFill="#183f94" />
-                              <Button mnemonicParsing="false" style="-fx-background-color: white;" text="Pending" textFill="#183f94" />
+                              <Button fx:id="onlineButton" mnemonicParsing="false" onAction="#handleOnlineButton" style="-fx-background-color: white;" text="Online" textFill="#183f94" />
+                              <Button fx:id="blockedButton" mnemonicParsing="false" onAction="#handleblockedButton" style="-fx-background-color: white;" text="Blocked" textFill="#183f94" />
+                              <Button fx:id="pendingButton" mnemonicParsing="false" onAction="#handlependingButton" style="-fx-background-color: white;" text="Pending" textFill="#183f94" />
                            </children>
                            <BorderPane.margin>
                               <Insets />
@@ -111,9 +111,9 @@
                         </HBox>
                      </top>
                      <center>
-                        <StackPane BorderPane.alignment="CENTER">
+                        <StackPane fx:id="stackPane" BorderPane.alignment="CENTER">
                            <children>
-                              <AnchorPane fx:id="stackpane" styleClass="stack_pane" StackPane.alignment="CENTER" />
+                              <AnchorPane fx:id="anchorPane" styleClass="stack_pane" StackPane.alignment="CENTER" />
                            </children>
                         </StackPane>
                      </center>
