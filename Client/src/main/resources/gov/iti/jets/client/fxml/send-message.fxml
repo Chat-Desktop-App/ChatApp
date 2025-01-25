@@ -8,12 +8,11 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-
 <VBox style="-fx-background-color: #246D66; -fx-background-radius: 30 0 40 30;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <TextFlow prefWidth="400.0">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="n Scene Builder, you can use the Color Picker (color chooser) to set the colors for various properties such as background colors, text colors, or border colors. Here's how to open and use the Color Picker:" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="n Scene Builder, you can use the Color Picker (color chooser) to set the colors for various properties such as background colors, text colors, or border colors. Here's how to open and use the Color Picker." />
          </children>
       </TextFlow>
       <HBox alignment="CENTER_RIGHT" spacing="15.0">
