@@ -9,7 +9,10 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<fx:root alignment="CENTER" prefHeight="548.0" prefWidth="686.0" type="VBox" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.client.addFriendController">
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<VBox alignment="CENTER" prefHeight="548.0" prefWidth="686.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.client.controller.AddFriendController">
    <children>
       <AnchorPane prefHeight="79.0" prefWidth="382.0">
          <children>
