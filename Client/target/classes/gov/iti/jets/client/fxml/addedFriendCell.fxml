@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="0.0" prefWidth="382.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.client.pendingController">
+   <children>
+      <AnchorPane prefHeight="220.0" prefWidth="382.0">
+         <children>
+            <Label fx:id="friendName" layoutX="85.0" layoutY="18.0" text="Alyaa" AnchorPane.leftAnchor="85.0">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="friendIcon" fitHeight="50.0" fitWidth="50.0" layoutX="26.0" layoutY="6.0" AnchorPane.leftAnchor="26.0">
+               <image>
+                  <Image url="@../images/friendIcon.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="311.0" layoutY="11.0" AnchorPane.rightAnchor="31.399999999999977">
+               <image>
+                  <Image url="@../images/small-talk.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>
