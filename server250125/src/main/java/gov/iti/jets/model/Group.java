@@ -1,10 +1,13 @@
 package gov.iti.jets.model;
 
+import java.time.LocalDateTime;
+
 public class Group {
     private int groupId;
     private String groupName;
     private String adminId;
     private String picture;
+    private LocalDateTime lastChatAt;
 
     public Group() {
     }
@@ -14,6 +17,15 @@ public class Group {
         this.groupName = groupName;
         this.adminId = adminId;
         this.picture = picture;
+    }
+
+    public Group(int groupId, String groupName, String adminId, String picture, LocalDateTime lastChatAt) {
+        this.groupId = groupId;
+        this.groupName = groupName;
+        this.adminId = adminId;
+        this.picture = picture;
+        this.lastChatAt = lastChatAt;
+
     }
 
     public int getGroupId() {
@@ -46,5 +58,13 @@ public class Group {
 
     public void setPicture(String picture) {
         this.picture = picture;
+    }
+
+    public LocalDateTime getLastChatAt() {
+        return lastChatAt;
+    }
+
+    public void setLastChatAt(LocalDateTime lastChatAt) {
+        this.lastChatAt = lastChatAt;
     }
 }
