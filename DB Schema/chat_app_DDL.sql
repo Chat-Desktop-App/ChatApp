@@ -22,6 +22,7 @@ CREATE TABLE `contacts`(
     `contact_id` VARCHAR(15) NOT NULL,
     `user_id` VARCHAR(15) NOT NULL,
     `status` ENUM('PENDING','ACCEPTED','REJECTED','BLOCKED') NOT NULL,
+    `last_chat_at` DATETIME,
     FOREIGN KEY (`contact_id`) REFERENCES `users` (`phone_number`),
     FOREIGN KEY (`user_id`) REFERENCES `users` (`phone_number`),
     CHECK (`contact_id` != `user_id`)
@@ -32,6 +33,7 @@ CREATE TABLE `groups`(
     `group_name` VARCHAR(255) NOT NULL,
     `admin_id` VARCHAR(255) NOT NULL,
     `picture` TEXT,
+    `last_chat_at` DATETIME,
     FOREIGN KEY (`admin_id`) REFERENCES `users` (`phone_number`)
 );
 

@@ -140,6 +140,30 @@ public class ContactDaoImpl implements  ContactDao{
         return n;
     }
 
+    @Override
+    public List<ContactUser> getLastContact(String phoneNumber) throws SQLException {
+        Connection con = dataBaseConnection.getConnection();
+        String query = """
+                SELECT c.contact_id, u.fname, u.lname, u.status AS user_status, u.picture, c.status, c.user_id
+                FROM contacts c
+                JOIN users u ON c.contact_id = u.phone_number
+                WHERE c.user_id = ? AND c.status = 'ACCEPTED'
+                ORDER BY c.last_chat_at DESC AND c.last_chat_at IS NOT NULL
+                """;
+        PreparedStatement ps
+                = con.prepareStatement(query);
+        ps.setString(1, phoneNumber);
+        ResultSet rs = ps.executeQuery();
+        List<ContactUser> contactUsers = new ArrayList<>();
+
+        while(rs.next()){
+            ContactUser contactUser = new ContactUser(rs.getString(1),
+                    rs.getString(2), rs.getString(3), Status.valueOf(rs.getString(4)));
+            contactUsers.add(contactUser);
+        }
+        return  contactUsers;
+    }
+
     public static void main(String[] args){
         ContactDaoImpl contactDao = new ContactDaoImpl();
         String phoneNumber = "+1234567890";  // Janes's phone number
