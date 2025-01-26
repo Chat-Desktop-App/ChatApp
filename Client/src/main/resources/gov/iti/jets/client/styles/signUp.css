@@ -1,32 +1,28 @@
 .root{
-     -fx-background-color: radial-gradient(
-            center 50% 50%, // Center of the gradient
-            radius 70%, // Size of the gradient
-            rgba(255, 255, 255, 0.8), // Bright center (light color)
-            rgba(14, 78, 206, 1) // Dark outer area
-        )
+     -fx-background-color:  linear-gradient(to top, #0e4ece, #89CFF0);
 }
 
 
-#SignUpVbox {
+.SignUpVbox {
     -fx-background-color: white;
     -fx-background-radius: 10;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0, 0, 0);
 }
 
-#createLabel {
+.createLabel {
     -fx-font-size: 24px;
     -fx-font-weight: bold;
 }
 
 .buttonStyle{
-    -fx-background-color: #2d2d2d;
+    -fx-background-color: #003249;
     -fx-text-fill: white;
 }
 
 .fieldLabelStyle {
-    -fx-font-size: 14px;
+    -fx-font-size: 12px;
     -fx-text-fill: #2d2d2d;
+    -fx-font-weight: bold;
 }
 
 .textFieldStyle {
