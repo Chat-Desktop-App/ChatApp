@@ -1,3 +1,9 @@
+/*.borderpane {
+       /* -fx-background-image: url("../images/addFriendBackground.png");*/
+        /*-fx-background-color: linear-gradient(to right, #c1c1c1a8, #c1c1c1a8);
+        -fx-background-size: 100% 100%;
+}*/
+
 .anchor_Pane {
     /*-fx-background-color: linear-gradient(to left, #081997e4, #1657d8ad);*/
     -fx-background-color: linear-gradient(to left, #081997e4, #1657d8cf);
@@ -9,7 +15,7 @@
 
 }
 .button:hover {
-    -fx-background-color: #23a885; /* Primary2 color on hover */
+    -fx-background-color: #5dc0a5; /* Primary2 color on hover */
 }
 .separator { 
     -fx-background-color: #cbcfceb3; /* Primary1 color */
@@ -23,4 +29,3 @@
     -fx-background-color: #c2d3cac9; /* Primary1 color */
 
 }
-/*-fx-background-color: linear-gradient(to left, #0e4ecead, #0a3385ad);*/

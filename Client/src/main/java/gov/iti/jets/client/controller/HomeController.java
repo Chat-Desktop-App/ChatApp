@@ -1,25 +1,18 @@
 package gov.iti.jets.client.controller;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
-import javafx.scene.control.ScrollBar;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.*;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public class HomeController {
 
@@ -46,6 +39,9 @@ public class HomeController {
 
     @FXML
     private BorderPane homeBorderPane;
+
+    @FXML
+    private BorderPane mainBorderPane;
 
     @FXML
     private ImageView homeIcon;
@@ -75,27 +71,37 @@ public class HomeController {
     private ImageView settingsIcon;
 
     @FXML
-    private StackPane stackPane;
+    private AnchorPane mainAnchorPane;
 
     @FXML
     void allButtonHandling(ActionEvent event) {
-               handleButtonAction("/gov/iti/jets/client/fxml/allFriends.fxml");
+        handleButtonAction("/gov/iti/jets/client/fxml/allFriends.fxml");
     }
 
     @FXML
     void handleAddFriendIcon(MouseEvent event) {
-         try {
-             StackPane addFStackPane = new FXMLLoader(getClass().getResource("/gov/iti/jets/client/fxml/addFriend.fxml")).load();
-             stackPane.getChildren().clear();
-             stackPane.getChildren().add(addFStackPane);
-         } catch (IOException e) {
-             System.out.println("cant Load addFriend");
-         }
+        try {
+            HBox addFriendPane = new FXMLLoader(getClass().getResource("/gov/iti/jets/client/fxml/addFriend.fxml")).load();
+            addFriendPane.prefWidthProperty().bind(mainBorderPane.widthProperty());
+            addFriendPane.prefHeightProperty().bind(mainBorderPane.heightProperty());
+            mainBorderPane.setCenter(addFriendPane);
+        } catch (IOException e) {
+            System.out.println("cant Load addFriend");
+        }
     }
 
     @FXML
     void handleAddGroupIcon(MouseEvent event) {
+        try {
+            AnchorPane addGroupPane = FXMLLoader.load(getClass().getResource("/gov/iti/jets/client/fxml/addGroup.fxml"));
+            addGroupPane.prefWidthProperty().bind(mainBorderPane.widthProperty());
+            addGroupPane.prefHeightProperty().bind(mainBorderPane.heightProperty());
 
+
+            mainBorderPane.setCenter(addGroupPane);
+        } catch (IOException e) {
+            System.out.println("cant Load addFriend");
+        }
     }
 
     @FXML
@@ -106,7 +112,7 @@ public class HomeController {
 
     @FXML
     void handleHomeIcon(MouseEvent event) {
-
+        mainBorderPane.setCenter(mainAnchorPane);
     }
 
     @FXML
@@ -116,7 +122,7 @@ public class HomeController {
 
     @FXML
     void handleNotificationIcon(MouseEvent event) {
-        
+
 
     }
 
@@ -157,22 +163,21 @@ public class HomeController {
         assert homeIcon != null : "fx:id=\"homeIcon\" was not injected: check your FXML file 'home.fxml'.";
         assert left_pane != null : "fx:id=\"left_pane\" was not injected: check your FXML file 'home.fxml'.";
         assert logOutIcon != null : "fx:id=\"logOutIcon\" was not injected: check your FXML file 'home.fxml'.";
-        assert notificationIcon != null
-                : "fx:id=\"notificationIcon\" was not injected: check your FXML file 'home.fxml'.";
+        assert notificationIcon != null: "fx:id=\"notificationIcon\" was not injected: check your FXML file 'home.fxml'.";
         assert onlineButton != null : "fx:id=\"onlineButton\" was not injected: check your FXML file 'home.fxml'.";
         assert pendingButton != null : "fx:id=\"pendingButton\" was not injected: check your FXML file 'home.fxml'.";
         assert pictureIcon != null : "fx:id=\"pictureIcon\" was not injected: check your FXML file 'home.fxml'.";
         assert searchField != null : "fx:id=\"searchField\" was not injected: check your FXML file 'home.fxml'.";
         assert settingsIcon != null : "fx:id=\"settingsIcon\" was not injected: check your FXML file 'home.fxml'.";
-        assert stackPane != null : "fx:id=\"stackPane\" was not injected: check your FXML file 'home.fxml'.";
+        assert mainAnchorPane != null : "fx:id=\"mainAnchorPane\" was not injected: check your FXML file 'home.fxml'.";
+        assert mainBorderPane != null : "fx:id=\"mainBorderPane\" was not injected: check your FXML file 'home.fxml'.";
 
     }
 
     private void handleButtonAction(String fxmlPath) {
         ObservableList<AnchorPane> observableList = loadFXMLIntoList(fxmlPath, 20);
         ListView<AnchorPane> listView = createListView(observableList);
-        stackPane.getChildren().clear();
-        stackPane.getChildren().add(listView);
+        mainBorderPane.setCenter(listView);
     }
 
     private ObservableList<AnchorPane> loadFXMLIntoList(String fxmlPath, int count) {

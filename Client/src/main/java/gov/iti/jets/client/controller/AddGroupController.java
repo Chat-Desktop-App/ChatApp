@@ -1,29 +1,42 @@
 package gov.iti.jets.client.controller;
 
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 
 public class AddGroupController {
 
+    @FXML
+    private ResourceBundle resources;
 
     @FXML
-    private TextField Selecttextfield;
+    private URL location;
 
     @FXML
-    private CheckBox friendSelection;
+    private TextField GroupName_Field;
 
     @FXML
-    private ImageView driendIcon;
+    private ListView<?> ListView_OfCheckBox;
+
+    @FXML
+    private Button choosePictureButton;
 
     @FXML
     private Button createGroupButton;
 
     @FXML
-    void handleCheckbox(ActionEvent event) {
+    private ImageView groupImage;
+
+    @FXML
+    private TextField selectFriend_Field;
+
+    @FXML
+    void handleChoosePictureButton(ActionEvent event) {
 
     }
 
@@ -34,10 +47,13 @@ public class AddGroupController {
 
     @FXML
     void initialize() {
-        assert Selecttextfield != null : "fx:id=\"Selecttextfield\" was not injected: check your FXML file 'addGroup.fxml'.";
-        assert friendSelection != null : "fx:id=\"friendSelection\" was not injected: check your FXML file 'addGroup.fxml'.";
-        assert driendIcon != null : "fx:id=\"driendIcon\" was not injected: check your FXML file 'addGroup.fxml'.";
+        assert GroupName_Field != null : "fx:id=\"GroupName_Field\" was not injected: check your FXML file 'addGroup.fxml'.";
+        assert ListView_OfCheckBox != null : "fx:id=\"ListView_OfCheckBox\" was not injected: check your FXML file 'addGroup.fxml'.";
+        assert choosePictureButton != null : "fx:id=\"choosePictureButton\" was not injected: check your FXML file 'addGroup.fxml'.";
         assert createGroupButton != null : "fx:id=\"createGroupButton\" was not injected: check your FXML file 'addGroup.fxml'.";
+        assert groupImage != null : "fx:id=\"groupImage\" was not injected: check your FXML file 'addGroup.fxml'.";
+        assert selectFriend_Field != null : "fx:id=\"selectFriend_Field\" was not injected: check your FXML file 'addGroup.fxml'.";
 
     }
+
 }
