@@ -9,6 +9,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -83,7 +84,13 @@ public class HomeController {
 
     @FXML
     void handleAddFriendIcon(MouseEvent event) {
-
+         try {
+             StackPane addFStackPane = new FXMLLoader(getClass().getResource("/gov/iti/jets/client/fxml/addFriend.fxml")).load();
+             stackPane.getChildren().clear();
+             stackPane.getChildren().add(addFStackPane);
+         } catch (IOException e) {
+             System.out.println("cant Load addFriend");
+         }
     }
 
     @FXML
@@ -176,7 +183,7 @@ public class HomeController {
                 list.add(anchorPane);
             } catch (IOException e) {
                 System.out.println("Error when loading " + fxmlPath + ": " + e.getMessage());
-                e.printStackTrace();
+                //e.printStackTrace();
             }
         }
         return list;

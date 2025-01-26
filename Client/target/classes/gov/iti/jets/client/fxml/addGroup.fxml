@@ -1,40 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="247.0" prefWidth="426.0" styleClass="anchor_Pane" stylesheets="@../styles/addGroug.css" type="AnchorPane" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.client.AddGroupController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="494.0" prefWidth="539.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.client.AddGroupController">
    <children>
-      <Label layoutX="39.0" layoutY="21.0" prefHeight="26.0" prefWidth="112.0" text="Select Friends" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="17.0" />
-         </font>
-      </Label>
-      <TextField fx:id="Selecttextfield" layoutX="36.0" layoutY="57.0" prefHeight="26.0" prefWidth="351.0" promptText="Write the phone number of a friend " />
-      <CheckBox fx:id="friendSelection" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="36.0" layoutY="100.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#handleCheckbox" prefHeight="46.0" prefWidth="351.0" styleClass="check_box" stylesheets="@../styles/addGroug.css" text="Amin" textFill="#928989" AnchorPane.bottomAnchor="100.6" AnchorPane.leftAnchor="36.0" AnchorPane.rightAnchor="38.80000000000001" AnchorPane.topAnchor="100.0">
-         <padding>
-            <Insets left="20.0" right="10.0" />
-         </padding>
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-         <graphic>
-            <ImageView fx:id="driendIcon" fitHeight="40.0" fitWidth="40.0">
-               <image>
-                  <Image url="@../images/friendIcon.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </CheckBox>
-      <Button fx:id="createGroupButton" layoutX="36.0" layoutY="208.0" mnemonicParsing="false" onAction="#handleCreategroup" prefHeight="26.0" prefWidth="351.0" stylesheets="@../styles/addGroug.css" text="Create DM" textFill="WHITE" />
-      <Separator layoutX="3.0" layoutY="195.0" opacity="0.2" prefHeight="0.0" prefWidth="419.0" stylesheets="@../styles/addGroug.css" />
+      <Button fx:id="createGroupButton" layoutX="127.0" layoutY="453.0" mnemonicParsing="false" onAction="#handleCreategroup" prefHeight="33.0" prefWidth="286.0" stylesheets="@../styles/addGroug.css" text="Create DM" textFill="WHITE" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="127.0" AnchorPane.rightAnchor="126.0" />
+      <Separator layoutX="46.4" layoutY="430.0" opacity="0.2" prefHeight="2.0" prefWidth="512.0" stylesheets="@../styles/addGroug.css" AnchorPane.leftAnchor="46.4" AnchorPane.rightAnchor="46.39999999999998" />
+      <ImageView fitHeight="160.0" fitWidth="152.0" layoutX="354.0" layoutY="21.0" AnchorPane.rightAnchor="33.200000000000045" AnchorPane.topAnchor="21.0">
+         <image>
+            <Image url="@../images/people.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="groupPicture" layoutX="382.0" layoutY="198.0" mnemonicParsing="false" onAction="#handle_Group_Picture" stylesheets="@../styles/addGroug.css" text="Choose Picture" />
+      <Label layoutX="56.0" layoutY="33.0" text="Label" textFill="#b45050" />
    </children>
-</fx:root>
+</AnchorPane>
