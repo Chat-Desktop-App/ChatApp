@@ -1,33 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<BorderPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.client.controller.AddFriendController">
-   <center>
-      <AnchorPane styleClass="addFriend" stylesheets="@../styles/addFriend.css" BorderPane.alignment="CENTER">
+<VBox prefHeight="58.0" prefWidth="382.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.client.controller.AddFriendController">
+   <children>
+      <AnchorPane prefHeight="79.0" prefWidth="382.0">
          <children>
-            <AnchorPane layoutX="55.2" layoutY="123.2" opacity="0.83" prefHeight="369.0" prefWidth="690.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="93.0" AnchorPane.leftAnchor="55.0" AnchorPane.rightAnchor="66.0" AnchorPane.topAnchor="123.0">
-               <children>
-                  <TextField fx:id="phoneField" layoutX="22.0" layoutY="61.0" prefHeight="58.0" prefWidth="400.0" promptText="Enter phone number" styleClass="textField" stylesheets="@../styles/addFriend.css" />
-                  <Button fx:id="addFriend" layoutX="436.0" layoutY="72.0" mnemonicParsing="false" onAction="#handleAddfriend" prefHeight="36.0" prefWidth="64.0" text="Add" textAlignment="CENTER" textFill="WHITE" />
-                  <Text fill="#1a1a69" layoutX="39.8" layoutY="39.0" stroke="#9da8bd" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Friend" wrappingWidth="107.8304443359375" AnchorPane.bottomAnchor="287.7984375" AnchorPane.leftAnchor="39.8" AnchorPane.rightAnchor="359.36955566406255" AnchorPane.topAnchor="17.41796875">
-                     <font>
-                        <Font name="System Bold" size="20.0" />
-                     </font>
-                  </Text>
-                  <Button fx:id="sendInvetation" layoutX="510.0" layoutY="72.0" mnemonicParsing="false" onAction="#handleSendInvetation" prefHeight="36.0" prefWidth="134.0" stylesheets="@../styles/addFriend.css" text="Send Request" textFill="WHITE" />
-                  <Separator layoutX="29.0" layoutY="133.0" opacity="0.2" prefHeight="2.0" prefWidth="599.0" style="-fx-background-color: gray;" />
-                  <ListView fx:id="listViewOf_Friend_Request" layoutX="31.2" layoutY="142.0" opacity="0.59" prefHeight="188.0" prefWidth="630.0" styleClass="listview" AnchorPane.bottomAnchor="39.0" AnchorPane.leftAnchor="31.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="142.0" />
-               </children>
-            </AnchorPane>
+            <Label fx:id="friendName" layoutX="84.8" layoutY="15.0" text="Alyaa" AnchorPane.leftAnchor="84.8">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="311.0" layoutY="11.0" AnchorPane.rightAnchor="31.399999999999977">
+               <image>
+                  <Image url="@../images/small-talk.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="328.0" layoutY="8.0">
+               <image>
+                  <Image url="@../images/addedFriend.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="friendIcon" fitHeight="50.0" fitWidth="50.0" layoutX="26.4" layoutY="4.0" AnchorPane.leftAnchor="26.4">
+               <image>
+                  <Image url="@../images/person.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
-   </center>
-</BorderPane>
+   </children>
+</VBox>
