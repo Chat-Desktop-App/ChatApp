@@ -34,6 +34,12 @@ public class User {
         this.lastSeen = LocalDateTime.now();
     }
 
+    public User(String phoneNumber, String fname, String lname) {
+        this.phoneNumber = phoneNumber;
+        this.fname = fname;
+        this.lname = lname;
+    }
+
     public String getPhoneNumber() {
         return phoneNumber;
     }

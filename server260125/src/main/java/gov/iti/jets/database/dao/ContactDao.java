@@ -12,4 +12,5 @@ public interface ContactDao {
     public List<ContactUser> getAllContacts(String phoneNumber) throws  SQLException;
     public int addContact(String phoneNumber, String contactPhoneNumber) throws SQLException;
     public int updateContact(ContactUser contactUser) throws SQLException;
+    public List<ContactUser> getLastContact(String phoneNumber) throws SQLException;
 }
