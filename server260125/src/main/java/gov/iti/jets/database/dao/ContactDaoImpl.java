@@ -198,9 +198,9 @@ public class ContactDaoImpl implements  ContactDao{
                 System.out.println(contact);
             }
 
-    } catch (SQLException e) {
-        e.printStackTrace();
-    }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 
