@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -21,7 +22,8 @@ public class HomeController {
 
     @FXML
     private URL location;
-
+    @FXML
+    private BorderPane chatsBorderPane;
     @FXML
     private ImageView addFriendIcon;
 
@@ -35,7 +37,7 @@ public class HomeController {
     private Button blockedButton;
 
     @FXML
-    private ListView<?> chatsTree;
+    private ListView<Node> chatsTree;
 
     @FXML
     private BorderPane homeBorderPane;
@@ -171,21 +173,29 @@ public class HomeController {
         assert settingsIcon != null : "fx:id=\"settingsIcon\" was not injected: check your FXML file 'home.fxml'.";
         assert mainAnchorPane != null : "fx:id=\"mainAnchorPane\" was not injected: check your FXML file 'home.fxml'.";
         assert mainBorderPane != null : "fx:id=\"mainBorderPane\" was not injected: check your FXML file 'home.fxml'.";
-
+        fillChats();
     }
 
+    private void fillChats(){
+        ObservableList<Node> observableList = loadFXMLIntoList("/gov/iti/jets/client/fxml/allChats.fxml", 20);
+        ListView<Node> listView = createListView(observableList);
+        listView.prefWidthProperty().bind(chatsBorderPane.widthProperty());
+        listView.prefHeightProperty().bind(chatsBorderPane.heightProperty());
+       chatsBorderPane.setCenter(listView);
+
+    }
     private void handleButtonAction(String fxmlPath) {
-        ObservableList<AnchorPane> observableList = loadFXMLIntoList(fxmlPath, 20);
-        ListView<AnchorPane> listView = createListView(observableList);
+        ObservableList<Node> observableList = loadFXMLIntoList(fxmlPath, 20);
+        ListView<Node> listView = createListView(observableList);
         mainBorderPane.setCenter(listView);
     }
 
-    private ObservableList<AnchorPane> loadFXMLIntoList(String fxmlPath, int count) {
-        ObservableList<AnchorPane> list = FXCollections.observableArrayList();
+    private ObservableList<Node> loadFXMLIntoList(String fxmlPath, int count) {
+        ObservableList<Node> list = FXCollections.observableArrayList();
         for (int i = 0; i < count; i++) {
             try {
-                AnchorPane anchorPane = new FXMLLoader(getClass().getResource(fxmlPath)).load();
-                list.add(anchorPane);
+                Node node = new FXMLLoader(getClass().getResource(fxmlPath)).load();
+                list.add(node);
             } catch (IOException e) {
                 System.out.println("Error when loading " + fxmlPath + ": " + e.getMessage());
                 //e.printStackTrace();
@@ -194,8 +204,8 @@ public class HomeController {
         return list;
     }
 
-    private ListView<AnchorPane> createListView(ObservableList<AnchorPane> items) {
-        ListView<AnchorPane> listView = new ListView<>(items);
+    private ListView<Node > createListView(ObservableList<Node> items) {
+        ListView<Node> listView = new ListView<>(items);
         listView.setStyle("-fx-background-color: white;");
         listView.skinProperty().addListener((obs, oldSkin, newSkin) -> {
             for (ScrollBar scrollBar : listView.lookupAll(".scroll-bar").stream()
@@ -209,7 +219,7 @@ public class HomeController {
         });
         listView.setCellFactory(lv -> new ListCell<>() {
             @Override
-            protected void updateItem(AnchorPane item, boolean empty) {
+            protected void updateItem(Node item, boolean empty) {
                 super.updateItem(item, empty);
                 if (empty || item == null) {
                     setGraphic(null);
