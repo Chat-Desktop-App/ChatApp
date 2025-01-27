@@ -17,8 +17,10 @@
 }
 
 .field-label {
-    -fx-font-size: 14px;
+    -fx-font-size: 12px;
     -fx-text-fill: #2d2d2d;
+    -fx-font-weight: bold;
+
 }
 
 .text-field {
@@ -30,7 +32,7 @@
 
 
 .buttonStyle{
-    -fx-background-color: #2d2d2d;
+    -fx-background-color: #003249;
     -fx-text-fill: white;
 }
 

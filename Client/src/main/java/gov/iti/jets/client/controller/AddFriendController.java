@@ -1,25 +1,21 @@
-package gov.iti.jets.client;
+package gov.iti.jets.client.controller;
 
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
 public class AddFriendController {
 
     @FXML
-    private ResourceBundle resources;
+    private Button addFriend;
 
     @FXML
-    private URL location;
+    private ListView<?> listViewOf_Friend_Request;
 
     @FXML
     private TextField phoneField;
-
-    @FXML
-    private Button addFriend;
 
     @FXML
     private Button sendInvetation;
@@ -34,11 +30,4 @@ public class AddFriendController {
 
     }
 
-    @FXML
-    void initialize() {
-        assert phoneField != null : "fx:id=\"phoneField\" was not injected: check your FXML file 'addFriend.fxml'.";
-        assert addFriend != null : "fx:id=\"addFriend\" was not injected: check your FXML file 'addFriend.fxml'.";
-        assert sendInvetation != null : "fx:id=\"sendInvetation\" was not injected: check your FXML file 'addFriend.fxml'.";
-
-    }
 }

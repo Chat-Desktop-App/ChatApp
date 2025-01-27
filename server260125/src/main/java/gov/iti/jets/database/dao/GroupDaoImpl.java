@@ -63,7 +63,7 @@ public class GroupDaoImpl implements GroupDao{
             groups.add(group);
         }
 
-        return groups;
+    return groups;
     }
 
     @Override
@@ -192,7 +192,7 @@ public class GroupDaoImpl implements GroupDao{
                 return;
             }
 
-            // Get the group ID of the newly created group
+            // Get the group ID of the newly created group 
             int groupId = 1;
             System.out.println("Group ID of newly created group is assumed to be: " + groupId);
 

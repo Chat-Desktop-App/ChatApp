@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
@@ -19,6 +20,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 public class SignUpController implements Initializable {
@@ -26,16 +28,16 @@ public class SignUpController implements Initializable {
     private VBox background;
 
     @FXML
-    private VBox SignUpVbox;
-
-    @FXML
-    private Label createLabel;
-
-    @FXML
     private ImageView logo;
 
     @FXML
     private Image orca;
+
+    @FXML
+    private VBox SignUp1Vbox;
+
+    @FXML
+    private Label createLabel;
 
     @FXML
     private TextField phoneNum;
@@ -58,6 +60,45 @@ public class SignUpController implements Initializable {
     @FXML
     private Button next;
 
+    @FXML
+    private VBox SignUp2Vbox;
+
+    @FXML
+    private Label createLabel2;
+
+    @FXML
+    private ImageView profilePicture;
+
+    @FXML
+    private Image profile;
+
+    @FXML
+    private Button choosePicture;
+
+    @FXML
+    private RadioButton female;
+
+    @FXML
+    private ToggleGroup gender;
+
+    @FXML
+    private RadioButton male;
+
+    @FXML
+    private DatePicker dob;
+
+    @FXML
+    private ComboBox<String> country;
+
+    @FXML
+    private TextField bio;
+
+    @FXML
+    private Button prev;
+
+    @FXML
+    private Button submit;
+
     private Stage primaryStage;
 
     private Scene nextScene;
@@ -68,6 +109,28 @@ public class SignUpController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        country.getItems().addAll("Afghanistan", "Albania", "Algeria", "Andorra", "Angola",
+                "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan",
+                "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus",
+                "Belgium", "Belize", "Benin", "Bhutan", "Bolivia",
+                "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria",
+                "Burkina Faso", "Burundi", "Cabo Verde", "Cambodia", "Cameroon",
+                "Canada", "Central African Republic", "Chad", "Chile", "China",
+                "Colombia", "Comoros", "Congo", "Costa Rica", "Croatia",
+                "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti",
+                "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador",
+                "Equatorial Guinea", "Eritrea", "Estonia", "Eswatini", "Ethiopia",
+                "Fiji", "Finland", "France", "Gabon", "Gambia",
+                "Georgia", "Germany", "Ghana", "Greece", "Grenada",
+                "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti",
+                "Honduras", "Hungary", "Iceland", "India", "Indonesia",
+                "Iran", "Iraq", "Ireland", "Israel", "Italy",
+                "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya",
+                "Kiribati", "Korea, North", "Korea, South", "Kosovo", "Kuwait",
+                "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho",
+                "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg",
+                "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali",
+                "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mexico");
 
     }
 
@@ -97,7 +160,7 @@ public class SignUpController implements Initializable {
                 user.setLname(lname.getText());
                 user.setEmail(email.getText());
                 user.setPasswordHashed(password.getText());
-            // change scene
+           /* // change scene
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("fxml/signUp2.fxml"));
             nextRoot = fxmlLoader.load();
             // move the user object to signup2
@@ -106,7 +169,10 @@ public class SignUpController implements Initializable {
             nextScene = new Scene(nextRoot);
             nextScene.getStylesheets().add(Objects.requireNonNull(HelloApplication.class.getResource("styles/signUp.css")).toExternalForm());
             primaryStage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-            primaryStage.setScene(nextScene);
+            primaryStage.setScene(nextScene);*/
+            SignUp1Vbox.setVisible(false);
+            SignUp2Vbox.setVisible(true);
+
         }
 
 
@@ -129,5 +195,32 @@ public class SignUpController implements Initializable {
             password.setText(user.getPasswordHashed() != null ? user.getPasswordHashed() : "");
             cpassword.setText(user.getPasswordHashed() != null ? user.getPasswordHashed() : "");
         }
+    }
+
+    public void handleChoosePicButton(ActionEvent actionEvent) {
+        FileChooser fileChooser = new FileChooser();
+
+
+        FileChooser.ExtensionFilter imageFilter = new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif", "*.bmp");
+        fileChooser.getExtensionFilters().add(imageFilter);
+
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        File selectedFile = fileChooser.showOpenDialog(stage);
+
+        if (selectedFile != null) {
+
+            Image image = new Image(selectedFile.toURI().toString());
+            profilePicture.setImage(image);
+
+        }
+    }
+
+    public void handleSubmitButton(ActionEvent actionEvent) {
+    }
+
+    public void handlePrevButton(ActionEvent actionEvent) {
+        SignUp2Vbox.setVisible(false);
+        SignUp1Vbox.setVisible(true);
+
     }
 }
