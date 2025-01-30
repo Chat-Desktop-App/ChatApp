@@ -7,7 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Circle;
 
-public class AllFriendsController {
+public class AllCardController {
 
     @FXML
     private ResourceBundle resources;
@@ -29,10 +29,10 @@ public class AllFriendsController {
 
     @FXML
     void initialize() {
-        assert friendIcon != null : "fx:id=\"friendIcon\" was not injected: check your FXML file 'allFriends.fxml'.";
-        assert friendName != null : "fx:id=\"friendName\" was not injected: check your FXML file 'allFriends.fxml'.";
-        assert inboxIcon != null : "fx:id=\"inboxIcon\" was not injected: check your FXML file 'allFriends.fxml'.";
-        assert status != null : "fx:id=\"status\" was not injected: check your FXML file 'allFriends.fxml'.";
+        assert friendIcon != null : "fx:id=\"friendIcon\" was not injected: check your FXML file 'allCard.fxml'.";
+        assert friendName != null : "fx:id=\"friendName\" was not injected: check your FXML file 'allCard.fxml'.";
+        assert inboxIcon != null : "fx:id=\"inboxIcon\" was not injected: check your FXML file 'allCard.fxml'.";
+        assert status != null : "fx:id=\"status\" was not injected: check your FXML file 'allCard.fxml'.";
 
     }
 
