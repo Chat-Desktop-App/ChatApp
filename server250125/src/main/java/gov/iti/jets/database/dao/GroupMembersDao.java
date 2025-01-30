@@ -9,4 +9,5 @@ public interface GroupMembersDao {
     GroupMember getGroupMember(int groupId, String memberId);
     List<GroupMember> getAllGroupMembers();
     void deleteGroupMember(int groupId, String memberId);
+
 }

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="192.0" prefWidth="102.0" style="-fx-background-color: #eff7f6c9;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane prefWidth="102.0">
+         <children>
+            <Button fx:id="music" layoutX="23.0" layoutY="131.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="49.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.19999999999998863" AnchorPane.leftAnchor="23.200000000000003" AnchorPane.rightAnchor="23.400000000000006" AnchorPane.topAnchor="131.2">
+               <graphic>
+                  <ImageView fitHeight="40.0" fitWidth="40.0">
+                     <image>
+                        <Image url="@../images/Audio.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="image" layoutX="23.0" layoutY="14.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="49.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="116.79999999999998" AnchorPane.leftAnchor="23.200000000000003" AnchorPane.rightAnchor="23.400000000000006" AnchorPane.topAnchor="14.0">
+               <graphic>
+                  <ImageView fitHeight="40.0" fitWidth="40.0">
+                     <image>
+                        <Image url="@../images/image-gallery.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="document" layoutX="23.2" layoutY="72.19999999999999" mnemonicParsing="false" prefHeight="46.0" prefWidth="49.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="59.0" AnchorPane.leftAnchor="23.2" AnchorPane.rightAnchor="23.200000000000003" AnchorPane.topAnchor="71.99999999999999">
+               <graphic>
+                  <ImageView fitHeight="40.0" fitWidth="40.0">
+                     <image>
+                        <Image url="@../images/google-docs.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>
