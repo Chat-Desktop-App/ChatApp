@@ -1,19 +1,23 @@
+
+.HBOX_Background {
+	-fx-background-image: url("../images/addFriendBackground.png");
+	-fx-background-size: 100% 100%;
+}
 .anchor_Pane {
-    /*-fx-background-color: linear-gradient(to left, #081997e4, #1657d8ad);*/
-    -fx-background-color: linear-gradient(to left, #081997e4, #1657d8cf);
+    -fx-background-color: #ffffff;
   }
 .more_button {
     -fx-background-color: #23a885;
     -fx-background-image: url("../images/more.png");
     -fx-background-size: 100% 100%; 
-    -fx-border-width: 0;          /* Remove the border */
-    -fx-background-insets: 0;     /* Ensure no insets interfere */
+    -fx-border-width: 0;       
+    -fx-background-insets: 0;   
 }
 .more_button:hover {
-    -fx-background-color: #30ecbae5; /* Primary2 color on hover */
+    -fx-background-color: #30ecbae5; 
 }
 .more_button:focused {
-    -fx-focus-color: transparent; /* Remove focus ring */
+    -fx-focus-color: transparent; 
 }
 .delete_button {
     -fx-background-color: #188e6f;
@@ -25,11 +29,15 @@
     -fx-background-insets: 0;    
 }
 .delete_button:hover {
-    -fx-background-color: #30ecbae5; /* Primary2 color on hover */
+    -fx-background-color: #30ecbae5;
 }
 .delete_button:focused {
-    -fx-focus-color: transparent; /* Remove focus ring */
+    -fx-focus-color: transparent;
 }
 .separator { 
-    -fx-background-color: #cbcfceb3; /* Primary1 color */
+    -fx-background-color: #cbcfceb3; 
 }
+.listview {
+    -fx-background-color: /*linear-gradient(to left, #d2ebffe4, #c6dff3e4);*/white;
+}
+
