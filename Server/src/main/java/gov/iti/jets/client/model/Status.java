@@ -1,4 +1,4 @@
-package gov.iti.jets.model;
+package gov.iti.jets.client.model;
 
 public enum Status {
     AVAILABLE,

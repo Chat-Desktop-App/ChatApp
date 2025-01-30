@@ -1,8 +1,7 @@
 package gov.iti.jets.database.dao;
 
-import gov.iti.jets.model.Group;
-import gov.iti.jets.model.GroupMember;
-import gov.iti.jets.model.User;
+import gov.iti.jets.client.model.Group;
+import gov.iti.jets.client.model.User;
 
 import java.sql.SQLException;
 import java.util.List;

@@ -3,10 +3,9 @@ package gov.iti.jets.database.dao;
 
 
 import gov.iti.jets.database.DataBaseConnection;
-import gov.iti.jets.model.ContactUser;
-import gov.iti.jets.model.Gender;
-import gov.iti.jets.model.Status;
-import gov.iti.jets.model.User;
+import gov.iti.jets.client.model.Gender;
+import gov.iti.jets.client.model.Status;
+import gov.iti.jets.client.model.User;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -16,7 +15,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 

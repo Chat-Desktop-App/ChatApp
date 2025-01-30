@@ -1,6 +1,6 @@
 package gov.iti.jets.database.dao;
 
-import gov.iti.jets.model.Files;
+import gov.iti.jets.client.model.Files;
 
 import java.util.List;
 

@@ -1,7 +1,7 @@
 package gov.iti.jets.client.services.impls;
 
 import gov.iti.jets.database.dao.UserDaoImpl;
-import gov.iti.jets.model.User;
+import gov.iti.jets.client.model.User;
 import gov.iti.jets.client.services.interfaces.ChatClient;
 import gov.iti.jets.client.services.interfaces.Login;
 

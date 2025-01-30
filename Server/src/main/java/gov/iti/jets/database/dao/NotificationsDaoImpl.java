@@ -1,7 +1,7 @@
 package gov.iti.jets.database.dao;
 
 import gov.iti.jets.database.DataBaseConnection;
-import gov.iti.jets.model.Notifications;
+import gov.iti.jets.client.model.Notifications;
 
 import java.sql.*;
 import java.time.LocalDateTime;

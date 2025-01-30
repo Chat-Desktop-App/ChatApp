@@ -1,8 +1,8 @@
 package gov.iti.jets.database.dao;
 
 import gov.iti.jets.database.DataBaseConnection;
-import gov.iti.jets.model.Messages;
-import gov.iti.jets.model.Recipient;
+import gov.iti.jets.client.model.Messages;
+import gov.iti.jets.client.model.Recipient;
 
 import java.sql.*;
 import java.util.ArrayList;
