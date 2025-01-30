@@ -8,7 +8,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Circle;
 
-public class OnlineFriendController {
+public class OnlineCardController {
 
     @FXML
     private ResourceBundle resources;
@@ -35,10 +35,10 @@ public class OnlineFriendController {
 
     @FXML
     void initialize() {
-        assert friendIcon != null : "fx:id=\"friendIcon\" was not injected: check your FXML file 'online.fxml'.";
-        assert friendName != null : "fx:id=\"friendName\" was not injected: check your FXML file 'online.fxml'.";
-        assert inboxIcon != null : "fx:id=\"inboxIcon\" was not injected: check your FXML file 'online.fxml'.";
-        assert status != null : "fx:id=\"status\" was not injected: check your FXML file 'online.fxml'.";
+        assert friendIcon != null : "fx:id=\"friendIcon\" was not injected: check your FXML file 'onlineCard.fxml'.";
+        assert friendName != null : "fx:id=\"friendName\" was not injected: check your FXML file 'onlineCard.fxml'.";
+        assert inboxIcon != null : "fx:id=\"inboxIcon\" was not injected: check your FXML file 'onlineCard.fxml'.";
+        assert status != null : "fx:id=\"status\" was not injected: check your FXML file 'onlineCard.fxml'.";
 
     }
 

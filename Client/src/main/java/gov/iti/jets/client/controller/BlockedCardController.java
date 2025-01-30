@@ -7,7 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 
-public class BlockedFriendController {
+public class BlockedCardController {
 
     @FXML
     private ResourceBundle resources;
@@ -29,10 +29,10 @@ public class BlockedFriendController {
 
     @FXML
     void initialize() {
-        assert blockedIcon != null : "fx:id=\"blockedIcon\" was not injected: check your FXML file 'blocked.fxml'.";
-        assert friendIcon != null : "fx:id=\"friendIcon\" was not injected: check your FXML file 'blocked.fxml'.";
-        assert friendName != null : "fx:id=\"friendName\" was not injected: check your FXML file 'blocked.fxml'.";
-        assert unblockButton != null : "fx:id=\"unblockButton\" was not injected: check your FXML file 'blocked.fxml'.";
+        assert blockedIcon != null : "fx:id=\"blockedIcon\" was not injected: check your FXML file 'blockedCard.fxml'.";
+        assert friendIcon != null : "fx:id=\"friendIcon\" was not injected: check your FXML file 'blockedCard.fxml'.";
+        assert friendName != null : "fx:id=\"friendName\" was not injected: check your FXML file 'blockedCard.fxml'.";
+        assert unblockButton != null : "fx:id=\"unblockButton\" was not injected: check your FXML file 'blockedCard.fxml'.";
 
     }
 
