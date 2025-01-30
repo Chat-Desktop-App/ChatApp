@@ -144,7 +144,8 @@ public class HomeController {
 
     @FXML
     void handlesettingsIcon(ActionEvent event) {
-
+        String fxmlPath = "/gov/iti/jets/fxml/profile.fxml";
+        handleButtonAction(fxmlPath);
     }
 
     @FXML
