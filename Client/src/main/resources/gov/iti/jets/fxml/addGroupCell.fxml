@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.text.Font?>
+
+<CheckBox fx:id="friendName" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#handleCheckbox" prefHeight="42.0" prefWidth="354.0" styleClass="check_box" stylesheets="@../styles/addGroupCell.css" text="Amin" textFill="#232440" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <padding>
+      <Insets left="20.0" right="10.0" />
+   </padding>
+   <font>
+      <Font name="System Bold" size="14.0" />
+   </font>
+   <graphic>
+      <ImageView fx:id="friendIcon" fitHeight="40.0" fitWidth="40.0">
+         <image>
+            <Image url="@../images/person.png" />
+         </image>
+      </ImageView>
+   </graphic>
+</CheckBox>

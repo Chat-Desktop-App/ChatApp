@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefWidth="165.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.view.AllCardController">
+   <children>
+      <ImageView fx:id="friendIcon" fitHeight="40.0" fitWidth="40.0" layoutX="32.0" layoutY="6.0" AnchorPane.leftAnchor="32.0">
+         <image>
+            <Image url="@../images/friendIcon.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="friendName" layoutX="90.0" layoutY="15.0" text="Omer" AnchorPane.leftAnchor="90.0">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Circle fx:id="status" fill="#6e716f99" layoutX="67.0" layoutY="15.0" radius="5.0" stroke="#00000007" strokeType="INSIDE" AnchorPane.leftAnchor="62.0" />
+   </children>
+</AnchorPane>
