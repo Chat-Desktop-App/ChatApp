@@ -110,7 +110,7 @@
                         </HBox>
                      </top>
                      <center>
-                        <AnchorPane fx:id="mainAnchorPane" prefWidth="640.0" styleClass="stack_pane" />
+                        <AnchorPane fx:id="mainAnchorPane" styleClass="stack_pane" BorderPane.alignment="CENTER" />
                      </center>
                   </BorderPane>
                </children>
