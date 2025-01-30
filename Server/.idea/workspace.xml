@@ -4,16 +4,236 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d5afba13-436e-4e2c-9ff2-21edefb00434" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../Client/target/classes/gov/iti/jets/client/fxml/home.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/target/classes/gov/iti/jets/client/fxml/home.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/target/classes/gov/iti/jets/client/styles/home.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/target/classes/gov/iti/jets/client/styles/home.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gov/iti/jets/App.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gov/iti/jets/OrcaController.class" beforeDir="false" />
+    <list default="true" id="b10ca29c-393f-47a9-bbc5-0bd123b5b7e3" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/Server.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Styles/server.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Styles/server.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/fxml/orca.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fxml/orca.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/fxml/server-announcement.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fxml/server-announcement.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/fxml/server-stats.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fxml/server-stats.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/fxml/server-status.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fxml/server-status.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/fxml/server-userTable.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fxml/server-userTable.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/module-info.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server240125/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server240125/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server240125/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server240125/src/main/java/gov/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server240125/src/main/java/gov/.idea/material_theme_project_new.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server240125/src/main/java/gov/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server240125/src/main/java/gov/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server240125/src/main/java/gov/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server240125/src/main/java/gov/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server240125/src/main/java/gov/gov.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server240125/target/classes/Styles/SignUp.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server240125/target/classes/Styles/home.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server240125/target/classes/Styles/logIn.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server240125/target/classes/Styles/register.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server240125/target/classes/Styles/server.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server240125/target/classes/db.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server240125/target/classes/fxml/orca.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server240125/target/classes/fxml/server-announcement.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server240125/target/classes/fxml/server-homePage.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server240125/target/classes/fxml/server-register.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server240125/target/classes/fxml/server-signIn.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server240125/target/classes/fxml/server-signOut.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server240125/target/classes/fxml/server-stats.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server240125/target/classes/fxml/server-status.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server240125/target/classes/fxml/server-userTable.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server240125/target/classes/gov/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server240125/target/classes/gov/.idea/material_theme_project_new.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server240125/target/classes/gov/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server240125/target/classes/gov/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server240125/target/classes/gov/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server240125/target/classes/gov/gov.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server240125/target/classes/gov/iti/jets/AnnouncementController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server240125/target/classes/gov/iti/jets/App.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server240125/target/classes/gov/iti/jets/HomeController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server240125/target/classes/gov/iti/jets/RegisterController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server240125/target/classes/gov/iti/jets/SignInController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server240125/target/classes/gov/iti/jets/StatsController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server240125/target/classes/gov/iti/jets/StatusController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server240125/target/classes/gov/iti/jets/UserTableController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server240125/target/classes/gov/iti/jets/database/DataBaseConnection.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server240125/target/classes/gov/iti/jets/database/dao/ContactDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server240125/target/classes/gov/iti/jets/database/dao/ContactDaoImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server240125/target/classes/gov/iti/jets/database/dao/GroupDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server240125/target/classes/gov/iti/jets/database/dao/GroupDaoImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server240125/target/classes/gov/iti/jets/database/dao/UserDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server240125/target/classes/gov/iti/jets/database/dao/UserDaoImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server240125/target/classes/gov/iti/jets/model/ContactStatus.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server240125/target/classes/gov/iti/jets/model/ContactUser.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server240125/target/classes/gov/iti/jets/model/Gender.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server240125/target/classes/gov/iti/jets/model/Group.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server240125/target/classes/gov/iti/jets/model/Message.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server240125/target/classes/gov/iti/jets/model/Notification.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server240125/target/classes/gov/iti/jets/model/Status.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server240125/target/classes/gov/iti/jets/model/User.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server240125/target/classes/gov/iti/jets/model/UserSession.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server240125/target/classes/images/arrow.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server240125/target/classes/images/blue-gradient.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server240125/target/classes/images/group.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server240125/target/classes/images/home.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server240125/target/classes/images/orca-front.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server240125/target/classes/images/orca.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server240125/target/classes/images/pie-chart.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server240125/target/classes/images/switchOff.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server240125/target/classes/images/switchOn.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server240125/target/classes/images/telegram.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server240125/target/classes/module-info.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server250125/src/main/java/gov/iti/jets/database/dao/GroupMembersDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/.idea/material_theme_project_new.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/.idea/server240125.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/src/main/java/gov/iti/jets/AnnouncementController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/src/main/java/gov/iti/jets/App.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/src/main/java/gov/iti/jets/HomeController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/src/main/java/gov/iti/jets/RegisterController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/src/main/java/gov/iti/jets/SignInController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/src/main/java/gov/iti/jets/StatsController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/src/main/java/gov/iti/jets/StatusController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/src/main/java/gov/iti/jets/UserTableController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/src/main/java/gov/iti/jets/database/DataBaseConnection.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/src/main/java/gov/iti/jets/database/dao/ContactDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/src/main/java/gov/iti/jets/database/dao/ContactDaoImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/src/main/java/gov/iti/jets/database/dao/FilesDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/src/main/java/gov/iti/jets/database/dao/FilesDaoImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/src/main/java/gov/iti/jets/database/dao/GroupDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/src/main/java/gov/iti/jets/database/dao/GroupDaoImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/src/main/java/gov/iti/jets/database/dao/MessagesDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/src/main/java/gov/iti/jets/database/dao/MessagesDaoImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/src/main/java/gov/iti/jets/database/dao/NotificationsDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/src/main/java/gov/iti/jets/database/dao/NotificationsDaoImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/src/main/java/gov/iti/jets/database/dao/UserDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/src/main/java/gov/iti/jets/database/dao/UserDaoImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/src/main/java/gov/iti/jets/model/ContactStatus.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/src/main/java/gov/iti/jets/model/ContactUser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/src/main/java/gov/iti/jets/model/Files.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/src/main/java/gov/iti/jets/model/Gender.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/src/main/java/gov/iti/jets/model/Group.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/src/main/java/gov/iti/jets/model/GroupMember.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/src/main/java/gov/iti/jets/model/Messages.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/src/main/java/gov/iti/jets/model/Notifications.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/src/main/java/gov/iti/jets/model/Recipient.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/src/main/java/gov/iti/jets/model/Status.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/src/main/java/gov/iti/jets/model/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/src/main/java/gov/iti/jets/model/UserSession.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/src/main/java/module-info.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/src/main/resources/Styles/SignUp.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/src/main/resources/Styles/home.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/src/main/resources/Styles/logIn.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/src/main/resources/Styles/register.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/src/main/resources/Styles/server.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/src/main/resources/db.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/src/main/resources/fxml/orca.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/src/main/resources/fxml/server-announcement.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/src/main/resources/fxml/server-homePage.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/src/main/resources/fxml/server-register.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/src/main/resources/fxml/server-signIn.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/src/main/resources/fxml/server-signOut.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/src/main/resources/fxml/server-stats.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/src/main/resources/fxml/server-status.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/src/main/resources/fxml/server-userTable.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/src/main/resources/images/arrow.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/src/main/resources/images/blue-gradient.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/src/main/resources/images/group.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/src/main/resources/images/home.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/src/main/resources/images/orca-front.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/src/main/resources/images/orca.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/src/main/resources/images/pie-chart.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/src/main/resources/images/switchOff.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/src/main/resources/images/switchOn.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/src/main/resources/images/telegram.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/target/classes/Styles/SignUp.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/target/classes/Styles/home.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/target/classes/Styles/logIn.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/target/classes/Styles/register.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/target/classes/Styles/server.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/target/classes/db.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/target/classes/fxml/orca.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/target/classes/fxml/server-announcement.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/target/classes/fxml/server-homePage.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/target/classes/fxml/server-register.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/target/classes/fxml/server-signIn.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/target/classes/fxml/server-signOut.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/target/classes/fxml/server-stats.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/target/classes/fxml/server-status.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/target/classes/fxml/server-userTable.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/target/classes/gov/iti/jets/AnnouncementController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/target/classes/gov/iti/jets/App.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/target/classes/gov/iti/jets/HomeController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/target/classes/gov/iti/jets/RegisterController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/target/classes/gov/iti/jets/SignInController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/target/classes/gov/iti/jets/StatsController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/target/classes/gov/iti/jets/StatusController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/target/classes/gov/iti/jets/UserTableController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/target/classes/gov/iti/jets/database/DataBaseConnection.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/target/classes/gov/iti/jets/database/dao/ContactDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/target/classes/gov/iti/jets/database/dao/ContactDaoImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/target/classes/gov/iti/jets/database/dao/FilesDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/target/classes/gov/iti/jets/database/dao/FilesDaoImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/target/classes/gov/iti/jets/database/dao/GroupDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/target/classes/gov/iti/jets/database/dao/GroupDaoImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/target/classes/gov/iti/jets/database/dao/MessagesDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/target/classes/gov/iti/jets/database/dao/MessagesDaoImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/target/classes/gov/iti/jets/database/dao/NotificationsDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/target/classes/gov/iti/jets/database/dao/NotificationsDaoImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/target/classes/gov/iti/jets/database/dao/UserDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/target/classes/gov/iti/jets/database/dao/UserDaoImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/target/classes/gov/iti/jets/model/ContactStatus.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/target/classes/gov/iti/jets/model/ContactUser.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/target/classes/gov/iti/jets/model/Files.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/target/classes/gov/iti/jets/model/Gender.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/target/classes/gov/iti/jets/model/Group.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/target/classes/gov/iti/jets/model/GroupMember.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/target/classes/gov/iti/jets/model/Messages.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/target/classes/gov/iti/jets/model/Notifications.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/target/classes/gov/iti/jets/model/Recipient.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/target/classes/gov/iti/jets/model/Status.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/target/classes/gov/iti/jets/model/User.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/target/classes/gov/iti/jets/model/UserSession.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/target/classes/images/arrow.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/target/classes/images/blue-gradient.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/target/classes/images/group.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/target/classes/images/home.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/target/classes/images/orca-front.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/target/classes/images/orca.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/target/classes/images/pie-chart.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/target/classes/images/switchOff.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/target/classes/images/switchOn.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/target/classes/images/telegram.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/target/classes/module-info.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server260125/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="FxmlFile" />
+        <option value="Interface" />
+        <option value="Class" />
+        <option value="Enum" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -26,33 +246,53 @@
     </option>
   </component>
   <component name="ProjectColorInfo">{
-  &quot;customColor&quot;: &quot;&quot;,
-  &quot;associatedIndex&quot;: 7
+  &quot;associatedIndex&quot;: 4
 }</component>
-  <component name="ProjectId" id="2s1a7jYP2B7bK2pevANXtPTb61S" />
+  <component name="ProjectId" id="2s1vWyhmRLQ8Z9SVbTJyVPuEqRQ" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.App.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "F:/ITI/ChatApp/server240125"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.App.executor&quot;: &quot;Run&quot;,
+    &quot;Application.FilesDaoImpl.executor&quot;: &quot;Run&quot;,
+    &quot;Application.NotificationsDaoImpl.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;F:/iTi/Projects/JAVA Chat-App/source/server260125&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\iTi\Projects\JAVA Chat-App\source\server230125\src\main\resources\images" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="server230125" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="server230125" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="d5afba13-436e-4e2c-9ff2-21edefb00434" name="Changes" comment="" />
-      <created>1737625370824</created>
+      <changelist id="b10ca29c-393f-47a9-bbc5-0bd123b5b7e3" name="Changes" comment="" />
+      <created>1737635930757</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1737625370824</updated>
+      <updated>1737635930757</updated>
     </task>
     <servers />
   </component>

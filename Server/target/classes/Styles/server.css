@@ -11,16 +11,22 @@
 }
 
 .button:hover {
-    -fx-background-color: linear-gradient(to right, #6ebf3f, #4CAF50);
-    -fx-effect: dropshadow(gaussian, #ffcc00, 15, 0.6, 0, 0);
+    -fx-background-color: linear-gradient(to right, #0e4ece, #89CFF0);
+    -fx-effect: dropshadow(gaussian, #000080, 15, 0.6, 0, 0);
     -fx-scale-x: 1.05;
     -fx-scale-y: 1.05;
 }
 .topLeftBar {
-    -fx-background-color: linear-gradient(to right, #dcdf8f, #7c9e00);
+    -fx-background-color: linear-gradient(to right, #0e4ece, #89CFF0);
 
 }
 .leftBar {
-    -fx-background-color: linear-gradient(to bottom, #d8e4aa, #4CAF50);
-
+    -fx-background-color: linear-gradient(to bottom, #0e4ece, #89CFF0);
 }
+.anchorPane {
+    -fx-background-color: linear-gradient(to bottom, #5c81c9, #89CFF0);
+}
+/* Blue #0e4ece, #89CFF0 */
+/* Green #d8e4aa, #4CAF50 */
+/* button hover border green #ffcc00 */
+/* hover gradient #6ebf3f, #4CAF50 */
