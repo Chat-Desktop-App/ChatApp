@@ -1,9 +1,0 @@
-.messageCounter {
-    -fx-background-color: #0cc173;  /* Background color */
-    -fx-background-radius: 50%;      /* Make the label's background circular */
-    -fx-text-fill: white;            /* Text color */
-    -fx-pref-width: 15px;           /* Set width to make it a circle */
-    -fx-pref-height: 4px;          /* Set height to match width */
-    -fx-alignment: center;           /* Center the text inside the circle */
-    -fx-font-size: 10px;             /* Optional: font size */
-}

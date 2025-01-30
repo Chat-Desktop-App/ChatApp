@@ -5,9 +5,9 @@ module gov.iti.jets.client {
     requires mysql.connector.j;
 
 
-    opens gov.iti.jets.client to javafx.fxml;
-    opens gov.iti.jets.client.controller to javafx.fxml;
-    exports gov.iti.jets.client;
-    exports gov.iti.jets.client.controller to javafx.fxml;
+    opens gov.iti.jets to javafx.fxml;
+    opens gov.iti.jets.view to javafx.fxml;
+    exports gov.iti.jets;
+    exports gov.iti.jets.view to javafx.fxml;
 
 }
