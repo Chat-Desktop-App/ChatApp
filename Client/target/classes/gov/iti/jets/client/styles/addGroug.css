@@ -9,6 +9,8 @@
   }
 .button {
     -fx-background-color: #0ece7b; /* Primary1 color */
+    -fx-text-fill: #ffffff; /* White text */
+
 
 }
 .button:hover {
