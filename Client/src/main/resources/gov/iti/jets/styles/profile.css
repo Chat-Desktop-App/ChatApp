@@ -1,0 +1,35 @@
+.HBOX {
+	-fx-background-image: url("../images/chatBackground.jpeg");
+	-fx-background-size: 100% 100%;
+}
+.button {
+    -fx-background-color: linear-gradient(to left, #4bd6f2e4, #1657d8);
+   -fx-text-fill: #ffffff; /* White text */
+    -fx-font-family: "Noto Sans";
+    -fx-font-size: 14px;
+    -fx-padding: 8px 16px;
+    -fx-border-radius: 24px; 
+    /*-fx-background-radius: 24px; */
+    -fx-cursor: hand;
+}
+.button:hover {
+    -fx-background-color: #FFDBA9; /* Primary2 color on hover */
+}
+.profilePic {
+    -fx-background-color: white;
+}
+.textField {
+    -fx-text-fill: #ffffff; 
+    /*-fx-background-color: linear-gradient(to left, #0e4ecead, #0a3385ad);*/
+    -fx-background-color: linear-gradient(to left, #4bd6f2e4, #1657d8);
+   /* -fx-background-color: linear-gradient(to left ,#FFDBA9,#FFAA20);*/
+
+}
+
+.textField:hover{
+    -fx-border-color:#03092dbe; /* Change border color on hover */
+}
+.chomboBox {
+    -fx-background-color: linear-gradient(to left, #4bd6f2e4, #1657d8);
+
+}

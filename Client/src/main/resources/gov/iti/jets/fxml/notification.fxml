@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<HBox alignment="CENTER" styleClass="HBOX_Background" stylesheets="@../styles/notification.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.view.NotificationController">
+   <padding>
+      <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+   </padding>
+   <children>
+      <AnchorPane styleClass="anchor_Pane" stylesheets="@../styles/notification.css" HBox.hgrow="NEVER">
+         <children>
+            <Separator layoutX="26.0" layoutY="88.8" opacity="0.2" prefWidth="600.0" stylesheets="@../styles/notification.css" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" />
+            <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="29.0" layoutY="25.0" AnchorPane.leftAnchor="29.0" AnchorPane.topAnchor="25.0">
+               <image>
+                  <Image url="@../images/inbox2.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="85.4" layoutY="35.0" text="Inbox" textFill="#2854c5" AnchorPane.leftAnchor="85.4">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <ListView fx:id="listOFNotifications" layoutX="28.0" layoutY="100.0" styleClass="listview" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="28.0" AnchorPane.rightAnchor="36.0" AnchorPane.topAnchor="100.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</HBox>

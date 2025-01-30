@@ -1,0 +1,12 @@
+.chat_Background {
+	 -fx-background-image: url("../images/chatBackground.jpeg");
+	-fx-background-size: 90% 90%;
+}
+/*#132F93*/
+.borderpane_background {
+    -fx-background-color: #ffffffe2;
+}
+.button {
+    -fx-background-color: #ffffffe2;
+
+}
