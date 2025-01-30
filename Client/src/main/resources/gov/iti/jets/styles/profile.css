@@ -13,7 +13,7 @@
     -fx-cursor: hand;
 }
 .button:hover {
-    -fx-background-color: #FFDBA9; /* Primary2 color on hover */
+    -fx-background-color: #3973d7; /* Primary2 color on hover */
 }
 .profilePic {
     -fx-background-color: white;
@@ -32,4 +32,10 @@
 .chomboBox {
     -fx-background-color: linear-gradient(to left, #4bd6f2e4, #1657d8);
 
+}
+.Profile_button {
+    -fx-background-color: white;
+}
+.Profile_button:hover {
+    -fx-background-color: #FFDBA9; /* Primary2 color on hover */
 }
