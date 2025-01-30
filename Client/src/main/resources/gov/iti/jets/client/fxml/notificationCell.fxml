@@ -10,28 +10,26 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<HBox styleClass="anchor_Pane" stylesheets="@../styles/notification.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<HBox styleClass="anchor_Pane" stylesheets="@../styles/notificationCell.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.Client.NotificationCellController">
    <children>
-      <AnchorPane prefHeight="87.0" prefWidth="426.0">
+      <AnchorPane prefHeight="80.0">
          <children>
-            <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="23.0" layoutY="8.0">
+            <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="23.0" layoutY="8.0" AnchorPane.leftAnchor="23.0">
                <image>
-                  <Image url="@../images/profile.png" />
+                  <Image url="@../images/person.png" />
                </image>
             </ImageView>
-            <Label fx:id="friendName" layoutX="71.0" layoutY="15.0" text="Amany" textFill="WHITE">
+            <Label fx:id="friendName" layoutX="71.0" layoutY="15.0" text="Amany" textFill="#2854c5" AnchorPane.leftAnchor="71.0">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Text fx:id="contentOfNotification" fill="WHITE" layoutX="126.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="has accepted your friend request">
+            <Text fx:id="contentOfNotification" fill="#2854c5" layoutX="126.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="has accepted your friend request" AnchorPane.leftAnchor="126.0">
                <font>
                   <Font size="15.0" />
                </font>
             </Text>
-            <Button fx:id="moreButton" graphicTextGap="0.0" layoutX="385.0" layoutY="17.0" maxHeight="22.0" maxWidth="31.0" minHeight="20.0" minWidth="31.0" mnemonicParsing="false" onAction="#handleMoreButton" prefHeight="22.0" prefWidth="31.0" styleClass="more_button" stylesheets="@../styles/notification.css" AnchorPane.leftAnchor="384.8" AnchorPane.rightAnchor="10.199999999999978" />
-            <Button fx:id="deleteButton" layoutX="267.0" layoutY="42.0" mnemonicParsing="false" onAction="#handleDeleteButton" prefHeight="34.0" prefWidth="152.0" styleClass="delete_button" stylesheets="@../styles/notification.css" AnchorPane.leftAnchor="267.2" AnchorPane.rightAnchor="7.399999999999977" AnchorPane.topAnchor="42.0">
+            <Button fx:id="deleteButton" layoutX="439.0" layoutY="44.0" mnemonicParsing="false" onAction="#handleDeleteButton" prefHeight="34.0" prefWidth="150.0" styleClass="delete_button" stylesheets="@../styles/notification.css" visible="false" AnchorPane.leftAnchor="439.0" AnchorPane.rightAnchor="29.0" AnchorPane.topAnchor="44.0">
                <graphic>
                   <Label prefHeight="21.0" prefWidth="126.0" text="Delete" textFill="WHITE">
                      <font>
@@ -41,6 +39,15 @@
                         <Insets right="80.0" />
                      </padding>
                   </Label>
+               </graphic>
+            </Button>
+            <Button fx:id="moreButton" layoutX="552.0" layoutY="11.0" mnemonicParsing="false" onAction="#handleMoreButton" prefHeight="30.0" prefWidth="35.0" styleClass="more_button" AnchorPane.rightAnchor="28.80000000000001">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0">
+                     <image>
+                        <Image url="@../images/more.png" />
+                     </image>
+                  </ImageView>
                </graphic>
             </Button>
          </children>
