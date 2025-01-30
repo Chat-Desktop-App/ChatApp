@@ -7,7 +7,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="53.0" prefWidth="504.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.client.controller.AllFriendsController">
+<AnchorPane prefHeight="53.0" prefWidth="504.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.client.view.AllFriendsController">
    <children>
       <ImageView fx:id="friendIcon" fitHeight="40.0" fitWidth="40.0" layoutX="32.0" layoutY="6.0" AnchorPane.leftAnchor="32.0">
          <image>

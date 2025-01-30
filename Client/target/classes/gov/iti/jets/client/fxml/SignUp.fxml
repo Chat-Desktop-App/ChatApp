@@ -1,21 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToggleGroup?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 
-<HBox alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-image: Background.jpg;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.client.controller.SignUpController">
+<HBox alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-image: Background.jpg;" stylesheets="@../styles/signUp.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.client.view.SignUpController">
    <children>
       <VBox fx:id="background" alignment="CENTER" prefHeight="600.0" prefWidth="338.0" HBox.hgrow="ALWAYS">
          <children>
@@ -29,7 +19,7 @@
          <children>
             <VBox fx:id="SignUp1Vbox" prefHeight="579.0" prefWidth="475.0" styleClass="SignUpVbox">
                <children>
-                  <Label fx:id="createLabel" alignment="TOP_CENTER" text="Create Account" VBox.vgrow="ALWAYS" styleClass="createLabel">
+                  <Label fx:id="createLabel" alignment="TOP_CENTER" styleClass="createLabel" text="Create Account" VBox.vgrow="ALWAYS">
                      <VBox.margin>
                         <Insets bottom="15.0" />
                      </VBox.margin>
@@ -116,9 +106,9 @@
                </StackPane.margin>
             </VBox>
       
-            <VBox fx:id="SignUp2Vbox" prefHeight="600.0" prefWidth="495.0" visible="false" styleClass="SignUpVbox">
+            <VBox fx:id="SignUp2Vbox" prefHeight="600.0" prefWidth="495.0" styleClass="SignUpVbox" visible="false">
                <children>
-                  <Label fx:id="createLabel2" alignment="TOP_CENTER" text="Create Account" VBox.vgrow="ALWAYS" styleClass="createLabel">
+                  <Label fx:id="createLabel2" alignment="TOP_CENTER" styleClass="createLabel" text="Create Account" VBox.vgrow="ALWAYS">
                      <VBox.margin>
                         <Insets bottom="15.0" />
                      </VBox.margin>
@@ -131,7 +121,7 @@
                            </image>
                         </ImageView>
                         <Region prefHeight="178.0" prefWidth="131.0" HBox.hgrow="NEVER" />
-                        <Button fx:id="choosePicture" mnemonicParsing="false" onAction="#handleChoosePicButton" prefHeight="30.0" prefWidth="122.0" text="Choose Picture" HBox.hgrow="ALWAYS" styleClass="buttonStyle">
+                        <Button fx:id="choosePicture" mnemonicParsing="false" onAction="#handleChoosePicButton" prefHeight="30.0" prefWidth="122.0" styleClass="buttonStyle" text="Choose Picture" HBox.hgrow="ALWAYS">
                            <HBox.margin>
                               <Insets top="60.0" />
                            </HBox.margin>

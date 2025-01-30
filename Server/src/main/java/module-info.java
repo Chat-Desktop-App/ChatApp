@@ -8,5 +8,5 @@ module gov.iti.jets.server {
     opens gov.iti.jets to javafx.fxml;
     exports gov.iti.jets;
 
-    exports gov.iti.jets.services.interfaces;
+    exports gov.iti.jets.client.services.interfaces;
 }

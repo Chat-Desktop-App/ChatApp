@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Text?>
 
 
-<HBox alignment="CENTER" styleClass="addFriend" stylesheets="@../styles/addFriend.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.client.controller.AddFriendController">
+<HBox alignment="CENTER" styleClass="addFriend" stylesheets="@../styles/addFriend.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.client.view.AddFriendController">
    <children>
       <AnchorPane style="-fx-background-color: white;" HBox.hgrow="NEVER">
          <children>

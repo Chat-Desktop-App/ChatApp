@@ -2,8 +2,9 @@ package gov.iti.jets.model;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.io.Serializable;
 
-public class User {
+public class User implements Serializable{
     private String phoneNumber;
     private String fname;
     private String lname;
