@@ -34,6 +34,13 @@ public class LoginController implements Initializable {
     @FXML
     private TextField password;
 
+
+    @FXML
+    private VBox passwordV;
+
+    @FXML
+    private VBox phoneNumberV;
+
     @FXML
     private Button login;
 
@@ -46,10 +53,14 @@ public class LoginController implements Initializable {
 
     @FXML
     void handleLoginButton(ActionEvent event) {
-            if(phoneNumber.getText().isBlank() || password.getText().isBlank()){
+            if(phoneNumber.getText().isBlank() ){
                 Platform.exit();
             }else{
-                // go to home page
+                phoneNumberV.setVisible(false);
+
+                passwordV.setVisible(true);
+
+                login.setText("LOG IN");
             }
     }
 
