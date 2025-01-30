@@ -1,5 +1,4 @@
 package gov.iti.jets.client.controller;
-package gov.iti.jets.client.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
