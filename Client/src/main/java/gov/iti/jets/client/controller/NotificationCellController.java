@@ -22,6 +22,7 @@ public class NotificationCellController {
 
     @FXML
     void handleDeleteButton(ActionEvent event) {
+        moreButton.setVisible(true);
 
     }
 
