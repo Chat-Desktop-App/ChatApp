@@ -6,8 +6,12 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.text.Font?>
 
+<<<<<<< HEAD
 
 <CheckBox fx:id="friendName" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#handleCheckbox" prefHeight="42.0" prefWidth="358.0" styleClass="check_box" stylesheets="@../styles/addGroug.css" text="Amin" textFill="#928989" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.client.view.AddGroupCellController">
+=======
+<CheckBox fx:id="friendName" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#handleCheckbox" prefHeight="42.0" prefWidth="354.0" styleClass="check_box" stylesheets="@../styles/addGroupCell.css" text="Amin" textFill="#232440" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+>>>>>>> client
    <padding>
       <Insets left="20.0" right="10.0" />
    </padding>

@@ -1,4 +1,4 @@
-package gov.iti.jets.client.view;
+package gov.iti.jets.client.controller;
 
 import java.io.IOException;
 import java.net.URL;
@@ -14,7 +14,7 @@ import javafx.scene.control.ScrollBar;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
-public class PendingController {
+public class BlockedController {
 
     @FXML
     private ResourceBundle resources;
@@ -30,9 +30,9 @@ public class PendingController {
 
     @FXML
     void initialize() {
-        assert listView != null : "fx:id=\"listView\" was not injected: check your FXML file 'pending.fxml'.";
-        assert onlineText != null : "fx:id=\"onlineText\" was not injected: check your FXML file 'pending.fxml'.";
-        String fxmlPath = "/gov/iti/jets/client/fxml/pendingCard.fxml";
+        assert listView != null : "fx:id=\"listView\" was not injected: check your FXML file 'blocked.fxml'.";
+        assert onlineText != null : "fx:id=\"onlineText\" was not injected: check your FXML file 'blocked.fxml'.";
+        String fxmlPath = "/gov/iti/jets/client/fxml/blockedCard.fxml";
         ObservableList<AnchorPane> observableList = loadFXMLIntoList(fxmlPath, 20);
         createListView(observableList);
     }
@@ -77,5 +77,4 @@ public class PendingController {
             }
         });
     }
-
 }

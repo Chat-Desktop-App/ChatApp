@@ -1,4 +1,4 @@
-package gov.iti.jets.client.view;
+package gov.iti.jets.client.controller;
 
 import java.io.IOException;
 import java.net.URL;
@@ -8,13 +8,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollBar;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
-public class PendingController {
+public class OnlineController {
 
     @FXML
     private ResourceBundle resources;
@@ -30,9 +31,13 @@ public class PendingController {
 
     @FXML
     void initialize() {
-        assert listView != null : "fx:id=\"listView\" was not injected: check your FXML file 'pending.fxml'.";
-        assert onlineText != null : "fx:id=\"onlineText\" was not injected: check your FXML file 'pending.fxml'.";
-        String fxmlPath = "/gov/iti/jets/client/fxml/pendingCard.fxml";
+        assert listView != null : "fx:id=\"listView\" was not injected: check your FXML file 'online.fxml'.";
+        assert onlineText != null : "fx:id=\"onlineText\" was not injected: check your FXML file 'online.fxml'.";
+
+        handleButtonAction("/gov/iti/jets/client/fxml/onlineCard.fxml");
+    }
+
+    private void handleButtonAction(String fxmlPath) {
         ObservableList<AnchorPane> observableList = loadFXMLIntoList(fxmlPath, 20);
         createListView(observableList);
     }

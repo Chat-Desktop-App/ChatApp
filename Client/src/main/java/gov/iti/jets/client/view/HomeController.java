@@ -77,7 +77,8 @@ public class HomeController {
 
     @FXML
     void allButtonHandling(ActionEvent event) {
-        handleButtonAction("/gov/iti/jets/client/fxml/allFriends.fxml");
+        String fxmlPath = "/gov/iti/jets/client/fxml/all.fxml";
+        handleButtonAction1(fxmlPath);
     }
 
     @FXML
@@ -108,7 +109,8 @@ public class HomeController {
 
     @FXML
     void handleBlockedButton(ActionEvent event) {
-        handleButtonAction("/gov/iti/jets/client/fxml/blocked.fxml");
+        String fxmlPath = "/gov/iti/jets/client/fxml/blocked.fxml";
+        handleButtonAction1(fxmlPath);
 
     }
 
@@ -130,12 +132,14 @@ public class HomeController {
 
     @FXML
     void handleOnlineButton(ActionEvent event) {
-        handleButtonAction("/gov/iti/jets/client/fxml/online.fxml");
+        String fxmlPath = "/gov/iti/jets/client/fxml/online.fxml";
+        handleButtonAction1(fxmlPath);
     }
 
     @FXML
     void handlePendingButton(ActionEvent event) {
-        handleButtonAction("/gov/iti/jets/client/fxml/pending.fxml");
+        String fxmlPath = "/gov/iti/jets/client/fxml/pending.fxml";
+        handleButtonAction1(fxmlPath);
 
     }
 
@@ -231,6 +235,18 @@ public class HomeController {
             }
         });
         return listView;
+    }
+
+    private void handleButtonAction1 (String fxmlPath) {
+        try {
+            BorderPane borderPane = new FXMLLoader(getClass().getResource(fxmlPath)).load();
+            borderPane.prefWidthProperty().bind(mainBorderPane.widthProperty());
+            borderPane.prefHeightProperty().bind(mainBorderPane.heightProperty());
+            mainBorderPane.setCenter(borderPane);
+
+        } catch (IOException e) {
+            System.out.println("error at lode " + fxmlPath);
+        }
     }
 
 }

@@ -5,7 +5,11 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
+<<<<<<< HEAD
 <HBox alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-image: Background.jpg;" stylesheets="@../styles/signUp.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.client.view.SignUpController">
+=======
+<HBox alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-image: Background.jpg;" stylesheets="@../styles/signUp.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.client.controller.SignUpController">
+>>>>>>> client
    <children>
       <VBox fx:id="background" alignment="CENTER" prefHeight="600.0" prefWidth="338.0" HBox.hgrow="ALWAYS">
          <children>

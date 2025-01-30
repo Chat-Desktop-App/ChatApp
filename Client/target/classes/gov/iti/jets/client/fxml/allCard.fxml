@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.Circle?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
+<<<<<<< HEAD:Client/src/main/resources/gov/iti/jets/client/fxml/allFriends.fxml
 <AnchorPane prefHeight="53.0" prefWidth="504.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.client.view.AllFriendsController">
+=======
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefWidth="165.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.client.controller.AllCardController">
+>>>>>>> client:Client/target/classes/gov/iti/jets/client/fxml/allCard.fxml
    <children>
       <ImageView fx:id="friendIcon" fitHeight="40.0" fitWidth="40.0" layoutX="32.0" layoutY="6.0" AnchorPane.leftAnchor="32.0">
          <image>
