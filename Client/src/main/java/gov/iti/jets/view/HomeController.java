@@ -1,5 +1,9 @@
 package gov.iti.jets.view;
 
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -9,11 +13,9 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.*;
-
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Region;
 
 public class HomeController {
 
@@ -22,13 +24,12 @@ public class HomeController {
 
     @FXML
     private URL location;
-    @FXML
-    private BorderPane chatsBorderPane;
-    @FXML
-    private ImageView addFriendIcon;
 
     @FXML
-    private ImageView addGroupIcon;
+    private Button addFriendIcon;
+
+    @FXML
+    private Button addGroupIcon;
 
     @FXML
     private Button allButton;
@@ -37,25 +38,31 @@ public class HomeController {
     private Button blockedButton;
 
     @FXML
+    private BorderPane chatsBorderPane;
+
+    @FXML
     private ListView<Node> chatsTree;
 
     @FXML
     private BorderPane homeBorderPane;
 
     @FXML
-    private BorderPane mainBorderPane;
-
-    @FXML
-    private ImageView homeIcon;
+    private Button homeIcon;
 
     @FXML
     private AnchorPane left_pane;
 
     @FXML
-    private ImageView logOutIcon;
+    private Button logOutIcon;
 
     @FXML
-    private ImageView notificationIcon;
+    private AnchorPane mainAnchorPane;
+
+    @FXML
+    private BorderPane mainBorderPane;
+
+    @FXML
+    private Button notificationIcon;
 
     @FXML
     private Button onlineButton;
@@ -70,10 +77,7 @@ public class HomeController {
     private TextField searchField;
 
     @FXML
-    private ImageView settingsIcon;
-
-    @FXML
-    private AnchorPane mainAnchorPane;
+    private Button settingsIcon;
 
     @FXML
     void allButtonHandling(ActionEvent event) {
@@ -82,13 +86,13 @@ public class HomeController {
     }
 
     @FXML
-    void handleAddFriendIcon(MouseEvent event) {
+    void handleAddFriendIcon(ActionEvent event) {
         String fxmlPath = "/gov/iti/jets/fxml/addFriend.fxml";
         handleButtonAction(fxmlPath);
     }
 
     @FXML
-    void handleAddGroupIcon(MouseEvent event) {
+    void handleAddGroupIcon(ActionEvent event) {
         String fxmlPath = "/gov/iti/jets/fxml/addGroup.fxml";
         handleButtonAction(fxmlPath);
     }
@@ -100,17 +104,17 @@ public class HomeController {
     }
 
     @FXML
-    void handleHomeIcon(MouseEvent event) {
+    void handleHomeIcon(ActionEvent event) {
         mainBorderPane.setCenter(mainAnchorPane);
     }
 
     @FXML
-    void handleLogOutIcon(MouseEvent event) {
+    void handleLogOutIcon(ActionEvent event) {
 
     }
 
     @FXML
-    void handleNotificationIcon(MouseEvent event) {
+    void handleNotificationIcon(ActionEvent event) {
         String fxmlPath = "/gov/iti/jets/fxml/notification.fxml";
         handleButtonAction(fxmlPath);
     }
@@ -139,7 +143,7 @@ public class HomeController {
     }
 
     @FXML
-    void handlesettingsIcon(MouseEvent event) {
+    void handlesettingsIcon(ActionEvent event) {
 
     }
 

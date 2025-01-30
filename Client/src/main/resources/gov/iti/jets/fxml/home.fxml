@@ -17,41 +17,17 @@
    <left>
       <AnchorPane fx:id="left_pane" prefHeight="612.0" prefWidth="82.0" styleClass="left_pane" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fx:id="homeIcon" fitHeight="40.0" fitWidth="40.0" layoutX="20.0" layoutY="97.0" onMouseClicked="#handleHomeIcon" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="100.0">
-               <image>
-                  <Image url="@../images/home%20(2).png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="settingsIcon" fitHeight="40.0" fitWidth="40.0" layoutX="16.0" layoutY="342.0" onMouseClicked="#handlesettingsIcon" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="340.0">
-               <image>
-                  <Image url="@../images/settings%20(2).png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="notificationIcon" fitHeight="40.0" fitWidth="40.0" layoutX="20.0" layoutY="158.0" onMouseClicked="#handleNotificationIcon" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="160.0">
-               <image>
-                  <Image url="@../images/nottification.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="addFriendIcon" fitHeight="40.0" fitWidth="40.0" layoutX="20.0" layoutY="215.0" onMouseClicked="#handleAddFriendIcon" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="220.0">
-               <image>
-                  <Image url="@../images/personAdd%20(1).png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="addGroupIcon" fitHeight="40.0" fitWidth="40.0" layoutX="20.0" layoutY="270.0" onMouseClicked="#handleAddGroupIcon" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="280.0">
-               <image>
-                  <Image url="@../images/group.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="logOutIcon" fitHeight="40.0" fitWidth="40.0" layoutX="17.0" layoutY="495.20000000000005" onMouseClicked="#handleLogOutIcon" rotate="180.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="15.0">
-               <image>
-                  <Image url="@../images/logout%20(2).png" />
-               </image>
-            </ImageView>
             <ImageView fx:id="pictureIcon" fitHeight="70.0" fitWidth="70.0" layoutX="6.0" layoutY="7.0" onMouseClicked="#handlePictureIcon" AnchorPane.topAnchor="13.0">
                <image>
                   <Image url="@../images/profile.png" />
                </image>
             </ImageView>
+            <Button fx:id="homeIcon" layoutX="20.0" layoutY="140.0" mnemonicParsing="false" onAction="#handleHomeIcon" prefHeight="40.0" prefWidth="40.0" styleClass="home_button" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="100.0" />
+            <Button fx:id="notificationIcon" layoutX="15.0" layoutY="147.0" mnemonicParsing="false" onAction="#handleNotificationIcon" prefHeight="40.0" prefWidth="40.0" styleClass="notification_button" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="160.0" />
+            <Button fx:id="addFriendIcon" layoutX="18.0" layoutY="395.0" mnemonicParsing="false" onAction="#handleAddFriendIcon" prefHeight="40.0" prefWidth="40.0" styleClass="addFriend_button" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="220.0" />
+            <Button fx:id="addGroupIcon" layoutX="18.0" layoutY="397.0" mnemonicParsing="false" onAction="#handleAddGroupIcon" prefHeight="40.0" prefWidth="40.0" styleClass="addGroup_button" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="280.0" />
+            <Button fx:id="settingsIcon" layoutX="18.0" layoutY="413.0" mnemonicParsing="false" onAction="#handlesettingsIcon" prefHeight="40.0" prefWidth="40.0" styleClass="settings_button" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="340.0" />
+            <Button fx:id="logOutIcon" layoutX="15.0" layoutY="422.0" mnemonicParsing="false" onAction="#handleLogOutIcon" prefHeight="40.0" prefWidth="40.0" rotate="180.0" styleClass="logout_button" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="20.0" />
          </children>
       </AnchorPane>
    </left>

@@ -21,3 +21,45 @@
   -fx-text-fill: #fff; /* White text */
 
 }
+
+.home_button{
+    -fx-background-image: url("../images/home.png");
+    -fx-background-size: 100% 100%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-color: transparent;
+ }
+
+.notification_button{
+    -fx-background-image: url("../images/notification.png");
+    -fx-background-size: 100% 100%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-color: transparent;
+ }
+
+ .addFriend_button{
+     -fx-background-image: url("../images/addPerson.png");
+     -fx-background-size: 100% 100%;
+     -fx-background-repeat: no-repeat;
+     -fx-background-color: transparent;
+  }
+
+   .addGroup_button{
+       -fx-background-image: url("../images/group.png");
+       -fx-background-size: 100% 100%;
+       -fx-background-repeat: no-repeat;
+       -fx-background-color: transparent;
+    }
+
+      .settings_button{
+           -fx-background-image: url("../images/settings.png");
+           -fx-background-size: 100% 100%;
+           -fx-background-repeat: no-repeat;
+           -fx-background-color: transparent;
+        }
+
+          .logout_button{
+               -fx-background-image: url("../images/logoutIcon.png");
+               -fx-background-size: 100% 100%;
+               -fx-background-repeat: no-repeat;
+               -fx-background-color: transparent;
+            }
