@@ -1,3 +1,5 @@
+
+
 package gov.iti.jets.client.view;
 
 import javafx.fxml.FXML;
@@ -9,3 +11,4 @@ public class NotificationController {
     private ListView<?> listOFNotifications;
 
 }
+
