@@ -63,7 +63,7 @@
          <center>
             <HBox BorderPane.alignment="CENTER">
                <children>
-                  <BorderPane fx:id="chatsBorderPane" maxWidth="450.0" minWidth="-Infinity" prefWidth="300.0" HBox.hgrow="ALWAYS">
+                  <BorderPane fx:id="chatsBorderPane" maxWidth="450.0" minWidth="-Infinity" prefWidth="300.0" HBox.hgrow="SOMETIMES">
                      <top>
                         <TextField fx:id="searchField" onAction="#handleSearchField" promptText="Find a conversation" style="-fx-background-color: #edecec;" BorderPane.alignment="CENTER">
                            <BorderPane.margin>
