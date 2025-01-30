@@ -78,40 +78,25 @@ public class HomeController {
     @FXML
     void allButtonHandling(ActionEvent event) {
         String fxmlPath = "/gov/iti/jets/client/fxml/all.fxml";
-        handleButtonAction1(fxmlPath);
+        handleButtonAction(fxmlPath);
     }
 
     @FXML
     void handleAddFriendIcon(MouseEvent event) {
-        try {
-            HBox addFriendPane = new FXMLLoader(getClass().getResource("/gov/iti/jets/client/fxml/addFriend.fxml")).load();
-            addFriendPane.prefWidthProperty().bind(mainBorderPane.widthProperty());
-            addFriendPane.prefHeightProperty().bind(mainBorderPane.heightProperty());
-            mainBorderPane.setCenter(addFriendPane);
-        } catch (IOException e) {
-            System.out.println("cant Load addFriend");
-        }
+        String fxmlPath ="/gov/iti/jets/client/fxml/addFriend.fxml";
+        handleButtonAction(fxmlPath);
     }
 
     @FXML
     void handleAddGroupIcon(MouseEvent event) {
-        try {
-            AnchorPane addGroupPane = FXMLLoader.load(getClass().getResource("/gov/iti/jets/client/fxml/addGroup.fxml"));
-            addGroupPane.prefWidthProperty().bind(mainBorderPane.widthProperty());
-            addGroupPane.prefHeightProperty().bind(mainBorderPane.heightProperty());
-
-
-            mainBorderPane.setCenter(addGroupPane);
-        } catch (IOException e) {
-            System.out.println("cant Load addFriend");
-        }
+        String fxmlPath = "/gov/iti/jets/client/fxml/addGroup.fxml";
+        handleButtonAction(fxmlPath);
     }
 
     @FXML
     void handleBlockedButton(ActionEvent event) {
         String fxmlPath = "/gov/iti/jets/client/fxml/blocked.fxml";
-        handleButtonAction1(fxmlPath);
-
+        handleButtonAction(fxmlPath);
     }
 
     @FXML
@@ -126,20 +111,20 @@ public class HomeController {
 
     @FXML
     void handleNotificationIcon(MouseEvent event) {
-
-
+        String fxmlPath = "/gov/iti/jets/client/fxml/notification.fxml";
+        handleButtonAction(fxmlPath);
     }
 
     @FXML
     void handleOnlineButton(ActionEvent event) {
         String fxmlPath = "/gov/iti/jets/client/fxml/online.fxml";
-        handleButtonAction1(fxmlPath);
+        handleButtonAction(fxmlPath);
     }
 
     @FXML
     void handlePendingButton(ActionEvent event) {
         String fxmlPath = "/gov/iti/jets/client/fxml/pending.fxml";
-        handleButtonAction1(fxmlPath);
+        handleButtonAction(fxmlPath);
 
     }
 
@@ -185,14 +170,10 @@ public class HomeController {
         ListView<Node> listView = createListView(observableList);
         listView.prefWidthProperty().bind(chatsBorderPane.widthProperty());
         listView.prefHeightProperty().bind(chatsBorderPane.heightProperty());
-       chatsBorderPane.setCenter(listView);
+        chatsBorderPane.setCenter(listView);
 
     }
-    private void handleButtonAction(String fxmlPath) {
-        ObservableList<Node> observableList = loadFXMLIntoList(fxmlPath, 20);
-        ListView<Node> listView = createListView(observableList);
-        mainBorderPane.setCenter(listView);
-    }
+
 
     private ObservableList<Node> loadFXMLIntoList(String fxmlPath, int count) {
         ObservableList<Node> list = FXCollections.observableArrayList();
@@ -202,7 +183,6 @@ public class HomeController {
                 list.add(node);
             } catch (IOException e) {
                 System.out.println("Error when loading " + fxmlPath + ": " + e.getMessage());
-                //e.printStackTrace();
             }
         }
         return list;
@@ -237,12 +217,12 @@ public class HomeController {
         return listView;
     }
 
-    private void handleButtonAction1 (String fxmlPath) {
+    private void handleButtonAction(String fxmlPath) {
         try {
-            BorderPane borderPane = new FXMLLoader(getClass().getResource(fxmlPath)).load();
-            borderPane.prefWidthProperty().bind(mainBorderPane.widthProperty());
-            borderPane.prefHeightProperty().bind(mainBorderPane.heightProperty());
-            mainBorderPane.setCenter(borderPane);
+            Region region = new FXMLLoader(getClass().getResource(fxmlPath)).load();
+            region.prefWidthProperty().bind(mainBorderPane.widthProperty());
+            region.prefHeightProperty().bind(mainBorderPane.heightProperty());
+            mainBorderPane.setCenter(region);
 
         } catch (IOException e) {
             System.out.println("error at lode " + fxmlPath);

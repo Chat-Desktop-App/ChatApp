@@ -1,4 +1,4 @@
-package gov.iti.jets.Client;
+package gov.iti.jets.client.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

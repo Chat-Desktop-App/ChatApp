@@ -1,15 +1,8 @@
 
-.HBOX_Background {
-	-fx-background-image: url("../images/addFriendBackground.png");
-	-fx-background-size: 100% 100%;
-}
 .anchor_Pane {
-    -fx-background-color: #ffffff;
-  }
+    -fx-background-color: linear-gradient(to left, #d2ebffe4, #d8ecfce4);  }
 .more_button {
     -fx-background-color: #23a885;
-    -fx-background-image: url("../images/more.png");
-    -fx-background-size: 100% 100%; 
     -fx-border-width: 0;       
     -fx-background-insets: 0;   
 }
@@ -34,10 +27,3 @@
 .delete_button:focused {
     -fx-focus-color: transparent;
 }
-.separator { 
-    -fx-background-color: #cbcfceb3; 
-}
-.listview {
-    -fx-background-color: /*linear-gradient(to left, #d2ebffe4, #c6dff3e4);*/white;
-}
-
