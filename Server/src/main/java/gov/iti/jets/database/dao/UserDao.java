@@ -13,4 +13,5 @@ public interface UserDao {
     public User getUser(String phoneNumber) throws SQLException;
     public List<User> getUsers() throws SQLException;
     public int update(User user) throws SQLException;
+    public int updatePicture(String phoneNumber,String picturePath) throws SQLException;
 }
