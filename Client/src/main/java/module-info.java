@@ -4,6 +4,7 @@ module gov.iti.jets.client {
     requires java.sql;
     requires mysql.connector.j;
     requires javafx.graphics;
+    requires javafx.base;
 
 
     opens gov.iti.jets to javafx.fxml;
