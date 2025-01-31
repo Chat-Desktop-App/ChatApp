@@ -3,10 +3,12 @@ package gov.iti.jets.view;
 import java.io.IOException;
 import java.net.URL;
 import java.rmi.RemoteException;
+import java.util.List;
 import java.util.ResourceBundle;
 
-import gov.iti.jets.controller.HomeCon;
+import gov.iti.jets.model.ContactUser;
 import gov.iti.jets.services.interfaces.LoadHome;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,7 +22,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Region;
 
 public class HomeController {
-    private HomeCon homeCon;
     LoadHome loadHome;
     @FXML
     private ResourceBundle resources;
@@ -204,11 +205,10 @@ public class HomeController {
 
     }
     public void setLoadHome(LoadHome loadHome)  {
-        homeCon = new HomeCon(loadHome);
         this.loadHome = loadHome;
 
         try {
-            ObservableList<Node> observableList = homeCon.loadFXMLIntoList(loadHome.getMyContact("1234567890"));
+            ObservableList<Node> observableList = loadChatsList(loadHome.getMyContact("1234567890"));
             ListView<Node> listView = createListView(observableList);
             listView.prefWidthProperty().bind(chatsBorderPane.widthProperty());
             listView.prefHeightProperty().bind(chatsBorderPane.heightProperty());
@@ -217,6 +217,23 @@ public class HomeController {
             throw new RuntimeException(e);
         }
 
+    }
+
+    public ObservableList<Node> loadChatsList(List<ContactUser> myContact) {
+        String fxmlPath = "/gov/iti/jets/fxml/allChats.fxml" ;
+        ObservableList<Node> list = FXCollections.observableArrayList();
+        for (ContactUser contactUser : myContact) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+                Node node = loader.load();
+                AllChatsController controller = loader.getController();
+                controller.setUser(contactUser);
+                list.add(node);
+            } catch (IOException e) {
+                System.out.println("Error when loading " + fxmlPath + ": " + e.getMessage());
+            }
+        }
+        return list;
     }
 
     private ListView<Node > createListView(ObservableList<Node> items) {
