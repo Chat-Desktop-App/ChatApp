@@ -6,17 +6,17 @@ VALUES
 ('1122334455', 'Alice', 'Johnson', 'alice.johnson@example.com', 'profile3.jpg', 'hashed_password3', 'FEMALE', 'UK', '1992-07-23', 'I am Alice, nice to meet you!', 'BUSY', 180, NOW(), TRUE);
 
 -- Insert data into contacts table
-INSERT INTO `contacts` (`contact_id`, `user_id`, `status`)
+INSERT INTO `contacts` (`contact_id`, `user_id`, `status`, `last_chat_at`)
 VALUES
-('1234567890', '9876543210', 'ACCEPTED'),
-('9876543210', '1122334455', 'PENDING'),
-('1122334455', '1234567890', 'BLOCKED');
+('1234567890', '9876543210', 'ACCEPTED', NOW()),
+('9876543210', '1122334455', 'PENDING', NULL),
+('1122334455', '1234567890', 'BLOCKED', '2025-01-01 12:00:00');
 
 -- Insert data into groups table
-INSERT INTO `groups` (`group_name`, `admin_id`, `picture`)
+INSERT INTO `groups` (`group_name`, `admin_id`, `picture`, `last_chat_at`)
 VALUES
-('Tech Group', '1234567890', 'group1.jpg'),
-('Travel Enthusiasts', '9876543210', 'group2.jpg');
+('Tech Group', '1234567890', 'group1.jpg', NOW()),
+('Travel Enthusiasts', '9876543210', 'group2.jpg', NOW());
 
 -- Insert data into group_members table
 INSERT INTO `group_members` (`group_id`, `member_id`)
