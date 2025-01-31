@@ -9,74 +9,68 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <HBox alignment="CENTER" styleClass="HBOX" stylesheets="@../styles/profile.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.view.ProfileController">
    <children>
       <AnchorPane style="-fx-background-color: white;" HBox.hgrow="NEVER">
          <children>
-            <HBox layoutX="32.0" layoutY="212.0" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="386.4" AnchorPane.topAnchor="212.0">
+            <VBox layoutX="30.0" layoutY="210.0" AnchorPane.bottomAnchor="187.2" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="210.0">
                <children>
-                  <Label prefHeight="26.0" prefWidth="70.0" text="Name">
+                  <Label text="Name">
                      <font>
                         <Font name="System Bold Italic" size="16.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="fullName" prefWidth="263.0" promptText="Enter your name" styleClass="textField" />
+                  <TextField fx:id="fullName" prefHeight="30.0" prefWidth="200.0" promptText="Enter your name" styleClass="textField" />
                </children>
-            </HBox>
-            <HBox alignment="BASELINE_LEFT" layoutX="32.0" layoutY="290.0" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="380.0" AnchorPane.topAnchor="290.0">
+            </VBox>
+            <VBox layoutX="50.400001525878906" layoutY="313.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="290.0">
                <children>
-                  <Label prefWidth="73.0" text="Email">
+                  <Label text="Email">
                      <font>
                         <Font name="System Bold Italic" size="16.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="email" prefHeight="26.0" prefWidth="266.0" promptText="Enter your email" styleClass="textField" />
+                  <TextField fx:id="email" prefHeight="30.0" prefWidth="200.0" promptText="Enter your email" styleClass="textField" />
                </children>
-            </HBox>
-            <HBox alignment="TOP_RIGHT" layoutX="423.79999999999995" layoutY="212.0" AnchorPane.leftAnchor="424.0" AnchorPane.topAnchor="212.0">
+            </VBox>
+            <VBox layoutX="416.0" layoutY="230.39999389648438" AnchorPane.bottomAnchor="187.2" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="210.0">
                <children>
-                  <Label prefWidth="54.0" text="Status">
+                  <Label text="Status">
                      <font>
                         <Font name="System Bold Italic" size="16.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="status" prefWidth="254.0" styleClass="chomboBox" />
+                  <ComboBox fx:id="status" prefHeight="30.0" prefWidth="200.0" styleClass="chomboBox" />
                </children>
-            </HBox>
-            <HBox alignment="BOTTOM_RIGHT" layoutX="384.0" layoutY="290.0" AnchorPane.leftAnchor="442.4" AnchorPane.topAnchor="290.0">
+            </VBox>
+            <VBox layoutX="416.0" layoutY="310.3999938964844" AnchorPane.bottomAnchor="100.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="290.0">
                <children>
-                  <Label prefWidth="41.0" text="Bio">
+                  <Label text="Bio">
                      <font>
                         <Font name="System Bold Italic" size="16.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="bio" prefWidth="252.0" promptText="Write your Bio" styleClass="textField" />
+                  <TextField fx:id="bio" prefHeight="30.0" prefWidth="200.0" promptText="Write your Bio" styleClass="textField" />
                </children>
-            </HBox>
-            <HBox alignment="CENTER" layoutX="24.0" layoutY="389.0" prefWidth="718.0" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="9.600000000000023">
+            </VBox>
+            <HBox alignment="CENTER" layoutX="286.0" layoutY="434.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0">
                <children>
-                  <Button fx:id="edit" alignment="CENTER" mnemonicParsing="false" onAction="#handleEditButton" prefWidth="144.0" text="Edit" textAlignment="CENTER" textFill="WHITE">
+                  <Button fx:id="edit" alignment="CENTER" mnemonicParsing="false" onAction="#handleEditButton" text="Edit" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="System Bold Italic" size="17.0" />
                      </font>
                   </Button>
                </children>
             </HBox>
-            <Button fx:id="profilePic" layoutX="301.0" layoutY="7.0" mnemonicParsing="false" onAction="#handleProfilePic" styleClass="Profile_button">
-               <graphic>
-                  <ImageView fitHeight="141.0" fitWidth="155.0">
-                     <image>
-                        <Image url="@../images/user.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
+            <ImageView fitHeight="141.0" fitWidth="155.0" layoutX="194.0" layoutY="14.0" nodeOrientation="INHERIT" AnchorPane.bottomAnchor="298.20000000000005" AnchorPane.leftAnchor="180.0" AnchorPane.rightAnchor="180.0" AnchorPane.topAnchor="14.0">
+               <image>
+                  <Image url="@../images/user.png" />
+               </image>
+            </ImageView>
          </children>
-         <padding>
-            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-         </padding>
       </AnchorPane>
    </children>
    <padding>
