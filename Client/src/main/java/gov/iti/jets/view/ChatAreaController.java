@@ -1,13 +1,21 @@
 package gov.iti.jets.view;
 
+import java.io.IOException;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 
 public class ChatAreaController {
 
@@ -22,6 +30,9 @@ public class ChatAreaController {
 
     @FXML
     private Button camera;
+
+    @FXML
+    private ListView<VBox> chatListView;
 
     @FXML
     private Button emoji;
@@ -71,9 +82,34 @@ public class ChatAreaController {
 
     @FXML
     void sendAction(ActionEvent event) {
-
+        sendMessage();
     }
 
+/**********************************************************************8 */
+
+    private void sendMessage() {
+        String messageText = messageField.getText().trim();
+        if (!messageText.isEmpty()) {
+            try {
+                // Load the sent message FXML
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/gov/iti/jets/fxml/send-message.fxml"));
+                VBox sentMessage = loader.load();
+
+                // Set the message text
+                TextFlow sentMesgContent = (TextFlow) sentMessage.lookup("#sentMesgContent");
+                ((Text) sentMesgContent.getChildren().get(0)).setText(messageText);
+
+                // Add the message to the chat area
+                chatListView.getItems().add(sentMessage);
+
+                // Clear the input field
+                messageField.clear();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+/**********************************************************************8 */
     @FXML
     void sendAttachment(MouseEvent event) {
 
@@ -96,12 +132,15 @@ public class ChatAreaController {
 
     @FXML
     void sendMessage(MouseEvent event) {
+       
 
     }
 
     @FXML
     void sendMessageByKey(KeyEvent event) {
-
+        if (event.getCode() == KeyCode.ENTER) {
+            sendMessage();
+        }
     }
 
     @FXML

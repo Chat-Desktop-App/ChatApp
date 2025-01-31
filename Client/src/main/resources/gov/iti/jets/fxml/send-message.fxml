@@ -1,32 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<VBox style="-fx-background-color: #246D66; -fx-background-radius: 30 0 40 30;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" styleClass="message-container" stylesheets="@../styles/send_message.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TextFlow prefWidth="400.0">
+      <TextFlow fx:id="sentMesgContent" maxWidth="-Infinity" styleClass="message-text" VBox.vgrow="NEVER">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="n Scene Builder, you can use the Color Picker (color chooser) to set the colors for various properties such as background colors, text colors, or border colors. Here's how to open and use the Color Picker." />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="message-text" text="Hello Hadeer in Chat App" />
          </children>
       </TextFlow>
-      <HBox alignment="CENTER_RIGHT" spacing="15.0">
+      <HBox alignment="BOTTOM_RIGHT" spacing="15.0" VBox.vgrow="NEVER">
          <children>
-            <TextFlow textAlignment="RIGHT">
+            <TextFlow styleClass="timestamp" textAlignment="RIGHT">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="wed 12:33 pm" />
+                  <Label styleClass="timestamp" text="wed 12:33 pm" />
                </children>
             </TextFlow>
-            <ImageView fitHeight="12.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@sendIcon.png" />
-               </image>
-            </ImageView>
          </children>
          <VBox.margin>
             <Insets left="15.0" right="15.0" />
@@ -34,6 +28,6 @@
       </HBox>
    </children>
    <padding>
-      <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+      <Insets bottom="15.0" left="15.0" right="15.0" top="25.0" />
    </padding>
 </VBox>
