@@ -1,6 +1,6 @@
 package gov.iti.jets.client.services.interfaces;
 
-import gov.iti.jets.client.model.User;
+import gov.iti.jets.model.User;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;

@@ -1,4 +1,4 @@
-package gov.iti.jets.client.model;
+package gov.iti.jets.model;
 
 public class GroupMember {
     private int groupId;
