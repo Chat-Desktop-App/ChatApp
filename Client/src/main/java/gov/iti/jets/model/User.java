@@ -3,6 +3,7 @@ package gov.iti.jets.model;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+
 public class User {
     private String phoneNumber;
     private String fname;
@@ -13,13 +14,16 @@ public class User {
     private String country;
     private LocalDate dob;
     private String bio;
-    private Status status = Status.AVAILABLE;
+    private Status status ;//= Status.Online;
+
     private Long numberEnteries = 1L;;
     private LocalDateTime lastSeen = LocalDateTime.now();
     private Boolean isAdmin = false;
 
     public User(){}
+    /////////////////////////////////////////////
 
+    //////////////////////////////////////////////////
     public User(String phoneNumber, String fname, String lname, String email, String passwordHashed, Gender gender, String country, LocalDate dob, String bio, Status status) {
         this.phoneNumber = phoneNumber;
         this.fname = fname;

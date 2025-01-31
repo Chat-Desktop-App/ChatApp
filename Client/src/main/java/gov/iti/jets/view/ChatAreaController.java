@@ -1,5 +1,9 @@
 package gov.iti.jets.view;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import gov.iti.jets.model.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -7,6 +11,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -48,6 +53,8 @@ public class ChatAreaController {
 
     @FXML
     private Button video;
+
+
 
     @FXML
     void BlockFriendAction(ActionEvent event) {
@@ -123,5 +130,5 @@ public class ChatAreaController {
     void voiceCall(MouseEvent event) {
 
     }
-
+   
 }
