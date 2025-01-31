@@ -1,6 +1,6 @@
 package gov.iti.jets.model;
 
-public class Message {
+public class Messages {
     private String messag_ID;
     private String sender_ID;
     private String receiver_ID;
@@ -14,7 +14,7 @@ public class Message {
     private String textBackgroundColor;
     private String timestamp;
 
-    public Message(String sender, String text, String timestamp) {
+    public Messages(String sender, String text, String timestamp) {
         this.sender_ID = sender;
         this.content = text;
         this.timestamp = timestamp;
