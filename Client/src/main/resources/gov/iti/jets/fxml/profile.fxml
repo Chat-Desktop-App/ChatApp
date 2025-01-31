@@ -16,7 +16,7 @@
    <children>
       <AnchorPane style="-fx-background-color: white;" HBox.hgrow="NEVER">
          <children>
-            <VBox layoutX="30.0" layoutY="210.0" AnchorPane.bottomAnchor="187.2" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="210.0">
+            <VBox alignment="CENTER_LEFT" AnchorPane.bottomAnchor="162.4" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="184.0">
                <children>
                   <Label text="Name">
                      <font>
@@ -26,7 +26,7 @@
                   <TextField fx:id="fullName" prefHeight="30.0" prefWidth="200.0" promptText="Enter your name" styleClass="textField" />
                </children>
             </VBox>
-            <VBox layoutX="50.400001525878906" layoutY="313.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="290.0">
+            <VBox alignment="CENTER_LEFT" AnchorPane.bottomAnchor="86.0" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="260.0">
                <children>
                   <Label text="Email">
                      <font>
@@ -36,7 +36,7 @@
                   <TextField fx:id="email" prefHeight="30.0" prefWidth="200.0" promptText="Enter your email" styleClass="textField" />
                </children>
             </VBox>
-            <VBox layoutX="416.0" layoutY="230.39999389648438" AnchorPane.bottomAnchor="187.2" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="210.0">
+            <VBox alignment="CENTER_LEFT" AnchorPane.bottomAnchor="162.39999999999998" AnchorPane.rightAnchor="30.200000000000045" AnchorPane.topAnchor="184.0">
                <children>
                   <Label text="Status">
                      <font>
@@ -46,7 +46,7 @@
                   <ComboBox fx:id="status" prefHeight="30.0" prefWidth="200.0" styleClass="chomboBox" />
                </children>
             </VBox>
-            <VBox layoutX="416.0" layoutY="310.3999938964844" AnchorPane.bottomAnchor="100.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="290.0">
+            <VBox alignment="CENTER_LEFT" layoutY="260.0" AnchorPane.bottomAnchor="86.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="260.0">
                <children>
                   <Label text="Bio">
                      <font>
@@ -56,16 +56,16 @@
                   <TextField fx:id="bio" prefHeight="30.0" prefWidth="200.0" promptText="Write your Bio" styleClass="textField" />
                </children>
             </VBox>
-            <HBox alignment="CENTER" layoutX="286.0" layoutY="434.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0">
+            <HBox alignment="CENTER" layoutX="286.0" layoutY="434.0" prefHeight="36.0" prefWidth="102.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0">
                <children>
-                  <Button fx:id="edit" alignment="CENTER" mnemonicParsing="false" onAction="#handleEditButton" text="Edit" textAlignment="CENTER" textFill="WHITE">
+                  <Button fx:id="edit" alignment="CENTER" mnemonicParsing="false" onAction="#handleEditButton" prefHeight="36.0" prefWidth="110.0" text="Edit" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="System Bold Italic" size="17.0" />
                      </font>
                   </Button>
                </children>
             </HBox>
-            <ImageView fitHeight="141.0" fitWidth="155.0" layoutX="194.0" layoutY="14.0" nodeOrientation="INHERIT" AnchorPane.bottomAnchor="298.20000000000005" AnchorPane.leftAnchor="180.0" AnchorPane.rightAnchor="180.0" AnchorPane.topAnchor="14.0">
+            <ImageView fitHeight="141.0" fitWidth="155.0" layoutX="194.0" layoutY="14.0" nodeOrientation="INHERIT" AnchorPane.leftAnchor="220.0" AnchorPane.rightAnchor="220.0" AnchorPane.topAnchor="14.0">
                <image>
                   <Image url="@../images/user.png" />
                </image>
@@ -74,6 +74,6 @@
       </AnchorPane>
    </children>
    <padding>
-      <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
    </padding>
 </HBox>
