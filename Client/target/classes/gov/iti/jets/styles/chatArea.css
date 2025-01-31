@@ -10,3 +10,11 @@
     -fx-background-color: #ffffffe2;
 
 }
+.comboBox {
+    -fx-background-image :  url("../images/file.png");
+    -fx-background-size: 100% 100%;
+    -fx-background-color: transparent;
+
+
+
+}

@@ -2,17 +2,17 @@ package gov.iti.jets.model;
 
 import java.time.LocalDateTime;
 
-public class Notification {
+public class Notifications {
     private int notificationId;
     private String userId;
     private String message;
     private LocalDateTime sentAt;
     private boolean isRead;
 
-    public Notification() {
+    public Notifications() {
     }
 
-    public Notification(int notificationId, String userId, String message, LocalDateTime sentAt, boolean isRead) {
+    public Notifications(int notificationId, String userId, String message, LocalDateTime sentAt, boolean isRead) {
         this.notificationId = notificationId;
         this.userId = userId;
         this.message = message;

@@ -21,7 +21,7 @@ public class ContactDaoImpl implements  ContactDao{
         }
     }
     @Override
-    public List<ContactUser> getFriendsContacts(String phoneNumber) throws SQLException {
+    public List<ContactUser> getFriendsContacts(String phoneNumber) {
         Connection con = dataBaseConnection.getConnection();
         String query = """
                 SELECT c.contact_id, u.fname, u.lname,  u.status AS user_status, u.picture,  c.status, c.user_id
@@ -29,16 +29,19 @@ public class ContactDaoImpl implements  ContactDao{
                 JOIN users u ON c.contact_id = u.phone_number
                 WHERE c.user_id = ? AND c.status = 'ACCEPTED'
                 """;
-        PreparedStatement ps
-                = con.prepareStatement(query);
+        List<ContactUser> contactUsers = new ArrayList<>();
+        try {
+        PreparedStatement ps = con.prepareStatement(query);
         ps.setString(1, phoneNumber);
         ResultSet rs = ps.executeQuery();
-        List<ContactUser> contactUsers = new ArrayList<>();
-
         while(rs.next()){
             ContactUser contactUser = new ContactUser(rs.getString(1),
-                    rs.getString(2), rs.getString(3), Status.valueOf(rs.getString(4)));
+                    rs.getString(2), rs.getString(3),
+                    Status.valueOf(rs.getString(4)));
             contactUsers.add(contactUser);
+        }
+        }catch (SQLException e) {
+            throw new RuntimeException(e);
         }
         return  contactUsers;
     }
@@ -98,8 +101,7 @@ public class ContactDaoImpl implements  ContactDao{
                 JOIN users u ON c.contact_id = u.phone_number
                 WHERE c.user_id = ? 
                 """;
-        PreparedStatement ps
-                = con.prepareStatement(query);
+        PreparedStatement ps = con.prepareStatement(query);
         ps.setString(1, phoneNumber);
         ResultSet rs = ps.executeQuery();
         List<ContactUser> contactUsers = new ArrayList<>();
@@ -113,17 +115,24 @@ public class ContactDaoImpl implements  ContactDao{
     }
 
     @Override
-    public int addContact(String phoneNumber, String contactPhoneNumber) throws SQLException {
+    public int addContact(String phoneNumber, String contactPhoneNumber)  {
         // add phone number as as a contact to co
         // add contact and set status to ?
         Connection con = dataBaseConnection.getConnection();
         String query = "INSERT INTO contacts (contact_id, user_id, status) VALUES (?, ?, ?)";
-        PreparedStatement ps = con.prepareStatement(query);
-        ps.setString(1, phoneNumber);
-        ps.setString(2, contactPhoneNumber);
-        ps.setString(3,"PENDING");
+        PreparedStatement ps = null;
+        int n;
+        try {
+            ps = con.prepareStatement(query);
+            ps.setString(1, phoneNumber);
+            ps.setString(2, contactPhoneNumber);
+            ps.setString(3,"PENDING");
 
-        int n = ps.executeUpdate();
+            n = ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
         return n;
 
     }

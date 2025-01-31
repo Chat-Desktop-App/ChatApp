@@ -2,12 +2,15 @@ package gov.iti.jets.view;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import gov.iti.jets.model.ContactUser;
+import gov.iti.jets.model.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 
 public class AllChatsController {
-
+    ContactUser contactUser;
     @FXML
     private ResourceBundle resources;
 
@@ -31,4 +34,9 @@ public class AllChatsController {
 
     }
 
+    public void setUser(ContactUser contactUser) {
+        this.contactUser = contactUser;
+        friendName.setText(contactUser.getFname() + " " + contactUser.getLname());
+
+    }
 }

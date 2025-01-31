@@ -2,8 +2,14 @@ package gov.iti.jets.view;
 
 import java.io.IOException;
 import java.net.URL;
+import java.rmi.RemoteException;
+import java.util.List;
 import java.util.ResourceBundle;
 
+import gov.iti.jets.controller.HomeCon;
+import gov.iti.jets.model.ContactUser;
+import gov.iti.jets.model.User;
+import gov.iti.jets.services.interfaces.LoadHome;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -18,7 +24,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Region;
 
 public class HomeController {
-
+    private HomeCon homeCon;
     @FXML
     private ResourceBundle resources;
 
@@ -167,30 +173,21 @@ public class HomeController {
         assert settingsIcon != null : "fx:id=\"settingsIcon\" was not injected: check your FXML file 'home.fxml'.";
         assert mainAnchorPane != null : "fx:id=\"mainAnchorPane\" was not injected: check your FXML file 'home.fxml'.";
         assert mainBorderPane != null : "fx:id=\"mainBorderPane\" was not injected: check your FXML file 'home.fxml'.";
-        fillChats();
-    }
-
-    private void fillChats(){
-        ObservableList<Node> observableList = loadFXMLIntoList("/gov/iti/jets/fxml/allChats.fxml", 20);
-        ListView<Node> listView = createListView(observableList);
-        listView.prefWidthProperty().bind(chatsBorderPane.widthProperty());
-        listView.prefHeightProperty().bind(chatsBorderPane.heightProperty());
-        chatsBorderPane.setCenter(listView);
 
     }
+    public void setLoadHome(LoadHome loadHome)  {
+        homeCon = new HomeCon(loadHome);
 
-
-    private ObservableList<Node> loadFXMLIntoList(String fxmlPath, int count) {
-        ObservableList<Node> list = FXCollections.observableArrayList();
-        for (int i = 0; i < count; i++) {
-            try {
-                Node node = new FXMLLoader(getClass().getResource(fxmlPath)).load();
-                list.add(node);
-            } catch (IOException e) {
-                System.out.println("Error when loading " + fxmlPath + ": " + e.getMessage());
-            }
+        try {
+            ObservableList<Node> observableList = homeCon.loadFXMLIntoList(loadHome.getMyContact("9876543210"));
+            ListView<Node> listView = createListView(observableList);
+            listView.prefWidthProperty().bind(chatsBorderPane.widthProperty());
+            listView.prefHeightProperty().bind(chatsBorderPane.heightProperty());
+            chatsBorderPane.setCenter(listView);
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
         }
-        return list;
+
     }
 
     private ListView<Node > createListView(ObservableList<Node> items) {
@@ -228,10 +225,11 @@ public class HomeController {
             region.prefWidthProperty().bind(mainBorderPane.widthProperty());
             region.prefHeightProperty().bind(mainBorderPane.heightProperty());
             mainBorderPane.setCenter(region);
-
         } catch (IOException e) {
             System.out.println("error at lode " + fxmlPath);
         }
     }
+
+
 
 }

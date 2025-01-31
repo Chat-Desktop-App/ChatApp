@@ -1,5 +1,6 @@
 package gov.iti.jets;
 
+import gov.iti.jets.services.impls.LoadHomeImp;
 import gov.iti.jets.services.impls.LoginImpl;
 
 import java.rmi.AlreadyBoundException;
@@ -10,12 +11,14 @@ import java.rmi.registry.Registry;
 public class RMIConnector {
     public RMIConnector(){
         try {
-            LoginImpl login = new LoginImpl();
+            //LoginImpl login = new LoginImpl();
             Registry registry = LocateRegistry.createRegistry(1099);
-            registry.bind("LogIn", login);
+           // registry.rebind("LogIn", login);
+            LoadHomeImp loadHomeImp = new LoadHomeImp();
+            registry.rebind("LoadHome", loadHomeImp);
+            System.out.println("server running.......");
+
         } catch (RemoteException e) {
-            throw new RuntimeException(e);
-        } catch (AlreadyBoundException e) {
             throw new RuntimeException(e);
         }
     }
