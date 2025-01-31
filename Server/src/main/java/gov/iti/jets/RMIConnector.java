@@ -2,7 +2,6 @@ package gov.iti.jets;
 
 import gov.iti.jets.services.impls.LoginImpl;
 import gov.iti.jets.services.impls.RegisterImpl;
-import gov.iti.jets.services.impls.ServerImpl;
 
 import java.rmi.AlreadyBoundException;
 import java.rmi.RemoteException;
