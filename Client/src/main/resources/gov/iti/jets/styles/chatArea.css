@@ -12,8 +12,8 @@
 }
 .comboBox {
     -fx-background-image :  url("../images/file.png");
-    -fx-background-size: 100% 90%;
-    -fx-background-color: #ffffffe2;
+    -fx-background-size: 100% 100%;
+    -fx-background-color: transparent;
 
 
 
