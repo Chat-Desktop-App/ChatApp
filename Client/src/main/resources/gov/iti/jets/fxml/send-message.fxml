@@ -16,7 +16,7 @@
       </TextFlow>
       <HBox alignment="BOTTOM_RIGHT" spacing="15.0" VBox.vgrow="NEVER">
          <children>
-            <TextFlow styleClass="timestamp" textAlignment="RIGHT">
+            <TextFlow fx:id="timeStamp" styleClass="timestamp" textAlignment="RIGHT">
                <children>
                   <Label styleClass="timestamp" text="wed 12:33 pm" />
                </children>
