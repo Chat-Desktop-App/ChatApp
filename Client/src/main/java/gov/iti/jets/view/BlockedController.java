@@ -2,8 +2,11 @@ package gov.iti.jets.view;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
+import gov.iti.jets.model.ContactUser;
+import gov.iti.jets.services.interfaces.LoadHome;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -15,7 +18,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
 public class BlockedController {
-
+    private LoadHome loadHome;
     @FXML
     private ResourceBundle resources;
 
@@ -32,20 +35,34 @@ public class BlockedController {
     void initialize() {
         assert listView != null : "fx:id=\"listView\" was not injected: check your FXML file 'blocked.fxml'.";
         assert onlineText != null : "fx:id=\"onlineText\" was not injected: check your FXML file 'blocked.fxml'.";
-        String fxmlPath = "/gov/iti/jets/fxml/blockedCard.fxml";
-        ObservableList<AnchorPane> observableList = loadFXMLIntoList(fxmlPath, 20);
+
+    }
+
+    public void setLoadHome(LoadHome loadHome) {
+        this.loadHome = loadHome;
+        loadBlocked();
+    }
+
+    private void loadBlocked() {
+        ObservableList<AnchorPane> observableList = loadFXMLIntoList();
         createListView(observableList);
     }
 
-    private ObservableList<AnchorPane> loadFXMLIntoList(String fxmlPath, int count) {
+    public ObservableList<AnchorPane> loadFXMLIntoList()  {
+        String fxmlPath = "/gov/iti/jets/fxml/blockedCard.fxml";
         ObservableList<AnchorPane> list = FXCollections.observableArrayList();
-        for (int i = 0; i < count; i++) {
-            try {
-                AnchorPane anchorPane = new FXMLLoader(getClass().getResource(fxmlPath)).load();
+        try {
+            List<ContactUser> myContact = loadHome.getBlockedContacts("1234567890");
+            for (ContactUser contactUser : myContact) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+                AnchorPane anchorPane = loader.load();
+                BlockedCardController controller = loader.getController();
+                controller.setContactUser(contactUser);
                 list.add(anchorPane);
-            } catch (IOException e) {
-                System.out.println("Error when loading " + fxmlPath + ": " + e.getMessage());
             }
+
+        } catch (IOException e) {
+            System.out.println("Error when loading " + fxmlPath + ": " + e.getMessage());
         }
         return list;
     }

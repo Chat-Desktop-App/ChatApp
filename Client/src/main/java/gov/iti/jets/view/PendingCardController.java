@@ -2,6 +2,8 @@ package gov.iti.jets.view;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import gov.iti.jets.model.ContactUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -9,7 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 
 public class PendingCardController {
-
+    private ContactUser contactUser;
     @FXML
     private ResourceBundle resources;
 
@@ -27,6 +29,7 @@ public class PendingCardController {
 
     @FXML
     private Button rejectButton;
+
 
     @FXML
     void handleAccept_Invit(ActionEvent event) {
@@ -47,4 +50,8 @@ public class PendingCardController {
 
     }
 
+    public void setContactUser(ContactUser contactUser) {
+        this.contactUser = contactUser;
+        friendName.setText(contactUser.getFname()+" " + contactUser.getLname());
+    }
 }

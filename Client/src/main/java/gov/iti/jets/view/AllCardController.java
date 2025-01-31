@@ -2,13 +2,15 @@ package gov.iti.jets.view;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import gov.iti.jets.model.ContactUser;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Circle;
 
 public class AllCardController {
-
+    private ContactUser contactUser;
     @FXML
     private ResourceBundle resources;
 
@@ -27,6 +29,7 @@ public class AllCardController {
     @FXML
     private Circle status;
 
+
     @FXML
     void initialize() {
         assert friendIcon != null : "fx:id=\"friendIcon\" was not injected: check your FXML file 'allCard.fxml'.";
@@ -36,4 +39,8 @@ public class AllCardController {
 
     }
 
+    public void setContactUser(ContactUser contactUser) {
+        this.contactUser = contactUser;
+        friendName.setText(contactUser.getFname()+" " + contactUser.getLname());
+    }
 }

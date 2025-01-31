@@ -3,14 +3,10 @@ package gov.iti.jets.view;
 import java.io.IOException;
 import java.net.URL;
 import java.rmi.RemoteException;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import gov.iti.jets.controller.HomeCon;
-import gov.iti.jets.model.ContactUser;
-import gov.iti.jets.model.User;
 import gov.iti.jets.services.interfaces.LoadHome;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,6 +21,7 @@ import javafx.scene.layout.Region;
 
 public class HomeController {
     private HomeCon homeCon;
+    LoadHome loadHome;
     @FXML
     private ResourceBundle resources;
 
@@ -86,12 +83,6 @@ public class HomeController {
     private Button settingsIcon;
 
     @FXML
-    void allButtonHandling(ActionEvent event) {
-        String fxmlPath = "/gov/iti/jets/fxml/all.fxml";
-        handleButtonAction(fxmlPath);
-    }
-
-    @FXML
     void handleAddFriendIcon(ActionEvent event) {
         String fxmlPath = "/gov/iti/jets/fxml/addFriend.fxml";
         handleButtonAction(fxmlPath);
@@ -100,12 +91,6 @@ public class HomeController {
     @FXML
     void handleAddGroupIcon(ActionEvent event) {
         String fxmlPath = "/gov/iti/jets/fxml/addGroup.fxml";
-        handleButtonAction(fxmlPath);
-    }
-
-    @FXML
-    void handleBlockedButton(ActionEvent event) {
-        String fxmlPath = "/gov/iti/jets/fxml/blocked.fxml";
         handleButtonAction(fxmlPath);
     }
 
@@ -124,18 +109,61 @@ public class HomeController {
         String fxmlPath = "/gov/iti/jets/fxml/notification.fxml";
         handleButtonAction(fxmlPath);
     }
+    @FXML
+    void allButtonHandling(ActionEvent event) {
+        String fxmlPath = "/gov/iti/jets/fxml/all.fxml";
+        FXMLLoader loader =  new FXMLLoader(getClass().getResource(fxmlPath));
+        try {
+            Region region = loader.load();
+            AllController allController = loader.getController();
+            allController.setLoadHome(loadHome);
+            handleButtonAction1(region);
+        } catch (IOException e) {
+            System.out.println("error load all");
+        }
+    }
 
     @FXML
     void handleOnlineButton(ActionEvent event) {
         String fxmlPath = "/gov/iti/jets/fxml/online.fxml";
-        handleButtonAction(fxmlPath);
+        FXMLLoader loader =  new FXMLLoader(getClass().getResource(fxmlPath));
+        try {
+            Region region = loader.load();
+            OnlineController onlineController = loader.getController();
+            onlineController.setLoadHome(loadHome);
+            handleButtonAction1(region);
+        } catch (IOException e) {
+            System.out.println("error load online");
+        }
+
     }
 
     @FXML
     void handlePendingButton(ActionEvent event) {
         String fxmlPath = "/gov/iti/jets/fxml/pending.fxml";
-        handleButtonAction(fxmlPath);
+        FXMLLoader loader =  new FXMLLoader(getClass().getResource(fxmlPath));
+        try {
+            Region region = loader.load();
+            PendingController pendingController = loader.getController();
+            pendingController.setLoadHome(loadHome);
+            handleButtonAction1(region);
+        } catch (IOException e) {
+            System.out.println("error load pending");
+        }
+    }
 
+    @FXML
+    void handleBlockedButton(ActionEvent event) {
+        String fxmlPath = "/gov/iti/jets/fxml/blocked.fxml";
+        FXMLLoader loader =  new FXMLLoader(getClass().getResource(fxmlPath));
+        try {
+            Region region = loader.load();
+            BlockedController blockedController = loader.getController();
+            blockedController.setLoadHome(loadHome);
+            handleButtonAction1(region);
+        } catch (IOException e) {
+            System.out.println("error load blocked");
+        }
     }
 
     @FXML
@@ -177,9 +205,10 @@ public class HomeController {
     }
     public void setLoadHome(LoadHome loadHome)  {
         homeCon = new HomeCon(loadHome);
+        this.loadHome = loadHome;
 
         try {
-            ObservableList<Node> observableList = homeCon.loadFXMLIntoList(loadHome.getMyContact("9876543210"));
+            ObservableList<Node> observableList = homeCon.loadFXMLIntoList(loadHome.getMyContact("1234567890"));
             ListView<Node> listView = createListView(observableList);
             listView.prefWidthProperty().bind(chatsBorderPane.widthProperty());
             listView.prefHeightProperty().bind(chatsBorderPane.heightProperty());
@@ -221,7 +250,8 @@ public class HomeController {
 
     private void handleButtonAction(String fxmlPath) {
         try {
-            Region region = new FXMLLoader(getClass().getResource(fxmlPath)).load();
+            FXMLLoader loader =  new FXMLLoader(getClass().getResource(fxmlPath));
+            Region region = loader.load();
             region.prefWidthProperty().bind(mainBorderPane.widthProperty());
             region.prefHeightProperty().bind(mainBorderPane.heightProperty());
             mainBorderPane.setCenter(region);
@@ -230,6 +260,10 @@ public class HomeController {
         }
     }
 
-
+    private void handleButtonAction1(Region region) {
+            region.prefWidthProperty().bind(mainBorderPane.widthProperty());
+            region.prefHeightProperty().bind(mainBorderPane.heightProperty());
+            mainBorderPane.setCenter(region);
+    }
 
 }

@@ -21,7 +21,7 @@ public class ContactDaoImpl implements  ContactDao{
         }
     }
     @Override
-    public List<ContactUser> getFriendsContacts(String phoneNumber) {
+    public List<ContactUser> getFriendsContacts(String phoneNumber) throws SQLException {
         Connection con = dataBaseConnection.getConnection();
         String query = """
                 SELECT c.contact_id, u.fname, u.lname,  u.status AS user_status, u.picture,  c.status, c.user_id
@@ -30,7 +30,7 @@ public class ContactDaoImpl implements  ContactDao{
                 WHERE c.user_id = ? AND c.status = 'ACCEPTED'
                 """;
         List<ContactUser> contactUsers = new ArrayList<>();
-        try {
+
         PreparedStatement ps = con.prepareStatement(query);
         ps.setString(1, phoneNumber);
         ResultSet rs = ps.executeQuery();
@@ -40,9 +40,30 @@ public class ContactDaoImpl implements  ContactDao{
                     Status.valueOf(rs.getString(4)));
             contactUsers.add(contactUser);
         }
-        }catch (SQLException e) {
-            throw new RuntimeException(e);
+
+        return  contactUsers;
+    }
+    @Override
+    public List<ContactUser> getOnlineContacts(String phoneNumber) throws SQLException {
+        Connection con = dataBaseConnection.getConnection();
+        String query = """
+                SELECT c.contact_id, u.fname, u.lname,  u.status AS user_status, u.picture,  c.status, c.user_id
+                FROM contacts c
+                JOIN users u ON c.contact_id = u.phone_number
+                WHERE c.user_id = ? AND u.status != 'AWAY'
+                """;
+        List<ContactUser> contactUsers = new ArrayList<>();
+
+        PreparedStatement ps = con.prepareStatement(query);
+        ps.setString(1, phoneNumber);
+        ResultSet rs = ps.executeQuery();
+        while(rs.next()){
+            ContactUser contactUser = new ContactUser(rs.getString(1),
+                    rs.getString(2), rs.getString(3),
+                    Status.valueOf(rs.getString(4)));
+            contactUsers.add(contactUser);
         }
+
         return  contactUsers;
     }
 
@@ -68,6 +89,8 @@ public class ContactDaoImpl implements  ContactDao{
         }
         return  contactUsers;
     }
+
+
 
     @Override
     public List<ContactUser> getBlockedContacts(String phoneNumber) throws SQLException {
