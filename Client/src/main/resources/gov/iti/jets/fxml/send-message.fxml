@@ -7,14 +7,14 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<VBox maxWidth="-Infinity" styleClass="message-container" stylesheets="@../styles/send_message.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefWidth="400.0" styleClass="message-container" stylesheets="@../styles/send_message.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <TextFlow fx:id="sentMesgContent" styleClass="message-text">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="message-text" text="Hello Hadeer in Chat App" />
          </children>
       </TextFlow>
-      <HBox alignment="BOTTOM_RIGHT" spacing="15.0" VBox.vgrow="NEVER">
+      <HBox alignment="BOTTOM_RIGHT" spacing="15.0">
          <children>
             <TextFlow fx:id="timeStamp" styleClass="timestamp" textAlignment="RIGHT">
                <children>
