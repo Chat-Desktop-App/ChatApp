@@ -1,6 +1,6 @@
 package gov.iti.jets;
 
-import gov.iti.jets.client.services.impls.LoginImpl;
+import gov.iti.jets.services.impls.LoginImpl;
 
 import java.rmi.AlreadyBoundException;
 import java.rmi.RemoteException;

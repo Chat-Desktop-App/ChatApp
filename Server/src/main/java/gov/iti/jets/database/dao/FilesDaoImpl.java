@@ -1,7 +1,7 @@
 package gov.iti.jets.database.dao;
 
 import gov.iti.jets.database.DataBaseConnection;
-import gov.iti.jets.client.model.Files;
+import gov.iti.jets.model.Files;
 
 import java.sql.*;
 import java.util.ArrayList;

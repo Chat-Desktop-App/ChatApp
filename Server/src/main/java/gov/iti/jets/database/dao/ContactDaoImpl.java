@@ -1,8 +1,8 @@
 package gov.iti.jets.database.dao;
 
 import gov.iti.jets.database.DataBaseConnection;
-import gov.iti.jets.client.model.ContactUser;
-import gov.iti.jets.client.model.Status;
+import gov.iti.jets.model.ContactUser;
+import gov.iti.jets.model.Status;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

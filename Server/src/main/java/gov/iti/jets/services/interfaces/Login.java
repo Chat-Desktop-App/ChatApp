@@ -1,4 +1,4 @@
-package gov.iti.jets.client.services.interfaces;
+package gov.iti.jets.services.interfaces;
 
 import gov.iti.jets.model.User;
 

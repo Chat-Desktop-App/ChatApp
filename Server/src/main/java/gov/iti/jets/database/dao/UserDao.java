@@ -2,7 +2,7 @@ package gov.iti.jets.database.dao;
 
 
 
-import gov.iti.jets.client.model.User;
+import gov.iti.jets.model.User;
 
 import java.sql.SQLException;
 import java.util.List;

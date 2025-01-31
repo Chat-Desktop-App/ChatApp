@@ -1,6 +1,6 @@
 package gov.iti.jets.database.dao;
 
-import gov.iti.jets.client.model.Notifications;
+import gov.iti.jets.model.Notifications;
 
 import java.util.List;
 
