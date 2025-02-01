@@ -1,7 +1,11 @@
 package gov.iti.jets;
 
 import gov.iti.jets.services.impls.LoginImpl;
+import gov.iti.jets.services.impls.MessagingServiceImpl;
+import gov.iti.jets.services.impls.NotificationsServiceImpl;
 import gov.iti.jets.services.impls.RegisterImpl;
+import gov.iti.jets.services.interfaces.MessagingService;
+import gov.iti.jets.services.interfaces.NotificationsService;
 
 import java.rmi.AlreadyBoundException;
 import java.rmi.RemoteException;
@@ -13,9 +17,13 @@ public class RMIConnector {
         try {
             LoginImpl login  = new LoginImpl();
             RegisterImpl register = new RegisterImpl();
+            MessagingService messagingService = new MessagingServiceImpl();
+            NotificationsService notificationsService = new NotificationsServiceImpl();
             Registry registry = LocateRegistry.createRegistry(1099);
             registry.bind("LogIn", login);
             registry.bind("Register", register);
+            registry.bind("MessagingService", messagingService);
+            registry.bind("NotificationsService", notificationsService);
             System.out.println("Server is running");
         } catch (RemoteException e) {
             throw new RuntimeException(e);
