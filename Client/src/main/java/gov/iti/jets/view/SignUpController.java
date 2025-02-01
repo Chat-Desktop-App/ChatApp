@@ -1,5 +1,7 @@
 package gov.iti.jets.view;
 
+import gov.iti.jets.controller.RegisterServiceController;
+import gov.iti.jets.model.Gender;
 import gov.iti.jets.model.User;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -8,6 +10,7 @@ import javafx.fxml.Initializable;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -103,6 +106,14 @@ public class SignUpController implements Initializable {
     private Parent nextRoot;
 
     private User user;
+
+
+
+    private byte[] selectedImageBytes;
+
+
+
+    private RegisterServiceController registerController;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -207,17 +218,51 @@ public class SignUpController implements Initializable {
         if (selectedFile != null) {
 
             Image image = new Image(selectedFile.toURI().toString());
+
             profilePicture.setImage(image);
+
+            selectedImageBytes = convertFileToBytes(selectedFile);
 
         }
     }
 
+    private byte[] convertFileToBytes(File file) {
+        try {
+            return Files.readAllBytes(file.toPath());
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     public void handleSubmitButton(ActionEvent actionEvent) {
+            //picture
+            //gender
+            //DOB
+            // country
+            // bio
+
+        if (male.isSelected()) {
+            user.setGender(Gender.MALE);
+        } else if (female.isSelected()) {
+            user.setGender(Gender.FEMALE);
+        }
+
+        user.setDob(dob.getValue());
+        user.setBio(bio.getText());
+        user.setCountry(country.getValue());
+        registerController.signUp(user, selectedImageBytes);
+
+
     }
 
     public void handlePrevButton(ActionEvent actionEvent) {
         SignUp2Vbox.setVisible(false);
         SignUp1Vbox.setVisible(true);
 
+    }
+
+    public void setRegisterController(RegisterServiceController registerController) {
+        this.registerController = registerController;
     }
 }

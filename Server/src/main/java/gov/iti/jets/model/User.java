@@ -15,13 +15,16 @@ public class User implements Serializable{
     private LocalDate dob;
     private String bio;
     private Status status = Status.AVAILABLE;
-    private Long numberEnteries = 1L;;
+    private Long numberEnteries = 1L;
     private LocalDateTime lastSeen = LocalDateTime.now();
     private Boolean isAdmin = false;
+    private String picturePath;
+
+
 
     public User(){}
 
-    public User(String phoneNumber, String fname, String lname, String email, String passwordHashed, Gender gender, String country, LocalDate dob, String bio, Status status) {
+    public User(String phoneNumber, String fname, String lname, String email, String passwordHashed, Gender gender, String country, LocalDate dob, String bio) {
         this.phoneNumber = phoneNumber;
         this.fname = fname;
         this.lname = lname;
@@ -31,7 +34,6 @@ public class User implements Serializable{
         this.country = country;
         this.dob = dob;
         this.bio = bio;
-        this.status = status;
         this.lastSeen = LocalDateTime.now();
     }
 
@@ -143,5 +145,13 @@ public class User implements Serializable{
 
     public void setAdmin(Boolean admin) {
         isAdmin = admin;
+    }
+
+    public String getPicturePath() {
+        return picturePath;
+    }
+
+    public void setPicturePath(String picturePath) {
+        this.picturePath = picturePath;
     }
 }

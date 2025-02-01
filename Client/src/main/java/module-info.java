@@ -12,5 +12,4 @@ module gov.iti.jets.client {
     exports gov.iti.jets;
     exports gov.iti.jets.view to javafx.fxml;
 
-
 }
