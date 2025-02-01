@@ -82,6 +82,13 @@ CREATE TABLE `notifications`(
     
 );
 
+CREATE TABLE 'chats' (
+	'id' INT AUTO_INCREMENT PRIMARY KEY,
+	'sender_number' VARCHAR(15),
+	'receiver_number' VARCHAR(15)
+
+);
+
 
 
 
