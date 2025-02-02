@@ -19,9 +19,9 @@ public class App extends Application {
 
         int width = 640,height = 480;
 
-        FXMLLoader registerLoader = new FXMLLoader(getClass().getResource("/fxml/server-signIn.fxml"));
+        FXMLLoader registerLoader = new FXMLLoader(getClass().getResource("/fxml/server-homePage.fxml"));
 		Pane root = registerLoader.load();
-        SignInController rootController = registerLoader.getController();
+
 
         Scene serverScene = new Scene(root, width, height);
         // stage.setResizable(false);
