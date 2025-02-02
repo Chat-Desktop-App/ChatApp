@@ -13,9 +13,7 @@ public class RMIConnector {
     private Register registerService;
     private static  RMIConnector rmiConnector;
 
-    public Register getRegisterService() {
-        return registerService;
-    }
+
 
     private RMIConnector(){
         try {
@@ -40,5 +38,8 @@ public class RMIConnector {
 
     public Login getLoginService() {
         return loginService;
+    }
+    public Register getRegisterService() {
+        return registerService;
     }
 }
