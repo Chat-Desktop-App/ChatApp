@@ -1,4 +1,4 @@
-package gov.iti.jets;
+package gov.iti.jets.view;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
