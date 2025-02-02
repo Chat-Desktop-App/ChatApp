@@ -3,18 +3,21 @@ package gov.iti.jets.view;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 
 public class ChatAreaController {
 
     @FXML
-    private ChoiceBox<?> attachment;
+    private HBox AttachmentHBOX;
+
+    @FXML
+    private Button attachment;
 
     @FXML
     private Button block;
@@ -29,6 +32,9 @@ public class ChatAreaController {
     private ListView<?> chatListView;
 
     @FXML
+    private Button document;
+
+    @FXML
     private Button emoji;
 
     @FXML
@@ -38,16 +44,29 @@ public class ChatAreaController {
     private Label friendName;
 
     @FXML
+    private Button image;
+
+    @FXML
     private TextField messageField;
 
     @FXML
     private Button mic;
 
     @FXML
+    private Button music;
+
+    @FXML
     private Button send;
 
     @FXML
     private Button video;
+
+    @FXML
+    public void initialize() {
+        // Hide the HBox when the application starts
+        AttachmentHBOX.setVisible(false);
+    }
+
 
     @FXML
     void BlockFriendAction(ActionEvent event) {
@@ -61,6 +80,27 @@ public class ChatAreaController {
 
     @FXML
     void camerAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void handleAttachmentButton(ActionEvent event) {
+        AttachmentHBOX.setVisible(true);
+
+    }
+
+    @FXML
+    void handleShareDoc(ActionEvent event) {
+
+    }
+
+    @FXML
+    void handleShareImage(ActionEvent event) {
+
+    }
+
+    @FXML
+    void handleshareMusic(ActionEvent event) {
 
     }
 
