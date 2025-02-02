@@ -1,5 +1,6 @@
 package gov.iti.jets;
 
+import gov.iti.jets.services.interfaces.LoadHome;
 import gov.iti.jets.services.interfaces.Login;
 import gov.iti.jets.services.interfaces.Register;
 
@@ -9,10 +10,11 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
 public class RMIConnector {
+    private static  RMIConnector rmiConnector;
     private Login loginService;
     private Register registerService;
-    private static  RMIConnector rmiConnector;
 
+    private LoadHome loadHome;
 
 
     private RMIConnector(){
@@ -20,12 +22,12 @@ public class RMIConnector {
             Registry reg = LocateRegistry.getRegistry(1099);
             loginService = (Login) reg.lookup("LogIn");
             registerService = (Register) reg.lookup("Register");
-
+            loadHome = (LoadHome) reg.lookup("LoadHome");
 
         } catch (RemoteException e) {
             throw new RuntimeException(e);
         } catch (NotBoundException e) {
-            throw new RuntimeException(e);
+            System.out.println(e.getMessage());
         }
 
     }
@@ -39,7 +41,10 @@ public class RMIConnector {
     public Login getLoginService() {
         return loginService;
     }
+
     public Register getRegisterService() {
         return registerService;
     }
+
+    public LoadHome getLoadHome() {return loadHome;}
 }

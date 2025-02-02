@@ -17,20 +17,15 @@ import java.rmi.registry.Registry;
 public class ClientApp extends Application {
     @Override
     public void start(Stage stage)  {
-        LoadHome loadHome = null;
-        try {
-            Registry registry = LocateRegistry.getRegistry("127.0.0.1");
-            loadHome = (LoadHome) registry.lookup("LoadHome");
-            System.out.println("client running.......");
-        } catch (RemoteException | NotBoundException e) {
-            System.out.println("LoadHome: " + e.getMessage());;
-        }
+
+        LoadHome loadHome = RMIConnector.getRmiConnector().getLoadHome();
+        System.out.println("client running.......");
         FXMLLoader loader = new FXMLLoader(ClientApp.class.getResource("fxml/home.fxml"));
         Scene scene = null;
         try {
             scene = new Scene(loader.load());
         } catch (IOException e) {
-            System.out.println("load home fxml: "+e.getMessage());
+            System.out.println("load home fxml failed: "+e.getMessage());
         }
         HomeController controller = loader.getController();
         controller.setLoadHome(loadHome);
