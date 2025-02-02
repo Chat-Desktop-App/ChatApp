@@ -157,6 +157,16 @@ public class UserDaoImpl implements UserDao{
         return n;
     }
 
+    public int updatePicture(String phoneNumber,String picturePath) throws SQLException {
+        Connection con = dataBaseConnection.getConnection();
+        String query = "UPDATE users SET picture = ? WHERE phone_number = ?";
+        PreparedStatement ps = con.prepareStatement(query);
+        ps.setString(1, picturePath);
+        ps.setString(2, phoneNumber);
+        int n = ps.executeUpdate();
+        return n;
+
+    }
 
 
     public String hashPass(String pass){
@@ -239,6 +249,8 @@ public class UserDaoImpl implements UserDao{
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+
     }
 
 

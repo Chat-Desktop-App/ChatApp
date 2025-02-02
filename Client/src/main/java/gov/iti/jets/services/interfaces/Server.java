@@ -1,4 +1,7 @@
 package gov.iti.jets.services.interfaces;
 
-public interface Server {
+import java.rmi.Remote;
+
+public interface Server extends Login, Register, Remote {
+
 }
