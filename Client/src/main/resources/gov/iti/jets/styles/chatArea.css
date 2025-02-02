@@ -2,19 +2,23 @@
 	 -fx-background-image: url("../images/chatBackground.jpeg");
 	-fx-background-size: 90% 90%;
 }
-/*#132F93*/
+
 .borderpane_background {
     -fx-background-color: #ffffffe2;
 }
+.attachments_Button {
+    -fx-background-color : white;
+}
+.attachments_Button:hover {
+    -fx-background-color:  #cbcfceb3;
+
+}
+
 .button {
     -fx-background-color: #ffffffe2;
 
 }
-.comboBox {
-    -fx-background-image :  url("../images/file.png");
-    -fx-background-size: 100% 90%;
-    -fx-background-color: #ffffffe2;
-
-
+.button:hover {
+    -fx-background-color:  #d3e1e8;
 
 }
