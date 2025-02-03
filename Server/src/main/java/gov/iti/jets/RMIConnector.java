@@ -1,9 +1,6 @@
 package gov.iti.jets;
 
-import gov.iti.jets.services.impls.LoginImpl;
-import gov.iti.jets.services.impls.MessagingServiceImpl;
-import gov.iti.jets.services.impls.NotificationsServiceImpl;
-import gov.iti.jets.services.impls.RegisterImpl;
+import gov.iti.jets.services.impls.*;
 import gov.iti.jets.services.interfaces.MessagingService;
 import gov.iti.jets.services.interfaces.NotificationsService;
 
@@ -42,6 +39,7 @@ public class RMIConnector {
             registry.bind("Register", new RegisterImpl());
             registry.bind("MessagingService", new MessagingServiceImpl());
             registry.bind("NotificationsService", new NotificationsServiceImpl());
+            registry.bind("LoadHome", new LoadHomeImp());
 
             isRunning = true; // Mark the server as running
             System.out.println("Server is up and running.");

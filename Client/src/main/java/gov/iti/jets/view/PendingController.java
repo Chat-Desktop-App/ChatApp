@@ -69,7 +69,7 @@ public class PendingController {
 
     private void createListView(ObservableList<AnchorPane> items) {
         listView.setItems(items);
-        listView.setStyle("-fx-background-color: white;");
+        listView.setStyle("-fx-background-color: transparent;");
         listView.skinProperty().addListener((obs, oldSkin, newSkin) -> {
             for (ScrollBar scrollBar : listView.lookupAll(".scroll-bar").stream()
                     .filter(ScrollBar.class::isInstance)
