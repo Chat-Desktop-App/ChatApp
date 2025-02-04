@@ -6,5 +6,5 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 public interface Register extends Remote {
-    public User SignUp(User user, byte[] profilePicture) throws RemoteException;
+    public User SignUp(User user) throws RemoteException;
 }
