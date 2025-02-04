@@ -48,8 +48,30 @@ public class ContactDaoImpl implements  ContactDao{
 
     @Override
     public List<ContactUser> getOnlineContacts(String phoneNumber) throws SQLException {
-        return List.of();
+        Connection con = dataBaseConnection.getConnection();
+        String query = """
+                SELECT c.contact_id, u.fname, u.lname,  u.status AS user_status, u.picture,  c.status, c.user_id
+                FROM contacts c
+                JOIN users u ON c.contact_id = u.phone_number
+                WHERE c.user_id = ? AND u.status != 'OFFLINE' AND c.status = 'ACCEPTED'
+                """;
+        List<ContactUser> contactUsers = new ArrayList<>();
+
+        PreparedStatement ps = con.prepareStatement(query);
+        ps.setString(1, phoneNumber);
+        ResultSet rs = ps.executeQuery();
+        while(rs.next()){
+            ContactUser contactUser = new ContactUser(rs.getString(1),
+                    rs.getString(2), rs.getString(3),
+                    Status.valueOf(rs.getString(4)), rs.getString(5) );
+            byte[] profilePicture = PictureUtil.getUserProfilePicture(contactUser.getPicturePath());
+            contactUser.setPicture(profilePicture);
+            contactUsers.add(contactUser);
+        }
+
+        return  contactUsers;
     }
+
 
     @Override
     public List<ContactUser> getPendingContacts(String phoneNumber) throws SQLException {
