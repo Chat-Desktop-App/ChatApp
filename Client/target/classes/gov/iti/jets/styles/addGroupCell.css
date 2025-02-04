@@ -1,0 +1,10 @@
+.check_box { 
+    /* -fx-background-color: #eff7f6c9; */
+    -fx-background-color: linear-gradient(to left, #e4ebedc9, #c8cccec9);
+ 
+ 
+ }
+ .check_box:hover { 
+     -fx-background-color: #c2d1d3; /* Primary1 color */
+ 
+ }

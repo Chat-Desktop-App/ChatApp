@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface ContactDao {
     public List<ContactUser> getFriendsContacts(String phoneNumber) throws SQLException;
+    public List<ContactUser> getOnlineContacts(String phoneNumber) throws SQLException;
     public List<ContactUser> getPendingContacts(String phoneNumber) throws  SQLException;
     public List<ContactUser> getBlockedContacts(String phoneNumber) throws  SQLException;
     public List<ContactUser> getAllContacts(String phoneNumber) throws  SQLException;

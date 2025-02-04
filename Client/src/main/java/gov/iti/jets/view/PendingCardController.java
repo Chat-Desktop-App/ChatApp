@@ -1,16 +1,25 @@
 package gov.iti.jets.view;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
+import gov.iti.jets.model.ContactUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 
 public class PendingCardController {
+    private ContactUser contactUser;
+    @FXML
+    private ResourceBundle resources;
 
     @FXML
-    private Button acceptIcon;
+    private URL location;
+
+    @FXML
+    private Button acceptButton;
 
     @FXML
     private ImageView friendIcon;
@@ -19,17 +28,11 @@ public class PendingCardController {
     private Label friendName;
 
     @FXML
-    void handleAcceptInvitation(MouseEvent event) {
+    private Button rejectButton;
 
-    }
 
     @FXML
     void handleAccept_Invit(ActionEvent event) {
-
-    }
-
-    @FXML
-    void handleRejectInvetation(MouseEvent event) {
 
     }
 
@@ -38,4 +41,17 @@ public class PendingCardController {
 
     }
 
+    @FXML
+    void initialize() {
+        assert acceptButton != null : "fx:id=\"acceptButton\" was not injected: check your FXML file 'pendingCard.fxml'.";
+        assert friendIcon != null : "fx:id=\"friendIcon\" was not injected: check your FXML file 'pendingCard.fxml'.";
+        assert friendName != null : "fx:id=\"friendName\" was not injected: check your FXML file 'pendingCard.fxml'.";
+        assert rejectButton != null : "fx:id=\"rejectButton\" was not injected: check your FXML file 'pendingCard.fxml'.";
+
+    }
+
+    public void setContact(ContactUser contactUser) {
+        this.contactUser = contactUser;
+        friendName.setText(contactUser.getFname()+" " + contactUser.getLname());
+    }
 }

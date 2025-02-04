@@ -1,34 +1,41 @@
 package gov.iti.jets.view;
 
-import javafx.collections.FXCollections;
+import gov.iti.jets.RMIConnector;
+import gov.iti.jets.controller.HomeServiceController;
+import gov.iti.jets.services.interfaces.LoadHome;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Region;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class HomeController {
+    LoadHome loadHome;
+    HomeServiceController homeServiceController;
 
     @FXML
     private ResourceBundle resources;
 
     @FXML
     private URL location;
-    @FXML
-    private BorderPane chatsBorderPane;
-    @FXML
-    private ImageView addFriendIcon;
 
     @FXML
-    private ImageView addGroupIcon;
+    private Button addFriendIcon;
+
+    @FXML
+    private Button addGroupIcon;
 
     @FXML
     private Button allButton;
@@ -37,25 +44,31 @@ public class HomeController {
     private Button blockedButton;
 
     @FXML
-    private ListView<Node> chatsTree;
+    private BorderPane chatsBorderPane;
+
+    @FXML
+    private ListView<AnchorPane> chatsTree;
 
     @FXML
     private BorderPane homeBorderPane;
 
     @FXML
-    private BorderPane mainBorderPane;
-
-    @FXML
-    private ImageView homeIcon;
+    private Button homeIcon;
 
     @FXML
     private AnchorPane left_pane;
 
     @FXML
-    private ImageView logOutIcon;
+    private Button logOutIcon;
 
     @FXML
-    private ImageView notificationIcon;
+    private AnchorPane mainAnchorPane;
+
+    @FXML
+    private BorderPane mainBorderPane;
+
+    @FXML
+    private Button notificationIcon;
 
     @FXML
     private Button onlineButton;
@@ -70,10 +83,35 @@ public class HomeController {
     private TextField searchField;
 
     @FXML
-    private ImageView settingsIcon;
+    private Button settingsIcon;
 
     @FXML
-    private AnchorPane mainAnchorPane;
+    void handleAddFriendIcon(ActionEvent event) {
+        String fxmlPath = "/gov/iti/jets/fxml/addFriend.fxml";
+        handleButtonAction(fxmlPath);
+    }
+
+    @FXML
+    void handleAddGroupIcon(ActionEvent event) {
+        String fxmlPath = "/gov/iti/jets/fxml/addGroup.fxml";
+        handleButtonAction(fxmlPath);
+    }
+
+    @FXML
+    void handleHomeIcon(ActionEvent event) {
+        mainBorderPane.setCenter(mainAnchorPane);
+    }
+
+    @FXML
+    void handleLogOutIcon(ActionEvent event) {
+
+    }
+
+    @FXML
+    void handleNotificationIcon(ActionEvent event) {
+        String fxmlPath = "/gov/iti/jets/fxml/notification.fxml";
+        handleButtonAction(fxmlPath);
+    }
 
     @FXML
     void allButtonHandling(ActionEvent event) {
@@ -82,14 +120,15 @@ public class HomeController {
     }
 
     @FXML
-    void handleAddFriendIcon(MouseEvent event) {
-        String fxmlPath = "/gov/iti/jets/fxml/addFriend.fxml";
+    void handleOnlineButton(ActionEvent event) {
+        String fxmlPath = "/gov/iti/jets/fxml/online.fxml";
         handleButtonAction(fxmlPath);
+
     }
 
     @FXML
-    void handleAddGroupIcon(MouseEvent event) {
-        String fxmlPath = "/gov/iti/jets/fxml/addGroup.fxml";
+    void handlePendingButton(ActionEvent event) {
+        String fxmlPath = "/gov/iti/jets/fxml/pending.fxml";
         handleButtonAction(fxmlPath);
     }
 
@@ -97,35 +136,6 @@ public class HomeController {
     void handleBlockedButton(ActionEvent event) {
         String fxmlPath = "/gov/iti/jets/fxml/blocked.fxml";
         handleButtonAction(fxmlPath);
-    }
-
-    @FXML
-    void handleHomeIcon(MouseEvent event) {
-        mainBorderPane.setCenter(mainAnchorPane);
-    }
-
-    @FXML
-    void handleLogOutIcon(MouseEvent event) {
-
-    }
-
-    @FXML
-    void handleNotificationIcon(MouseEvent event) {
-        String fxmlPath = "/gov/iti/jets/fxml/notification.fxml";
-        handleButtonAction(fxmlPath);
-    }
-
-    @FXML
-    void handleOnlineButton(ActionEvent event) {
-        String fxmlPath = "/gov/iti/jets/fxml/online.fxml";
-        handleButtonAction(fxmlPath);
-    }
-
-    @FXML
-    void handlePendingButton(ActionEvent event) {
-        String fxmlPath = "/gov/iti/jets/fxml/pending.fxml";
-        handleButtonAction(fxmlPath);
-
     }
 
     @FXML
@@ -139,8 +149,9 @@ public class HomeController {
     }
 
     @FXML
-    void handlesettingsIcon(MouseEvent event) {
-
+    void handlesettingsIcon(ActionEvent event) {
+        String fxmlPath = "/gov/iti/jets/fxml/profile.fxml";
+        handleButtonAction(fxmlPath);
     }
 
     @FXML
@@ -154,7 +165,7 @@ public class HomeController {
         assert homeIcon != null : "fx:id=\"homeIcon\" was not injected: check your FXML file 'home.fxml'.";
         assert left_pane != null : "fx:id=\"left_pane\" was not injected: check your FXML file 'home.fxml'.";
         assert logOutIcon != null : "fx:id=\"logOutIcon\" was not injected: check your FXML file 'home.fxml'.";
-        assert notificationIcon != null: "fx:id=\"notificationIcon\" was not injected: check your FXML file 'home.fxml'.";
+        assert notificationIcon != null : "fx:id=\"notificationIcon\" was not injected: check your FXML file 'home.fxml'.";
         assert onlineButton != null : "fx:id=\"onlineButton\" was not injected: check your FXML file 'home.fxml'.";
         assert pendingButton != null : "fx:id=\"pendingButton\" was not injected: check your FXML file 'home.fxml'.";
         assert pictureIcon != null : "fx:id=\"pictureIcon\" was not injected: check your FXML file 'home.fxml'.";
@@ -162,48 +173,22 @@ public class HomeController {
         assert settingsIcon != null : "fx:id=\"settingsIcon\" was not injected: check your FXML file 'home.fxml'.";
         assert mainAnchorPane != null : "fx:id=\"mainAnchorPane\" was not injected: check your FXML file 'home.fxml'.";
         assert mainBorderPane != null : "fx:id=\"mainBorderPane\" was not injected: check your FXML file 'home.fxml'.";
-        fillChats();
+
+        loadHome = RMIConnector.getRmiConnector().getLoadHome();
+        homeServiceController = new HomeServiceController();
+        loadChatsList();
     }
 
-    private void fillChats(){
-        ObservableList<Node> observableList = loadFXMLIntoList("/gov/iti/jets/fxml/allChats.fxml", 20);
-        ListView<Node> listView = createListView(observableList);
-        listView.prefWidthProperty().bind(chatsBorderPane.widthProperty());
-        listView.prefHeightProperty().bind(chatsBorderPane.heightProperty());
-        chatsBorderPane.setCenter(listView);
-
-    }
-
-
-    private ObservableList<Node> loadFXMLIntoList(String fxmlPath, int count) {
-        ObservableList<Node> list = FXCollections.observableArrayList();
-        for (int i = 0; i < count; i++) {
-            try {
-                Node node = new FXMLLoader(getClass().getResource(fxmlPath)).load();
-                list.add(node);
-            } catch (IOException e) {
-                System.out.println("Error when loading " + fxmlPath + ": " + e.getMessage());
-            }
-        }
-        return list;
-    }
-
-    private ListView<Node > createListView(ObservableList<Node> items) {
-        ListView<Node> listView = new ListView<>(items);
-        listView.setStyle("-fx-background-color: white;");
-        listView.skinProperty().addListener((obs, oldSkin, newSkin) -> {
-            for (ScrollBar scrollBar : listView.lookupAll(".scroll-bar").stream()
-                    .filter(ScrollBar.class::isInstance)
-                    .map(ScrollBar.class::cast)
-                    .toList()) {
-                scrollBar.setOpacity(0);
-                scrollBar.setPrefSize(0, 0);
-                scrollBar.setDisable(true);
-            }
-        });
-        listView.setCellFactory(lv -> new ListCell<>() {
+    private void loadChatsList() {
+        ObservableList<AnchorPane> items = homeServiceController.getMyContact();
+        chatsTree.prefWidthProperty().bind(chatsBorderPane.widthProperty());
+        chatsTree.prefHeightProperty().bind(chatsBorderPane.heightProperty());
+        chatsTree.setItems(items);
+        chatsTree.setStyle("-fx-background-color: white;");
+        chatsTree.setSelectionModel(null);
+        chatsTree.setCellFactory(lv -> new ListCell<>() {
             @Override
-            protected void updateItem(Node item, boolean empty) {
+            protected void updateItem(AnchorPane item, boolean empty) {
                 super.updateItem(item, empty);
                 if (empty || item == null) {
                     setGraphic(null);
@@ -214,19 +199,25 @@ public class HomeController {
                 }
             }
         });
-        return listView;
+
     }
 
     private void handleButtonAction(String fxmlPath) {
         try {
-            Region region = new FXMLLoader(getClass().getResource(fxmlPath)).load();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+            Region region = loader.load();
             region.prefWidthProperty().bind(mainBorderPane.widthProperty());
             region.prefHeightProperty().bind(mainBorderPane.heightProperty());
             mainBorderPane.setCenter(region);
-
         } catch (IOException e) {
-            System.out.println("error at lode " + fxmlPath);
+            throw new RuntimeException(e);
         }
+    }
+
+    private void handleButtonAction1(Region region) {
+        region.prefWidthProperty().bind(mainBorderPane.widthProperty());
+        region.prefHeightProperty().bind(mainBorderPane.heightProperty());
+        mainBorderPane.setCenter(region);
     }
 
 }

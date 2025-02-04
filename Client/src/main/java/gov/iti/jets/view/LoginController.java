@@ -1,6 +1,6 @@
 package gov.iti.jets.view;
 
-import gov.iti.jets.HelloApplication;
+import gov.iti.jets.ClientApp;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -66,10 +66,10 @@ public class LoginController implements Initializable {
 
     @FXML
     void handleSignupButton(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("fxml/SignUp.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(ClientApp.class.getResource("fxml/SignUp.fxml"));
         nextRoot = fxmlLoader.load();
         nextScene = new Scene(nextRoot);
-        nextScene.getStylesheets().add(Objects.requireNonNull(HelloApplication.class.getResource("styles/signUp.css")).toExternalForm());
+        nextScene.getStylesheets().add(Objects.requireNonNull(ClientApp.class.getResource("styles/signUp.css")).toExternalForm());
         primaryStage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         primaryStage.setScene(nextScene);
     }

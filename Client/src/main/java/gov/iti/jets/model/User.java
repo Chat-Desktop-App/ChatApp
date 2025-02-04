@@ -1,5 +1,6 @@
 package gov.iti.jets.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.io.Serializable;

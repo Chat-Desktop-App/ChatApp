@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
+
+<VBox maxWidth="400.0" style="-fx-background-color: lightblue; -fx-background-radius: 0 30 30 40;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TextFlow>
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="n Scene Builder, you can use the Color Picker (color chooser) to set the colors for various properties such as background colors, text colors, or border colors. Here's how to open and use the Color Picker:" />
+         </children>
+      </TextFlow>
+      <HBox alignment="CENTER_RIGHT" spacing="15.0">
+         <children>
+            <TextFlow textAlignment="RIGHT">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="wed 12:33 pm" />
+               </children>
+            </TextFlow>
+         </children>
+         <VBox.margin>
+            <Insets left="15.0" right="15.0" />
+         </VBox.margin>
+      </HBox>
+   </children>
+   <padding>
+      <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+   </padding>
+</VBox>
