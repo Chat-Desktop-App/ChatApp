@@ -27,9 +27,8 @@ public class ClientApp extends Application {
         Scene scene = null;
         try {
             scene = new Scene(loader.load());
-            SignUpController view = loader.getController();
-            RegisterServiceController controller = new RegisterServiceController(view);
-            view.setRegisterController(controller);
+
+
 
         } catch (IOException e) {
             throw new RuntimeException(e);

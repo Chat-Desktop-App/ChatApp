@@ -147,6 +147,7 @@ public class SignUpController implements Initializable {
     @FXML
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        registerController  = new RegisterServiceController(this);
         country.getItems().addAll("Afghanistan", "Albania", "Algeria", "Andorra", "Angola",
                 "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan",
                 "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus",
@@ -351,6 +352,8 @@ public class SignUpController implements Initializable {
         }
 
         // set userSession
+        // login
+        // switch scene
 
 
     }

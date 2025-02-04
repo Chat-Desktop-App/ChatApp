@@ -1,6 +1,7 @@
 package gov.iti.jets.view;
 
 import gov.iti.jets.ClientApp;
+import gov.iti.jets.controller.LogInServiceController;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -51,6 +52,8 @@ public class LoginController implements Initializable {
     private Scene nextScene;
     private Parent nextRoot;
 
+    LogInServiceController controller;
+
     @FXML
     void handleLoginButton(ActionEvent event) {
             if(phoneNumber.getText().isBlank() ){
@@ -77,5 +80,6 @@ public class LoginController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        controller = new LogInServiceController(this);
     }
 }
