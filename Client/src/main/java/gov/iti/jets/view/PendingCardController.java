@@ -50,7 +50,7 @@ public class PendingCardController {
 
     }
 
-    public void setContactUser(ContactUser contactUser) {
+    public void setContact(ContactUser contactUser) {
         this.contactUser = contactUser;
         friendName.setText(contactUser.getFname()+" " + contactUser.getLname());
     }

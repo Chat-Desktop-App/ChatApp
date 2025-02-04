@@ -34,9 +34,8 @@ public class AllChatsController {
 
     }
 
-    public void setUser(ContactUser contactUser) {
+    public void setContact(ContactUser contactUser) {
         this.contactUser = contactUser;
         friendName.setText(contactUser.getFname() + " " + contactUser.getLname());
-
     }
 }

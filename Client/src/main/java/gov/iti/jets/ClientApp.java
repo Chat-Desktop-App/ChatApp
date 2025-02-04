@@ -25,10 +25,9 @@ public class ClientApp extends Application {
         try {
             scene = new Scene(loader.load());
         } catch (IOException e) {
-            System.out.println("load home fxml failed: "+e.getMessage());
+            throw new RuntimeException(e);
         }
-        HomeController controller = loader.getController();
-        controller.setLoadHome(loadHome);
+
         stage.setTitle("Log in");
         stage.setMinHeight(550);
         stage.setMinWidth(1050);

@@ -7,6 +7,8 @@ import gov.iti.jets.model.ContactUser;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 
 public class AllCardController {
@@ -39,8 +41,13 @@ public class AllCardController {
 
     }
 
-    public void setContactUser(ContactUser contactUser) {
+    public void setContact(ContactUser contactUser) {
         this.contactUser = contactUser;
         friendName.setText(contactUser.getFname()+" " + contactUser.getLname());
+        switch (contactUser.getStatus()){
+            case AVAILABLE -> status.setFill(Color.LIGHTGREEN);
+            case AWAY -> status.setFill(Color.GRAY);
+            case BUSY -> status.setFill(Color.INDIANRED);
+        }
     }
 }

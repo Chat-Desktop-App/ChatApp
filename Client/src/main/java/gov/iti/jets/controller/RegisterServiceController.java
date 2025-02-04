@@ -8,27 +8,26 @@ import gov.iti.jets.view.SignUpController;
 import java.rmi.RemoteException;
 
 public class RegisterServiceController {
-    private SignUpController view;
-    private Register registerService;
+    private final SignUpController view;
+    private final Register registerService;
 
-    public RegisterServiceController(SignUpController view){
-        registerService = (Register) RMIConnector.getRmiConnector().getRegisterService();
+    public RegisterServiceController(SignUpController view) {
+        registerService = RMIConnector.getRmiConnector().getRegisterService();
         this.view = view;
         // add callbacks later
 
 
     }
 
-    public void signUp(User user, byte[] selectedImageBytes){
+    public void signUp(User user, byte[] selectedImageBytes) {
         try {
             registerService.SignUp(user, selectedImageBytes);
-            System.out.println("User: "+user.getFname()+" added successfully");
+            System.out.println("User: " + user.getFname() + " added successfully");
         } catch (RemoteException e) {
             throw new RuntimeException(e);
         }
 
     }
-
 
 
 }

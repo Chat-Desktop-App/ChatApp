@@ -23,12 +23,12 @@ public class ContactDaoImpl implements  ContactDao{
     @Override
     public List<ContactUser> getFriendsContacts(String phoneNumber) throws SQLException {
         Connection con = dataBaseConnection.getConnection();
-        String query = """
-                SELECT c.contact_id, u.fname, u.lname,  u.status AS user_status, u.picture,  c.status, c.user_id
-                FROM contacts c
-                JOIN users u ON c.contact_id = u.phone_number
-                WHERE c.user_id = ? AND c.status = 'ACCEPTED'
-                """;
+            String query = """
+                    SELECT c.contact_id, u.fname, u.lname,  u.status AS user_status, u.picture,  c.status, c.user_id
+                    FROM contacts c
+                    JOIN users u ON c.contact_id = u.phone_number
+                    WHERE c.user_id = ? AND c.status = 'ACCEPTED'
+                    """;
         List<ContactUser> contactUsers = new ArrayList<>();
 
         PreparedStatement ps = con.prepareStatement(query);
