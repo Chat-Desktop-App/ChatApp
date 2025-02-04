@@ -1,4 +1,4 @@
-package gov.iti.jets;
+package gov.iti.jets.view;
 
 public class StatsController {
 }
