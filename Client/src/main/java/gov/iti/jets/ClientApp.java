@@ -1,7 +1,9 @@
 package gov.iti.jets;
 
+import gov.iti.jets.controller.RegisterServiceController;
 import gov.iti.jets.services.interfaces.LoadHome;
 import gov.iti.jets.view.HomeController;
+import gov.iti.jets.view.SignUpController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -20,10 +22,15 @@ public class ClientApp extends Application {
 
         LoadHome loadHome = RMIConnector.getRmiConnector().getLoadHome();
         System.out.println("client running.......");
-        FXMLLoader loader = new FXMLLoader(ClientApp.class.getResource("fxml/home.fxml"));
+        FXMLLoader loader = new FXMLLoader(ClientApp.class.getResource("fxml/SignUp.fxml"));
+
         Scene scene = null;
         try {
             scene = new Scene(loader.load());
+            SignUpController view = loader.getController();
+            RegisterServiceController controller = new RegisterServiceController(view);
+            view.setRegisterController(controller);
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

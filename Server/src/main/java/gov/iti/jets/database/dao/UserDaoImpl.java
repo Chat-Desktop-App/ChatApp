@@ -35,8 +35,8 @@ public class UserDaoImpl implements UserDao{
     public int addUser(User user) throws SQLException {
         Connection con = dataBaseConnection.getConnection();
         String query = """ 
-                        INSERT INTO users (phone_number, fname, lname, email, password, gender, country, dob, bio, status, num_entries, Last_seen, is_admin) 
-                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)
+                        INSERT INTO users (phone_number, fname, lname, email, password, gender, country, dob, bio, status, num_entries, Last_seen, is_admin, picture) 
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?, ?)
                         """;
 
         PreparedStatement ps
@@ -54,7 +54,7 @@ public class UserDaoImpl implements UserDao{
         ps.setLong(11, user.getNumberEnteries());
         ps.setTimestamp(12, java.sql.Timestamp.valueOf(user.getLastSeen())); // Convert LocalDateTime to java.sql.Timestamp
         ps.setBoolean(13, user.getAdmin());
-
+        ps.setString(14, user.getPicturePath());
         int n = ps.executeUpdate();
         return n;
     }
