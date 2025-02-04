@@ -19,14 +19,19 @@ public class RegisterServiceController {
 
     }
 
-    public void signUp(User user, byte[] selectedImageBytes){
+    public boolean signUp(User user){
         try {
-            registerService.SignUp(user, selectedImageBytes);
+            if(registerService.SignUp(user) == null){
+                return false;
+            }
+
             System.out.println("User: "+user.getFname()+" added successfully");
+
         } catch (RemoteException e) {
             throw new RuntimeException(e);
         }
 
+        return true;
     }
 
 

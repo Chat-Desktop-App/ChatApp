@@ -3,6 +3,7 @@ package gov.iti.jets.database.dao;
 import gov.iti.jets.database.DataBaseConnection;
 import gov.iti.jets.model.ContactUser;
 import gov.iti.jets.model.Status;
+import gov.iti.jets.utility.PictureUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -37,7 +38,9 @@ public class ContactDaoImpl implements  ContactDao{
 
         while(rs.next()){
             ContactUser contactUser = new ContactUser(rs.getString(1),
-                    rs.getString(2), rs.getString(3), Status.valueOf(rs.getString(4)));
+                    rs.getString(2), rs.getString(3), Status.valueOf(rs.getString(4)), rs.getString(5));
+            byte[] profilePicture = PictureUtil.getUserProfilePicture(contactUser.getPicturePath());
+            contactUser.setPicture(profilePicture);
             contactUsers.add(contactUser);
         }
         return  contactUsers;
@@ -60,7 +63,9 @@ public class ContactDaoImpl implements  ContactDao{
 
         while(rs.next()){
             ContactUser contactUser = new ContactUser(rs.getString(1),
-                    rs.getString(2), rs.getString(3), Status.valueOf(rs.getString(4)));
+                    rs.getString(2), rs.getString(3), Status.valueOf(rs.getString(4)), rs.getString(5));
+            byte[] profilePicture = PictureUtil.getUserProfilePicture(contactUser.getPicturePath());
+            contactUser.setPicture(profilePicture);
             contactUsers.add(contactUser);
         }
         return  contactUsers;
@@ -83,7 +88,9 @@ public class ContactDaoImpl implements  ContactDao{
 
         while(rs.next()){
             ContactUser contactUser = new ContactUser(rs.getString(1),
-                    rs.getString(2), rs.getString(3), Status.valueOf(rs.getString(4)));
+                    rs.getString(2), rs.getString(3), Status.valueOf(rs.getString(4)),rs.getString(5));
+            byte[] profilePicture = PictureUtil.getUserProfilePicture(contactUser.getPicturePath());
+            contactUser.setPicture(profilePicture);
             contactUsers.add(contactUser);
         }
         return  contactUsers;
@@ -106,7 +113,9 @@ public class ContactDaoImpl implements  ContactDao{
 
         while(rs.next()){
             ContactUser contactUser = new ContactUser(rs.getString(1),
-                    rs.getString(2), rs.getString(3), Status.valueOf(rs.getString(4)));
+                    rs.getString(2), rs.getString(3), Status.valueOf(rs.getString(4)), rs.getString(5));
+            byte[] profilePicture = PictureUtil.getUserProfilePicture(contactUser.getPicturePath());
+            contactUser.setPicture(profilePicture);
             contactUsers.add(contactUser);
         }
         return  contactUsers;
@@ -157,7 +166,9 @@ public class ContactDaoImpl implements  ContactDao{
 
         while(rs.next()){
             ContactUser contactUser = new ContactUser(rs.getString(1),
-                    rs.getString(2), rs.getString(3), Status.valueOf(rs.getString(4)));
+                    rs.getString(2), rs.getString(3), Status.valueOf(rs.getString(4)), rs.getString(5));
+            byte[] profilePicture = PictureUtil.getUserProfilePicture(contactUser.getPicturePath());
+            contactUser.setPicture(profilePicture);
             contactUsers.add(contactUser);
         }
         return  contactUsers;

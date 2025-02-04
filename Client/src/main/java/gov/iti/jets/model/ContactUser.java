@@ -1,17 +1,42 @@
 package gov.iti.jets.model;
 
-public class ContactUser {
+
+import java.io.Serializable;
+import java.time.LocalDateTime;
+
+public class ContactUser implements Serializable {
     private String phoneNumber;
     private String fname;
     private String lname;
-    private Status status;
+    private Status status; // available, busy, away
+    private transient String picturePath;
+    private byte[] picture;
+    private LocalDateTime lastChatAt;
 
 
-    public ContactUser(String phoneNumber, String fname, String lname, Status status) {
+
+    public ContactUser(String phoneNumber, String fname, String lname, Status status, String picturePath) {
         this.phoneNumber = phoneNumber;
         this.fname = fname;
         this.lname = lname;
         this.status = status;
+        this.picturePath = picturePath;
+    }
+
+    public LocalDateTime getLastChatAt() {
+        return lastChatAt;
+    }
+
+    public void setLastChatAt(LocalDateTime lastChatAt) {
+        this.lastChatAt = lastChatAt;
+    }
+
+    public ContactUser(String phoneNumber, String fname, String lname, Status status, LocalDateTime lastChatAt) {
+        this.phoneNumber = phoneNumber;
+        this.fname = fname;
+        this.lname = lname;
+        this.status = status;
+        this.lastChatAt = lastChatAt;
     }
 
     public ContactUser() {
@@ -57,6 +82,22 @@ public class ContactUser {
                 ", lname='" + lname + '\'' +
                 ", status=" + status +
                 '}';
+    }
+
+    public String getPicturePath() {
+        return picturePath;
+    }
+
+    public void setPicturePath(String picturePath) {
+        this.picturePath = picturePath;
+    }
+
+    public byte[] getPicture() {
+        return picture;
+    }
+
+    public void setPicture(byte[] picture) {
+        this.picture = picture;
     }
 
 }

@@ -1,20 +1,26 @@
 package gov.iti.jets.model;
 
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class ContactUser {
+public class ContactUser implements Serializable {
     private String phoneNumber;
     private String fname;
     private String lname;
     private Status status; // available, busy, away
+    private transient String picturePath;
+    private byte[] picture;
     private LocalDateTime lastChatAt;
 
-    public ContactUser(String phoneNumber, String fname, String lname, Status status) {
+
+
+    public ContactUser(String phoneNumber, String fname, String lname, Status status, String picturePath) {
         this.phoneNumber = phoneNumber;
         this.fname = fname;
         this.lname = lname;
         this.status = status;
+        this.picturePath = picturePath;
     }
 
     public LocalDateTime getLastChatAt() {
@@ -76,6 +82,22 @@ public class ContactUser {
                 ", lname='" + lname + '\'' +
                 ", status=" + status +
                 '}';
+    }
+
+    public String getPicturePath() {
+        return picturePath;
+    }
+
+    public void setPicturePath(String picturePath) {
+        this.picturePath = picturePath;
+    }
+
+    public byte[] getPicture() {
+        return picture;
+    }
+
+    public void setPicture(byte[] picture) {
+        this.picture = picture;
     }
 
 }
