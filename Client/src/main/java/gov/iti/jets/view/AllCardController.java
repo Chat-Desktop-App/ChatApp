@@ -46,8 +46,10 @@ public class AllCardController {
         friendName.setText(contactUser.getFname()+" " + contactUser.getLname());
         switch (contactUser.getStatus()){
             case AVAILABLE -> status.setFill(Color.LIGHTGREEN);
-            case AWAY -> status.setFill(Color.GRAY);
+            case AWAY -> status.setFill(Color.GOLD);
             case BUSY -> status.setFill(Color.INDIANRED);
+            case OFFLINE -> status.setFill(Color.GRAY);
+
         }
     }
 }

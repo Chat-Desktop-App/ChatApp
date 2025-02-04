@@ -25,9 +25,7 @@ public class RMIConnector {
             registry.bind("NotificationsService", notificationsService);
             registry.bind("LoadHome" , loadHomeImp);
             System.out.println("Server is running");
-        } catch (RemoteException e) {
-            throw new RuntimeException(e);
-        } catch (AlreadyBoundException e) {
+        } catch (RemoteException | AlreadyBoundException e) {
             throw new RuntimeException(e);
         }
     }

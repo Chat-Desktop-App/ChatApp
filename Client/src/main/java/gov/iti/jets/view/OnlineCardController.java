@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
 public class OnlineCardController {
@@ -47,5 +48,11 @@ public class OnlineCardController {
     public void setContact(ContactUser contactUser) {
         this.contactUser = contactUser;
         friendName.setText(contactUser.getFname()+" " + contactUser.getLname());
+        switch (contactUser.getStatus()) {
+            case AVAILABLE -> status.setFill(Color.LIGHTGREEN);
+            case AWAY -> status.setFill(Color.GOLD);
+            case BUSY -> status.setFill(Color.INDIANRED);
+            case OFFLINE -> status.setFill(Color.GRAY);
+        }
     }
 }

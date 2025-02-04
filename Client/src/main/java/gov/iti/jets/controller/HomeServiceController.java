@@ -15,7 +15,7 @@ import java.util.List;
 public class HomeServiceController {
     LoadHome homeController = RMIConnector.getRmiConnector().getLoadHome();
 
-    String phoneNumber = "0987654321";
+    String phoneNumber = "1234567890";
 
     public ObservableList<AnchorPane> getMyContact(){
         String fxmlPath = "/gov/iti/jets/fxml/allChats.fxml" ;

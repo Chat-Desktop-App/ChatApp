@@ -50,7 +50,7 @@ public class ContactDaoImpl implements  ContactDao{
                 SELECT c.contact_id, u.fname, u.lname,  u.status AS user_status, u.picture,  c.status, c.user_id
                 FROM contacts c
                 JOIN users u ON c.contact_id = u.phone_number
-                WHERE c.user_id = ? AND u.status != 'AWAY'
+                WHERE c.user_id = ? AND u.status != 'OFFLINE' AND c.status = 'ACCEPTED'
                 """;
         List<ContactUser> contactUsers = new ArrayList<>();
 
