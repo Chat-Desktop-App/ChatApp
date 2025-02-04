@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.util.ResourceBundle;
+
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -23,7 +24,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-
 
 
 public class SignUpController implements Initializable {
@@ -111,7 +111,6 @@ public class SignUpController implements Initializable {
     private User user;
 
 
-
     private byte[] selectedImageBytes;
 
     /*
@@ -145,6 +144,7 @@ public class SignUpController implements Initializable {
 
     private RegisterServiceController registerController;
 
+    @FXML
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         country.getItems().addAll("Afghanistan", "Albania", "Algeria", "Andorra", "Angola",
@@ -189,31 +189,30 @@ public class SignUpController implements Initializable {
         });
 
 
-
     }
 
     private void validatePassword() {
         String storedPassword = password.getText().trim();
-        if(!storedPassword.matches(PASS_REGEX)){
-            showAlert("Invalid Password!\n"+
+        if (!storedPassword.matches(PASS_REGEX)) {
+            showAlert("Invalid Password!\n" +
                     "Your password must contain:\n" +
-                            "- At least 8 characters\n" +
-                            "- At least one letter (A-Z or a-z)\n" +
-                            "- At least one number (0-9)");
+                    "- At least 8 characters\n" +
+                    "- At least one letter (A-Z or a-z)\n" +
+                    "- At least one number (0-9)");
             password.setStyle("-fx-border-color: red; -fx-border-width: 2px;");
             password.requestFocus();
-        }else{
+        } else {
             password.setStyle("");
         }
     }
 
     private void validateEmail() {
         String storedEmail = email.getText().trim();
-        if(!storedEmail.matches(EMAIL_REGEX)){
+        if (!storedEmail.matches(EMAIL_REGEX)) {
             showAlert("Invalid Email!");
             email.setStyle("-fx-border-color: red; -fx-border-width: 2px;");
             email.requestFocus();
-        }else{
+        } else {
             email.setStyle("");
         }
     }
@@ -225,35 +224,34 @@ public class SignUpController implements Initializable {
             phoneNum.setStyle("-fx-border-color: red; -fx-border-width: 2px;"); // Highlight the field in red
             phoneNum.requestFocus();
 
-        }else{
+        } else {
             phoneNum.setStyle("");
         }
     }
 
 
-
     @FXML
     void handleNextButton(ActionEvent event) throws IOException {
         // check if all data is entered
-        if(phoneNum.getText().isBlank() || fname.getText().isBlank() || lname.getText().isBlank() || email.getText().isBlank() || password.getText().isBlank() || password.getText().isBlank()){
+        if (phoneNum.getText().isBlank() || fname.getText().isBlank() || lname.getText().isBlank() || email.getText().isBlank() || password.getText().isBlank() || password.getText().isBlank()) {
             // make a dialogue
             Alert alert = new Alert(Alert.AlertType.WARNING, "Please enter all fields");
             alert.show();
         }
 
         // check password is same as cpassword
-        else if(!password.getText().equals(cpassword.getText())){
+        else if (!password.getText().equals(cpassword.getText())) {
             Alert alert = new Alert(Alert.AlertType.WARNING, "Passwords do not match. Please make sure both passwords are the same");
             alert.show();
-        }else{
+        } else {
 
             // add it to a user object
-                user = new User();
-                user.setPhoneNumber(phoneNum.getText().trim().replaceAll("\\s", ""));
-                user.setFname(fname.getText().trim());
-                user.setLname(lname.getText().trim());
-                user.setEmail(email.getText().trim());
-                user.setPasswordHashed(password.getText().trim());
+            user = new User();
+            user.setPhoneNumber(phoneNum.getText().trim().replaceAll("\\s", ""));
+            user.setFname(fname.getText().trim());
+            user.setLname(lname.getText().trim());
+            user.setEmail(email.getText().trim());
+            user.setPasswordHashed(password.getText().trim());
             SignUp1Vbox.setVisible(false);
             SignUp2Vbox.setVisible(true);
 
@@ -312,11 +310,11 @@ public class SignUpController implements Initializable {
     }
 
     public void handleSubmitButton(ActionEvent actionEvent) {
-            //picture
-            //gender
-            //DOB
-            // country
-            // bio
+        //picture
+        //gender
+        //DOB
+        // country
+        // bio
 
         // Validate Gender
         if (!(male.isSelected() || female.isSelected())) {
@@ -348,12 +346,11 @@ public class SignUpController implements Initializable {
         user.setCountry(country.getValue());
         user.setPicture(selectedImageBytes);
 
-        if(!registerController.signUp(user)){
+        if (!registerController.signUp(user)) {
             showAlert("User already exists");
         }
 
         // set userSession
-
 
 
     }

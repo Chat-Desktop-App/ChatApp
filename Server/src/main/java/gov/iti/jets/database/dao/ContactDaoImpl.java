@@ -47,6 +47,11 @@ public class ContactDaoImpl implements  ContactDao{
     }
 
     @Override
+    public List<ContactUser> getOnlineContacts(String phoneNumber) throws SQLException {
+        return List.of();
+    }
+
+    @Override
     public List<ContactUser> getPendingContacts(String phoneNumber) throws SQLException {
         Connection con = dataBaseConnection.getConnection();
         String query = """
