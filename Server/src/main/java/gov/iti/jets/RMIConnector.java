@@ -72,6 +72,11 @@ public class RMIConnector {
         return isRunning;
     }
     public static void main(String[] args) {
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            if (isRunning) {
+                stopServer();
+            }
+        }));
         startServer();
     }
 

@@ -18,9 +18,7 @@ public class User implements Serializable{
     private Long numberEnteries = 1L;
     private LocalDateTime lastSeen = LocalDateTime.now();
     private Boolean isAdmin = false;
-    private transient String picturePath;
-    private byte[] picture;
-
+    private String picturePath;
 
 
 
@@ -155,13 +153,5 @@ public class User implements Serializable{
 
     public void setPicturePath(String picturePath) {
         this.picturePath = picturePath;
-    }
-
-    public byte[] getPicture() {
-        return picture;
-    }
-
-    public void setPicture(byte[] picture) {
-        this.picture = picture;
     }
 }
