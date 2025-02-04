@@ -13,19 +13,19 @@ import java.io.IOException;
 import java.util.List;
 
 public class HomeServiceController {
-    LoadHome homeController = RMIConnector.getRmiConnector().getLoadHome();
+    private static LoadHome loadHome = RMIConnector.getRmiConnector().getLoadHome();
+    private static String phoneNumber = "1234567890";
+    private static HomeController homeController;
 
-    String phoneNumber = "1234567890";
-
-    public ObservableList<AnchorPane> getMyContact(){
-        String fxmlPath = "/gov/iti/jets/fxml/allChats.fxml" ;
+    public static ObservableList<AnchorPane> getMyContact(){
+        String fxmlPath = "/gov/iti/jets/fxml/Chats.fxml";
         ObservableList<AnchorPane> observableList = FXCollections.observableArrayList();
         try {
-            List<ContactUser> list = homeController.getMyContact(phoneNumber);
+            List<ContactUser> list = loadHome.getMyContact(phoneNumber);
             for (ContactUser contactUser : list) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+                FXMLLoader loader = new FXMLLoader(HomeServiceController.class.getResource(fxmlPath));
                 AnchorPane anchorPane = loader.load();
-                AllChatsController controller = loader.getController();
+                ChatsController controller = loader.getController();
                 controller.setContact(contactUser);
                 observableList.add(anchorPane);
             }
@@ -35,13 +35,13 @@ public class HomeServiceController {
         return observableList;
     }
 
-    public ObservableList<AnchorPane> getPendingContacts()  {
+    public static ObservableList<AnchorPane> getPendingContacts()  {
         String fxmlPath = "/gov/iti/jets/fxml/pendingCard.fxml";
         ObservableList<AnchorPane> observableList = FXCollections.observableArrayList();
         try {
-            List<ContactUser> list = homeController.getPendingContacts(phoneNumber);
+            List<ContactUser> list = loadHome.getPendingContacts(phoneNumber);
             for (ContactUser contactUser : list) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+                FXMLLoader loader = new FXMLLoader(HomeServiceController.class.getResource(fxmlPath));
                 AnchorPane anchorPane = loader.load();
                 PendingCardController controller = loader.getController();
                 controller.setContact(contactUser);
@@ -53,13 +53,13 @@ public class HomeServiceController {
         return observableList;
     }
 
-    public ObservableList<AnchorPane> getBlockedContacts()  {
+    public static ObservableList<AnchorPane> getBlockedContacts()  {
         String fxmlPath = "/gov/iti/jets/fxml/blockedCard.fxml";
         ObservableList<AnchorPane> observableList = FXCollections.observableArrayList();
         try {
-            List<ContactUser> list = homeController.getBlockedContacts(phoneNumber);
+            List<ContactUser> list = loadHome.getBlockedContacts(phoneNumber);
             for (ContactUser contactUser : list) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+                FXMLLoader loader = new FXMLLoader(HomeServiceController.class.getResource(fxmlPath));
                 AnchorPane anchorPane = loader.load();
                 BlockedCardController controller = loader.getController();
                 controller.setContact(contactUser);
@@ -71,13 +71,13 @@ public class HomeServiceController {
         return observableList;
     }
 
-    public ObservableList<AnchorPane> getAllContacts() {
+    public static ObservableList<AnchorPane> getAllContacts() {
         String fxmlPath = "/gov/iti/jets/fxml/allCard.fxml";
         ObservableList<AnchorPane> observableList = FXCollections.observableArrayList();
         try {
-            List<ContactUser> list = homeController.getMyContact(phoneNumber);
+            List<ContactUser> list = loadHome.getMyContact(phoneNumber);
             for (ContactUser contactUser : list) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+                FXMLLoader loader = new FXMLLoader(HomeServiceController.class.getResource(fxmlPath));
                 AnchorPane anchorPane = loader.load();
                 AllCardController controller = loader.getController();
                 controller.setContact(contactUser);
@@ -89,13 +89,13 @@ public class HomeServiceController {
         return observableList;
     }
 
-    public ObservableList<AnchorPane> getOnlineContacts()  {
+    public static ObservableList<AnchorPane> getOnlineContacts()  {
         String fxmlPath = "/gov/iti/jets/fxml/onlineCard.fxml";
         ObservableList<AnchorPane> observableList = FXCollections.observableArrayList();
         try {
-            List<ContactUser> list = homeController.getOnlineContacts(phoneNumber);
+            List<ContactUser> list = loadHome.getOnlineContacts(phoneNumber);
             for (ContactUser contactUser : list) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+                FXMLLoader loader = new FXMLLoader(HomeServiceController.class.getResource(fxmlPath));
                 AnchorPane anchorPane = loader.load();
                 OnlineCardController controller = loader.getController();
                 controller.setContact(contactUser);
@@ -107,4 +107,11 @@ public class HomeServiceController {
         return observableList;
     }
 
+    public static void setHomeController(HomeController homeController) {
+        HomeServiceController.homeController = homeController;
+    }
+
+    public static HomeController getHomeController() {
+        return homeController;
+    }
 }

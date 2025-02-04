@@ -1,10 +1,5 @@
 package gov.iti.jets.view;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.List;
-import java.util.ResourceBundle;
-
 import gov.iti.jets.controller.HomeServiceController;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -14,12 +9,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
 public class BlockedController {
-    HomeServiceController homeServiceController;
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
 
     @FXML
     private ListView<AnchorPane> listView;
@@ -29,14 +18,11 @@ public class BlockedController {
 
     @FXML
     void initialize() {
-        assert listView != null : "fx:id=\"listView\" was not injected: check your FXML file 'blocked.fxml'.";
-        assert onlineText != null : "fx:id=\"onlineText\" was not injected: check your FXML file 'blocked.fxml'.";
-        homeServiceController = new HomeServiceController();
         loadChatsList();
     }
 
     private void loadChatsList() {
-        ObservableList<AnchorPane> items = homeServiceController.getBlockedContacts();
+        ObservableList<AnchorPane> items = HomeServiceController.getBlockedContacts();
         listView.setItems(items);
         listView.setStyle("-fx-background-color: white;");
         listView.setSelectionModel(null);

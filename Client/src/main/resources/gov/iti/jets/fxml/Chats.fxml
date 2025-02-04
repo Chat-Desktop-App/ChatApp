@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minWidth="150.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.view.AllChatsController">
+<AnchorPane fx:id="chat" minWidth="150.0" onMouseClicked="#handleChatClick" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.view.ChatsController">
    <children>
       <ImageView fx:id="friendIcon" fitHeight="40.0" fitWidth="40.0" layoutX="10.399999618530273" layoutY="10.399999618530273" AnchorPane.leftAnchor="0.0">
          <image>
