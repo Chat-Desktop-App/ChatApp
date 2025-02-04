@@ -1,5 +1,6 @@
 package gov.iti.jets.view;
 
+import java.io.ByteArrayInputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -8,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class PendingCardController {
@@ -53,5 +55,7 @@ public class PendingCardController {
     public void setContact(ContactUser contactUser) {
         this.contactUser = contactUser;
         friendName.setText(contactUser.getFname()+" " + contactUser.getLname());
+        friendIcon.setImage(new Image(new ByteArrayInputStream(contactUser.getPicture())));
+
     }
 }

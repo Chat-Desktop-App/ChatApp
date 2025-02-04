@@ -1,5 +1,6 @@
 package gov.iti.jets.view;
 
+import java.io.ByteArrayInputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -7,6 +8,7 @@ import gov.iti.jets.model.ContactUser;
 import gov.iti.jets.model.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -42,6 +44,7 @@ public class AllChatsController {
     public void setContact(ContactUser contactUser) {
         this.contactUser = contactUser;
         friendName.setText(contactUser.getFname() + " " + contactUser.getLname());
+        friendIcon.setImage(new Image(new ByteArrayInputStream(contactUser.getPicture())));
         switch (contactUser.getStatus()) {
             case AVAILABLE -> status.setFill(Color.LIGHTGREEN);
             case AWAY -> status.setFill(Color.GOLD);

@@ -1,5 +1,6 @@
 package gov.iti.jets.view;
 
+import java.io.ByteArrayInputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -7,6 +8,7 @@ import gov.iti.jets.model.ContactUser;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class BlockedCardController {
@@ -42,5 +44,7 @@ public class BlockedCardController {
     public void setContact(ContactUser contactUser) {
         this.contactUser = contactUser;
         friendName.setText(contactUser.getFname()+" " + contactUser.getLname());
+        friendIcon.setImage(new Image(new ByteArrayInputStream(contactUser.getPicture())));
+
     }
 }
