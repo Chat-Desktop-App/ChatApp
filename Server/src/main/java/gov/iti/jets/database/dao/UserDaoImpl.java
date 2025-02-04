@@ -16,7 +16,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class UserDaoImpl implements UserDao{
     static DataBaseConnection dataBaseConnection;
@@ -168,6 +170,45 @@ public class UserDaoImpl implements UserDao{
 
     }
 
+    @Override
+    public Map<String, Integer> getUserStatus() throws SQLException {
+        Connection connection = dataBaseConnection.getConnection();
+        String query = "SELECT status, COUNT(*) FROM users GROUP BY status";
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        Map<String, Integer> statusCounts = new HashMap<>();
+        while (resultSet.next()) {
+            statusCounts.put(resultSet.getString(1), resultSet.getInt(2));
+        }
+        return statusCounts;
+    }
+
+    @Override
+    public Map<String, Integer> getUserGender() throws SQLException {
+        Connection connection = dataBaseConnection.getConnection();
+        String query = "SELECT gender, COUNT(*) FROM users GROUP BY gender";
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        Map<String, Integer> genderCounts = new HashMap<>();
+        while(resultSet.next()) {
+            genderCounts.put(resultSet.getString(1), resultSet.getInt(2));
+        }
+        return genderCounts;
+    }
+
+    @Override
+    public Map<String, Integer> getUserCountry() throws SQLException {
+        Connection con = dataBaseConnection.getConnection();
+        String query = "SELECT country, COUNT(*) FROM users GROUP BY country";
+        PreparedStatement ps = con.prepareStatement(query);
+        ResultSet rs = ps.executeQuery();
+        Map<String, Integer> countryCounts = new HashMap<>();
+        while (rs.next()) {
+            countryCounts.put(rs.getString(1), rs.getInt(2));
+        }
+        return countryCounts;
+    }
+
 
     public String hashPass(String pass){
         MessageDigest digest = null;
@@ -233,10 +274,10 @@ public class UserDaoImpl implements UserDao{
         */
 
             User newUser = new User();
-            newUser.setPhoneNumber("+1122334455");
+            newUser.setPhoneNumber("+1122");
             newUser.setFname("Alice");
             newUser.setLname("Johnson");
-            newUser.setEmail("alice.johnson@example.net");
+            newUser.setEmail("alice2.joon@example.net");
             newUser.setPasswordHashed("mypassword456");
             newUser.setGender(Gender.FEMALE);
             newUser.setCountry("UK");
@@ -244,6 +285,20 @@ public class UserDaoImpl implements UserDao{
             newUser.setBio("Tech enthusiast and avid traveler, exploring the world one line of code at a time.");
 
             userDao.addUser(newUser);
+
+            User newUser2 = new User();
+            newUser2.setPhoneNumber("+1125867");
+            newUser2.setFname("Alice");
+            newUser2.setLname("Johnson");
+            newUser2.setEmail("alice.nn@example.net");
+            newUser2.setPasswordHashed("mypassword456");
+            newUser2.setGender(Gender.MALE);
+            newUser2.setCountry("USA");
+            newUser2.setDob(LocalDate.of(1995, 3, 25));
+            newUser2.setBio("Tech enthusiast and avid traveler, exploring the world one line of code at a time.");
+            newUser2.setStatus(Status.BUSY);
+
+            userDao.addUser(newUser2);
 
 
         } catch (SQLException e) {

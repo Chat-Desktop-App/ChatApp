@@ -2,7 +2,7 @@ package gov.iti.jets.view;
 
 import java.io.IOException;
 
-import gov.iti.jets.SignInController;
+import gov.iti.jets.view.SignInController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
