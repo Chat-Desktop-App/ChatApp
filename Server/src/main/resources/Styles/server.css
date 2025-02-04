@@ -1,0 +1,32 @@
+.button {
+    /* -fx-background-color: linear-gradient(to bottom, #4CAF50, #45a049); */
+    /* -fx-border-radius: 15px;
+    -fx-background-radius: 15px; */
+    -fx-background-color: transparent;
+    -fx-padding: 10px 20px;
+    -fx-alignment: center;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0.5, 0, 4);
+    -fx-transition: all 0.3s ease;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: linear-gradient(to right, #0e4ece, #89CFF0);
+    -fx-effect: dropshadow(gaussian, #000080, 15, 0.6, 0, 0);
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+.topLeftBar {
+    -fx-background-color: linear-gradient(to right, #0e4ece, #89CFF0);
+
+}
+.leftBar {
+    -fx-background-color: linear-gradient(to bottom, #0e4ece, #89CFF0);
+}
+.anchorPane {
+    -fx-background-color: linear-gradient(to bottom, #5c81c9, #89CFF0);
+}
+/* Blue #0e4ece, #89CFF0 */
+/* Green #d8e4aa, #4CAF50 */
+/* button hover border green #ffcc00 */
+/* hover gradient #6ebf3f, #4CAF50 */
