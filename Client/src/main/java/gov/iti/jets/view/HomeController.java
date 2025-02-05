@@ -151,12 +151,13 @@ public class HomeController {
     }
 
     private void loadChatsList() {
-        ObservableList<AnchorPane> items = HomeServiceController.getMyContact();
+        ObservableList<AnchorPane> items = HomeServiceController.getLastContact();
         chatsTree.prefWidthProperty().bind(chatsBorderPane.widthProperty());
         chatsTree.prefHeightProperty().bind(chatsBorderPane.heightProperty());
         chatsTree.setItems(items);
         chatsTree.setStyle("-fx-background-color: white;");
         chatsTree.setSelectionModel(null);
+        chatsTree.setFocusTraversable(false);
         chatsTree.setCellFactory(lv -> new ListCell<>() {
             @Override
             protected void updateItem(AnchorPane item, boolean empty) {

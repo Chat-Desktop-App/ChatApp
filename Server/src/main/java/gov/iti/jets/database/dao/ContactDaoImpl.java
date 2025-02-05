@@ -190,11 +190,12 @@ public class ContactDaoImpl implements  ContactDao{
                 SELECT c.contact_id, u.fname, u.lname, u.status AS user_status, u.picture, c.status, c.user_id
                 FROM contacts c
                 JOIN users u ON c.contact_id = u.phone_number
-                WHERE c.user_id = ? AND c.status = 'ACCEPTED'
-                ORDER BY c.last_chat_at DESC AND c.last_chat_at IS NOT NULL
+                WHERE (c.user_id = ? or c.contact_id = ?) AND c.status = 'ACCEPTED' AND c.last_chat_at IS NOT NULL
+                ORDER BY c.last_chat_at DESC
                 """;
         PreparedStatement ps = con.prepareStatement(query);
         ps.setString(1, phoneNumber);
+        ps.setString(2, phoneNumber);
         ResultSet rs = ps.executeQuery();
         List<ContactUser> contactUsers = new ArrayList<>();
 

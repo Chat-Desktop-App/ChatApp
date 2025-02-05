@@ -23,6 +23,14 @@ public class LoadHomeImp extends UnicastRemoteObject implements LoadHome {
             throw new RuntimeException(e);
         }
     }
+    @Override
+    public List<ContactUser> getLastContact(String phoneNumber) throws RemoteException {
+        try {
+            return contactDao.getLastContact(phoneNumber);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     @Override
     public List<ContactUser> getPendingContacts(String phoneNumber) throws RemoteException {

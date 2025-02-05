@@ -3,7 +3,6 @@ package gov.iti.jets.controller;
 import gov.iti.jets.RMIConnector;
 import gov.iti.jets.model.ContactStatus;
 import gov.iti.jets.model.ContactUser;
-import gov.iti.jets.model.Status;
 import gov.iti.jets.services.interfaces.LoadHome;
 import gov.iti.jets.view.*;
 import javafx.collections.FXCollections;
@@ -54,10 +53,10 @@ public class HomeServiceController {
         return observableList;
     }
 
-    public static ObservableList<AnchorPane> getMyContact() {
+    public static ObservableList<AnchorPane> getLastContact() {
         String fxmlPath = "/gov/iti/jets/fxml/Chats.fxml";
         try {
-            List<ContactUser> list = loadHome.getMyContact(phoneNumber);
+            List<ContactUser> list = loadHome.getLastContact(phoneNumber);
             if (myContactList == null){
                 myContactList = getContacts(fxmlPath, list);
             }else {
@@ -67,7 +66,7 @@ public class HomeServiceController {
 
         } catch (IOException e) {
             loadHome =RMIConnector.rmiReconnector().getLoadHome();
-            return getMyContact();
+            return getLastContact();
         }
         return myContactList;
     }
@@ -149,7 +148,7 @@ public class HomeServiceController {
                 } else if (prevStatus == ContactStatus.PENDING) {
                     getPendingContacts();
                 }
-                getMyContact();
+                getLastContact();
             }
             return flag;
         } catch (RemoteException e) {

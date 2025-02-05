@@ -14,5 +14,6 @@ public interface LoadHome extends Remote {
     List<ContactUser> getBlockedContacts(String phoneNumber) throws  RemoteException;
     List<ContactUser> getAllContacts(String phoneNumber) throws  RemoteException;
     List<ContactUser> getOnlineContacts(String phoneNumber) throws RemoteException;
+    List<ContactUser> getLastContact(String phoneNumber)throws RemoteException;
     boolean updateContact(String u1, String u2, ContactStatus status) throws RemoteException;
 }

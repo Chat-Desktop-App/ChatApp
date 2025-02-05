@@ -33,6 +33,7 @@ public class AllController {
         listView.setItems(items);
         listView.setStyle("-fx-background-color: white;");
         listView.setSelectionModel(null);
+        listView.setFocusTraversable(false);
         listView.setCellFactory(lv -> new ListCell<>() {
             @Override
             protected void updateItem(AnchorPane item, boolean empty) {

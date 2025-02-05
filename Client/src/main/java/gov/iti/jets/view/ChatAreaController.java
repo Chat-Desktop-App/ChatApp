@@ -70,6 +70,8 @@ public class ChatAreaController {
     public void initialize() {
         // Hide the HBox when the application starts
         AttachmentHBOX.setVisible(false);
+        chatListView.setFocusTraversable(false);
+        chatListView.setSelectionModel(null);
     }
 
 
