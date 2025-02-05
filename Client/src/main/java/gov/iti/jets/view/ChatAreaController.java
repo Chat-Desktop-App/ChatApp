@@ -1,5 +1,6 @@
 package gov.iti.jets.view;
 
+import gov.iti.jets.model.Chatable;
 import gov.iti.jets.model.ContactUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,7 +18,7 @@ import javafx.scene.paint.Color;
 import java.io.ByteArrayInputStream;
 
 public class ChatAreaController {
-    ContactUser contactUser;
+    Chatable chatable;
     @FXML
     private HBox AttachmentHBOX;
 
@@ -171,10 +172,10 @@ public class ChatAreaController {
 
     }
 
-    public void setContact(ContactUser contactUser) {
-        this.contactUser = contactUser;
-        friendName.setText(contactUser.getFname() + " " + contactUser.getLname());
-        byte [] pic = contactUser.getPicture();
+    public void setChat(Chatable chatable) {
+        this.chatable = chatable;
+        friendName.setText(chatable.getName());
+        byte [] pic = chatable.getPicture();
         if(pic != null){
             friendIcon.setImage(new Image(new ByteArrayInputStream(pic)));
         }

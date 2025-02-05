@@ -151,7 +151,7 @@ public class HomeController {
     }
 
     private void loadChatsList() {
-        ObservableList<AnchorPane> items = HomeServiceController.getLastContact();
+        ObservableList<AnchorPane> items = HomeServiceController.getLast();
         chatsTree.prefWidthProperty().bind(chatsBorderPane.widthProperty());
         chatsTree.prefHeightProperty().bind(chatsBorderPane.heightProperty());
         chatsTree.setItems(items);
