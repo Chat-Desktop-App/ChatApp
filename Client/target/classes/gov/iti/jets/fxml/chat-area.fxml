@@ -16,7 +16,10 @@
     <center>
       <AnchorPane>
          <children>
-              <ListView fx:id="chatListView" layoutX="10.399999618530273" styleClass="chat_Background" stylesheets="@../styles/chatArea.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0" />
+              <ListView fx:id="chatListView" layoutX="10.399999618530273" styleClass="chat_Background" stylesheets="@../styles/chatArea.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding></ListView>
             <HBox fx:id="AttachmentHBOX" alignment="CENTER" layoutX="362.0" layoutY="231.0" prefHeight="53.0" prefWidth="168.0" spacing="5.0" style="-fx-background-color: #cbcfceb3;" visible="false" AnchorPane.bottomAnchor="-20.0" AnchorPane.rightAnchor="70.0">
                <children>
                   <Button fx:id="music" mnemonicParsing="false" onAction="#handleshareMusic" prefHeight="35.0" prefWidth="35.0" styleClass="attachments_Button" stylesheets="@../styles/chatArea.css">

@@ -2,6 +2,7 @@ package gov.iti.jets.view;
 
 import gov.iti.jets.model.Chatable;
 import gov.iti.jets.model.ContactUser;
+import gov.iti.jets.model.Group;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -19,6 +20,8 @@ import java.io.ByteArrayInputStream;
 
 public class ChatAreaController {
     Chatable chatable;
+    ContactUser contactUser;
+    Group group;
     @FXML
     private HBox AttachmentHBOX;
 
