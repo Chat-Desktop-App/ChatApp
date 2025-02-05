@@ -210,38 +210,6 @@ public class UserDaoImpl implements UserDao{
             }
         }
         return ps.executeUpdate();
-        /*String query =  """
-               UPDATE users 
-               SET fname = ?, 
-                   lname = ?, 
-                   email = ?, 
-                   password = ?, 
-                   gender = ?, 
-                   country = ?, 
-                   dob = ?, 
-                   bio = ?, 
-                   status = ?, 
-                   num_entries = ?, 
-                   Last_seen = ?
-               WHERE phone_number = ? 
-               """;
-        PreparedStatement ps
-                = con.prepareStatement(query);
-        ps.setString(1, user.getPhoneNumber());
-        ps.setString(2, user.getFname());
-        ps.setString(3, user.getLname());
-        ps.setString(4, user.getEmail());
-        ps.setString(5, hashPass(user.getPasswordHashed()));
-        ps.setString(6, user.getGender().toString()); // Assuming gender is an enum
-        ps.setString(7, user.getCountry());
-        ps.setDate(8, java.sql.Date.valueOf(user.getDob())); // Convert LocalDate to java.sql.Date
-        ps.setString(9, user.getBio());
-        ps.setString(10, user.getStatus().toString()); // Assuming status is an enum
-        ps.setLong(11, user.getNumberEnteries());
-        ps.setTimestamp(12, java.sql.Timestamp.valueOf(user.getLastSeen())); // Convert LocalDateTime to java.sql.Timestamp
-        ps.setString(13, user.getPhoneNumber());
-        int n = ps.executeUpdate();
-        return n;*/
     }
 
     public int updatePicture(String phoneNumber,String picturePath) throws SQLException {
@@ -295,6 +263,7 @@ public class UserDaoImpl implements UserDao{
     }
 
 
+    @Override
     public String hashPass(String pass){
         MessageDigest digest = null;
         try {

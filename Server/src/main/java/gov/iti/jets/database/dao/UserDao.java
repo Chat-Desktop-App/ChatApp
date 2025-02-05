@@ -18,4 +18,5 @@ public interface UserDao {
     public Map<String, Integer> getUserStatus() throws SQLException;
     public Map<String, Integer> getUserGender() throws SQLException;
     public Map<String, Integer> getUserCountry() throws SQLException;
+    String hashPass(String pass);
 }
