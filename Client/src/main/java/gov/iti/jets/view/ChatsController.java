@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import gov.iti.jets.controller.HomeServiceController;
 import gov.iti.jets.model.ContactUser;
+import gov.iti.jets.model.Chatable;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -17,7 +18,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
 public class ChatsController {
-    ContactUser contactUser;
+    Chatable chatable;
     @FXML
     private AnchorPane chat;
 
@@ -38,15 +39,19 @@ public class ChatsController {
 
     }
 
-    public void setContact(ContactUser contactUser) {
-        this.contactUser = contactUser;
-        friendName.setText(contactUser.getFname() + " " + contactUser.getLname());
-        friendIcon.setImage(new Image(new ByteArrayInputStream(contactUser.getPicture())));
-        switch (contactUser.getStatus()) {
-            case AVAILABLE -> status.setFill(Color.LIGHTGREEN);
-            case AWAY -> status.setFill(Color.GOLD);
-            case BUSY -> status.setFill(Color.INDIANRED);
-            case OFFLINE -> status.setFill(Color.GRAY);
+    public void setLastChat(Chatable chatable) {
+        this.chatable = chatable;
+        friendName.setText(chatable.getName());
+        friendIcon.setImage(new Image(new ByteArrayInputStream(chatable.getPicture())));
+        if (chatable instanceof ContactUser m){
+            switch (m.getStatus()) {
+                case AVAILABLE -> status.setFill(Color.LIGHTGREEN);
+                case AWAY -> status.setFill(Color.GOLD);
+                case BUSY -> status.setFill(Color.INDIANRED);
+                case OFFLINE -> status.setFill(Color.GRAY);
+            }
+        }else {
+            status.setVisible(false);
         }
     }
 
@@ -55,7 +60,7 @@ public class ChatsController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
         Region region = loader.load();
         ChatAreaController controller = loader.getController();
-        controller.setContact(contactUser);
+        controller.setChat(chatable);
         HomeServiceController.getHomeController().setMainBorderPane(region);
     }
 
