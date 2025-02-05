@@ -26,7 +26,7 @@ public class LogInServiceController {
 
     }
 
-    public User LogIn(String phoneNumber, String password){
+    public User logIn(String phoneNumber, String password){
         User user = null;
         try {
              user = service.logIn(phoneNumber, password, client);
@@ -35,5 +35,13 @@ public class LogInServiceController {
             throw new RuntimeException(e);
         }
         return user;
+    }
+
+    public Boolean checkPhoneNumber(String phoneNumber){
+        try {
+            return service.userExits(phoneNumber);
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

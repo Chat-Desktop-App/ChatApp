@@ -5,6 +5,7 @@ import gov.iti.jets.services.interfaces.LoadHome;
 import gov.iti.jets.view.HomeController;
 import gov.iti.jets.view.SignUpController;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -22,7 +23,7 @@ public class ClientApp extends Application {
 
         LoadHome loadHome = RMIConnector.getRmiConnector().getLoadHome();
         System.out.println("client running.......");
-        FXMLLoader loader = new FXMLLoader(ClientApp.class.getResource("fxml/SignUp.fxml"));
+        FXMLLoader loader = new FXMLLoader(ClientApp.class.getResource("fxml/Login.fxml"));
 
         Scene scene = null;
         try {
@@ -39,6 +40,11 @@ public class ClientApp extends Application {
         stage.setMinWidth(1050);
         stage.setScene(scene);
         stage.show();
+
+        stage.setOnCloseRequest(event -> {
+            Platform.exit();
+            System.exit(0);
+        });
     }
 
     public static void main(String[] args) {
