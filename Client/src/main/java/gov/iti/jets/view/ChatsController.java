@@ -42,7 +42,10 @@ public class ChatsController {
     public void setLastChat(Chatable chatable) {
         this.chatable = chatable;
         friendName.setText(chatable.getName());
-        friendIcon.setImage(new Image(new ByteArrayInputStream(chatable.getPicture())));
+        byte [] pic = chatable.getPicture();
+        if (pic != null){
+            friendIcon.setImage(new Image(new ByteArrayInputStream(pic)));
+        }
         if (chatable instanceof ContactUser m){
             switch (m.getStatus()) {
                 case AVAILABLE -> status.setFill(Color.LIGHTGREEN);
