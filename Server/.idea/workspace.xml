@@ -60,29 +60,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.App.executor&quot;: &quot;Run&quot;,
-    &quot;Application.FilesDaoImpl.executor&quot;: &quot;Run&quot;,
-    &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Application.NotificationsDaoImpl.executor&quot;: &quot;Run&quot;,
-    &quot;Application.RMIConnector.executor&quot;: &quot;Run&quot;,
-    &quot;Application.gov.iti.jets.view.App.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;loadHome-ashraf&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;F:/ITI/ChatApp/Server/pictures&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.App.executor": "Run",
+    "Application.FilesDaoImpl.executor": "Run",
+    "Application.HelloApplication.executor": "Run",
+    "Application.NotificationsDaoImpl.executor": "Run",
+    "Application.RMIConnector.executor": "Run",
+    "Application.gov.iti.jets.view.App.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "server",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "F:/ITI/ChatApp/Server/pictures"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="F:\ITI\ChatApp\Server\pictures" />
       <recent name="F:\iTi\Projects\JAVA Chat-App\source\server230125\src\main\resources\images" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.RMIConnector">
+  <component name="RunManager" selected="Application.gov.iti.jets.view.App">
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="gov.iti.jets.App" />
       <module name="Server" />
@@ -150,9 +150,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.gov.iti.jets.view.App" />
         <item itemvalue="Application.RMIConnector" />
         <item itemvalue="Application.App" />
-        <item itemvalue="Application.gov.iti.jets.view.App" />
         <item itemvalue="Application.HelloApplication" />
       </list>
     </recent_temporary>

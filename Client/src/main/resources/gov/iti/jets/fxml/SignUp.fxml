@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 
-<HBox alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-image: Background.jpg;" stylesheets="@../styles/signUp.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.view.SignUpController">
+<HBox alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-image: Background.jpg;" stylesheets="@../styles/signUp.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.view.SignUpController">
    <children>
       <VBox fx:id="background" alignment="CENTER" prefHeight="600.0" prefWidth="338.0" HBox.hgrow="ALWAYS">
          <children>
@@ -75,7 +86,30 @@
                               <Insets />
                            </VBox.margin>
                         </Label>
-                        <PasswordField fx:id="password" styleClass="textFieldStyle" VBox.vgrow="ALWAYS" />
+                        <StackPane>
+                           <children>
+                              <HBox fx:id="hiddenPassHbox" spacing="10.0">
+                                 <children>
+                                    <PasswordField fx:id="password" prefHeight="9.0" prefWidth="319.0" styleClass="textFieldStyle" />
+                                    <ImageView fitHeight="31.0" fitWidth="21.0" onMouseClicked="#handleShowPass" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+                                       <image>
+                                          <Image url="@../images/eyeClosed.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="showPassHbox" spacing="10.0" visible="false">
+                                 <children>
+                                    <TextField fx:id="passwordText" prefHeight="9.0" prefWidth="319.0" styleClass="textFieldStyle" />
+                                    <ImageView fitHeight="31.0" fitWidth="21.0" onMouseClicked="#handleHidePass" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+                                       <image>
+                                          <Image url="@../images/eyeOpen.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </StackPane>
                      </children>
                   </VBox>
                   <VBox prefHeight="23.0" prefWidth="311.0" VBox.vgrow="ALWAYS">
@@ -85,7 +119,20 @@
                               <Insets />
                            </VBox.margin>
                         </Label>
-                        <PasswordField fx:id="cpassword" styleClass="textFieldStyle" VBox.vgrow="ALWAYS" />
+                        <StackPane>
+                           <children>
+                              <HBox fx:id="hiddenCpass" spacing="10.0">
+                                 <children>
+                                    <PasswordField fx:id="cpassword" prefHeight="9.0" prefWidth="319.0" styleClass="textFieldStyle" />
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="shownCpass" spacing="10.0" visible="false">
+                                 <children>
+                                    <TextField fx:id="cpasswordText" prefHeight="9.0" prefWidth="319.0" styleClass="textFieldStyle" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </StackPane>
                      </children>
                   </VBox>
                   <VBox prefHeight="10.0" prefWidth="360.0" VBox.vgrow="ALWAYS">
