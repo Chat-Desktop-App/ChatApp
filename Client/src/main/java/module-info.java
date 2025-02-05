@@ -1,9 +1,10 @@
 module gov.iti.jets.client {
+    requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
     requires mysql.connector.j;
     requires java.rmi;
-    requires javafx.web;
+
 
 
     opens gov.iti.jets to javafx.fxml;
