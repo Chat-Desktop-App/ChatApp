@@ -1,12 +1,11 @@
 package gov.iti.jets.services.impls;
 
 import gov.iti.jets.database.dao.ContactDaoImpl;
+import gov.iti.jets.model.ContactStatus;
 import gov.iti.jets.model.ContactUser;
 import gov.iti.jets.services.interfaces.LoadHome;
-
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-
 import java.sql.SQLException;
 import java.util.List;
 
@@ -20,6 +19,14 @@ public class LoadHomeImp extends UnicastRemoteObject implements LoadHome {
     public List<ContactUser> getMyContact(String phoneNumber) {
         try {
             return contactDao.getFriendsContacts(phoneNumber);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    @Override
+    public List<ContactUser> getLastContact(String phoneNumber) throws RemoteException {
+        try {
+            return contactDao.getLastContact(phoneNumber);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -56,6 +63,15 @@ public class LoadHomeImp extends UnicastRemoteObject implements LoadHome {
     public List<ContactUser> getOnlineContacts(String phoneNumber) throws RemoteException {
         try {
             return contactDao.getOnlineContacts(phoneNumber);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public boolean updateContact(String u1, String u2, ContactStatus status) throws RemoteException {
+        try {
+            return contactDao.updateContact(u1,u2,status);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
