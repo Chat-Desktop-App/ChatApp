@@ -18,6 +18,7 @@ public class LoginImpl extends UnicastRemoteObject implements Login {
 
     }
 
+
     @Override
     public User logIn(String phoneNumber, String password, ChatClient client) throws RemoteException {
         User user = null;
@@ -39,6 +40,21 @@ public class LoginImpl extends UnicastRemoteObject implements Login {
     @Override
     public boolean logOut(String phoneNumber) throws RemoteException {
         onlineClients.remove(phoneNumber);
-        return false;
+        return true;
     }
+
+    @Override
+    public boolean userExists(String phoneNumber) throws RemoteException {
+        User user = null;
+        try {
+            user = dao.getUser(phoneNumber);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        if(user == null){
+            return false;
+        }
+        return true;
+    }
+
 }

@@ -1,11 +1,14 @@
 package gov.iti.jets.view;
 
+import gov.iti.jets.ClientApp;
 import gov.iti.jets.controller.RegisterServiceController;
 
 import gov.iti.jets.model.Gender;
 import gov.iti.jets.model.User;
 import javafx.application.Platform;
+import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 
 import java.io.File;
@@ -15,15 +18,23 @@ import java.nio.file.Files;
 import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 
 public class SignUpController implements Initializable {
@@ -55,10 +66,29 @@ public class SignUpController implements Initializable {
     private TextField email;
 
     @FXML
+    private HBox hiddenPassHbox;
+
+    @FXML
     private PasswordField password;
 
     @FXML
+    private HBox showPassHbox;
+
+    @FXML
+    private TextField passwordText;
+
+    @FXML
+    private HBox hiddenCpass;
+
+    @FXML
     private PasswordField cpassword;
+
+    @FXML
+    private HBox shownCpass;
+
+    @FXML
+    private TextField cpasswordText;
+
 
     @FXML
     private Button next;
@@ -147,6 +177,13 @@ public class SignUpController implements Initializable {
     @FXML
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        StringProperty passwordTextProperty = passwordText.textProperty();
+        password.textProperty().bindBidirectional(passwordTextProperty);
+
+        StringProperty cpasswordTextProperty = cpasswordText.textProperty();
+        cpassword.textProperty().bindBidirectional(cpasswordTextProperty);
+
+        registerController  = new RegisterServiceController(this);
         country.getItems().addAll("Afghanistan", "Albania", "Algeria", "Andorra", "Angola",
                 "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan",
                 "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus",
@@ -188,31 +225,52 @@ public class SignUpController implements Initializable {
             }
         });
 
+        passwordText.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue) { // When focus is lost
+                validatePassword();
+            }
+        });
+        password.setTooltip(new Tooltip("Password must contain at least 8 characters, one letter, and one number"));
+        passwordText.setTooltip(new Tooltip("Password must contain at least 8 characters, one letter, and one number"));
+
+
 
     }
 
     private void validatePassword() {
-        String storedPassword = password.getText().trim();
-        if (!storedPassword.matches(PASS_REGEX)) {
-            showAlert("Invalid Password!\n" +
-                    "Your password must contain:\n" +
-                    "- At least 8 characters\n" +
-                    "- At least one letter (A-Z or a-z)\n" +
-                    "- At least one number (0-9)");
-            password.setStyle("-fx-border-color: red; -fx-border-width: 2px;");
-            password.requestFocus();
-        } else {
-            password.setStyle("");
+        if(hiddenPassHbox.isVisible()) {
+            String storedPassword = password.getText().trim();
+            if (!storedPassword.matches(PASS_REGEX)) {
+
+                password.setStyle("-fx-border-color: red; -fx-border-width: 2px;");
+
+                password.requestFocus();
+            } else {
+                password.setStyle("");
+
+            }
+        }else{
+            String storedPassword = passwordText.getText().trim();
+            if (!storedPassword.matches(PASS_REGEX)) {
+
+                passwordText.setStyle("-fx-border-color: red; -fx-border-width: 2px;");
+
+                passwordText.requestFocus();
+            } else {
+                passwordText.setStyle("");
+
+            }
         }
     }
 
     private void validateEmail() {
         String storedEmail = email.getText().trim();
         if (!storedEmail.matches(EMAIL_REGEX)) {
-            showAlert("Invalid Email!");
+            email.setTooltip(new Tooltip("Invalid email format"));
             email.setStyle("-fx-border-color: red; -fx-border-width: 2px;");
             email.requestFocus();
         } else {
+            email.setTooltip(null);
             email.setStyle("");
         }
     }
@@ -220,11 +278,12 @@ public class SignUpController implements Initializable {
     private void validatePhoneNumber() {
         String phoneNumber = phoneNum.getText().trim();
         if (!phoneNumber.matches(PHONE_REGEX)) {
-            showAlert("Invalid phone Number!");
+            phoneNum.setTooltip(new Tooltip("Phone number must contain 10 digits"));
             phoneNum.setStyle("-fx-border-color: red; -fx-border-width: 2px;"); // Highlight the field in red
             phoneNum.requestFocus();
 
         } else {
+            phoneNum.setTooltip(null);
             phoneNum.setStyle("");
         }
     }
@@ -232,17 +291,20 @@ public class SignUpController implements Initializable {
 
     @FXML
     void handleNextButton(ActionEvent event) throws IOException {
+        Stage stage = (Stage) submit.getScene().getWindow();
         // check if all data is entered
         if (phoneNum.getText().isBlank() || fname.getText().isBlank() || lname.getText().isBlank() || email.getText().isBlank() || password.getText().isBlank() || password.getText().isBlank()) {
-            // make a dialogue
-            Alert alert = new Alert(Alert.AlertType.WARNING, "Please enter all fields");
-            alert.show();
-        }
 
+            showAlert("Please enter all fields", stage);
+        }
+        else if ( !passwordText.getStyle().equals("") || !password.getStyle().equals("") || !email.getStyle().equals("") || !phoneNum.getStyle().equals("")) {
+            // All inputs are valid, proceed with the action (e.g., submitting the form)
+            showAlert("Invalid Data", stage);
+        }
         // check password is same as cpassword
         else if (!password.getText().equals(cpassword.getText())) {
-            Alert alert = new Alert(Alert.AlertType.WARNING, "Passwords do not match. Please make sure both passwords are the same");
-            alert.show();
+
+            showAlert("Passwords do not match. Please make sure both passwords are the same",stage);
         } else {
 
             // add it to a user object
@@ -317,20 +379,21 @@ public class SignUpController implements Initializable {
         // bio
 
         // Validate Gender
+        Stage stage = (Stage) submit.getScene().getWindow();
         if (!(male.isSelected() || female.isSelected())) {
-            showAlert("Gender is required.");
+            showAlert("Gender is required.", stage);
             return;  // Stop the process if validation fails
         }
 
         // Validate Date of Birth
         if (dob.getValue() == null) {
-            showAlert("Date of Birth is required.");
+            showAlert("Date of Birth is required.", stage);
             return;
         }
 
         // Validate Country
         if (country.getValue() == null || country.getValue().isEmpty()) {
-            showAlert("Country is required.");
+            showAlert("Country is required.", stage);
             return;
         }
 
@@ -347,10 +410,24 @@ public class SignUpController implements Initializable {
         user.setPicture(selectedImageBytes);
 
         if (!registerController.signUp(user)) {
-            showAlert("User already exists");
-        }
+            showAlert("User already exists", stage);
+        }else {
 
+
+            showSucess("Registration Successful! Your account has been created. You can now log in and start chatting!!", stage);
+            FXMLLoader fxmlLoader = new FXMLLoader(ClientApp.class.getResource("fxml/Login.fxml"));
+            try {
+                nextRoot = fxmlLoader.load();
+                nextScene = new Scene(nextRoot);
+                primaryStage = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
+                primaryStage.setScene(nextScene);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
         // set userSession
+        // login
+        // switch scene
 
 
     }
@@ -365,10 +442,123 @@ public class SignUpController implements Initializable {
         this.registerController = registerController;
     }
 
-    private void showAlert(String message) {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
+    private void showAlert(String message, Stage owner) {
+        // Create a blur effect
+        GaussianBlur blur = new GaussianBlur(10);
+
+        // Apply blur effect to the main scene
+        owner.getScene().getRoot().setEffect(blur);
+
+        // Create a new alert stage
+        Stage alertStage = new Stage();
+        alertStage.initModality(Modality.APPLICATION_MODAL); // Block interactions with main window
+        alertStage.initOwner(owner);
+        alertStage.setTitle("Alert");
+
+        // Load icon image
+        ImageView icon = new ImageView(new Image(ClientApp.class.getResourceAsStream("images/error.png")));
+        icon.setFitWidth(50);
+        icon.setFitHeight(50);
+
+        // Alert message
+        Label errorLabel = new Label(message);
+        errorLabel.setWrapText(true);
+        errorLabel.setStyle("-fx-font-size: 16px; -fx-font-weight: bold;");
+        errorLabel.setAlignment(Pos.CENTER);
+
+        // OK button
+        Button okButton = new Button("OK");
+        okButton.setStyle("-fx-background-color: #003249; -fx-text-fill: white; -fx-font-weight: bold;");
+        okButton.setOnAction(e -> {
+            owner.getScene().getRoot().setEffect(null); // Remove blur when closing
+            alertStage.close();
+        });
+
+        alertStage.setOnCloseRequest(e -> {
+            owner.getScene().getRoot().setEffect(null);  // Remove the blur effect
+            alertStage.close();  // Close the alert window
+        });
+
+        // Layout for alert (Icon + Message + Button)
+        VBox alertLayout = new VBox(15, icon, errorLabel, okButton);
+        alertLayout.setStyle("-fx-background-color: white; -fx-padding: 20px; -fx-alignment: center;");
+        Scene alertScene = new Scene(alertLayout, 600, 400);
+
+        alertStage.setScene(alertScene);
+        alertStage.showAndWait(); // Show alert and wait until it is closed
     }
+
+
+    private void showSucess(String message, Stage owner) {
+        // Create a blur effect
+        GaussianBlur blur = new GaussianBlur(10);
+        owner.getScene().getRoot().setEffect(blur);
+
+        // Create a new alert stage
+        Stage alertStage = new Stage();
+        alertStage.initModality(Modality.APPLICATION_MODAL); // Block interactions with main window
+        alertStage.initOwner(owner);
+        alertStage.setTitle("Success");
+
+        // Create WebView for GIF
+        WebView webView = new WebView();
+        WebEngine webEngine = webView.getEngine();
+        String gifPath = ClientApp.class.getResource("images/success.png").toExternalForm();
+        webEngine.load(gifPath);
+        webView.setPrefSize(80, 80); // Adjust size as needed
+
+        // Alert message
+        Label errorLabel = new Label(message);
+        errorLabel.setStyle("-fx-font-size: 16px; -fx-font-weight: bold;");
+        errorLabel.setWrapText(true); // Enable text wrapping
+        errorLabel.setMaxWidth(300); //
+        errorLabel.setAlignment(Pos.CENTER);
+
+        // OK button
+        Button okButton = new Button("OK");
+        okButton.setStyle("-fx-background-color: #003249; -fx-text-fill: white; -fx-font-weight: bold;");
+        okButton.setOnAction(e -> {
+            owner.getScene().getRoot().setEffect(null); // Remove blur when closing
+            alertStage.close();
+        });
+        alertStage.setOnCloseRequest(e -> {
+            owner.getScene().getRoot().setEffect(null);  // Remove the blur effect
+            alertStage.close();  // Close the alert window
+        });
+
+        // Layout
+        VBox layout = new VBox(10, webView, errorLabel, okButton);
+        layout.setStyle("-fx-padding: 20px; -fx-alignment: center; -fx-border-radius: 10px;");
+        layout.setStyle("-fx-background-color: white; -fx-padding: 20px; -fx-alignment: center;");
+
+
+        // Scene
+        Scene scene = new Scene(layout,600,400);
+        alertStage.setScene(scene);
+        alertStage.showAndWait();
+    }
+
+
+    @FXML
+    void handleShowPass(MouseEvent event) {
+
+        hiddenPassHbox.setVisible(false);
+        showPassHbox.setVisible(true);
+
+        hiddenCpass.setVisible(false);
+        shownCpass.setVisible(true);
+    }
+
+    @FXML
+    void handleHidePass(MouseEvent event) {
+
+        hiddenPassHbox.setVisible(true);
+        showPassHbox.setVisible(false);
+
+        hiddenCpass.setVisible(true);
+        shownCpass.setVisible(false);
+
+    }
+
+
 }
