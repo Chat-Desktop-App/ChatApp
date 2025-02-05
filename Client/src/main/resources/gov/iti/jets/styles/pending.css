@@ -1,0 +1,20 @@
+.rejectButton {
+        -fx-background-image: url("../images/rejectIcon.png");
+        -fx-background-size: 100% 100%;
+       -fx-background-repeat: no-repeat;
+       -fx-background-color: transparent;
+}
+.rejectButton:hover {
+  -fx-background-color: #ec0606;
+}
+.acceptButton {
+        -fx-background-image: url("../images/acceptIcon.png");
+        -fx-background-size: 100% 100%;
+       -fx-background-repeat: no-repeat;
+       -fx-background-color: transparent;
+}
+
+.acceptButton:hover {
+  -fx-background-color: #0bff18;
+}
+

@@ -39,9 +39,11 @@ public class ContactDaoImpl implements  ContactDao{
         List<ContactUser> contactUsers = new ArrayList<>();
 
         while(rs.next()){
-            ContactUser contactUser = new ContactUser(rs.getString(1),
-                    rs.getString(2), rs.getString(3), Status.valueOf(rs.getString(4)), rs.getString(5));
-            byte[] profilePicture = PictureUtil.getUserProfilePicture(contactUser.getPicturePath());
+            ContactUser contactUser = new ContactUser(
+                    rs.getString(1),
+                    rs.getString(2), rs.getString(3), Status.valueOf(rs.getString(4)),
+                    rs.getString(5));
+            byte[] profilePicture = PictureUtil.getPicture(contactUser.getPicturePath());
             contactUser.setPicture(profilePicture);
             contactUsers.add(contactUser);
         }
@@ -68,7 +70,7 @@ public class ContactDaoImpl implements  ContactDao{
             ContactUser contactUser = new ContactUser(rs.getString(1),
                     rs.getString(2), rs.getString(3),
                     Status.valueOf(rs.getString(4)), rs.getString(5) );
-            byte[] profilePicture = PictureUtil.getUserProfilePicture(contactUser.getPicturePath());
+            byte[] profilePicture = PictureUtil.getPicture(contactUser.getPicturePath());
             contactUser.setPicture(profilePicture);
             contactUsers.add(contactUser);
         }
@@ -95,7 +97,7 @@ public class ContactDaoImpl implements  ContactDao{
         while(rs.next()){
             ContactUser contactUser = new ContactUser(rs.getString(1),
                     rs.getString(2), rs.getString(3), Status.valueOf(rs.getString(4)), rs.getString(5));
-            byte[] profilePicture = PictureUtil.getUserProfilePicture(contactUser.getPicturePath());
+            byte[] profilePicture = PictureUtil.getPicture(contactUser.getPicturePath());
             contactUser.setPicture(profilePicture);
             contactUsers.add(contactUser);
         }
@@ -120,7 +122,7 @@ public class ContactDaoImpl implements  ContactDao{
         while(rs.next()){
             ContactUser contactUser = new ContactUser(rs.getString(1),
                     rs.getString(2), rs.getString(3), Status.valueOf(rs.getString(4)),rs.getString(5));
-            byte[] profilePicture = PictureUtil.getUserProfilePicture(contactUser.getPicturePath());
+            byte[] profilePicture = PictureUtil.getPicture(contactUser.getPicturePath());
             contactUser.setPicture(profilePicture);
             contactUsers.add(contactUser);
         }
@@ -145,7 +147,7 @@ public class ContactDaoImpl implements  ContactDao{
         while(rs.next()){
             ContactUser contactUser = new ContactUser(rs.getString(1),
                     rs.getString(2), rs.getString(3), Status.valueOf(rs.getString(4)), rs.getString(5));
-            byte[] profilePicture = PictureUtil.getUserProfilePicture(contactUser.getPicturePath());
+            byte[] profilePicture = PictureUtil.getPicture(contactUser.getPicturePath());
             contactUser.setPicture(profilePicture);
             contactUsers.add(contactUser);
         }
@@ -187,7 +189,7 @@ public class ContactDaoImpl implements  ContactDao{
     public List<ContactUser> getLastContact(String phoneNumber) throws SQLException {
         Connection con = dataBaseConnection.getConnection();
         String query = """
-                SELECT c.contact_id, u.fname, u.lname, u.status AS user_status, u.picture, c.status, c.user_id
+                SELECT c.contact_id, u.fname, u.lname, u.status AS user_status, u.picture, c.status, c.user_id , c.last_chat_at
                 FROM contacts c
                 JOIN users u ON c.contact_id = u.phone_number
                 WHERE (c.user_id = ? or c.contact_id = ?) AND c.status = 'ACCEPTED' AND c.last_chat_at IS NOT NULL
@@ -200,10 +202,14 @@ public class ContactDaoImpl implements  ContactDao{
         List<ContactUser> contactUsers = new ArrayList<>();
 
         while(rs.next()){
-            ContactUser contactUser = new ContactUser(rs.getString(1),
-                    rs.getString(2), rs.getString(3), Status.valueOf(rs.getString(4)), rs.getString(5));
-            byte[] profilePicture = PictureUtil.getUserProfilePicture(contactUser.getPicturePath());
+            ContactUser contactUser = new ContactUser(
+                    rs.getString(1),
+                    rs.getString(2), rs.getString(3),
+                    Status.valueOf(rs.getString(4)),
+                    rs.getString(5));
+            byte[] profilePicture = PictureUtil.getPicture(contactUser.getPicturePath());
             contactUser.setPicture(profilePicture);
+            contactUser.setLastChatAt(rs.getTimestamp("last_chat_at").toLocalDateTime());
             contactUsers.add(contactUser);
         }
         return  contactUsers;

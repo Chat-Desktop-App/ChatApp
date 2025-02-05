@@ -1,0 +1,24 @@
+.chat_Background {
+	 -fx-background-image: url("../images/background.png");
+	-fx-background-size: 100% 100%;
+}
+
+.borderpane_background {
+    -fx-background-color: #ffffffe2;
+}
+.attachments_Button {
+    -fx-background-color : white;
+}
+.attachments_Button:hover {
+    -fx-background-color:  #cbcfceb3;
+
+}
+
+.button {
+    -fx-background-color: #ffffffe2;
+
+}
+.button:hover {
+    -fx-background-color:  #d3e1e8;
+
+}

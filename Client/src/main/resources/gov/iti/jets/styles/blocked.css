@@ -1,0 +1,13 @@
+.unblock_button{
+    -fx-background-image: url("../images/block.png");
+    -fx-background-size: 100% 100%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-color: transparent;    /* Ensure no insets interfere */
+
+  }
+  .unblock_button:hover {
+    -fx-background-image: url("../images/unblock(1).png"); /* Change background color on hover */
+    -fx-background-size:  100% 100%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-color: transparent;
+  }

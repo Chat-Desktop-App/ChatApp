@@ -1,0 +1,21 @@
+/* Message container */
+.message-container {
+    -fx-background-color: #6ea4d4;
+    -fx-background-radius: 0 30 30 40;
+    -fx-padding: 10;
+    -fx-spacing: 5;
+}
+
+/* Message text */
+.message-text {
+    -fx-font-size: 12px;
+    -fx-wrap-text: true;
+}
+
+/* Timestamp */
+.timestamp {
+    -fx-font-size: 10px;
+    -fx-text-fill: #666;
+}
+/* 0 30 30 40*/
+/* 30 0 40 30*/
