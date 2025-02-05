@@ -1,6 +1,7 @@
 package gov.iti.jets.database.dao;
 
 import gov.iti.jets.database.DataBaseConnection;
+import gov.iti.jets.model.ContactStatus;
 import gov.iti.jets.model.ContactUser;
 import gov.iti.jets.model.Status;
 import gov.iti.jets.utility.PictureUtil;
@@ -56,7 +57,7 @@ public class ContactDaoImpl implements  ContactDao{
                 JOIN users u ON c.contact_id = u.phone_number
                WHERE (c.user_id = ? or c.contact_id = ?)
                AND u.status != 'OFFLINE' AND c.status = 'ACCEPTED'
-                """;
+               """;
         List<ContactUser> contactUsers = new ArrayList<>();
 
         PreparedStatement ps = con.prepareStatement(query);
@@ -133,7 +134,7 @@ public class ContactDaoImpl implements  ContactDao{
                 SELECT c.contact_id, u.fname, u.lname,  u.status AS user_status, u.picture,  c.status, c.user_id
                 FROM contacts c
                 JOIN users u ON c.contact_id = u.phone_number
-                WHERE c.user_id = ? 
+                WHERE c.user_id = ?
                 """;
         PreparedStatement ps
                 = con.prepareStatement(query);
@@ -160,22 +161,26 @@ public class ContactDaoImpl implements  ContactDao{
         PreparedStatement ps = con.prepareStatement(query);
         ps.setString(1, phoneNumber);
         ps.setString(2, contactPhoneNumber);
-        ps.setString(3,"PENDING");
+        ps.setString(3,ContactStatus.PENDING.toString());
 
-        int n = ps.executeUpdate();
-        return n;
+        return ps.executeUpdate();
 
     }
 
     @Override
-    public int updateContact(ContactUser contactUser) throws SQLException {
+    public Boolean updateContact(String u1, String u2, ContactStatus status) throws SQLException {
         Connection con = dataBaseConnection.getConnection();
-        String query = "UPDATE contacts SET status = ? WHERE contact_id = ?";
+        String query = """
+                UPDATE contacts SET status = ?
+                WHERE (contact_id = ? AND user_id = ?) OR ((contact_id = ? AND user_id = ?))
+                """;
         PreparedStatement ps = con.prepareStatement(query);
-        ps.setString(1, contactUser.getStatus().toString());
-        ps.setString(2, contactUser.getPhoneNumber());
-        int n =  ps.executeUpdate();
-        return n;
+        ps.setString(1, status.toString());
+        ps.setString(2, u1);
+        ps.setString(3, u2);
+        ps.setString(4, u2);
+        ps.setString(5, u1);
+        return ps.executeUpdate() > 0;
     }
 
     @Override
@@ -188,8 +193,7 @@ public class ContactDaoImpl implements  ContactDao{
                 WHERE c.user_id = ? AND c.status = 'ACCEPTED'
                 ORDER BY c.last_chat_at DESC AND c.last_chat_at IS NOT NULL
                 """;
-        PreparedStatement ps
-                = con.prepareStatement(query);
+        PreparedStatement ps = con.prepareStatement(query);
         ps.setString(1, phoneNumber);
         ResultSet rs = ps.executeQuery();
         List<ContactUser> contactUsers = new ArrayList<>();

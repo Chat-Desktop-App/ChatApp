@@ -172,7 +172,10 @@ public class ChatAreaController {
     public void setContact(ContactUser contactUser) {
         this.contactUser = contactUser;
         friendName.setText(contactUser.getFname() + " " + contactUser.getLname());
-        friendIcon.setImage(new Image(new ByteArrayInputStream(contactUser.getPicture())));
+        byte [] pic = contactUser.getPicture();
+        if(pic != null){
+            friendIcon.setImage(new Image(new ByteArrayInputStream(pic)));
+        }
     }
 
 

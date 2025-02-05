@@ -46,7 +46,10 @@ public class AllCardController {
     public void setContact(ContactUser contactUser) {
         this.contactUser = contactUser;
         friendName.setText(contactUser.getFname()+" " + contactUser.getLname());
-        friendIcon.setImage(new Image(new ByteArrayInputStream(contactUser.getPicture())));
+        byte [] pic = contactUser.getPicture();
+        if(pic != null){
+            friendIcon.setImage(new Image(new ByteArrayInputStream(pic)));
+        }
         switch (contactUser.getStatus()){
             case AVAILABLE -> status.setFill(Color.LIGHTGREEN);
             case AWAY -> status.setFill(Color.GOLD);

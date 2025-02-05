@@ -2,6 +2,8 @@ package gov.iti.jets.view;
 
 import java.io.ByteArrayInputStream;
 
+import gov.iti.jets.controller.HomeServiceController;
+import gov.iti.jets.model.ContactStatus;
 import gov.iti.jets.model.ContactUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -33,13 +35,15 @@ public class BlockedCardController {
 
     @FXML
     void handleUnblockButton(ActionEvent event) {
-
+        Boolean flag = HomeServiceController.updateContact(contactUser.getPhoneNumber(), ContactStatus.ACCEPTED , ContactStatus.BLOCKED);
     }
 
     public void setContact(ContactUser contactUser) {
         this.contactUser = contactUser;
         friendName.setText(contactUser.getFname()+" " + contactUser.getLname());
         byte [] pic = contactUser.getPicture();
-        if(pic != null)friendIcon.setImage(new Image(new ByteArrayInputStream(pic)));
+        if(pic != null){
+            friendIcon.setImage(new Image(new ByteArrayInputStream(pic)));
+        }
     }
 }
