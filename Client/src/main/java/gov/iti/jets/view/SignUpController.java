@@ -29,8 +29,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.web.WebEngine;
-import javafx.scene.web.WebView;
+
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -500,12 +499,12 @@ public class SignUpController implements Initializable {
         alertStage.initOwner(owner);
         alertStage.setTitle("Success");
 
-        // Create WebView for GIF
-        WebView webView = new WebView();
-        WebEngine webEngine = webView.getEngine();
-        String gifPath = ClientApp.class.getResource("images/success.png").toExternalForm();
-        webEngine.load(gifPath);
-        webView.setPrefSize(80, 80); // Adjust size as needed
+
+
+        // Load icon image
+        ImageView icon = new ImageView(new Image(ClientApp.class.getResourceAsStream("images/sucess.png")));
+        icon.setFitWidth(80);
+        icon.setFitHeight(80);
 
         // Alert message
         Label errorLabel = new Label(message);
@@ -527,7 +526,7 @@ public class SignUpController implements Initializable {
         });
 
         // Layout
-        VBox layout = new VBox(10, webView, errorLabel, okButton);
+        VBox layout = new VBox(10, icon, errorLabel, okButton);
         layout.setStyle("-fx-padding: 20px; -fx-alignment: center; -fx-border-radius: 10px;");
         layout.setStyle("-fx-background-color: white; -fx-padding: 20px; -fx-alignment: center;");
 

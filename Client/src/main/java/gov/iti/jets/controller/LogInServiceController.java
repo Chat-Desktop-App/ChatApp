@@ -39,7 +39,7 @@ public class LogInServiceController {
 
     public Boolean checkPhoneNumber(String phoneNumber){
         try {
-            return service.userExits(phoneNumber);
+            return service.userExists(phoneNumber);
         } catch (RemoteException e) {
             throw new RuntimeException(e);
         }
