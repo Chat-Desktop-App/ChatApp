@@ -1,7 +1,13 @@
 package gov.iti.jets.model;
+import java.io.Serial;
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class Messages {
+public class Message implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 5677958496409756424L;
+
     private int messageId;
     private String senderId;
     private Recipient recipient;
@@ -19,11 +25,11 @@ public class Messages {
     private String emoji;
 
 
-    public Messages() {
+    public Message() {
 
     }
 
-    public Messages(int messageId, String senderId, Recipient recipient, String receiverId, int groupId, String content, int fileId, int fontSize, String fontStyle, String fontColour, boolean isBold, boolean isItalic, String textBackGroundColour, Timestamp timestamp, String emoji) {
+    public Message(int messageId, String senderId, Recipient recipient, String receiverId, int groupId, String content, int fileId, int fontSize, String fontStyle, String fontColour, boolean isBold, boolean isItalic, String textBackGroundColour, Timestamp timestamp, String emoji) {
         this.messageId = messageId;
         this.senderId = senderId;
         this.recipient = recipient;

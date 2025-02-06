@@ -156,7 +156,7 @@ public class ContactDaoImpl implements  ContactDao{
 
     @Override
     public int addContact(String phoneNumber, String contactPhoneNumber) throws SQLException {
-        // add phone number as as a contact to co
+        // add phone number as a contact to co
         // add contact and set status to ?
         Connection con = dataBaseConnection.getConnection();
         String query = "INSERT INTO contacts (contact_id, user_id, status) VALUES (?, ?, ?)";

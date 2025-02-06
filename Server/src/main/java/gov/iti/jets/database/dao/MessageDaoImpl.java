@@ -1,8 +1,10 @@
 package gov.iti.jets.database.dao;
 
 import gov.iti.jets.database.DataBaseConnection;
+import gov.iti.jets.model.GroupMessage;
 import gov.iti.jets.model.Message;
 import gov.iti.jets.model.Recipient;
+import gov.iti.jets.utility.PictureUtil;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -53,12 +55,19 @@ public class MessageDaoImpl implements MessageDao {
     }
 
     @Override
-    public List<Message> getMessagesBySenderId(String senderId) {
+    public List<Message> getDirectMessages(String userPhone , String contactPhone) {
         Connection connection = dataBaseConnection.getConnection();
         List<Message> messages = new ArrayList<>();
-        String query = "SELECT * FROM Messages WHERE sender_id = ?";
+        String query = """
+                SELECT * FROM Messages
+                WHERE (sender_id = ? AND receiver_id = ?) OR (sender_id = ? AND receiver_id = ?)
+                ORDER BY time_stand
+        """;
         try (PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setString(1, senderId);
+            statement.setString(1, userPhone);
+            statement.setString(2, contactPhone);
+            statement.setString(3, contactPhone);
+            statement.setString(4, userPhone);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 messages.add(mapResultSetToMessage(resultSet));
@@ -66,25 +75,51 @@ public class MessageDaoImpl implements MessageDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return messages;
+            return messages;
     }
 
     @Override
-    public List<Message> getMessagesByGroupId(int groupId) {
+    public List<GroupMessage> getMessagesByGroupId(int groupId) {
         Connection connection = dataBaseConnection.getConnection();
-        List<Message> messages = new ArrayList<>();
-        String query = "SELECT * FROM Messages WHERE group_id = ?";
+        List<GroupMessage> groupMessages = new ArrayList<>();
+        // Updated query with JOIN
+        String query = """
+            SELECT m.*,u.fname AS sender_name, u.picture AS sender_profile_picture
+            FROM Messages m JOIN Users u ON m.sender_id = u.phone_number
+            WHERE m.group_id = ?
+            ORDER BY m.time_stand
+        """;
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, groupId);
             ResultSet resultSet = statement.executeQuery();
+
             while (resultSet.next()) {
-                messages.add(mapResultSetToMessage(resultSet));
+                groupMessages.add(new GroupMessage(
+                        resultSet.getInt("message_id"),
+                        resultSet.getString("sender_id"),
+                        Recipient.valueOf(resultSet.getString("recipient_type")),
+                        resultSet.getString("receiver_id"),
+                        resultSet.getInt("group_id"),
+                        resultSet.getString("content"),
+                        resultSet.getInt("file_id"),
+                        resultSet.getInt("font_size"),
+                        resultSet.getString("font_style"),
+                        resultSet.getString("font_color"),
+                        resultSet.getBoolean("is_bold"),
+                        resultSet.getBoolean("is_italic"),
+                        resultSet.getString("text_background_color"),
+                        resultSet.getTimestamp("time_stand"),
+                        resultSet.getString("emoji"),
+                        resultSet.getString("sender_name"),
+                        PictureUtil.getPicture(resultSet.getString("sender_profile_picture"))
+                ));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return messages;
+        return groupMessages;
     }
+
 
     @Override
     public Message getMessageById(int messageId) {

@@ -2,6 +2,7 @@ package gov.iti.jets;
 
 import gov.iti.jets.services.interfaces.LoadHome;
 import gov.iti.jets.services.interfaces.Login;
+import gov.iti.jets.services.interfaces.MessagingService;
 import gov.iti.jets.services.interfaces.Register;
 
 import java.rmi.NotBoundException;
@@ -16,6 +17,7 @@ public class RMIConnector {
     private Login loginService;
     private Register registerService;
     private LoadHome loadHome;
+    private MessagingService messagingService;
 
 
     private RMIConnector(){
@@ -25,6 +27,7 @@ public class RMIConnector {
                 loginService = (Login) reg.lookup("LogIn");
                 registerService = (Register) reg.lookup("Register");
                 loadHome = (LoadHome) reg.lookup("LoadHome");
+                messagingService = (MessagingService) reg.lookup("MessagingService");
                 break;
             } catch (RemoteException | NotBoundException e) {
                 System.out.println("connection to services failed: "+e.getMessage());
@@ -44,7 +47,7 @@ public class RMIConnector {
         }
         return rmiConnector;
     }
-    public static RMIConnector rmiReconnector() {
+    public static RMIConnector rmiReconnect() {
             rmiConnector = new RMIConnector();
         return rmiConnector;
     }
@@ -58,4 +61,9 @@ public class RMIConnector {
     }
 
     public LoadHome getLoadHome() {return loadHome;}
+
+    public MessagingService getMessagingService() {
+        return messagingService;
+    }
+
 }

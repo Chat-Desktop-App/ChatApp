@@ -1,7 +1,7 @@
 package gov.iti.jets.services.impls;
 
-import gov.iti.jets.database.dao.MessageDao;
 import gov.iti.jets.database.dao.MessageDaoImpl;
+import gov.iti.jets.model.GroupMessage;
 import gov.iti.jets.model.Message;
 import gov.iti.jets.services.interfaces.MessagingService;
 
@@ -10,7 +10,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
 
 public class MessagingServiceImpl extends UnicastRemoteObject implements MessagingService {
-    private MessageDao messageDao;
+    private MessageDaoImpl messageDao;
 
     public MessagingServiceImpl() throws RemoteException {
         super();
@@ -24,12 +24,12 @@ public class MessagingServiceImpl extends UnicastRemoteObject implements Messagi
     }
 
     @Override
-    public List<Message> getMessagesBySenderId(String senderId) throws RemoteException {
-        return messageDao.getMessagesBySenderId(senderId);
+    public List<Message> getDirectMessages(String userPhone , String contactPhone) throws RemoteException {
+        return messageDao.getDirectMessages(userPhone , contactPhone);
     }
 
     @Override
-    public List<Message> getMessagesByGroupId(int groupId) throws RemoteException {
+    public List<GroupMessage> getMessagesByGroupId(int groupId) throws RemoteException {
         return messageDao.getMessagesByGroupId(groupId);
     }
 

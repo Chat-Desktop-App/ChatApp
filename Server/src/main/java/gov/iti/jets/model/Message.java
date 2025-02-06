@@ -1,7 +1,13 @@
 package gov.iti.jets.model;
+import java.io.Serial;
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class Message {
+public class Message implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 5677958496409756424L;
+
     private int messageId;
     private String senderId;
     private Recipient recipient;
