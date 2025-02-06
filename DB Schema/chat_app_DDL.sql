@@ -29,7 +29,7 @@ CREATE TABLE `contacts` (
   `contact_id` varchar(15) NOT NULL,
   `user_id` varchar(15) NOT NULL,
   `status` enum('PENDING','ACCEPTED','REJECTED','BLOCKED') NOT NULL,
-  `last_chat_at` datetime DEFAULT NULL,
+  `last_chat_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`contact_user_id`),
   KEY `contact_id` (`contact_id`),
   KEY `user_id` (`user_id`),
@@ -113,7 +113,7 @@ CREATE TABLE `groups` (
   `group_name` varchar(255) NOT NULL,
   `admin_id` varchar(255) NOT NULL,
   `picture` text,
-  `last_chat_at` datetime DEFAULT NULL,
+  `last_chat_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`group_id`),
   KEY `admin_id` (`admin_id`),
   CONSTRAINT `groups_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `users` (`phone_number`)
@@ -126,7 +126,16 @@ CREATE TABLE `groups` (
 
 LOCK TABLES `groups` WRITE;
 /*!40000 ALTER TABLE `groups` DISABLE KEYS */;
-INSERT INTO `groups` VALUES (1,'Developers','1234567890','F:\\ITI\\ChatApp\\Server\\pictures\\1_group_pic.jpg','2025-01-31 23:29:12'),(2,'Travel Buddies','0987654321','F:\\ITI\\ChatApp\\Server\\pictures\\2_group_pic.jpg','2025-01-31 23:41:12'),(3,'Book Club','1122334455','F:\\ITI\\ChatApp\\Server\\pictures\\3_group_pic.jpg','2025-01-31 23:06:12'),(4,'Sports Fans','2233445566','F:\\ITI\\ChatApp\\Server\\pictures\\4_group_pic.jpg','2025-01-31 23:40:12'),(5,'Music Lovers','3344556677','F:\\ITI\\ChatApp\\Server\\pictures\\5_group_pic.jpg','2025-01-31 23:08:12'),(6,'Foodies','4455667788','F:\\ITI\\ChatApp\\Server\\pictures\\6_group_pic.jpg','2025-01-31 22:53:12'),(7,'Artists','5566778899','F:\\ITI\\ChatApp\\Server\\pictures\\7_group_pic.jpg','2025-01-31 23:11:12'),(8,'Gamers','6677889900','F:\\ITI\\ChatApp\\Server\\pictures\\8_group_pic.jpg','2025-01-31 23:24:12'),(9,'Fashionistas','7788990011','F:\\ITI\\ChatApp\\Server\\pictures\\9_group_pic.jpg','2025-01-31 23:40:12'),(10,'Photographers','8899001122','F:\\ITI\\ChatApp\\Server\\pictures\\10_group_pic.jpg','2025-01-31 23:15:12');
+INSERT INTO `groups` VALUES (1,'Developers','1234567890','pictures\\1_group_pic.jpg','2025-01-31 23:29:12'),
+(2,'Travel Buddies','0987654321','pictures\\2_group_pic.jpg','2025-01-31 23:41:12'),
+(3,'Book Club','1122334455','pictures\\3_group_pic.jpg','2025-01-31 23:06:12'),
+(4,'Sports Fans','2233445566','pictures\\4_group_pic.jpg','2025-01-31 23:40:12'),
+(5,'Music Lovers','3344556677','pictures\\5_group_pic.jpg','2025-01-31 23:08:12'),
+(6,'Foodies','4455667788','pictures\\6_group_pic.jpg','2025-01-31 22:53:12'),
+(7,'Artists','5566778899','pictures\\7_group_pic.jpg','2025-01-31 23:11:12'),
+(8,'Gamers','6677889900','pictures\\8_group_pic.jpg','2025-01-31 23:24:12'),
+(9,'Fashionistas','7788990011','pictures\\9_group_pic.jpg','2025-01-31 23:40:12'),
+(10,'Photographers','8899001122','pictures\\10_group_pic.jpg','2025-01-31 23:15:12');
 /*!40000 ALTER TABLE `groups` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -236,7 +245,17 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES ('0987654321','Jane','Smith','jane.smith@example.com','F:\\ITI\\ChatApp\\Server\\pictures\\0987654321_profile_pic.jpg','password456','FEMALE','Canada','1992-05-15','Travel enthusiast','AWAY',5,'2025-01-31 22:50:12',0),('1122334455','Alice','Johnson','alice.j@example.com','F:\\ITI\\ChatApp\\Server\\pictures\\1122334455_profile_pic.jpg','password789','FEMALE','UK','1985-07-20','Book lover','BUSY',3,'2025-01-31 22:50:12',0),('1234567890','John','Doe','john.doe@example.com','F:\\ITI\\ChatApp\\Server\\pictures\\1234567890_profile_pic.jpg','password123','MALE','USA','1990-01-01','I love coding!','AVAILABLE',10,'2025-01-31 22:50:12',0),('2233445566','Bob','Brown','bob.b@example.com','F:\\ITI\\ChatApp\\Server\\pictures\\2233445566_profile_pic.jpg','password101','MALE','Australia','1988-11-30','Sports fan','BUSY',8,'2025-01-31 22:50:12',1),('3344556677','Charlie','Davis','charlie.d@example.com','F:\\ITI\\ChatApp\\Server\\pictures\\3344556677_profile_pic.jpg','password202','MALE','Germany','1995-03-25','Music producer','AWAY',2,'2025-01-31 22:50:12',0),('4455667788','David','Wilson','david.w@example.com','F:\\ITI\\ChatApp\\Server\\pictures\\4455667788_profile_pic.jpg','password303','MALE','France','1993-09-12','Foodie','AVAILABLE',7,'2025-01-31 22:50:12',0),('5566778899','Eva','Martinez','eva.m@example.com','F:\\ITI\\ChatApp\\Server\\pictures\\5566778899_profile_pic.jpg','password404','FEMALE','Spain','1991-04-18','Artist','OFFLINE',4,'2025-01-31 22:50:12',0),('6677889900','Frank','Garcia','frank.g@example.com','F:\\ITI\\ChatApp\\Server\\pictures\\6677889900_profile_pic.jpg','password505','MALE','Mexico','1987-12-22','Gamer','BUSY',6,'2025-01-31 22:50:12',0),('7788990011','Grace','Lee','grace.l@example.com','F:\\ITI\\ChatApp\\Server\\pictures\\7788990011_profile_pic.jpg','password606','FEMALE','South Korea','1994-08-05','Fashionista','AVAILABLE',9,'2025-01-31 22:50:12',0),('8899001122','Henry','Taylor','henry.t@example.com','F:\\ITI\\ChatApp\\Server\\pictures\\8899001122_profile_pic.jpg','password707','MALE','USA','1989-06-30','Photographer','AWAY',3,'2025-01-31 22:50:12',0);
+INSERT INTO users VALUES 
+('0987654321','Jane','Smith','jane.smith@example.com','pictures/0987654321_profile_pic.jpg','c6ba91b90d922e159893f46c387e5dc1b3dc5c101a5a4522f03b987177a24a91','FEMALE','Canada','1992-05-15','Travel enthusiast','AWAY',5,'2025-01-31 22:50:12',0),
+('1122334455','Alice','Johnson','alice.j@example.com','pictures/1122334455_profile_pic.jpg','5efc2b017da4f7736d192a74dde5891369e0685d4d38f2a455b6fcdab282df9c','FEMALE','UK','1985-07-20','Book lover','BUSY',3,'2025-01-31 22:50:12',0),
+('1234567890','John','Doe','john.doe@example.com','pictures/1234567890_profile_pic.jpg','ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f','MALE','USA','1990-01-01','I love coding!','AVAILABLE',10,'2025-01-31 22:50:12',0),
+('2233445566','Bob','Brown','bob.b@example.com','pictures/2233445566_profile_pic.jpg','a20aff106fe011d5dd696e3b7105200ff74331eeb8e865bb80ebd82b12665a07','MALE','Australia','1988-11-30','Sports fan','BUSY',8,'2025-01-31 22:50:12',1),
+('3344556677','Charlie','Davis','charlie.d@example.com','pictures/3344556677_profile_pic.jpg','28e91b84bd4ac1d95d81b4510777d2b12f3dffa848bb6e219a42f98cdfa06d7d','MALE','Germany','1995-03-25','Music producer','AWAY',2,'2025-01-31 22:50:12',0),
+('4455667788','David','Wilson','david.w@example.com','pictures/4455667788_profile_pic.jpg','f6537a5a2f097921d1d1ab410facd30c4356da7326783c2f9ed29f093852cfe2','MALE','France','1993-09-12','Foodie','AVAILABLE',7,'2025-01-31 22:50:12',0),
+('5566778899','Eva','Martinez','eva.m@example.com','pictures/5566778899_profile_pic.jpg','0cd1a34f93572bb80a5bf493d220bb881030335ec17a4e358c6da73a1ec30b4a','FEMALE','Spain','1991-04-18','Artist','OFFLINE',4,'2025-01-31 22:50:12',0),
+('6677889900','Frank','Garcia','frank.g@example.com','pictures/6677889900_profile_pic.jpg','92c25c70925b616b031e8b7a9ecbbc82c4b151e6ba72b89feb8bc3622b2f2a5d','MALE','Mexico','1987-12-22','Gamer','BUSY',6,'2025-01-31 22:50:12',0),
+('7788990011','Grace','Lee','grace.l@example.com','pictures/7788990011_profile_pic.jpg','e6e7b64fead0dd9a88d009b31679e4eac56aad87447b7f65e6ee87914a071d48','FEMALE','South Korea','1994-08-05','Fashionista','AVAILABLE',9,'2025-01-31 22:50:12',0),
+('8899001122','Henry','Taylor','henry.t@example.com','pictures/8899001122_profile_pic.jpg','31457e06e2adb2178358e9fc6705e0b6f37e9b6ec9456e8890d28f292be9adc4','MALE','USA','1989-06-30','Photographer','AWAY',3,'2025-01-31 22:50:12',0);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
