@@ -1,6 +1,7 @@
 package gov.iti.jets.database.dao;
 
 import gov.iti.jets.database.DataBaseConnection;
+import gov.iti.jets.model.ContactStatus;
 import gov.iti.jets.model.ContactUser;
 import gov.iti.jets.model.Status;
 import gov.iti.jets.utility.PictureUtil;
@@ -26,20 +27,23 @@ public class ContactDaoImpl implements  ContactDao{
         Connection con = dataBaseConnection.getConnection();
         String query = """
                 SELECT c.contact_id, u.fname, u.lname,  u.status AS user_status, u.picture,  c.status, c.user_id
-                FROM contacts c
-                JOIN users u ON c.contact_id = u.phone_number
-                WHERE c.user_id = ? AND c.status = 'ACCEPTED'
+                    FROM contacts c
+                    JOIN users u ON c.contact_id = u.phone_number
+                    WHERE (c.user_id = ? or c.contact_id = ?) AND c.status = 'ACCEPTED'
                 """;
         PreparedStatement ps
                 = con.prepareStatement(query);
         ps.setString(1, phoneNumber);
+        ps.setString(2, phoneNumber);
         ResultSet rs = ps.executeQuery();
         List<ContactUser> contactUsers = new ArrayList<>();
 
         while(rs.next()){
-            ContactUser contactUser = new ContactUser(rs.getString(1),
-                    rs.getString(2), rs.getString(3), Status.valueOf(rs.getString(4)), rs.getString(5));
-            byte[] profilePicture = PictureUtil.getUserProfilePicture(contactUser.getPicturePath());
+            ContactUser contactUser = new ContactUser(
+                    rs.getString(1),
+                    rs.getString(2), rs.getString(3), Status.valueOf(rs.getString(4)),
+                    rs.getString(5));
+            byte[] profilePicture = PictureUtil.getPicture(contactUser.getPicturePath());
             contactUser.setPicture(profilePicture);
             contactUsers.add(contactUser);
         }
@@ -53,18 +57,20 @@ public class ContactDaoImpl implements  ContactDao{
                 SELECT c.contact_id, u.fname, u.lname,  u.status AS user_status, u.picture,  c.status, c.user_id
                 FROM contacts c
                 JOIN users u ON c.contact_id = u.phone_number
-                WHERE c.user_id = ? AND u.status != 'OFFLINE' AND c.status = 'ACCEPTED'
-                """;
+               WHERE (c.user_id = ? or c.contact_id = ?)
+               AND u.status != 'OFFLINE' AND c.status = 'ACCEPTED'
+               """;
         List<ContactUser> contactUsers = new ArrayList<>();
 
         PreparedStatement ps = con.prepareStatement(query);
         ps.setString(1, phoneNumber);
+        ps.setString(2, phoneNumber);
         ResultSet rs = ps.executeQuery();
         while(rs.next()){
             ContactUser contactUser = new ContactUser(rs.getString(1),
                     rs.getString(2), rs.getString(3),
                     Status.valueOf(rs.getString(4)), rs.getString(5) );
-            byte[] profilePicture = PictureUtil.getUserProfilePicture(contactUser.getPicturePath());
+            byte[] profilePicture = PictureUtil.getPicture(contactUser.getPicturePath());
             contactUser.setPicture(profilePicture);
             contactUsers.add(contactUser);
         }
@@ -91,7 +97,7 @@ public class ContactDaoImpl implements  ContactDao{
         while(rs.next()){
             ContactUser contactUser = new ContactUser(rs.getString(1),
                     rs.getString(2), rs.getString(3), Status.valueOf(rs.getString(4)), rs.getString(5));
-            byte[] profilePicture = PictureUtil.getUserProfilePicture(contactUser.getPicturePath());
+            byte[] profilePicture = PictureUtil.getPicture(contactUser.getPicturePath());
             contactUser.setPicture(profilePicture);
             contactUsers.add(contactUser);
         }
@@ -116,7 +122,7 @@ public class ContactDaoImpl implements  ContactDao{
         while(rs.next()){
             ContactUser contactUser = new ContactUser(rs.getString(1),
                     rs.getString(2), rs.getString(3), Status.valueOf(rs.getString(4)),rs.getString(5));
-            byte[] profilePicture = PictureUtil.getUserProfilePicture(contactUser.getPicturePath());
+            byte[] profilePicture = PictureUtil.getPicture(contactUser.getPicturePath());
             contactUser.setPicture(profilePicture);
             contactUsers.add(contactUser);
         }
@@ -130,7 +136,7 @@ public class ContactDaoImpl implements  ContactDao{
                 SELECT c.contact_id, u.fname, u.lname,  u.status AS user_status, u.picture,  c.status, c.user_id
                 FROM contacts c
                 JOIN users u ON c.contact_id = u.phone_number
-                WHERE c.user_id = ? 
+                WHERE c.user_id = ?
                 """;
         PreparedStatement ps
                 = con.prepareStatement(query);
@@ -141,7 +147,7 @@ public class ContactDaoImpl implements  ContactDao{
         while(rs.next()){
             ContactUser contactUser = new ContactUser(rs.getString(1),
                     rs.getString(2), rs.getString(3), Status.valueOf(rs.getString(4)), rs.getString(5));
-            byte[] profilePicture = PictureUtil.getUserProfilePicture(contactUser.getPicturePath());
+            byte[] profilePicture = PictureUtil.getPicture(contactUser.getPicturePath());
             contactUser.setPicture(profilePicture);
             contactUsers.add(contactUser);
         }
@@ -157,45 +163,53 @@ public class ContactDaoImpl implements  ContactDao{
         PreparedStatement ps = con.prepareStatement(query);
         ps.setString(1, phoneNumber);
         ps.setString(2, contactPhoneNumber);
-        ps.setString(3,"PENDING");
+        ps.setString(3,ContactStatus.PENDING.toString());
 
-        int n = ps.executeUpdate();
-        return n;
+        return ps.executeUpdate();
 
     }
 
     @Override
-    public int updateContact(ContactUser contactUser) throws SQLException {
+    public Boolean updateContact(String u1, String u2, ContactStatus status) throws SQLException {
         Connection con = dataBaseConnection.getConnection();
-        String query = "UPDATE contacts SET status = ? WHERE contact_id = ?";
+        String query = """
+                UPDATE contacts SET status = ?
+                WHERE (contact_id = ? AND user_id = ?) OR ((contact_id = ? AND user_id = ?))
+                """;
         PreparedStatement ps = con.prepareStatement(query);
-        ps.setString(1, contactUser.getStatus().toString());
-        ps.setString(2, contactUser.getPhoneNumber());
-        int n =  ps.executeUpdate();
-        return n;
+        ps.setString(1, status.toString());
+        ps.setString(2, u1);
+        ps.setString(3, u2);
+        ps.setString(4, u2);
+        ps.setString(5, u1);
+        return ps.executeUpdate() > 0;
     }
 
     @Override
     public List<ContactUser> getLastContact(String phoneNumber) throws SQLException {
         Connection con = dataBaseConnection.getConnection();
         String query = """
-                SELECT c.contact_id, u.fname, u.lname, u.status AS user_status, u.picture, c.status, c.user_id
+                SELECT c.contact_id, u.fname, u.lname, u.status AS user_status, u.picture, c.status, c.user_id , c.last_chat_at
                 FROM contacts c
                 JOIN users u ON c.contact_id = u.phone_number
-                WHERE c.user_id = ? AND c.status = 'ACCEPTED'
-                ORDER BY c.last_chat_at DESC AND c.last_chat_at IS NOT NULL
+                WHERE (c.user_id = ? or c.contact_id = ?) AND c.status = 'ACCEPTED' AND c.last_chat_at IS NOT NULL
+                ORDER BY c.last_chat_at DESC
                 """;
-        PreparedStatement ps
-                = con.prepareStatement(query);
+        PreparedStatement ps = con.prepareStatement(query);
         ps.setString(1, phoneNumber);
+        ps.setString(2, phoneNumber);
         ResultSet rs = ps.executeQuery();
         List<ContactUser> contactUsers = new ArrayList<>();
 
         while(rs.next()){
-            ContactUser contactUser = new ContactUser(rs.getString(1),
-                    rs.getString(2), rs.getString(3), Status.valueOf(rs.getString(4)), rs.getString(5));
-            byte[] profilePicture = PictureUtil.getUserProfilePicture(contactUser.getPicturePath());
+            ContactUser contactUser = new ContactUser(
+                    rs.getString(1),
+                    rs.getString(2), rs.getString(3),
+                    Status.valueOf(rs.getString(4)),
+                    rs.getString(5));
+            byte[] profilePicture = PictureUtil.getPicture(contactUser.getPicturePath());
             contactUser.setPicture(profilePicture);
+            contactUser.setLastChatAt(rs.getTimestamp("last_chat_at").toLocalDateTime());
             contactUsers.add(contactUser);
         }
         return  contactUsers;

@@ -1,18 +1,27 @@
 package gov.iti.jets.view;
 
+import gov.iti.jets.model.Chatable;
+import gov.iti.jets.model.ContactUser;
+import gov.iti.jets.model.Group;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+
+import java.io.ByteArrayInputStream;
 
 public class ChatAreaController {
-
+    Chatable chatable;
+    ContactUser contactUser;
+    Group group;
     @FXML
     private HBox AttachmentHBOX;
 
@@ -65,6 +74,8 @@ public class ChatAreaController {
     public void initialize() {
         // Hide the HBox when the application starts
         AttachmentHBOX.setVisible(false);
+        chatListView.setFocusTraversable(false);
+        chatListView.setSelectionModel(null);
     }
 
 
@@ -163,5 +174,15 @@ public class ChatAreaController {
     void voiceCall(MouseEvent event) {
 
     }
+
+    public void setChat(Chatable chatable) {
+        this.chatable = chatable;
+        friendName.setText(chatable.getName());
+        byte [] pic = chatable.getPicture();
+        if(pic != null){
+            friendIcon.setImage(new Image(new ByteArrayInputStream(pic)));
+        }
+    }
+
 
 }

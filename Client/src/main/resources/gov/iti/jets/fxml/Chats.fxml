@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.Circle?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane minWidth="150.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.view.AllChatsController">
+<AnchorPane fx:id="chat" minWidth="150.0" onMouseClicked="#handleChatClick" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.view.ChatsController">
    <children>
       <ImageView fx:id="friendIcon" fitHeight="40.0" fitWidth="40.0" layoutX="10.399999618530273" layoutY="10.399999618530273" AnchorPane.leftAnchor="0.0">
          <image>
@@ -20,7 +19,7 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label fx:id="messageCounter" layoutX="120.80000305175781" layoutY="23.200000762939453" styleClass="messageCounter" stylesheets="@../styles/allChats.css" text="2" AnchorPane.rightAnchor="0.0" />
+      <Label fx:id="messageCounter" layoutX="120.80000305175781" layoutY="23.200000762939453" styleClass="messageCounter" stylesheets="@../styles/allChats.css" AnchorPane.rightAnchor="0.0" />
       <Circle fx:id="status" fill="#22da56" layoutX="45.0" layoutY="20.0" radius="5.0" stroke="#00000007" strokeType="INSIDE" />
    </children>
    <padding>

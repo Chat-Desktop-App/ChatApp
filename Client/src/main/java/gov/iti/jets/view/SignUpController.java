@@ -29,7 +29,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -499,10 +498,7 @@ public class SignUpController implements Initializable {
         alertStage.initOwner(owner);
         alertStage.setTitle("Success");
 
-
-
-        // Load icon image
-        ImageView icon = new ImageView(new Image(ClientApp.class.getResourceAsStream("images/sucess.png")));
+        ImageView icon = new ImageView(new Image(ClientApp.class.getResourceAsStream("images/success.png")));
         icon.setFitWidth(80);
         icon.setFitHeight(80);
 

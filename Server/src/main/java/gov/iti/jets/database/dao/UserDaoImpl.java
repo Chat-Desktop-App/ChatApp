@@ -124,39 +124,92 @@ public class UserDaoImpl implements UserDao{
     @Override
     public int update(User user) throws SQLException {
         Connection con = dataBaseConnection.getConnection();
-        String query =  """
-               UPDATE users 
-               SET phone_number = ?, 
-                   fname = ?, 
-                   lname = ?, 
-                   email = ?, 
-                   password = ?, 
-                   gender = ?, 
-                   country = ?, 
-                   dob = ?, 
-                   bio = ?, 
-                   status = ?, 
-                   num_entries = ?, 
-                   Last_seen = ? 
-               WHERE phone_number = ? 
-               """;
-        PreparedStatement ps
-                = con.prepareStatement(query);
-        ps.setString(1, user.getPhoneNumber());
-        ps.setString(2, user.getFname());
-        ps.setString(3, user.getLname());
-        ps.setString(4, user.getEmail());
-        ps.setString(5, hashPass(user.getPasswordHashed()));
-        ps.setString(6, user.getGender().toString()); // Assuming gender is an enum
-        ps.setString(7, user.getCountry());
-        ps.setDate(8, java.sql.Date.valueOf(user.getDob())); // Convert LocalDate to java.sql.Date
-        ps.setString(9, user.getBio());
-        ps.setString(10, user.getStatus().toString()); // Assuming status is an enum
-        ps.setLong(11, user.getNumberEnteries());
-        ps.setTimestamp(12, java.sql.Timestamp.valueOf(user.getLastSeen())); // Convert LocalDateTime to java.sql.Timestamp
-        ps.setString(13, user.getPhoneNumber());
-        int n = ps.executeUpdate();
-        return n;
+        StringBuilder query = new StringBuilder("UPDATE users SET ");
+        List<Object> params = new ArrayList<>(); // to be passed to the prepared statement
+
+        if(user.getFname() != null) {
+            query.append("fname = ?, ");
+            params.add(user.getFname());
+        }
+        if (user.getLname() != null) {
+            query.append("lname = ?, ");
+            params.add(user.getLname());
+        }
+        if (user.getEmail() != null) {
+            query.append("email = ?, ");
+            params.add(user.getEmail());
+        }
+        if (user.getPasswordHashed() != null) {
+            query.append("password = ?, ");
+            params.add(hashPass(user.getPasswordHashed()));
+        }
+        if (user.getGender() != null) {
+            query.append("gender = ?, ");
+            params.add(user.getGender().toString());
+        }
+        if (user.getCountry() != null) {
+            query.append("country = ?, ");
+            params.add(user.getCountry());
+        }
+        if (user.getDob() != null) {
+            query.append("dob = ?, ");
+            params.add(java.sql.Date.valueOf(user.getDob()));
+        }
+        if (user.getBio() != null) {
+            query.append("bio = ?, ");
+            params.add(user.getBio());
+        }
+        if (user.getStatus() != null) {
+            query.append("status = ?, ");
+            params.add(user.getStatus().toString());
+        }
+        if (user.getNumberEnteries() != null) {
+            query.append("num_entries = ?, ");
+            params.add(user.getNumberEnteries());
+        }
+        if (user.getLastSeen() != null) {
+            query.append("Last_seen = ?, ");
+            params.add(java.sql.Timestamp.valueOf(user.getLastSeen()));
+        }
+        if (user.getAdmin() != null) {
+            query.append("is_admin = ?, ");
+            params.add(user.getAdmin());
+        }
+        if (user.getPicture() != null) {
+            query.append("picture = ?, ");
+            params.add(user.getPicture());
+        }
+        if (params.isEmpty()) {
+            throw new SQLException("No fields to update.");
+        }
+
+        // Remove last comma and space
+        query.setLength(query.length() - 2);
+
+        query.append(" WHERE phone_number = ?");
+        params.add(user.getPhoneNumber());
+        System.out.println("Generated Query: " + query.toString());
+
+        PreparedStatement ps = con.prepareStatement(query.toString());
+
+        for (int i = 0; i < params.size(); i++) {
+            if (params.get(i) instanceof String) {
+                ps.setString(i + 1, (String) params.get(i));
+            } else if (params.get(i) instanceof Integer) {
+                ps.setInt(i + 1, (Integer) params.get(i));
+            } else if (params.get(i) instanceof Long) {
+                ps.setLong(i + 1, (Long) params.get(i));
+            } else if (params.get(i) instanceof Boolean) {
+                ps.setBoolean(i + 1, (Boolean) params.get(i));
+            } else if (params.get(i) instanceof java.sql.Date) {
+                ps.setDate(i + 1, (java.sql.Date) params.get(i));
+            } else if (params.get(i) instanceof java.sql.Timestamp) {
+                ps.setTimestamp(i + 1, (java.sql.Timestamp) params.get(i));
+            } else if (params.get(i) instanceof byte[]) {
+                ps.setBytes(i + 1, (byte[]) params.get(i));
+            }
+        }
+        return ps.executeUpdate();
     }
 
     public int updatePicture(String phoneNumber,String picturePath) throws SQLException {
@@ -210,6 +263,7 @@ public class UserDaoImpl implements UserDao{
     }
 
 
+    @Override
     public String hashPass(String pass){
         MessageDigest digest = null;
         try {

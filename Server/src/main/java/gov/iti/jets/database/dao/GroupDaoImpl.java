@@ -3,11 +3,13 @@ package gov.iti.jets.database.dao;
 import gov.iti.jets.database.DataBaseConnection;
 import gov.iti.jets.model.Group;
 import gov.iti.jets.model.User;
+import gov.iti.jets.utility.PictureUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,13 +27,13 @@ public class GroupDaoImpl implements GroupDao{
     public int addGroup(Group group) throws SQLException {
         Connection con = dataBaseConnection.getConnection();
         String query = """
-               INSERT INTO `groups` (group_name, admin_id) 
+               INSERT INTO `groups` (group_name, admin_id)
                VALUES (?, ?)
                """;
 
         PreparedStatement ps
                 = con.prepareStatement(query);
-        ps.setString(1, group.getGroupName());
+        ps.setString(1, group.getName());
         ps.setString(2, group.getAdminId());
 
         int n = ps.executeUpdate();
@@ -54,9 +56,9 @@ public class GroupDaoImpl implements GroupDao{
         while (rs.next()){
             Group group = new Group();
             group.setGroupId(rs.getInt("group_id"));
-            group.setGroupName(rs.getString("group_name"));
+            group.setName(rs.getString("group_name"));
             group.setAdminId(rs.getString("admin_id"));
-            group.setPicture(rs.getString("picture"));
+            group.setPicturePath(rs.getString("picture"));
 
 
             groups.add(group);
@@ -93,12 +95,13 @@ public class GroupDaoImpl implements GroupDao{
         if(rs.next()){
             Group group = new Group();
             group.setGroupId(rs.getInt("group_id"));
-            group.setGroupName(rs.getString("group_name"));
+            group.setName(rs.getString("group_name"));
             group.setAdminId(rs.getString("admin_id"));
-            group.setPicture(rs.getString("picture"));
-
+            String pic = rs.getString("picture");
+            group.setPicturePath(pic);
+            group.setPicture(PictureUtil.getPicture(pic));
+            group.setLastChatAt(LocalDateTime.parse(rs.getString("last_chat_at")));
             return group;
-
         }else{
             return null;
         }
@@ -122,11 +125,11 @@ public class GroupDaoImpl implements GroupDao{
     public List<Group> getLastGroups(String phoneNumber) throws SQLException {
         Connection con = dataBaseConnection.getConnection();
         String query= """
-        SELECT g.group_id, g.group_name, g.admin_id, g.picture
+        SELECT g.group_id, g.group_name, g.admin_id, g.picture ,g.last_chat_at
         FROM `groups` g
         JOIN group_members gm ON g.group_id = gm.group_id
-        WHERE gm.member_id = ? AND last_chat_at IS NOT NULL
-        ORDER BY c.last_chat_at DESC AND c.last_chat_at IS NOT NULL
+        WHERE gm.member_id = ?
+        ORDER BY g.last_chat_at DESC
         """;
         PreparedStatement ps = con.prepareStatement(query);
         ps.setString(1,phoneNumber);
@@ -135,14 +138,14 @@ public class GroupDaoImpl implements GroupDao{
         while (rs.next()){
             Group group = new Group();
             group.setGroupId(rs.getInt("group_id"));
-            group.setGroupName(rs.getString("group_name"));
+            group.setName(rs.getString("group_name"));
             group.setAdminId(rs.getString("admin_id"));
-            group.setPicture(rs.getString("picture"));
-
-
+            String pic = rs.getString("picture");
+            group.setPicturePath(pic);
+            group.setPicture(PictureUtil.getPicture(pic));
+            group.setLastChatAt(rs.getTimestamp("last_chat_at").toLocalDateTime());
             groups.add(group);
         }
-
         return groups;
     }
 
@@ -181,7 +184,7 @@ public class GroupDaoImpl implements GroupDao{
             // Add a new group with Alice as the admin
 
             Group newGroup = new Group();
-            newGroup.setGroupName("Tech Enthusiasts");
+            newGroup.setName("Tech Enthusiasts");
             newGroup.setAdminId("+1122334455"); // Alice's phone number
             int addedGroupResult = groupDao.addGroup(newGroup);
             if (addedGroupResult > 0) {
@@ -213,9 +216,9 @@ public class GroupDaoImpl implements GroupDao{
                 System.out.println("Groups Jane is a member of:");
                 for (Group group : janeGroups) {
                     System.out.println("Group ID: " + group.getGroupId());
-                    System.out.println("Group Name: " + group.getGroupName());
+                    System.out.println("Group Name: " + group.getName());
                     System.out.println("Admin ID: " + group.getAdminId());
-                    System.out.println("Picture: " + group.getPicture());
+                    System.out.println("Picture: " + group.getPicturePath());
                     System.out.println("-------------");
                 }
             } else {
@@ -228,9 +231,9 @@ public class GroupDaoImpl implements GroupDao{
             if (retrievedGroup != null) {
                 System.out.println("Retrieved Group Details:");
                 System.out.println("Group ID: " + retrievedGroup.getGroupId());
-                System.out.println("Group Name: " + retrievedGroup.getGroupName());
+                System.out.println("Group Name: " + retrievedGroup.getName());
                 System.out.println("Admin ID: " + retrievedGroup.getAdminId());
-                System.out.println("Picture: " + retrievedGroup.getPicture());
+                System.out.println("Picture: " + retrievedGroup.getPicturePath());
             } else {
                 System.out.println("Group not found.");
             }

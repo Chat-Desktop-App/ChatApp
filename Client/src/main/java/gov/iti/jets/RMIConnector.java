@@ -9,33 +9,44 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
+import static java.lang.Thread.sleep;
+
 public class RMIConnector {
     private static  RMIConnector rmiConnector;
     private Login loginService;
     private Register registerService;
-
     private LoadHome loadHome;
 
 
     private RMIConnector(){
-        try {
-            Registry reg = LocateRegistry.getRegistry(1099);
-            loginService = (Login) reg.lookup("LogIn");
-            registerService = (Register) reg.lookup("Register");
-            loadHome = (LoadHome) reg.lookup("LoadHome");
+        while (true){
+            try {
+                Registry reg = LocateRegistry.getRegistry(1099);
+                loginService = (Login) reg.lookup("LogIn");
+                registerService = (Register) reg.lookup("Register");
+                loadHome = (LoadHome) reg.lookup("LoadHome");
+                break;
+            } catch (RemoteException | NotBoundException e) {
+                System.out.println("connection to services failed: "+e.getMessage());
+                try {
+                    sleep(1000);
+                } catch (InterruptedException ex) {
 
-        } catch (RemoteException e) {
-            throw new RuntimeException(e);
-        } catch (NotBoundException e) {
-            System.out.println(e.getMessage());
+                }
+            }
         }
 
     }
 
-    public static RMIConnector getRmiConnector(){
-        if(rmiConnector != null)
-            return rmiConnector;
-        else return new RMIConnector();
+    public static RMIConnector getRmiConnector() {
+        if (rmiConnector == null) {
+            rmiConnector = new RMIConnector();
+        }
+        return rmiConnector;
+    }
+    public static RMIConnector rmiReconnector() {
+            rmiConnector = new RMIConnector();
+        return rmiConnector;
     }
 
     public Login getLoginService() {

@@ -1,7 +1,10 @@
 package gov.iti.jets.database.dao;
 
 
+import gov.iti.jets.model.ContactStatus;
 import gov.iti.jets.model.ContactUser;
+import gov.iti.jets.model.Status;
+
 import java.sql.SQLException;
 import java.util.List;
 
@@ -12,6 +15,6 @@ public interface ContactDao {
     public List<ContactUser> getBlockedContacts(String phoneNumber) throws  SQLException;
     public List<ContactUser> getAllContacts(String phoneNumber) throws  SQLException;
     public int addContact(String phoneNumber, String contactPhoneNumber) throws SQLException;
-    public int updateContact(ContactUser contactUser) throws SQLException;
+    Boolean updateContact(String u1, String u2, ContactStatus status) throws SQLException;
     public List<ContactUser> getLastContact(String phoneNumber) throws SQLException;
 }

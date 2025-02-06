@@ -10,16 +10,13 @@ import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 
 public class PictureUtil{
-    private static final String FOLDER_PATH = System.getProperty("user.dir") + File.separator + "pictures" + File.separator;
+    private static final String FOLDER_PATH = "pictures" + File.separator;
+
     public static String saveUserProfilePicture(byte[] imageBytes, User user) {
-
-
         File folder = new File(FOLDER_PATH);
         if (!folder.exists()) {
             folder.mkdirs();
         }
-
-
         String imageFileName = user.getPhoneNumber() + "_profile_pic.jpg";
         File imageFile = new File(folder, imageFileName);
 
@@ -30,12 +27,32 @@ public class PictureUtil{
             e.printStackTrace();
             return null;
         }
-
         // Return the saved image file path
         return FOLDER_PATH + imageFileName;
     }
+
+    public static String saveGroupProfilePicture(byte[] imageBytes, String groupID) {
+        File folder = new File(FOLDER_PATH);
+        if (!folder.exists()) {
+            folder.mkdirs();
+        }
+        String imageFileName = groupID + "_group_pic.jpg";
+        File imageFile = new File(folder, imageFileName);
+
+        // Save the byte array as an image file
+        try (FileOutputStream fos = new FileOutputStream(imageFile)) {
+            fos.write(imageBytes);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+        // Return the saved image file path
+        return FOLDER_PATH + imageFileName;
+    }
+
+
     // get user picture
-    public static byte[] getUserProfilePicture(String picturePath){
+    public static byte[] getPicture(String picturePath){
         File file = new File(picturePath);
         try (FileInputStream fis = new FileInputStream(file);
              FileChannel fileChannel = fis.getChannel()) {
@@ -49,6 +66,7 @@ public class PictureUtil{
             return null;
         }
     }
+
 
 
 }
