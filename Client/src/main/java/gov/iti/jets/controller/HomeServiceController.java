@@ -4,6 +4,7 @@ import gov.iti.jets.RMIConnector;
 import gov.iti.jets.model.Chatable;
 import gov.iti.jets.model.ContactStatus;
 import gov.iti.jets.model.ContactUser;
+import gov.iti.jets.model.Notifications;
 import gov.iti.jets.services.interfaces.LoadHome;
 import gov.iti.jets.view.*;
 import javafx.collections.FXCollections;
@@ -24,6 +25,7 @@ public class HomeServiceController {
     private static ObservableList<AnchorPane> myOnlineList;
     private static ObservableList<AnchorPane> myAllList;
     private static ObservableList<AnchorPane> myLastChatList;
+    private static ObservableList<AnchorPane> myNotificationsList;
 
     // Generic method to load contacts
     private static ObservableList<AnchorPane> getContacts(String fxmlPath, List<ContactUser> contactList) {
@@ -174,4 +176,39 @@ public class HomeServiceController {
     public static void setPhoneNumber(String phoneNumber) {
         HomeServiceController.phoneNumber = phoneNumber;
     }
+    
+
+    public static ObservableList<AnchorPane> getNotifications() {
+        String fxmlPath = "/gov/iti/jets/fxml/notificationCell.fxml";
+        try {
+            List<Notifications> list = RMIConnector.getRmiConnector().getNotificationService()
+                                                 .getAllNotificationsByUserId(phoneNumber);
+            if (myNotificationsList == null) {
+                myNotificationsList = loadNotifications(fxmlPath, list);
+            } else {
+                myNotificationsList.clear();
+                myNotificationsList.addAll(loadNotifications(fxmlPath, list));
+            }
+        } catch (RemoteException e) {
+            return getNotifications();
+        }
+        return myNotificationsList;
+    }
+
+    private static ObservableList<AnchorPane> loadNotifications(String fxmlPath, List<Notifications> notificationsList) {
+        ObservableList<AnchorPane> observableList = FXCollections.observableArrayList();
+        try {
+            for (Notifications notification : notificationsList) {
+                FXMLLoader loader = new FXMLLoader(HomeServiceController.class.getResource(fxmlPath));
+                AnchorPane anchorPane = loader.load();
+                NotificationCellController controller = loader.getController();
+                controller.setNotification(notification);
+                observableList.add(anchorPane);
+            }
+        } catch (IOException e) {
+            System.out.println("Error when loading " + fxmlPath + ": " + e.getMessage());
+        }
+        return observableList;
+    }
+
 }
