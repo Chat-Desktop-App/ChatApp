@@ -3,6 +3,7 @@ package gov.iti.jets.view;
 import gov.iti.jets.ClientApp;
 import gov.iti.jets.controller.LogInServiceController;
 import gov.iti.jets.model.User;
+import gov.iti.jets.model.UserSession;
 import javafx.application.Platform;
 import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
@@ -77,6 +78,9 @@ public class LoginController implements Initializable {
     @FXML
     private Button signUp;
 
+    @FXML
+    private Hyperlink DifferentAcc;
+
     private Stage primaryStage;
     private Scene nextScene;
     private Parent nextRoot;
@@ -84,8 +88,11 @@ public class LoginController implements Initializable {
     LogInServiceController controller;
     User user;
 
+
+
     @FXML
     void handleLoginButton(ActionEvent event) {
+
         if(login.getText().equals("NEXT")) {
             if (phoneNumber.getText().isBlank()) {
                 Platform.exit();
@@ -111,7 +118,7 @@ public class LoginController implements Initializable {
 
             }
         }else{
-            user = controller.logIn(phoneNumber.getText().trim(), passwordField.getText().trim());
+           user = controller.logIn(phoneNumber.getText().trim(), passwordField.getText().trim());
             if(user ==  null){
                 Stage stage;
 
@@ -215,6 +222,29 @@ public class LoginController implements Initializable {
         TextpassHbox.setVisible(false);
         HiddenpassHbox.setVisible(true);
 
+    }
+
+
+    @FXML
+    void handleDiffAccLink(ActionEvent event) {
+        phoneNumber.setText("");
+        passwordField.setText("");
+        phoneNumberV.setVisible(true);
+        passwordV.setVisible(false);
+        login.setText("NEXT");
+
+    }
+
+    public void setRemmberMe(boolean remmberMe) {
+        if(remmberMe){
+            phoneNumberV.setVisible(false);
+            passwordV.setVisible(true);
+            login.setText("LOG IN");
+        }
+    }
+
+    public void setPhoneNumber(String phoneNumberText){
+        phoneNumber.setText(phoneNumberText);
     }
 }
 

@@ -289,7 +289,7 @@ public class UserDaoImpl implements UserDao{
     public static void main(String[] args) {
         UserDaoImpl userDao = new UserDaoImpl();
 
-        try {
+        /*try {
          /*   // Create a test user
             User testUser = new User();
             testUser.setPhoneNumber("+1234567890");
@@ -325,7 +325,7 @@ public class UserDaoImpl implements UserDao{
             retrievedUser.setFname("Jane");
             int updateResult = userDao.update(retrievedUser);
             System.out.println("User Updated: " + (updateResult > 0));
-        */
+
 
             User newUser = new User();
             newUser.setPhoneNumber("+1122");
@@ -357,7 +357,10 @@ public class UserDaoImpl implements UserDao{
 
         } catch (SQLException e) {
             e.printStackTrace();
-        }
+        }*/
+        System.out.println(userDao.hashPass("password456"));
+
+
 
 
     }

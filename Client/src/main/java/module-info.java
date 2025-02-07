@@ -4,7 +4,7 @@ module gov.iti.jets.client {
     requires java.sql;
     requires mysql.connector.j;
     requires java.rmi;
-
+    requires jakarta.xml.bind;
 
 
     opens gov.iti.jets to javafx.fxml;
@@ -13,5 +13,6 @@ module gov.iti.jets.client {
     exports gov.iti.jets.model;
 
     exports gov.iti.jets.services.interfaces;
+    opens gov.iti.jets.model to jakarta.xml.bind;
 
 }

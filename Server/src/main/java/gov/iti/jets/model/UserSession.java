@@ -1,31 +1,32 @@
 package gov.iti.jets.model;
 
-public class UserSession {
 
-    private static UserSession instance;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.XmlType;
 
+import java.io.Serializable;
 
-    private String phoneNumber;
-    private boolean isLoggedIn;
+@XmlRootElement(name = "userSession")
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(propOrder = { "phoneNumber", "sessionToken" })
+public class UserSession implements Serializable {
+    String sessionToken;
+    String phoneNumber;
 
+    public UserSession(){}
+    public UserSession(String sessionToken, String phoneNumber){
+        this.sessionToken = sessionToken;
+        this.phoneNumber = phoneNumber;
 
-    private UserSession() {
-
-        this.phoneNumber = "-1"; // indicates no user is logged in
-        this.isLoggedIn = false;
+    }
+    public String getSessionToken() {
+        return sessionToken;
     }
 
-    // the singleton instance
-    public static UserSession getInstance() {
-        if (instance == null) {
-            instance = new UserSession();
-        }
-        return instance;
-    }
-
-    public void clearSession() {
-        this.phoneNumber = "-1";
-        this.isLoggedIn = false;
+    public void setSessionToken(String sessionToken) {
+        this.sessionToken = sessionToken;
     }
 
     public String getPhoneNumber() {
@@ -34,13 +35,5 @@ public class UserSession {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
-    }
-
-    public boolean isLoggedIn() {
-        return isLoggedIn;
-    }
-
-    public void setLoggedIn(boolean loggedIn) {
-        isLoggedIn = loggedIn;
     }
 }
