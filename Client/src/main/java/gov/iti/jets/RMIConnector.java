@@ -4,6 +4,7 @@ import gov.iti.jets.services.interfaces.LoadHome;
 import gov.iti.jets.services.interfaces.Login;
 import gov.iti.jets.services.interfaces.MessagingService;
 import gov.iti.jets.services.interfaces.Register;
+import javafx.scene.Scene;
 
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -31,6 +32,7 @@ public class RMIConnector {
                 break;
             } catch (RemoteException | NotBoundException e) {
                 System.out.println("connection to services failed: "+e.getMessage());
+
                 try {
                     sleep(1000);
                 } catch (InterruptedException ex) {
@@ -48,7 +50,11 @@ public class RMIConnector {
         return rmiConnector;
     }
     public static RMIConnector rmiReconnect() {
+
+        Scene saveScene = RunHome.primaryStage.getScene();
+        RunHome.primaryStage.setScene(RunHome.loadingScene);
             rmiConnector = new RMIConnector();
+        RunHome.primaryStage.setScene(saveScene);
         return rmiConnector;
     }
 

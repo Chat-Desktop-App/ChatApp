@@ -19,11 +19,11 @@ public class HomeServiceController {
     private static LoadHome loadHome = RMIConnector.getRmiConnector().getLoadHome();
     private static String phoneNumber = "1234567890";
     private static HomeController homeController;
-    private static ObservableList<AnchorPane> myPendingList;
-    private static ObservableList<AnchorPane> myBlockedList;
-    private static ObservableList<AnchorPane> myOnlineList;
-    private static ObservableList<AnchorPane> myAllList;
-    private static ObservableList<AnchorPane> myLastChatList;
+    private static final ObservableList<AnchorPane> myPendingList  = FXCollections.observableArrayList();
+    private static final ObservableList<AnchorPane> myBlockedList = FXCollections.observableArrayList();
+    private static final ObservableList<AnchorPane> myOnlineList = FXCollections.observableArrayList();
+    private static final ObservableList<AnchorPane> myAllList = FXCollections.observableArrayList();
+    private static final ObservableList<AnchorPane> myLastChatList = FXCollections.observableArrayList();
 
     // Generic method to load contacts
     private static ObservableList<AnchorPane> getContacts(String fxmlPath, List<ContactUser> contactList) {
@@ -55,18 +55,18 @@ public class HomeServiceController {
         String fxmlPath = "/gov/iti/jets/fxml/Chats.fxml";
         try {
             List<Chatable> list = loadHome.getLastChats(phoneNumber);
-            ObservableList<AnchorPane> observableList = FXCollections.observableArrayList();
+            myLastChatList.clear();
             for (Chatable chatable : list) {
                 FXMLLoader loader = new FXMLLoader(HomeServiceController.class.getResource(fxmlPath));
                 AnchorPane anchorPane = loader.load();
                 ChatsController controller = loader.getController();
                 controller.setLastChat(chatable);
-                observableList.add(anchorPane);
+                myLastChatList.add(anchorPane);
             }
-            myLastChatList = observableList;
         } catch (RemoteException e) {
+            System.out.println("Error when loadHomeservice: " + e.getMessage());
             loadHome = RMIConnector.rmiReconnect().getLoadHome();
-            throw new RuntimeException(e);
+            return getLast();
         } catch (IOException e) {
             System.out.println("Error when loading " + fxmlPath + ": " + e.getMessage());
         }
@@ -77,13 +77,10 @@ public class HomeServiceController {
         String fxmlPath = "/gov/iti/jets/fxml/pendingCard.fxml";
         try {
             List<ContactUser> list = loadHome.getPendingContacts(phoneNumber);
-            if (myPendingList == null) {
-                myPendingList = getContacts(fxmlPath, list);
-            } else {
-                myPendingList.clear();
-                myPendingList.addAll(getContacts(fxmlPath, list));
-            }
+            myPendingList.clear();
+            myPendingList.addAll(getContacts(fxmlPath, list));
         } catch (IOException e) {
+            System.out.println("Error when loadHomeservice: " + e.getMessage());
             loadHome = RMIConnector.rmiReconnect().getLoadHome();
             return getPendingContacts();
         }
@@ -94,13 +91,10 @@ public class HomeServiceController {
         String fxmlPath = "/gov/iti/jets/fxml/blockedCard.fxml";
         try {
             List<ContactUser> list = loadHome.getBlockedContacts(phoneNumber);
-            if (myBlockedList == null) {
-                myBlockedList = getContacts(fxmlPath, list);
-            } else {
-                myBlockedList.clear();
-                myBlockedList.addAll(getContacts(fxmlPath, list));
-            }
+            myBlockedList.clear();
+            myBlockedList.addAll(getContacts(fxmlPath, list));
         } catch (IOException e) {
+            System.out.println("Error when loadHomeservice: " + e.getMessage());
             loadHome = RMIConnector.rmiReconnect().getLoadHome();
             return getBlockedContacts();
         }
@@ -111,12 +105,8 @@ public class HomeServiceController {
         String fxmlPath = "/gov/iti/jets/fxml/allCard.fxml";
         try {
             List<ContactUser> list = loadHome.getAllContacts(phoneNumber);
-            if (myAllList == null) {
-                myAllList = getContacts(fxmlPath, list);
-            } else {
-                myAllList.clear();
-                myAllList.addAll(getContacts(fxmlPath, list));
-            }
+            myAllList.clear();
+            myAllList.addAll(getContacts(fxmlPath, list));
         } catch (IOException e) {
             loadHome = RMIConnector.rmiReconnect().getLoadHome();
             return getAllContacts();
@@ -128,12 +118,10 @@ public class HomeServiceController {
         String fxmlPath = "/gov/iti/jets/fxml/onlineCard.fxml";
         try {
             List<ContactUser> list = loadHome.getOnlineContacts(phoneNumber);
-            if (myOnlineList == null) {
-                myOnlineList = getContacts(fxmlPath, list);
-            } else {
-                myOnlineList.clear();
-                myOnlineList.addAll(getContacts(fxmlPath, list));
-            }
+
+            myOnlineList.clear();
+            myOnlineList.addAll(getContacts(fxmlPath, list));
+
         } catch (IOException e) {
             loadHome = RMIConnector.rmiReconnect().getLoadHome();
             return getOnlineContacts();
@@ -155,8 +143,9 @@ public class HomeServiceController {
             return flag;
         } catch (RemoteException e) {
             System.out.println("Error when updating contact");
+            loadHome = RMIConnector.rmiReconnect().getLoadHome();
+            return updateContact(contactsPhoneNumber, status, prevStatus);
         }
-        return false;
     }
 
     public static HomeController getHomeController() {

@@ -20,20 +20,20 @@ import java.util.List;
 public class MessageServiceController {
     private static MessagingService messagingService = RMIConnector.getRmiConnector().getMessagingService();
     private static String phoneNumber = "1234567890";
-    private static ObservableList<HBox> messages;
+    private static ObservableList<HBox> messages =FXCollections.observableArrayList();
 
-    public boolean sendMessage(Message message) {
-        try {
-            return messagingService.sendMessage(message);
-        } catch (RemoteException e) {
-            throw new RuntimeException(e);
-        }
-    }
+//    public boolean sendMessage(Message message) {
+//        try {
+//            return messagingService.sendMessage(message);
+//        } catch (RemoteException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
 
     public static ObservableList<HBox> getDirectMessages(String contactPhoneNumber) {
         String sendPath = "/gov/iti/jets/fxml/send-message.fxml";
         String receivePath = "/gov/iti/jets/fxml/received-message.fxml";
-        ObservableList<HBox> observableList = FXCollections.observableArrayList();
+        messages.clear();
 
         try {
             List<Message> list = messagingService.getDirectMessages(phoneNumber,contactPhoneNumber);
@@ -52,11 +52,12 @@ public class MessageServiceController {
                 } else if (controller instanceof receiveMessageController receiveMessageController) {
                     receiveMessageController.setMessage(m);
                 }
-                observableList.add(hBox);
+                messages.add(hBox);
             }
-            messages = observableList;
         } catch (RemoteException e) {
+            System.out.println("Error when getMessagingService: " + e.getMessage());
             messagingService = RMIConnector.rmiReconnect().getMessagingService();
+            return getDirectMessages(contactPhoneNumber);
         } catch (IOException e) {
             System.out.println("Error when loading FXML: " + e.getMessage());
             e.printStackTrace();
@@ -67,8 +68,7 @@ public class MessageServiceController {
     public static ObservableList<HBox> getGroupMessages(int groupId) {
         String sendPath = "/gov/iti/jets/fxml/send-message.fxml";
         String receivePath = "/gov/iti/jets/fxml/receiveGroupMessage.fxml";
-        ObservableList<HBox> observableList = FXCollections.observableArrayList();
-
+        messages.clear();
         try {
             List<GroupMessage> list = messagingService.getMessagesByGroupId(groupId);
             for (GroupMessage m : list) {
@@ -88,11 +88,12 @@ public class MessageServiceController {
                 } else if (controller instanceof receiveGroupMessageController receiveMessageController) {
                     receiveMessageController.setMessage(m);
                 }
-                observableList.add(hBox);
+                messages.add(hBox);
             }
-            messages = observableList;
         } catch (RemoteException e) {
+            System.out.println("Error when getMessagingService: " + e.getMessage());
             messagingService = RMIConnector.rmiReconnect().getMessagingService();
+            return getGroupMessages(groupId);
         } catch (IOException e) {
             System.out.println("Error when loading FXML: " + e.getMessage());
             e.printStackTrace();
