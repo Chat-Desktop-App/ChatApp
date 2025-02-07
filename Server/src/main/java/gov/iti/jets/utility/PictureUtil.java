@@ -10,7 +10,7 @@ import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 
 public class PictureUtil{
-    private static final String FOLDER_PATH = System.getProperty("user.dir") + File.separator + "pictures" + File.separator;
+    private static final String FOLDER_PATH = "pictures" + File.separator;
 
     public static String saveUserProfilePicture(byte[] imageBytes, User user) {
         File folder = new File(FOLDER_PATH);
@@ -66,6 +66,7 @@ public class PictureUtil{
             return null;
         }
     }
+
 
 
 }
