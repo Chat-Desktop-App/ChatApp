@@ -1,6 +1,7 @@
 package gov.iti.jets.view;
 
 import gov.iti.jets.controller.HomeServiceController;
+import gov.iti.jets.controller.MessageServiceController;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -189,6 +190,8 @@ public class HomeController {
         region.prefWidthProperty().bind(mainBorderPane.widthProperty());
         region.prefHeightProperty().bind(mainBorderPane.heightProperty());
         mainBorderPane.setCenter(region);
+        MessageServiceController.setActiveChat(null);
+
     }
 
 }

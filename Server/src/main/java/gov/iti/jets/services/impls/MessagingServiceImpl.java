@@ -10,46 +10,46 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
 
 public class MessagingServiceImpl extends UnicastRemoteObject implements MessagingService {
-    private MessageDaoImpl messageDao;
+    private MessageDaoImpl messageDaoImpl;
 
     public MessagingServiceImpl() throws RemoteException {
         super();
-        this.messageDao = new MessageDaoImpl();
+        this.messageDaoImpl = new MessageDaoImpl();
     }
 
     @Override
     public boolean sendMessage(Message message) throws RemoteException {
-        int rowsAffected = messageDao.addMessage(message);
+        int rowsAffected = messageDaoImpl.addMessage(message);
         return rowsAffected > 0;
     }
 
     @Override
     public List<Message> getDirectMessages(String userPhone , String contactPhone) throws RemoteException {
-        return messageDao.getDirectMessages(userPhone , contactPhone);
+        return messageDaoImpl.getDirectMessages(userPhone , contactPhone);
     }
 
     @Override
     public List<GroupMessage> getMessagesByGroupId(int groupId) throws RemoteException {
-        return messageDao.getMessagesByGroupId(groupId);
+        return messageDaoImpl.getMessagesByGroupId(groupId);
     }
 
     @Override
     public Message getMessageById(int messageId) throws RemoteException {
-        return messageDao.getMessageById(messageId);
+        return messageDaoImpl.getMessageById(messageId);
     }
 
     @Override
     public List<Message> getAllMessages() throws RemoteException {
-        return messageDao.getAllMessages();
+        return messageDaoImpl.getAllMessages();
     }
 
     @Override
     public void updateMessage(Message message) throws RemoteException {
-        messageDao.updateMessage(message);
+        messageDaoImpl.updateMessage(message);
     }
 
     @Override
     public void deleteMessage(int messageId) throws RemoteException {
-        messageDao.deleteMessage(messageId);
+        messageDaoImpl.deleteMessage(messageId);
     }
 }

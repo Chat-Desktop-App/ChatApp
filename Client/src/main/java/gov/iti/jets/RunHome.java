@@ -1,6 +1,8 @@
 package gov.iti.jets;
 
+import gov.iti.jets.controller.HomeServiceController;
 import gov.iti.jets.controller.RegisterServiceController;
+import gov.iti.jets.model.User;
 import gov.iti.jets.services.interfaces.LoadHome;
 import gov.iti.jets.view.SignUpController;
 import javafx.application.Application;
@@ -20,10 +22,12 @@ public class RunHome extends Application {
         System.out.println("client running.......");
         FXMLLoader loader = new FXMLLoader(RunHome.class.getResource("fxml/home.fxml"));
         FXMLLoader loader2 = new FXMLLoader(RunHome.class.getResource("fxml/loading.fxml"));
+        HomeServiceController.setUser(new User("1234567890","John","Doe"));
 
         Scene scene = null;
         try {
             scene = new Scene(loader.load());
+
             loadingScene = new Scene(loader2.load());
         } catch (IOException e) {
             throw new RuntimeException(e);

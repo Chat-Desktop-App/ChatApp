@@ -11,9 +11,9 @@
    <children>
       <VBox fx:id="contentVBox" alignment="TOP_RIGHT" styleClass="message-container" HBox.hgrow="NEVER">
          <children>
-            <TextFlow styleClass="message-text" VBox.vgrow="NEVER">
+            <TextFlow fx:id="textFlow" styleClass="message-text" VBox.vgrow="NEVER">
                <children>
-                  <Text fx:id="messageContent" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="message-text" text="Hello Hadeer in Chat App" />
+                  <Text fx:id="text" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="message-text" text="Hello Hadeer in Chat App" />
                </children>
             </TextFlow>
             <HBox alignment="BOTTOM_RIGHT" spacing="15.0">
