@@ -4,15 +4,25 @@ public class Files {
     private int fileId;
     private String fileName;
     private String fileType;
+    private String filePath;
 
     public Files() {
 
     }
 
-    public Files(int fileId, String fileName, String fileType) {
+    public Files(int fileId, String fileName, String fileType, String filePath) {
         this.fileId = fileId;
         this.fileName = fileName;
         this.fileType = fileType;
+        this.filePath = filePath;
+    }
+
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
     }
 
     public int getFileId() {

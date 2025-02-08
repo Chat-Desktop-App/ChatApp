@@ -3,7 +3,6 @@ package gov.iti.jets.model;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.io.Serializable;
 
 public class User implements Serializable{
     private String phoneNumber;
@@ -52,6 +51,7 @@ public class User implements Serializable{
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+
     }
 
     public String getFname() {

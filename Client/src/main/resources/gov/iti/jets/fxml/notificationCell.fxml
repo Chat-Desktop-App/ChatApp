@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-
-<AnchorPane styleClass="anchor_Pane" stylesheets="@../styles/notificationCell.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.view.NotificationCellController">
+<AnchorPane fx:id="root" styleClass="anchor_Pane" stylesheets="@../styles/notificationCell.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.view.NotificationCellController">
    <children>
       <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="23.0" layoutY="8.0" AnchorPane.leftAnchor="23.0">
          <image>
@@ -36,7 +38,7 @@
             </Label>
          </graphic>
       </Button>
-            <Button fx:id="moreButton" layoutX="552.0" layoutY="11.0" mnemonicParsing="false" onAction="#handleMoreButton" prefHeight="30.0" prefWidth="35.0" styleClass="more_button" AnchorPane.rightAnchor="28.80000000000001">
+            <Button fx:id="moreButton" layoutX="512.0" layoutY="13.0" mnemonicParsing="false" onAction="#handleMoreButton" prefHeight="30.0" prefWidth="35.0" styleClass="more_button" AnchorPane.rightAnchor="28.86149088541663">
          <graphic>
             <ImageView fitHeight="20.0" fitWidth="20.0">
                <image>

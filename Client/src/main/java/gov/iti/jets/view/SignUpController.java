@@ -556,4 +556,21 @@ public class SignUpController implements Initializable {
     }
 
 
+    @FXML
+    void handleLoginLink(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader(ClientApp.class.getResource("fxml/Login.fxml"));
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
+
+    }
+
+
 }

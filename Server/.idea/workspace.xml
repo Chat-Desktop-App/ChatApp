@@ -27,9 +27,10 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="FxmlFile" />
-        <option value="Class" />
         <option value="Enum" />
+        <option value="JavaFXApplication" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -125,6 +126,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="NotificationsDaoImpl" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="gov.iti.jets.database.dao.NotificationsDaoImpl" />
+      <module name="Server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="gov.iti.jets.database.dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="RMIConnector" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="gov.iti.jets.RMIConnector" />
       <module name="Server" />
@@ -167,6 +181,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.RMIConnector" />
+        <item itemvalue="Application.NotificationsDaoImpl" />
         <item itemvalue="Application.gov.iti.jets.view.App" />
         <item itemvalue="Application.HelloApplication" />
         <item itemvalue="Application.App" />
