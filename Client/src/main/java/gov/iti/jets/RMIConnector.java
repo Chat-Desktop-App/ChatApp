@@ -93,6 +93,7 @@ public class RMIConnector {
         loadHome = null;
         messagingService = null;
         rmiConnector = null;
+        notificationsService = null;
     }
 
 }
