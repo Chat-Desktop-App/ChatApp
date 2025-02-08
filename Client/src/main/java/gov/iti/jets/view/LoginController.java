@@ -1,9 +1,9 @@
 package gov.iti.jets.view;
 
 import gov.iti.jets.ClientApp;
+import gov.iti.jets.controller.HomeServiceController;
 import gov.iti.jets.controller.LogInServiceController;
 import gov.iti.jets.model.User;
-import gov.iti.jets.model.UserSession;
 import javafx.application.Platform;
 import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
@@ -18,11 +18,8 @@ import javafx.scene.control.*;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -96,29 +93,25 @@ public class LoginController implements Initializable {
         if(login.getText().equals("NEXT")) {
             if (phoneNumber.getText().isBlank()) {
                 Platform.exit();
-                System.exit(0);
+
 
             } else {
-                if(controller.checkPhoneNumber(phoneNumber.getText().trim())){
+                if(LogInServiceController.checkPhoneNumber(phoneNumber.getText().trim())){
+
                     phoneNumberV.setVisible(false);
-
-
-
                     passwordV.setVisible(true);
-
                     login.setText("LOG IN");
+
                 }else{
                     Stage stage;
-
                     stage = (Stage) login.getScene().getWindow();
-
                     showAlert("Phone Number doesn't exists", stage);
                 }
 
 
             }
         }else{
-           user = controller.logIn(phoneNumber.getText().trim(), passwordField.getText().trim());
+           user = LogInServiceController.logIn(phoneNumber.getText().trim(), passwordField.getText().trim());
             if(user ==  null){
                 Stage stage;
 
@@ -128,6 +121,7 @@ public class LoginController implements Initializable {
             }else{
                 System.out.println(user.getFname()+" logged in successfully");
                 FXMLLoader fxmlLoader = new FXMLLoader(ClientApp.class.getResource("fxml/home.fxml"));
+                HomeServiceController.setUser(user);
                 try {
                     nextRoot = fxmlLoader.load();
                     nextScene = new Scene(nextRoot);
@@ -156,7 +150,8 @@ public class LoginController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         StringProperty passwordFieldTextProperty = passwordField.textProperty();
         passwordText.textProperty().bindBidirectional(passwordFieldTextProperty);
-        controller = new LogInServiceController(this);
+        //controller = new LogInServiceController(this);
+        LogInServiceController.setView(this);
     }
 
 

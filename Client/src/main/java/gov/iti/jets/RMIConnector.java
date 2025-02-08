@@ -72,4 +72,14 @@ public class RMIConnector {
         return messagingService;
     }
 
+    public void shutdown() {
+        System.out.println("Shutting down RMI connection...");
+
+        loginService = null;
+        registerService = null;
+        loadHome = null;
+        messagingService = null;
+        rmiConnector = null;
+    }
+
 }

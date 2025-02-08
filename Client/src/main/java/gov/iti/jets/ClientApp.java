@@ -1,18 +1,14 @@
 package gov.iti.jets;
 
-import gov.iti.jets.controller.LogInServiceController;
-import gov.iti.jets.controller.RegisterServiceController;
-import gov.iti.jets.model.UserSession;
-import gov.iti.jets.services.interfaces.LoadHome;
+import gov.iti.jets.controller.HomeServiceController;
+import gov.iti.jets.model.LoginStatus;
+import gov.iti.jets.model.User;
 import gov.iti.jets.services.interfaces.Login;
-import gov.iti.jets.view.HomeController;
 import gov.iti.jets.view.LoginController;
-import gov.iti.jets.view.SignUpController;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.Unmarshaller;
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -24,10 +20,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
 
 public class ClientApp extends Application {
 
@@ -45,8 +38,7 @@ public class ClientApp extends Application {
         Scene scene = new Scene(root);
 
         stage.setTitle("Orca");
-        stage.setMinHeight(602);
-        stage.setMinWidth(1062);
+        
         stage.setScene(scene);
         stage.show();
 
@@ -62,21 +54,24 @@ public class ClientApp extends Application {
         if(Files.exists(path)){
             // unmarshall it to a UserSession
             try {
-                JAXBContext context = JAXBContext.newInstance(UserSession.class);
+                JAXBContext context = JAXBContext.newInstance(LoginStatus.class);
                 Unmarshaller unmarshaller = context.createUnmarshaller();
-                UserSession userSession = (UserSession) unmarshaller.unmarshal(new FileReader(SESSION_FILE));
+                LoginStatus loginStatus = (LoginStatus) unmarshaller.unmarshal(new FileReader(SESSION_FILE));
                 // if session is valid go to home page
                 // else load login page with user phone number
-                if(login.validateSession(userSession)){
-                    login.skipLogin(userSession);
+                if(login.validateSession(loginStatus)){
+                    login.skipLogin(loginStatus);
                     loader = new FXMLLoader(ClientApp.class.getResource(HOME_FXML));
+                    User user = new User();
+                    user.setPhoneNumber(loginStatus.getPhoneNumber());
+                    HomeServiceController.setUser(user);
                     return loader.load();
                     // set home page with phone number
                 }else{
                     loader = new FXMLLoader(ClientApp.class.getResource(LOGIN_FXML));
                     Parent root = loader.load();
                     LoginController view =loader.getController();
-                    view.setPhoneNumber(userSession.getPhoneNumber());
+                    view.setPhoneNumber(loginStatus.getPhoneNumber());
                     view.setRemmberMe(true);
                     return  root;
 
@@ -90,7 +85,7 @@ public class ClientApp extends Application {
             } catch (FileNotFoundException e) {
                 throw new RuntimeException(e);
             } catch (RemoteException e) {
-                login = RMIConnector.rmiReconnector().getLoginService();
+                login = RMIConnector.rmiReconnect().getLoginService();
                 throw new RuntimeException(e);
             } catch (IOException e) {
                 throw new RuntimeException(e);
@@ -114,22 +109,25 @@ public class ClientApp extends Application {
         // exit
         JAXBContext context = null;
         try {
-            context = JAXBContext.newInstance(UserSession.class);
+            context = JAXBContext.newInstance(LoginStatus.class);
             Unmarshaller unmarshaller = context.createUnmarshaller();
-            UserSession userSession = (UserSession) unmarshaller.unmarshal(new FileReader("session.xml"));
-            login.exit(userSession.getPhoneNumber());
+            LoginStatus loginStatus = (LoginStatus) unmarshaller.unmarshal(new FileReader("session.xml"));
+            login.exit(loginStatus.getPhoneNumber());
+            RMIConnector.getRmiConnector().shutdown();
         } catch (JAXBException e) {
             throw new RuntimeException(e);
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         } catch (RemoteException e) {
-            login = RMIConnector.rmiReconnector().getLoginService();
+            login = RMIConnector.rmiReconnect().getLoginService();
             throw new RuntimeException(e);
+        }finally {
+            System.exit(0);
+
         }
 
 
-        Platform.exit();
-        System.exit(0);
+
 
     }
 

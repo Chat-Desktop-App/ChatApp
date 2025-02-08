@@ -1,11 +1,16 @@
 package gov.iti.jets.view;
 
+import gov.iti.jets.ClientApp;
 import gov.iti.jets.controller.HomeServiceController;
+import gov.iti.jets.controller.LogInServiceController;
 import gov.iti.jets.controller.MessageServiceController;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -15,6 +20,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Region;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -94,6 +100,23 @@ public class HomeController {
 
     @FXML
     void handleLogOutIcon(ActionEvent event) {
+        LogInServiceController.logOut(HomeServiceController.getUser().getPhoneNumber());
+        FXMLLoader loader = new FXMLLoader(ClientApp.class.getResource("fxml/Login.fxml"));
+        try {
+            Parent root = loader.load();
+            LoginController view = loader.getController();
+            view.setPhoneNumber(HomeServiceController.getUser().getPhoneNumber());
+            view.setRemmberMe(true);
+            Stage primaryStage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
 
     }
 
@@ -149,6 +172,8 @@ public class HomeController {
        // loadHome = RMIConnector.getRmiConnector().getLoadHome();
         HomeServiceController.setHomeController(this);
         loadChatsList();
+
+
     }
 
     private void loadChatsList() {

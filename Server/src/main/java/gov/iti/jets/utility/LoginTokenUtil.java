@@ -1,25 +1,25 @@
 package gov.iti.jets.utility;
 
-import gov.iti.jets.model.UserSession;
+import gov.iti.jets.model.LoginStatus;
 
 import java.util.HashMap;
 import java.util.UUID;
 
-public class SessionTokenUtil {
+public class LoginTokenUtil {
     private static HashMap<String, String> sessions = new HashMap<>();
     private static String generate(){
         return UUID.randomUUID().toString();
     }
 
-    public static UserSession addSession(String phoneNumber){
+    public static LoginStatus addSession(String phoneNumber){
         String sessionToken = generate();
-        UserSession session = new UserSession(sessionToken, phoneNumber);
+        LoginStatus session = new LoginStatus(sessionToken, phoneNumber);
         sessions.put(phoneNumber, sessionToken);
 
         return  session;
     }
 
-    public static boolean validateSession(UserSession session){
+    public static boolean validateSession(LoginStatus session){
         if(sessions.containsKey(session.getPhoneNumber())){
             if(sessions.get(session.getPhoneNumber()).equals(session.getSessionToken())){
                 return true;

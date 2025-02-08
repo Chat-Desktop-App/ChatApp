@@ -8,16 +8,15 @@ import jakarta.xml.bind.annotation.XmlType;
 
 import java.io.Serializable;
 
-@XmlRootElement(name = "userSession")
+@XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(propOrder = { "phoneNumber", "sessionToken" })
-public class UserSession  implements Serializable {
+public class LoginStatus implements Serializable {
     String sessionToken;
     String phoneNumber;
 
-
-    public UserSession(){}
-    public UserSession(String sessionToken, String phoneNumber){
+    public LoginStatus(){}
+    public LoginStatus(String sessionToken, String phoneNumber){
         this.sessionToken = sessionToken;
         this.phoneNumber = phoneNumber;
 

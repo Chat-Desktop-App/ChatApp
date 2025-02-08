@@ -3,10 +3,10 @@ package gov.iti.jets.services.impls;
 import gov.iti.jets.database.dao.UserDaoImpl;
 import gov.iti.jets.model.Status;
 import gov.iti.jets.model.User;
-import gov.iti.jets.model.UserSession;
+import gov.iti.jets.model.LoginStatus;
 import gov.iti.jets.services.interfaces.ChatClient;
 import gov.iti.jets.services.interfaces.Login;
-import gov.iti.jets.utility.SessionTokenUtil;
+import gov.iti.jets.utility.LoginTokenUtil;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -65,7 +65,7 @@ public class LoginImpl extends UnicastRemoteObject implements Login {
         }
         onlineClients.remove(phoneNumber);
         // remove from session
-        SessionTokenUtil.removeSession(phoneNumber);
+        LoginTokenUtil.removeSession(phoneNumber);
 
         return true;
     }
@@ -85,8 +85,8 @@ public class LoginImpl extends UnicastRemoteObject implements Login {
     }
 
     @Override
-    public UserSession createSession(String phoneNumber) throws RemoteException {
-        return  SessionTokenUtil.addSession(phoneNumber);
+    public LoginStatus createSession(String phoneNumber) throws RemoteException {
+        return  LoginTokenUtil.addSession(phoneNumber);
     }
 
     @Override
@@ -98,6 +98,8 @@ public class LoginImpl extends UnicastRemoteObject implements Login {
 
             dao.update(user);
 
+            System.out.println(phoneNumber + " exited");
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -106,12 +108,12 @@ public class LoginImpl extends UnicastRemoteObject implements Login {
     }
 
     @Override
-    public boolean validateSession(UserSession session) throws RemoteException {
-        return SessionTokenUtil.validateSession(session);
+    public boolean validateSession(LoginStatus session) throws RemoteException {
+        return LoginTokenUtil.validateSession(session);
     }
 
     @Override
-    public void skipLogin(UserSession session) throws RemoteException {
+    public void skipLogin(LoginStatus session) throws RemoteException {
         User user = new User();
         user.setPhoneNumber(session.getPhoneNumber());
         user.setStatus(Status.AVAILABLE);
