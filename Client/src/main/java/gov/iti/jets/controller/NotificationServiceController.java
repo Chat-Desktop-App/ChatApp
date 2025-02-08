@@ -21,7 +21,7 @@ public class NotificationServiceController {
         String fxmlPath = "/gov/iti/jets/fxml/notificationCell.fxml";
         try {
             List<Notifications> list = notificationsService.getAllNotificationsByUserId(phoneNumber);
-            // Add debugging
+            // for debugging
             System.out.println("Received notifications: " + list.size());
             for (Notifications n : list) {
                 System.out.println("Notification: " + n.getMessage() +
