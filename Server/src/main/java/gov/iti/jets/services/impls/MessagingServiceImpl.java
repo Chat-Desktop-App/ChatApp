@@ -3,6 +3,7 @@ package gov.iti.jets.services.impls;
 import gov.iti.jets.database.dao.MessageDaoImpl;
 import gov.iti.jets.model.GroupMessage;
 import gov.iti.jets.model.Message;
+import gov.iti.jets.services.interfaces.ChatClient;
 import gov.iti.jets.services.interfaces.MessagingService;
 
 import java.rmi.RemoteException;
@@ -20,6 +21,7 @@ public class MessagingServiceImpl extends UnicastRemoteObject implements Messagi
     @Override
     public boolean sendMessage(Message message) throws RemoteException {
         int rowsAffected = messageDaoImpl.addMessage(message);
+        resendMessage(message);
         return rowsAffected > 0;
     }
 
@@ -51,5 +53,12 @@ public class MessagingServiceImpl extends UnicastRemoteObject implements Messagi
     @Override
     public void deleteMessage(int messageId) throws RemoteException {
         messageDaoImpl.deleteMessage(messageId);
+    }
+
+    public void resendMessage(Message message) throws RemoteException {
+        ChatClient client=LoginImpl.getOnlineClients().get(message.getReceiverId());
+        if(client!=null){
+            client.receive(message);
+        }
     }
 }

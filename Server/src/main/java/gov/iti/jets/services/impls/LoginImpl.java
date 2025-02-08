@@ -15,6 +15,7 @@ import java.util.HashMap;
 
 public class LoginImpl extends UnicastRemoteObject implements Login {
     private static UserDaoImpl dao = new UserDaoImpl();
+
     private static HashMap<String, ChatClient> onlineClients = new HashMap<>();
 
 
@@ -122,6 +123,10 @@ public class LoginImpl extends UnicastRemoteObject implements Login {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static HashMap<String, ChatClient> getOnlineClients() {
+        return onlineClients;
     }
 
 

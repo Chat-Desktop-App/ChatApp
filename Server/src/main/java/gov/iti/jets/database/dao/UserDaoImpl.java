@@ -188,8 +188,6 @@ public class UserDaoImpl implements UserDao{
 
         query.append(" WHERE phone_number = ?");
         params.add(user.getPhoneNumber());
-        System.out.println("Generated Query: " + query.toString());
-
         PreparedStatement ps = con.prepareStatement(query.toString());
 
         for (int i = 0; i < params.size(); i++) {

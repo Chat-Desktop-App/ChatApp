@@ -89,7 +89,8 @@ public class LoadHomeImp extends UnicastRemoteObject implements LoadHome {
         try {
             return contactDao.getAllContacts(phoneNumber);
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
+            return null;
         }
     }
 

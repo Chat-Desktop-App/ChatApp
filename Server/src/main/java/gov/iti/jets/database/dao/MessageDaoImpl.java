@@ -50,7 +50,6 @@ public class MessageDaoImpl implements MessageDao {
 
             int rowsAffected = statement.executeUpdate();
             if (rowsAffected > 0) {
-                System.out.println("Message added successfully!");
                 return rowsAffected;
             } else {
                 System.out.println("Message insertion failed.");

@@ -276,13 +276,19 @@ public class ChatAreaController {
         textArea.clear();
         HBox hBox = MessageServiceController.sendMessage(message);
         if (hBox != null ){
-            messagesList.add(hBox);
+            Platform.runLater(() -> {
+                messagesList.add(hBox);
+                chatListView.scrollTo(messagesList.size() - 1);
+            });
         }
     }
     public void receivedMessage(HBox hBox){
         if (hBox != null ){
-            messagesList.add(hBox);
+            Platform.runLater(() -> {
+                messagesList.add(hBox);
+            });
         }
+
     }
 
 

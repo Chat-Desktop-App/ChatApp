@@ -29,7 +29,7 @@ public class MessageServiceController {
     public static void receiveMessage(Message message) {
         if(activeChat != null){
             if (message.getRecipient() == Recipient.PRIVATE && activeChat.isContact()){
-                if(message.getSenderId() == activeChat.getContactUser().getPhoneNumber()){
+                if(message.getSenderId().equals(activeChat.getContactUser().getPhoneNumber())){
                     FXMLLoader loader = new FXMLLoader(MessageServiceController.class.getResource("/gov/iti/jets/fxml/received-message.fxml"));
                     try {
                         HBox hBox = loader.load();
