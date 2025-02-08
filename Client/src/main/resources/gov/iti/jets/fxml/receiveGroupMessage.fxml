@@ -1,32 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<VBox maxWidth="400.0" style="-fx-background-color: lightblue; -fx-background-radius: 0 30 30 40;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<HBox fx:id="parentHBox" styleClass="parentHBox" stylesheets="@../styles/receive_message.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.view.receiveGroupMessageController">
    <children>
-      <TextFlow>
+      <ImageView fx:id="profilePic" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/friendIcon.png" />
+         </image>
+      </ImageView>
+      <VBox>
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="n Scene Builder, you can use the Color Picker (color chooser) to set the colors for various properties such as background colors, text colors, or border colors. Here's how to open and use the Color Picker:" />
-         </children>
-      </TextFlow>
-      <HBox alignment="CENTER_RIGHT" spacing="15.0">
-         <children>
-            <TextFlow textAlignment="RIGHT">
+            <HBox alignment="CENTER_LEFT" spacing="10.0">
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </HBox>
+            <VBox fx:id="contentVBox" styleClass="message-container">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="wed 12:33 pm" />
+                  <Text fx:id="name" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                  <TextFlow>
+                     <children>
+                        <Text fx:id="messageContent" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="message-text" text="Hello Hadeer in Chat App" />
+                     </children>
+                  </TextFlow>
+                  <HBox alignment="CENTER_RIGHT" spacing="15.0">
+                     <children>
+                        <TextFlow textAlignment="RIGHT">
+                           <children>
+                              <Label fx:id="timeStamp" styleClass="timestamp" text="wed 12:33 pm" />
+                           </children>
+                        </TextFlow>
+                     </children>
+                  </HBox>
                </children>
-            </TextFlow>
+            </VBox>
          </children>
-         <VBox.margin>
-            <Insets left="15.0" right="15.0" />
-         </VBox.margin>
-      </HBox>
+      </VBox>
    </children>
-   <padding>
-      <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-   </padding>
-</VBox>
+</HBox>

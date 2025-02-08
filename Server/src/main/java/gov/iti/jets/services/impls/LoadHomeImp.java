@@ -56,7 +56,7 @@ public class LoadHomeImp extends UnicastRemoteObject implements LoadHome {
             List<LastChatable> lastChatables = new ArrayList<>(contacts);
             lastChatables.addAll(groups);
             lastChatables.sort((o1, o2) -> o2.getLastChatAt().compareTo(o1.getLastChatAt()));
-            return lastChatables;
+            return lastChatables;   
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             throw new RuntimeException(e);
@@ -64,7 +64,7 @@ public class LoadHomeImp extends UnicastRemoteObject implements LoadHome {
     }
 
 
-
+    
     @Override
     public List<ContactUser> getPendingContacts(String phoneNumber) throws RemoteException {
         try {

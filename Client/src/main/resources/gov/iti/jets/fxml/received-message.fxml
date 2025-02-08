@@ -7,27 +7,31 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<VBox alignment="TOP_RIGHT" maxWidth="400.0" styleClass="message-container" stylesheets="@../styles/receive_message.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<HBox fx:id="parentHBox" styleClass="parentHBox" stylesheets="@../styles/receive_message.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.view.receiveMessageController">
    <children>
-      <TextFlow fx:id="receiveMesgContent">
+      <VBox fx:id="contentVBox" alignment="TOP_RIGHT" styleClass="message-container" HBox.hgrow="NEVER">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="message-text" text="Hello Hadeer in Chat App" wrappingWidth="223.94061279296875" />
-         </children>
-      </TextFlow>
-      <HBox alignment="CENTER_RIGHT" spacing="15.0">
-         <children>
-            <TextFlow fx:id="timeStamp" styleClass="timestamp" textAlignment="RIGHT">
+            <TextFlow>
                <children>
-                  <Label styleClass="timestamp" text="wed 12:33 pm" />
+                  <Text fx:id="text" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="message-text" text="Hello Hadeer in Chat App" wrappingWidth="223.94061279296875" />
                </children>
             </TextFlow>
+            <HBox alignment="CENTER_RIGHT" spacing="15.0">
+               <children>
+                  <TextFlow styleClass="timestamp" textAlignment="RIGHT">
+                     <children>
+                        <Label fx:id="timeStamp" styleClass="timestamp" text="wed 12:33 pm" />
+                     </children>
+                  </TextFlow>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </HBox>
          </children>
-         <VBox.margin>
-            <Insets left="15.0" right="15.0" />
-         </VBox.margin>
-      </HBox>
+         <padding>
+            <Insets bottom="15.0" left="15.0" right="15.0" top="20.0" />
+         </padding>
+      </VBox>
    </children>
-   <padding>
-      <Insets bottom="15.0" left="15.0" right="15.0" top="20.0" />
-   </padding>
-</VBox>
+</HBox>

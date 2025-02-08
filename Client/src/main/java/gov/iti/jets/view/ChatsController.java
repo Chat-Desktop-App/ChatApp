@@ -4,8 +4,11 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 
 import gov.iti.jets.controller.HomeServiceController;
+import gov.iti.jets.controller.MessageServiceController;
 import gov.iti.jets.model.ContactUser;
 import gov.iti.jets.model.Chatable;
+import gov.iti.jets.model.Group;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -13,12 +16,16 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
 public class ChatsController {
     Chatable chatable;
+    private ContactUser contactUser;
+    private Group group;
+    private boolean isContact = false;
     @FXML
     private AnchorPane chat;
 
@@ -33,7 +40,6 @@ public class ChatsController {
 
     @FXML
     private Circle status;
-
     @FXML
     void initialize() {
 
@@ -65,6 +71,8 @@ public class ChatsController {
         ChatAreaController controller = loader.getController();
         controller.setChat(chatable);
         HomeServiceController.getHomeController().setMainBorderPane(region);
+        MessageServiceController.setActiveChat(controller);
+
     }
 
 }

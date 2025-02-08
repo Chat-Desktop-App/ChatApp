@@ -17,5 +17,7 @@
     -fx-font-size: 10px;
     -fx-text-fill: #666;
 }
-/* 0 30 30 40*/
-/* 30 0 40 30*/
+
+.parentHBox {
+    -fx-background-color: transparent;
+}

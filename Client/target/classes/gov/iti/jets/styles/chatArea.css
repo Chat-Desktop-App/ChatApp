@@ -1,6 +1,7 @@
-.chat_Background {
+.Background {
 	 -fx-background-image: url("../images/background.png");
 	-fx-background-size: 100% 100%;
+	-fx-background-opacity: 0.5;
 }
 
 .borderpane_background {
@@ -22,3 +23,8 @@
     -fx-background-color:  #d3e1e8;
 
 }
+
+.chatListView {
+    -fx-background-color: transparent;
+ }
+
