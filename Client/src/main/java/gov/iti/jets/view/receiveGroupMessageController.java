@@ -71,6 +71,5 @@ public class receiveGroupMessageController {
 
         messageContent.setFill(Paint.valueOf(message.getFontColour()));
         contentVBox.setStyle("-fx-background-color:" + message.getTextBackGroundColour()+ ";");
-        System.out.println(message.getTextBackGroundColour());
     }
 }

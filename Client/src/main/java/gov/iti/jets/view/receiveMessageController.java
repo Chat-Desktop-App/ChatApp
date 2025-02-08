@@ -35,14 +35,13 @@ public class receiveMessageController {
 
     public void setMessage(Message message) {
         this.message = message;
-        System.out.println(message.getContent());
         text.setText(message.getContent());
 
         LocalDateTime dateTime = message.getTimestamp().toLocalDateTime();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("E h:mm a", Locale.ENGLISH);
         String formattedTimestamp = dateTime.format(formatter);
         timeStamp.setText(formattedTimestamp);
-        timeStamp.setText(message.getTimestamp().toLocalDateTime().toString());
+//        timeStamp.setText(message.getTimestamp().toLocalDateTime().toString());
         setTextFormat();
     }
 
@@ -58,7 +57,6 @@ public class receiveMessageController {
 
         text.setFill(Paint.valueOf(message.getFontColour()));
         contentVBox.setStyle("-fx-background-color:" + message.getTextBackGroundColour()+ ";");
-        System.out.println(message.getTextBackGroundColour());
     }
 
 }
