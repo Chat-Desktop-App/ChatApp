@@ -38,7 +38,7 @@ public class ClientApp extends Application {
         Scene scene = new Scene(root);
 
         stage.setTitle("Orca");
-        
+
         stage.setScene(scene);
         stage.show();
 
