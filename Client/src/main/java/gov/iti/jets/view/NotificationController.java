@@ -16,7 +16,7 @@ public class NotificationController {
         assert listOFNotifications != null : "fx:id=\"listOFNotifications\" was not injected: check your FXML file 'notification.fxml'.";
 
         // Load actual notifications
-        listOFNotifications.setItems(NotificationServiceController.getNotifications(HomeServiceController.getPhoneNumber()));
+        listOFNotifications.setItems(NotificationServiceController.getNotifications(HomeServiceController.getUser().getPhoneNumber()));
 
         // Customize the ListView appearance
         listOFNotifications.setStyle("-fx-background-color: transparent;");

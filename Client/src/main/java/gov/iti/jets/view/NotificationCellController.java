@@ -28,6 +28,11 @@ public class NotificationCellController {
     private Notifications notificationData;
 
     @FXML
+    void initialize(){
+        moreButton.setVisible(true);
+    }
+
+    @FXML
     void handleDeleteButton(ActionEvent event) {
         NotificationServiceController.deleteNotification(notificationData.getNotificationId(), root);
     }
@@ -58,9 +63,7 @@ public class NotificationCellController {
                 case ADDTOGROUP:
                     contentOfNotification.setText("you have a Group Invitation");
                     break;
-                /*default:
-                    contentOfNotification.setText("Unknown Type");
-                    break;*/
+
             }
         }
     }
