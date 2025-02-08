@@ -132,7 +132,7 @@ public class NotificationsDaoImpl implements NotificationsDao {
     }
 
     public static void main(String[] args) {
-       Notifications notifications = new Notifications(1, "1234567890", "hey message", LocalDateTime.now(),false,MESSAGE);
+        Notifications notifications = new Notifications(1, "1234567890", "hey message", LocalDateTime.now(),false,MESSAGE);
         NotificationsDao notificationsDao = new NotificationsDaoImpl();
         notificationsDao.addNotification(notifications);
 
