@@ -52,7 +52,7 @@ public class RMIConnector {
     public static RMIConnector rmiReconnect() {
 
         Scene saveScene = RunHome.primaryStage.getScene();
-        RunHome.primaryStage.setScene(RunHome.loadingScene);
+       // RunHome.primaryStage.setScene(RunHome.loadingScene);
             rmiConnector = new RMIConnector();
         RunHome.primaryStage.setScene(saveScene);
         return rmiConnector;

@@ -71,6 +71,7 @@ public class ChatsController {
         ChatAreaController controller = loader.getController();
         controller.setChat(chatable);
         HomeServiceController.getHomeController().setMainBorderPane(region);
+        MessageServiceController.setActiveChat(controller);
 
     }
 

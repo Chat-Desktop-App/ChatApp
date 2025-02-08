@@ -1,4 +1,6 @@
 package gov.iti.jets.model;
+import javafx.scene.text.Font;
+
 import java.io.Serial;
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -10,17 +12,18 @@ public class Message implements Serializable {
 
     private int messageId;
     private String senderId;
-    private Recipient recipient;
-    private String receiverId;
-    private int groupId;
+    private Recipient recipient = null;
+    private String receiverId = null;
+    private int groupId = 0;
     private String content;
     private int fileId;
-    private int fontSize;
-    private String fontStyle;
-    private String fontColour;
-    private boolean isBold;
-    private boolean isItalic;
-    private String textBackGroundColour;
+    private int fontSize = 14;
+    private String fontStyle = Font.getDefault().getName();
+    private String fontColour = "#000000";
+    private boolean isBold = false;
+    private boolean isItalic = false;
+    private boolean isUnderLine = false;
+    private String textBackGroundColour = "#3d7eb6";
     private Timestamp timestamp;
     private String emoji;
 
@@ -29,7 +32,7 @@ public class Message implements Serializable {
 
     }
 
-    public Message(int messageId, String senderId, Recipient recipient, String receiverId, int groupId, String content, int fileId, int fontSize, String fontStyle, String fontColour, boolean isBold, boolean isItalic, String textBackGroundColour, Timestamp timestamp, String emoji) {
+    public Message(int messageId, String senderId, Recipient recipient, String receiverId, int groupId, String content, int fileId, int fontSize, String fontStyle, String fontColour, boolean isBold, boolean isItalic, boolean isUnderLine, String textBackGroundColour, Timestamp timestamp, String emoji) {
         this.messageId = messageId;
         this.senderId = senderId;
         this.recipient = recipient;
@@ -42,6 +45,7 @@ public class Message implements Serializable {
         this.fontColour = fontColour;
         this.isBold = isBold;
         this.isItalic = isItalic;
+        this.isUnderLine = isUnderLine;
         this.textBackGroundColour = textBackGroundColour;
         this.timestamp = timestamp;
         this.emoji = emoji;
@@ -159,6 +163,14 @@ public class Message implements Serializable {
         this.textBackGroundColour = textBackGroundColour;
     }
 
+    public boolean isUnderLine() {
+        return isUnderLine;
+    }
+
+    public void setUnderLine(boolean underLine) {
+        isUnderLine = underLine;
+    }
+
     public Timestamp gettimestamp() {
         return timestamp;
     }
@@ -174,21 +186,24 @@ public class Message implements Serializable {
     public void setEmoji(String emoji) {
         this.emoji = emoji;
     }
+
     @Override
     public String toString() {
         return "Message{" +
-                "messgId='" + messageId + '\'' +
+                "messageId=" + messageId +
                 ", senderId='" + senderId + '\'' +
+                ", recipient=" + recipient +
                 ", receiverId='" + receiverId + '\'' +
-                ", groupId='" + groupId + '\'' +
+                ", groupId=" + groupId +
                 ", content='" + content + '\'' +
-                ", fileId='" + fileId + '\'' +
+                ", fileId=" + fileId +
                 ", fontSize=" + fontSize +
                 ", fontStyle='" + fontStyle + '\'' +
-                ", fontColor='" + fontColour + '\'' +
+                ", fontColour='" + fontColour + '\'' +
                 ", isBold=" + isBold +
                 ", isItalic=" + isItalic +
-                ", textBackgroundColour='" + textBackGroundColour + '\'' +
+                ", isUnderLine=" + isUnderLine +
+                ", textBackGroundColour='" + textBackGroundColour + '\'' +
                 ", timestamp=" + timestamp +
                 ", emoji='" + emoji + '\'' +
                 '}';
