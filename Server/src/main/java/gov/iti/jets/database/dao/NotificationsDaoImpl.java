@@ -1,12 +1,16 @@
 package gov.iti.jets.database.dao;
 
 import gov.iti.jets.database.DataBaseConnection;
+import gov.iti.jets.model.Notification;
 import gov.iti.jets.model.Notifications;
 
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+
+import static gov.iti.jets.model.Notification.FRIENDREQUEST;
+import static gov.iti.jets.model.Notification.MESSAGE;
 
 public class NotificationsDaoImpl implements NotificationsDao {
     static DataBaseConnection dataBaseConnection;
@@ -21,12 +25,14 @@ public class NotificationsDaoImpl implements NotificationsDao {
     @Override
     public void addNotification(Notifications notifications) {
         Connection connection = dataBaseConnection.getConnection();
-        String sql = "INSERT INTO notifications (user_id, message, sent_at, is_read) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO notifications (user_id, message, sent_at, is_read, type) VALUES (?, ?, ?, ?, ?)";
         try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             statement.setString(1, notifications.getUserId());
             statement.setString(2, notifications.getMessage());
             statement.setTimestamp(3, Timestamp.valueOf(notifications.getSentAt()));
             statement.setBoolean(4, notifications.isRead());
+            statement.setString(5, String.valueOf(notifications.getNotificationType()));
+
 
             int affectedRows = statement.executeUpdate();
             if (affectedRows == 0) {
@@ -84,13 +90,15 @@ public class NotificationsDaoImpl implements NotificationsDao {
     @Override
     public void updateNotification(Notifications notifications) {
         Connection connection = dataBaseConnection.getConnection();
-        String sql = "UPDATE notifications SET user_id = ?, message = ?, sent_at = ?, is_read = ? WHERE notification_id = ?";
+        String sql = "UPDATE notifications SET user_id = ?, message = ?, sent_at = ?, is_read = ? type = ? WHERE notification_id = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, notifications.getUserId());
             statement.setString(2, notifications.getMessage());
             statement.setTimestamp(3, Timestamp.valueOf(notifications.getSentAt()));
             statement.setBoolean(4, notifications.isRead());
             statement.setInt(5, notifications.getNotificationId());
+            statement.setString(6, String.valueOf(notifications.getNotificationType()));
+
 
             statement.executeUpdate();
         } catch (SQLException e) {
@@ -118,12 +126,18 @@ public class NotificationsDaoImpl implements NotificationsDao {
         notification.setMessage(resultSet.getString("message"));
         notification.setSentAt(resultSet.getTimestamp("sent_at").toLocalDateTime());
         notification.setRead(resultSet.getBoolean("is_read"));
+        notification.setNotificationtype(Notification.valueOf(resultSet.getString("type")));
+
         return notification;
     }
 
     public static void main(String[] args) {
-        Notifications notifications = new Notifications(1, "0122", "hey message", LocalDateTime.now(),false);
+       Notifications notifications = new Notifications(1, "1234567890", "hey message", LocalDateTime.now(),false,MESSAGE);
         NotificationsDao notificationsDao = new NotificationsDaoImpl();
         notificationsDao.addNotification(notifications);
+
+        Notifications notifications2 = new Notifications(2, "1234567890", "has just accepted your invitation", LocalDateTime.now(),false,FRIENDREQUEST);
+        NotificationsDao notificationsDao2 = new NotificationsDaoImpl();
+        notificationsDao2.addNotification(notifications2);
     }
 }
