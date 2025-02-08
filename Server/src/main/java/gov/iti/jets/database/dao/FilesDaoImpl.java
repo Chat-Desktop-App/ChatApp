@@ -21,18 +21,23 @@ public class FilesDaoImpl implements FilesDao{
     @Override
     public int addFile(Files file) {
         Connection connection = dataBaseConnection.getConnection();
-        String query = "INSERT INTO FILES (file_id, file_name, file_type) VALUES (?,?,?)";
+        String query = "INSERT INTO FILES (file_name, file_type, file_path) VALUES (?,?,?)";
         try(PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-            preparedStatement.setInt(1, file.getFileId());
-            preparedStatement.setString(2, file.getFileName());
-            preparedStatement.setString(3, file.getFileType());
-            return preparedStatement.executeUpdate();
+            preparedStatement.setString(1, file.getFileName());
+            preparedStatement.setString(2, file.getFileType());
+            preparedStatement.setString(3, file.getFilePath());
+            int rowsAffected = preparedStatement.executeUpdate();
+            if (rowsAffected > 0) {
+                ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
+                if (generatedKeys.next()) {
+                    return generatedKeys.getInt(1); // return fileId
+                }
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return 0;
     }
-
     @Override
     public Files getFileById(int fileId) {
         Connection connection = dataBaseConnection.getConnection();
@@ -44,10 +49,10 @@ public class FilesDaoImpl implements FilesDao{
                 return new Files(
                         resultSet.getInt("file_id"),
                         resultSet.getString("file_name"),
-                        resultSet.getString("file_type")
+                        resultSet.getString("file_type"),
+                        resultSet.getString("file_path")
                 );
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -65,7 +70,8 @@ public class FilesDaoImpl implements FilesDao{
                 files.add(new Files(
                    resultSet.getInt("file_id"),
                    resultSet.getString("file_name"),
-                   resultSet.getString("file_type")
+                   resultSet.getString("file_type"),
+                   resultSet.getString("file_path")
                 ));
             }
         } catch (SQLException e) {
@@ -85,7 +91,6 @@ public class FilesDaoImpl implements FilesDao{
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 
     @Override
@@ -98,12 +103,5 @@ public class FilesDaoImpl implements FilesDao{
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-
-    public static void main(String[] args) {
-        FilesDao filesDao = new FilesDaoImpl();
-        Files file = new Files(1, "AboodFile", "txt");
-        filesDao.addFile(file);
-
     }
 }

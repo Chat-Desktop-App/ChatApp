@@ -1,6 +1,8 @@
 package gov.iti.jets.model;
 
-public enum Notification {
+import java.io.Serializable;
+
+public enum Notification implements Serializable {
     MESSAGE,
     ANNOUNCEMENT,
     FRIENDREQUEST,

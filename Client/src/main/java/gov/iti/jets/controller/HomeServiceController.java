@@ -4,13 +4,16 @@ import gov.iti.jets.RMIConnector;
 import gov.iti.jets.model.Chatable;
 import gov.iti.jets.model.ContactStatus;
 import gov.iti.jets.model.ContactUser;
+import gov.iti.jets.model.Notifications;
 import gov.iti.jets.model.User;
 import gov.iti.jets.services.interfaces.LoadHome;
 import gov.iti.jets.view.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
@@ -165,4 +168,6 @@ public class HomeServiceController {
         HomeServiceController.user = user;
     }
 
-}
+
+    }
+
