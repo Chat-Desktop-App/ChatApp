@@ -121,9 +121,4 @@ public class NotificationsDaoImpl implements NotificationsDao {
         return notification;
     }
 
-    public static void main(String[] args) {
-        Notifications notifications = new Notifications(1, "0122", "hey message", LocalDateTime.now(),false);
-        NotificationsDao notificationsDao = new NotificationsDaoImpl();
-        notificationsDao.addNotification(notifications);
-    }
 }
