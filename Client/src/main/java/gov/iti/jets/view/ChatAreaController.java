@@ -29,7 +29,7 @@ public class ChatAreaController {
     private Group group;
     private boolean isContact = false;
     private static Message message = new Message();
-    ObservableList<HBox> messages;
+    ObservableList<HBox> messagesList;
 
 
     private VBox chatFormattingPanel;
@@ -244,11 +244,11 @@ public class ChatAreaController {
             isContact = false;
         }
 
-        messages = loadMessages();
-        chatListView.setItems(messages);
-        if (messages != null && !messages.isEmpty()) {
+        messagesList = loadMessages();
+        chatListView.setItems(messagesList);
+        if (messagesList != null && !messagesList.isEmpty()) {
             Platform.runLater(() -> {
-                chatListView.scrollTo(messages.size() - 1);
+                chatListView.scrollTo(messagesList.size() - 1);
             });
         }
     }
@@ -276,11 +276,14 @@ public class ChatAreaController {
         textArea.clear();
         HBox hBox = MessageServiceController.sendMessage(message);
         if (hBox != null ){
-            messages.add(hBox);
-            chatListView.scrollTo(messages.size() - 1);
+            messagesList.add(hBox);
         }
-
-}
+    }
+    public void receivedMessage(HBox hBox){
+        if (hBox != null ){
+            messagesList.add(hBox);
+        }
+    }
 
 
 

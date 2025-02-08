@@ -4,7 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f8090b6c-439c-4feb-a8dc-dfe071925f20" name="Changes" comment="update top button" />
+    <list default="true" id="f8090b6c-439c-4feb-a8dc-dfe071925f20" name="Changes" comment="update top button">
+      <change beforePath="$PROJECT_DIR$/../Client/session.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/session.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/ClientApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/ClientApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/controller/MessageServiceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/controller/MessageServiceController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/services/impls/ChatClientImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/services/impls/ChatClientImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/services/interfaces/ChatClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/services/interfaces/ChatClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/view/ChatAreaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/view/ChatAreaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/view/HelloController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/view/receiveGroupMessageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/view/ReceiveGroupMessageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/view/receiveMessageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/view/ReceiveMessageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/main/resources/gov/iti/jets/fxml/receiveGroupMessage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/resources/gov/iti/jets/fxml/receiveGroupMessage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/main/resources/gov/iti/jets/fxml/received-message.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/resources/gov/iti/jets/fxml/received-message.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/main/resources/gov/iti/jets/hello-view.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/target/classes/gov/iti/jets/hello-view.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/target/classes/gov/iti/jets/view/ChatAreaController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/target/classes/gov/iti/jets/view/ChatAreaController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/target/classes/gov/iti/jets/view/HelloController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gov/iti/jets/database/dao/ContactDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gov/iti/jets/database/dao/ContactDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gov/iti/jets/services/impls/LoadHomeImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gov/iti/jets/services/impls/LoadHomeImp.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -70,7 +89,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;com.codeium.enabled&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;loadHome-ashraf&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;F:/ITI/ChatApp/Server/pictures&quot;,

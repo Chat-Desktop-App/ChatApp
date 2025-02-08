@@ -66,7 +66,7 @@ public class ClientApp extends Application {
                     user.setPhoneNumber(loginStatus.getPhoneNumber());
                     HomeServiceController.setUser(user);
                     return loader.load();
-                    // set home page with phone number
+                    // set home page with phone numb
                 }else{
                     loader = new FXMLLoader(ClientApp.class.getResource(LOGIN_FXML));
                     Parent root = loader.load();
