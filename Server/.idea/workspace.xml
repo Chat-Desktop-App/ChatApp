@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f8090b6c-439c-4feb-a8dc-dfe071925f20" name="Changes" comment="update top button" />
+    <list default="true" id="f8090b6c-439c-4feb-a8dc-dfe071925f20" name="Changes" comment="update top button">
+      <change afterPath="$PROJECT_DIR$/src/main/java/gov/iti/jets/services/interfaces/FileTransferService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gov/iti/jets/view/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gov/iti/jets/view/RegisterController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gov/iti/jets/view/SignInController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gov/iti/jets/view/SignInController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/server-register.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/server-register.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/server-signIn.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/server-signIn.fxml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -16,6 +23,7 @@
         <option value="FxmlFile" />
         <option value="Class" />
         <option value="Enum" />
+        <option value="JavaFXApplication" />
         <option value="Interface" />
       </list>
     </option>
@@ -58,24 +66,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.App.executor&quot;: &quot;Run&quot;,
-    &quot;Application.FilesDaoImpl.executor&quot;: &quot;Run&quot;,
-    &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Application.NotificationsDaoImpl.executor&quot;: &quot;Run&quot;,
-    &quot;Application.RMIConnector.executor&quot;: &quot;Run&quot;,
-    &quot;Application.gov.iti.jets.view.App.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;com.codeium.enabled&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;loadHome-ashraf&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;F:/ITI/ChatApp/Server/pictures&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.App.executor": "Run",
+    "Application.FilesDaoImpl.executor": "Run",
+    "Application.HelloApplication.executor": "Run",
+    "Application.NotificationsDaoImpl.executor": "Run",
+    "Application.RMIConnector.executor": "Run",
+    "Application.gov.iti.jets.view.App.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "com.codeium.enabled": "true",
+    "git-widget-placeholder": "server",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "F:/iTi/Projects/JAVA Chat-App/source/Server",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="F:\ITI\ChatApp\Server\pictures" />

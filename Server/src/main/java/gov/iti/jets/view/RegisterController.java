@@ -2,6 +2,7 @@ package gov.iti.jets.view;
 
 import gov.iti.jets.database.dao.UserDao;
 import gov.iti.jets.database.dao.UserDaoImpl;
+import gov.iti.jets.model.Gender;
 import gov.iti.jets.model.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,11 +19,14 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class RegisterController implements Initializable {
     @FXML
-    private ChoiceBox genderChoiceBox;
+    private DatePicker birthDatePicker;
+    @FXML
+    private ChoiceBox<Gender> genderChoiceBox;
     @FXML
     private VBox SignUpVbox;
     @FXML
@@ -37,6 +41,8 @@ public class RegisterController implements Initializable {
     private TextField firstNameField;
     @FXML
     private TextField lastNameField;
+    @FXML
+    private TextField countryField;
     @FXML
     private PasswordField confirmPasswordField;
     @FXML
@@ -55,7 +61,20 @@ public class RegisterController implements Initializable {
         user.setLname(lastNameField.getText().trim());
         user.setEmail(emailField.getText().trim());
         user.setPasswordHashed(passwordField.getText().trim()); // Hash Password
+        user.setCountry(countryField.getText().trim());
         user.setAdmin(true);
+        Gender selectedGender = genderChoiceBox.getValue();
+        if (selectedGender == null) {
+            showAlert(Alert.AlertType.WARNING, "Validation Error", "Select a Gender");
+            return;
+        }
+        user.setGender(selectedGender);
+        LocalDate birthDate = birthDatePicker.getValue();
+        if (birthDate == null) {
+            showAlert(Alert.AlertType.WARNING, "Validation Error", "Select BirthDate");
+            return;
+        }
+        user.setDob(birthDate);
         try {
             userDao.hashPass(passwordField.getText().trim());
             userDao.addUser(user);
@@ -107,6 +126,8 @@ public class RegisterController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        genderChoiceBox.getItems().addAll(Gender.values());
+
 
     }
 }
