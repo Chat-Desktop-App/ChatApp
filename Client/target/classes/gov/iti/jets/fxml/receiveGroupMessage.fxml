@@ -9,7 +9,6 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-
 <HBox fx:id="parentHBox" styleClass="parentHBox" stylesheets="@../styles/receive_message.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.view.receiveGroupMessageController">
    <children>
       <ImageView fx:id="profilePic" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
@@ -24,7 +23,7 @@
                   <Insets left="5.0" />
                </padding>
             </HBox>
-            <VBox styleClass="message-container">
+            <VBox fx:id="contentVBox" styleClass="message-container">
                <children>
                   <Text fx:id="name" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
                   <TextFlow>

@@ -131,13 +131,4 @@ public class NotificationsDaoImpl implements NotificationsDao {
         return notification;
     }
 
-    public static void main(String[] args) {
-        Notifications notifications = new Notifications(1, "1234567890", "hey message", LocalDateTime.now(),false,MESSAGE);
-        NotificationsDao notificationsDao = new NotificationsDaoImpl();
-        notificationsDao.addNotification(notifications);
-
-        Notifications notifications2 = new Notifications(2, "1234567890", "has just accepted your invitation", LocalDateTime.now(),false,FRIENDREQUEST);
-        NotificationsDao notificationsDao2 = new NotificationsDaoImpl();
-        notificationsDao2.addNotification(notifications2);
-    }
 }

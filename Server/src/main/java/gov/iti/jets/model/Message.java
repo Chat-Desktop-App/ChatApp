@@ -20,6 +20,7 @@ public class Message implements Serializable {
     private String fontColour;
     private boolean isBold;
     private boolean isItalic;
+    private boolean isUnderLine;
     private String textBackGroundColour;
     private Timestamp timestamp;
     private String emoji;
@@ -29,7 +30,7 @@ public class Message implements Serializable {
 
     }
 
-    public Message(int messageId, String senderId, Recipient recipient, String receiverId, int groupId, String content, int fileId, int fontSize, String fontStyle, String fontColour, boolean isBold, boolean isItalic, String textBackGroundColour, Timestamp timestamp, String emoji) {
+    public Message(int messageId, String senderId, Recipient recipient, String receiverId, int groupId, String content, int fileId, int fontSize, String fontStyle, String fontColour, boolean isBold, boolean isItalic, boolean isUnderLine, String textBackGroundColour, Timestamp timestamp, String emoji) {
         this.messageId = messageId;
         this.senderId = senderId;
         this.recipient = recipient;
@@ -42,6 +43,7 @@ public class Message implements Serializable {
         this.fontColour = fontColour;
         this.isBold = isBold;
         this.isItalic = isItalic;
+        this.isUnderLine = isUnderLine;
         this.textBackGroundColour = textBackGroundColour;
         this.timestamp = timestamp;
         this.emoji = emoji;
@@ -159,6 +161,14 @@ public class Message implements Serializable {
         this.textBackGroundColour = textBackGroundColour;
     }
 
+    public boolean isUnderLine() {
+        return isUnderLine;
+    }
+
+    public void setUnderLine(boolean underLine) {
+        isUnderLine = underLine;
+    }
+
     public Timestamp gettimestamp() {
         return timestamp;
     }
@@ -174,21 +184,24 @@ public class Message implements Serializable {
     public void setEmoji(String emoji) {
         this.emoji = emoji;
     }
+
     @Override
     public String toString() {
         return "Message{" +
-                "messgId='" + messageId + '\'' +
+                "messageId=" + messageId +
                 ", senderId='" + senderId + '\'' +
+                ", recipient=" + recipient +
                 ", receiverId='" + receiverId + '\'' +
-                ", groupId='" + groupId + '\'' +
+                ", groupId=" + groupId +
                 ", content='" + content + '\'' +
-                ", fileId='" + fileId + '\'' +
+                ", fileId=" + fileId +
                 ", fontSize=" + fontSize +
                 ", fontStyle='" + fontStyle + '\'' +
-                ", fontColor='" + fontColour + '\'' +
+                ", fontColour='" + fontColour + '\'' +
                 ", isBold=" + isBold +
                 ", isItalic=" + isItalic +
-                ", textBackgroundColour='" + textBackGroundColour + '\'' +
+                ", isUnderLine=" + isUnderLine +
+                ", textBackGroundColour='" + textBackGroundColour + '\'' +
                 ", timestamp=" + timestamp +
                 ", emoji='" + emoji + '\'' +
                 '}';

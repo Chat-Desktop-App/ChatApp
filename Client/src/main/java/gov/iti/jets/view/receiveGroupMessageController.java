@@ -11,11 +11,14 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
 
 public class receiveGroupMessageController {
 
     private GroupMessage message;
+
     @FXML
     private Text messageContent;
 
@@ -27,6 +30,9 @@ public class receiveGroupMessageController {
 
     @FXML
     private ImageView profilePic;
+
+    @FXML
+    private VBox contentVBox;
 
     @FXML
     private Label timeStamp;
@@ -50,6 +56,21 @@ public class receiveGroupMessageController {
         }
 
         timeStamp.setText(message.getTimestamp().toLocalDateTime().toString());
+        setTextFormat();
     }
 
+    private void setTextFormat(){
+        StringBuilder builder = new StringBuilder();
+        if (message.isBold()) { builder.append("-fx-font-weight: bold;\n");}
+        if (message.isItalic()){builder.append("-fx-font-style: italic;\n");}
+        if (message.isUnderLine()){builder.append("-fx-underline: " ).append(message.isUnderLine()).append(";\n");}
+        if (message.getFontSize() != 0){builder.append("-fx-font-size: ").append(message.getFontSize()).append("px;\n");}
+        if (message.getFontStyle() != null){builder.append("-fx-font-family: '").append(message.getFontStyle()).append("';\n");}
+
+        messageContent.setStyle(builder.toString());
+
+        messageContent.setFill(Paint.valueOf(message.getFontColour()));
+        contentVBox.setStyle("-fx-background-color:" + message.getTextBackGroundColour()+ ";");
+        System.out.println(message.getTextBackGroundColour());
+    }
 }
