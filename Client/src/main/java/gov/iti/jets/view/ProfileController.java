@@ -9,6 +9,9 @@ import javafx.scene.control.TextField;
 public class ProfileController {
 
     @FXML
+    private Button ChangeprofilePic;
+
+    @FXML
     private TextField bio;
 
     @FXML
@@ -19,9 +22,6 @@ public class ProfileController {
 
     @FXML
     private TextField fullName;
-
-    @FXML
-    private Button profilePic;
 
     @FXML
     private ComboBox<?> status;
