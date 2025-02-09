@@ -31,6 +31,7 @@ public class HomeController {
 
     @FXML
     private ImageView newNotifiction;
+
     @FXML
     private Button addFriendIcon;
 
@@ -176,11 +177,10 @@ public class HomeController {
        // loadHome = RMIConnector.getRmiConnector().getLoadHome();
         HomeServiceController.setHomeController(this);
         loadChatsList();
-
-
         if(!NotificationServiceController.getNotifications(HomeServiceController.getUser().getPhoneNumber()).isEmpty()){
             newNotifiction.setVisible(true);
         }
+
     }
     private void loadChatsList() {
         ObservableList<AnchorPane> items = HomeServiceController.getLast();

@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f8090b6c-439c-4feb-a8dc-dfe071925f20" name="Changes" comment="update top button">
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       <change beforePath="$PROJECT_DIR$/../Client/session.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/session.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/controller/HomeServiceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/controller/HomeServiceController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/controller/MessageServiceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/controller/MessageServiceController.java" afterDir="false" />
@@ -18,6 +19,8 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/gov/iti/jets/services/impls/MessagingServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gov/iti/jets/services/impls/MessagingServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/gov/iti/jets/services/interfaces/ChatClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gov/iti/jets/services/interfaces/ChatClient.java" afterDir="false" />
 =======
+=======
+>>>>>>> Stashed changes
       <change afterPath="$PROJECT_DIR$/../Client/src/main/resources/gov/iti/jets/images/red.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/RunHome.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/RunHome.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/controller/NotificationServiceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/controller/NotificationServiceController.java" afterDir="false" />
@@ -39,6 +42,9 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/gov/iti/jets/model/Notifications.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gov/iti/jets/model/Notifications.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/gov/iti/jets/services/impls/NotificationsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gov/iti/jets/services/impls/NotificationsServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/gov/iti/jets/services/interfaces/NotificationsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gov/iti/jets/services/interfaces/NotificationsService.java" afterDir="false" />
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     </list>
     <option name="SHOW_DIALOG" value="false" />
