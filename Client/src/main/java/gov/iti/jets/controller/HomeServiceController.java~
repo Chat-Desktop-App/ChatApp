@@ -1,7 +1,11 @@
 package gov.iti.jets.controller;
 
 import gov.iti.jets.RMIConnector;
-import gov.iti.jets.model.*;
+import gov.iti.jets.model.Chatable;
+import gov.iti.jets.model.ContactStatus;
+import gov.iti.jets.model.ContactUser;
+import gov.iti.jets.model.Notifications;
+import gov.iti.jets.model.User;
 import gov.iti.jets.services.interfaces.LoadHome;
 import gov.iti.jets.view.*;
 import javafx.collections.FXCollections;
@@ -15,7 +19,13 @@ import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.List;
 
-import static gov.iti.jets.controller.Session.*;
+import static gov.iti.jets.controller.Session.user;
+import static gov.iti.jets.controller.Session.homeController;
+import static gov.iti.jets.controller.Session.myLastChatList;
+import static gov.iti.jets.controller.Session.myAllList;
+import static gov.iti.jets.controller.Session.myOnlineList;
+import static gov.iti.jets.controller.Session.myPendingList;
+import static gov.iti.jets.controller.Session.myBlockedList;
 
 public class HomeServiceController {
     private static LoadHome loadHome = RMIConnector.getRmiConnector().getLoadHome();
@@ -56,14 +66,7 @@ public class HomeServiceController {
                         FXMLLoader loader = new FXMLLoader(HomeServiceController.class.getResource(fxmlPath));
                         AnchorPane anchorPane = loader.load();
                         ChatsController controller = loader.getController();
-                        if (chatable instanceof ContactUser con) {
-                            chatsControllerMap.put(con.getPhoneNumber(), controller);
-                        }else {
-                            chatsControllerMap.put(String.valueOf(((Group)chatable).getGroupId()), controller);
-                        }
-
                         controller.setLastChat(chatable);
-
                         myLastChatList.add(anchorPane);
                     }
                 }

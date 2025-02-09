@@ -40,6 +40,8 @@ public class GroupDaoImpl implements GroupDao{
         return n;
     }
 
+
+
     @Override
     public List<Group> getGroups(String phoneNumber) throws SQLException {
         Connection con = dataBaseConnection.getConnection();
@@ -86,7 +88,7 @@ public class GroupDaoImpl implements GroupDao{
     }
 
     @Override
-    public Group getGroup(int groupId) throws SQLException {
+    public Group getGroupByID(int groupId) throws SQLException {
         Connection con = dataBaseConnection.getConnection();
         String query = " SELECT * FROM `groups` WHERE group_id = ? ";
         PreparedStatement ps = con.prepareStatement(query);
@@ -149,10 +151,8 @@ public class GroupDaoImpl implements GroupDao{
         return groups;
     }
 
-
-
     @Override
-    public List<User> getAllGroupMembers(String groupId) throws SQLException {
+    public List<User> getAllGroupMembers(int groupId) throws SQLException {
         Connection con = dataBaseConnection.getConnection();
         String query = """
                     SELECT u.phone_number, u.fname, u.lname
@@ -163,7 +163,7 @@ public class GroupDaoImpl implements GroupDao{
 
         List<User> groupMembers = new ArrayList<>();
         PreparedStatement ps = con.prepareStatement(query);
-        ps.setString(1,groupId);
+        ps.setInt(1,groupId);
         ResultSet resultSet = ps.executeQuery();
         while (resultSet.next()) {
 
@@ -227,7 +227,7 @@ public class GroupDaoImpl implements GroupDao{
 
             //Retrieve details of the newly created group
 
-            Group retrievedGroup = groupDao.getGroup(groupId);
+            Group retrievedGroup = groupDao.getGroupByID(groupId);
             if (retrievedGroup != null) {
                 System.out.println("Retrieved Group Details:");
                 System.out.println("Group ID: " + retrievedGroup.getGroupId());

@@ -125,6 +125,17 @@ public class LoginImpl extends UnicastRemoteObject implements Login {
         }
     }
 
+    @Override
+    public User getUser(String userPhone) throws RemoteException {
+        try {
+            dao.getUser(userPhone);
+        } catch (SQLException e) {
+            System.out.println("can't find user: "  + userPhone);
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public static HashMap<String, ChatClient> getOnlineClients() {
         return onlineClients;
     }

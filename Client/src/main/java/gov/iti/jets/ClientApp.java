@@ -1,6 +1,7 @@
 package gov.iti.jets;
 
 import gov.iti.jets.controller.HomeServiceController;
+import gov.iti.jets.controller.Session;
 import gov.iti.jets.model.LoginStatus;
 import gov.iti.jets.model.User;
 import gov.iti.jets.services.interfaces.Login;
@@ -62,9 +63,7 @@ public class ClientApp extends Application {
                 if(login.validateSession(loginStatus)){
                     login.skipLogin(loginStatus);
                     loader = new FXMLLoader(ClientApp.class.getResource(HOME_FXML));
-                    User user = new User();
-                    user.setPhoneNumber(loginStatus.getPhoneNumber());
-                    HomeServiceController.setUser(user);
+                    Session.user = login.getUser(loginStatus.getPhoneNumber());
                     return loader.load();
                     // set home page with phone numb
                 }else{

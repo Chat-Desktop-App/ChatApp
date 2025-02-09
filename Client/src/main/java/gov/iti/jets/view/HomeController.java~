@@ -179,6 +179,8 @@ public class HomeController {
             pictureIcon.setImage(new Image(new ByteArrayInputStream(pic)));
         }
         loadChatsList();
+
+
     }
 
     private void loadChatsList() {

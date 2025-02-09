@@ -78,10 +78,9 @@ public class ChatsController {
     }
 
     public void addMessageToCounter() {
-        Platform.runLater(()->{
-            messageCounter.setVisible(true);
-            messageCounter.setText((Integer.parseInt(messageCounter.getText()) + 1)+"");
-        });
+        messageCounter.setVisible(true);
+        Platform.runLater(()-> messageCounter.setText((Integer.parseInt(messageCounter.getText()) + 1)+""));
+
     }
 
 }

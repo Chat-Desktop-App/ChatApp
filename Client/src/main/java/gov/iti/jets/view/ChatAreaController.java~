@@ -275,8 +275,7 @@ public class ChatAreaController {
         }else {
             message.setGroupId(group.getGroupId());
             message.setRecipient(Recipient.GROUP);
-            GroupMessage groupMessage = new GroupMessage(message,
-                    (Session.user.getFname() + " "+ Session.user.getLname()),Session.user.getPicture());
+            GroupMessage groupMessage = new GroupMessage(message, (Session.user.getFname() + " "+ Session.user.getLname()),Session.user.getPicture());
             hBox = MessageServiceController.sendMessage(groupMessage);
         }
         textArea.clear();

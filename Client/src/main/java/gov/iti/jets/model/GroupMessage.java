@@ -23,6 +23,11 @@ public class GroupMessage extends Message implements Serializable {
         this.profilePicture =profilePicture;
         this.name = name;
     }
+    public GroupMessage(Message message, String name, byte[] profilePicture) {
+        super(message);
+        this.profilePicture =profilePicture;
+        this.name = name;
+    }
 
     public String getName() {
         return name;

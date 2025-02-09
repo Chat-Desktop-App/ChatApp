@@ -5,10 +5,7 @@ import gov.iti.jets.model.GroupMessage;
 import gov.iti.jets.model.Message;
 import gov.iti.jets.model.Recipient;
 import gov.iti.jets.services.interfaces.MessagingService;
-import gov.iti.jets.view.ChatAreaController;
-import gov.iti.jets.view.SendMessageController;
-import gov.iti.jets.view.ReceiveGroupMessageController;
-import gov.iti.jets.view.ReceiveMessageController;
+import gov.iti.jets.view.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
@@ -19,11 +16,13 @@ import java.rmi.RemoteException;
 import java.util.List;
 
 import static gov.iti.jets.controller.Session.user;
+import static gov.iti.jets.controller.Session.chatsControllerMap;
 
 
 public class MessageServiceController {
     private static MessagingService messagingService = RMIConnector.getRmiConnector().getMessagingService();
     private static ChatAreaController activeChat;
+
 
 
     public static void receiveMessage(Message message) {
@@ -40,10 +39,12 @@ public class MessageServiceController {
                     }
                 }
             }else if (message.getRecipient() == Recipient.GROUP && !activeChat.isContact()){
+                System.out.println("111111111111");
                 if(message.getGroupId() == activeChat.getGroup().getGroupId()){
                     FXMLLoader loader = new FXMLLoader(MessageServiceController.class.getResource("/gov/iti/jets/fxml/receiveGroupMessage.fxml"));
                     try {
                         HBox hBox = loader.load();
+                        System.out.println("2222222222");
                         ((ReceiveGroupMessageController) loader.getController()).setMessage((GroupMessage) message);
                         activeChat.receivedMessage(hBox);
                     } catch (IOException e) {
@@ -52,7 +53,10 @@ public class MessageServiceController {
                 }
             }
         }else {
-            System.out.println("not active");
+            ChatsController controller = chatsControllerMap.get(message.getSenderId());
+            if (controller != null) {
+                controller.addMessageToCounter();
+            }
         }
     }
 

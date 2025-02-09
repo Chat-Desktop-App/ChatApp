@@ -14,5 +14,6 @@ public interface Login extends Remote {
     public void exit(String phoneNumber) throws RemoteException;
     public boolean validateSession(LoginStatus session) throws RemoteException;
     public void skipLogin(LoginStatus session) throws RemoteException;
+    public User getUser(String userPhone) throws RemoteException;
 
 }
