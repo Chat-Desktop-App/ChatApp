@@ -2,6 +2,7 @@ package gov.iti.jets.controller;
 
 import gov.iti.jets.RMIConnector;
 import gov.iti.jets.model.Notifications;
+import gov.iti.jets.model.User;
 import gov.iti.jets.services.interfaces.NotificationsService;
 import gov.iti.jets.view.NotificationCellController;
 import javafx.collections.FXCollections;
@@ -11,6 +12,7 @@ import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
+import java.sql.SQLException;
 import java.util.List;
 
 public class NotificationServiceController {
@@ -22,11 +24,11 @@ public class NotificationServiceController {
         try {
             List<Notifications> list = notificationsService.getAllNotificationsByUserId(phoneNumber);
             // for debugging
-            System.out.println("Received notifications: " + list.size());
+           /* System.out.println("Received notifications: " + list.size());
             for (Notifications n : list) {
                 System.out.println("Notification: " + n.getMessage() +
                         ", Type: " + n.getNotificationType());
-            }
+            }*/
             myNotificationsList.clear();
             loadNotifications(fxmlPath, list);
         } catch (RemoteException e) {
@@ -54,6 +56,8 @@ public class NotificationServiceController {
             }
         } catch (IOException e) {
             System.out.println("Error when loading " + fxmlPath + ": " + e.getMessage());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -69,6 +73,29 @@ public class NotificationServiceController {
                 myNotificationsList.remove(notificationCell);
             } catch (RemoteException ex) {
                 System.out.println("Failed to delete notification: " + ex.getMessage());
+            }
+        }
+    }
+    public static User getUser(String phoneNum) {
+        if (phoneNum == null) {
+            System.err.println("Phone number is null");
+            return null;
+        }
+        try {
+            User user = notificationsService.getUserInfo(phoneNum);
+            if (user == null) {
+                System.err.println("No user found for phone number: " + phoneNum);
+            }
+            return user;
+        } catch (RemoteException e) {
+            System.err.println("Error getting user info: " + e.getMessage());
+            // Try to reconnect
+            notificationsService = RMIConnector.rmiReconnect().getNotificationService();
+            try {
+                return notificationsService.getUserInfo(phoneNum);
+            } catch (RemoteException ex) {
+                System.err.println("Failed to get user info after reconnect: " + ex.getMessage());
+                return null;
             }
         }
     }

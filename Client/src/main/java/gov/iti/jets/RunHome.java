@@ -22,7 +22,7 @@ public class RunHome extends Application {
         System.out.println("client running.......");
         FXMLLoader loader = new FXMLLoader(RunHome.class.getResource("fxml/home.fxml"));
         FXMLLoader loader2 = new FXMLLoader(RunHome.class.getResource("fxml/loading.fxml"));
-        HomeServiceController.setUser(new User("1234567890","John","Doe"));
+        HomeServiceController.setUser(new User("0987654321","John","Doe"));
 
         Scene scene = null;
         try {
