@@ -6,10 +6,10 @@ import gov.iti.jets.services.interfaces.LoadHome;
 import gov.iti.jets.view.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
+
 
 import java.io.IOException;
 import java.rmi.RemoteException;
@@ -46,7 +46,6 @@ public class HomeServiceController {
     }
 
     public static ObservableList<AnchorPane> getLast() {
-        if(myLastChatList == null) {
             String fxmlPath = "/gov/iti/jets/fxml/Chats.fxml";
             try {
                 myLastChatList = FXCollections.observableArrayList();
@@ -74,7 +73,6 @@ public class HomeServiceController {
             } catch (IOException e) {
                 System.out.println("Error when loading " + fxmlPath + ": " + e.getMessage());
             }
-        }
         return myLastChatList;
     }
 

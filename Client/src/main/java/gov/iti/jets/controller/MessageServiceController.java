@@ -37,6 +37,7 @@ public class MessageServiceController {
                     } catch (IOException e) {
                         System.out.println("error load received-message");
                     }
+                    return;
                 }
             }else if (message.getRecipient() == Recipient.GROUP && !activeChat.isContact()){
                 System.out.println("111111111111");
@@ -50,13 +51,18 @@ public class MessageServiceController {
                     } catch (IOException e) {
                         System.out.println("error load receiveGroupMessage");
                     }
+                    return;
                 }
             }
-        }else {
-            ChatsController controller = chatsControllerMap.get(message.getSenderId());
-            if (controller != null) {
-                controller.addMessageToCounter();
-            }
+        }
+        ChatsController controller ;
+        if(message.getRecipient() == Recipient.PRIVATE){
+            controller = chatsControllerMap.get(message.getSenderId());
+        } else {
+            controller = chatsControllerMap.get(message.getGroupId()+"");
+        }
+        if (controller != null) {
+            controller.addMessageToCounter();
         }
     }
 

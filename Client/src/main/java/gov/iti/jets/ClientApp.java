@@ -63,7 +63,7 @@ public class ClientApp extends Application {
                 if(login.validateSession(loginStatus)){
                     login.skipLogin(loginStatus);
                     loader = new FXMLLoader(ClientApp.class.getResource(HOME_FXML));
-                    Session.user = login.getUser(loginStatus.getPhoneNumber());
+                    HomeServiceController.setUser(login.getUser(loginStatus.getPhoneNumber()));
                     return loader.load();
                     // set home page with phone numb
                 }else{
