@@ -14,7 +14,7 @@
 
 <HBox alignment="CENTER" styleClass="HBOX" stylesheets="@../styles/profile.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.view.ProfileController">
    <children>
-      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" style="-fx-background-color: white;" HBox.hgrow="NEVER">
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="450.0" prefWidth="600.0" style="-fx-background-color: white;" HBox.hgrow="NEVER">
          <children>
             <VBox alignment="CENTER_LEFT" AnchorPane.bottomAnchor="162.4" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="184.0">
                <children>
@@ -65,7 +65,8 @@
                   </Button>
                </children>
             </HBox>
-            <ImageView fitHeight="141.0" fitWidth="155.0" layoutX="194.0" layoutY="14.0" nodeOrientation="INHERIT" AnchorPane.leftAnchor="220.0" AnchorPane.rightAnchor="220.0" AnchorPane.topAnchor="14.0">
+            <Button fx:id="ChangeprofilePic" layoutX="235.0" layoutY="139.0" mnemonicParsing="false" onAction="#handleProfilePic" prefHeight="36.0" prefWidth="129.0" text="Change Picture" />
+            <ImageView fitHeight="100.0" fitWidth="160.0" layoutX="220.0" layoutY="30.0" nodeOrientation="INHERIT">
                <image>
                   <Image url="@../images/user.png" />
                </image>
