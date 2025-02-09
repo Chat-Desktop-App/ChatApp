@@ -25,13 +25,15 @@ public class NotificationsDaoImpl implements NotificationsDao {
     @Override
     public void addNotification(Notifications notifications) {
         Connection connection = dataBaseConnection.getConnection();
-        String sql = "INSERT INTO notifications (user_id, message, sent_at, is_read, type) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO notifications (user_id, message, sent_at, is_read, type, sender_id) VALUES (?, ?, ?, ?, ?, ?)";
         try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             statement.setString(1, notifications.getUserId());
             statement.setString(2, notifications.getMessage());
             statement.setTimestamp(3, Timestamp.valueOf(notifications.getSentAt()));
             statement.setBoolean(4, notifications.isRead());
             statement.setString(5, String.valueOf(notifications.getNotificationType()));
+            statement.setString(6, notifications.getSenderId());
+
 
 
             int affectedRows = statement.executeUpdate();
@@ -90,7 +92,7 @@ public class NotificationsDaoImpl implements NotificationsDao {
     @Override
     public void updateNotification(Notifications notifications) {
         Connection connection = dataBaseConnection.getConnection();
-        String sql = "UPDATE notifications SET user_id = ?, message = ?, sent_at = ?, is_read = ? type = ? WHERE notification_id = ?";
+        String sql = "UPDATE notifications SET user_id = ?, message = ?, sent_at = ?, is_read = ? type = ? sender_id = ? WHERE notification_id = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, notifications.getUserId());
             statement.setString(2, notifications.getMessage());
@@ -98,7 +100,7 @@ public class NotificationsDaoImpl implements NotificationsDao {
             statement.setBoolean(4, notifications.isRead());
             statement.setInt(5, notifications.getNotificationId());
             statement.setString(6, String.valueOf(notifications.getNotificationType()));
-
+            statement.setString(7, notifications.getSenderId());
 
             statement.executeUpdate();
         } catch (SQLException e) {
@@ -127,6 +129,7 @@ public class NotificationsDaoImpl implements NotificationsDao {
         notification.setSentAt(resultSet.getTimestamp("sent_at").toLocalDateTime());
         notification.setRead(resultSet.getBoolean("is_read"));
         notification.setNotificationtype(Notification.valueOf(resultSet.getString("type")));
+        notification.setSenderId(resultSet.getString("sender_id"));
 
         return notification;
     }

@@ -5,6 +5,7 @@ import gov.iti.jets.controller.HomeServiceController;
 import gov.iti.jets.controller.LogInServiceController;
 import gov.iti.jets.controller.MessageServiceController;
 import gov.iti.jets.controller.Session;
+import gov.iti.jets.controller.NotificationServiceController;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -29,6 +30,10 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 
 public class HomeController {
+
+
+    @FXML
+    private ImageView newNotifiction;
 
     @FXML
     private Button addFriendIcon;
@@ -170,7 +175,6 @@ public class HomeController {
         String fxmlPath = "/gov/iti/jets/fxml/profile.fxml";
         handleButtonAction(fxmlPath);
     }
-
     @FXML
     void initialize() {
         HomeServiceController.setHomeController(this);
@@ -179,8 +183,11 @@ public class HomeController {
             pictureIcon.setImage(new Image(new ByteArrayInputStream(pic)));
         }
         loadChatsList();
-    }
+        if(!NotificationServiceController.getNotifications(HomeServiceController.getUser().getPhoneNumber()).isEmpty()){
+            newNotifiction.setVisible(true);
+        }
 
+    }
     private void loadChatsList() {
         ObservableList<AnchorPane> items = HomeServiceController.getLast();
         chatsTree.prefWidthProperty().bind(chatsBorderPane.widthProperty());
@@ -204,7 +211,6 @@ public class HomeController {
         });
 
     }
-
     private void handleButtonAction(String fxmlPath) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));

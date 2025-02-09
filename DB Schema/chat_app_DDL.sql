@@ -189,9 +189,12 @@ CREATE TABLE `notifications` (
   `sent_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `is_read` tinyint(1) NOT NULL DEFAULT '0',
   `type` enum('MESSAGE','ANNOUNCEMENT','FRIENDREQUEST','ADDTOGROUP') DEFAULT NULL,
+  `sender_id` varchar(15) NOT NULL,
   PRIMARY KEY (`notification_id`),
   KEY `user_id` (`user_id`),
-  CONSTRAINT `notifications_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`phone_number`)
+  KEY `sender_id` (`sender_id`),
+  CONSTRAINT `notifications_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`phone_number`),
+  CONSTRAINT `notifications_ibfk_2` FOREIGN KEY (`sender_id`) REFERENCES `users` (`phone_number`) 
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -201,7 +204,12 @@ CREATE TABLE `notifications` (
 
 LOCK TABLES `notifications` WRITE;
 /*!40000 ALTER TABLE `notifications` DISABLE KEYS */;
-INSERT INTO `notifications` VALUES (1,'0987654321','You have a new message from John.','2025-01-31 22:50:12',0,'MESSAGE'),(2,'1234567890','Jane added you to the group \"Travel Buddies\".','2025-01-31 22:50:12',0,'MESSAGE'),(3,'1122334455','Alice sent you a contact request.','2025-01-31 22:50:12',0,'MESSAGE'),(4,'2233445566','Bob added you to the group \"Sports Fans\".','2025-01-31 22:50:12',0,'MESSAGE'),(5,'3344556677','Charlie sent you a file.','2025-01-31 22:50:12',0,'MESSAGE');
+INSERT INTO `notifications` VALUES 
+(1,'0987654321','You have a new message from John.','2025-01-31 22:50:12',0,'MESSAGE','1234567890'),
+(2,'1234567890','Jane added you to the group \"Travel Buddies\".','2025-01-31 22:50:12',0,'ADDTOGROUP','0987654321'),
+(3,'1122334455','Alice sent you a contact request.','2025-01-31 22:50:12',0,'FRIENDREQUEST','1234567890'),
+(4,'2233445566','Bob added you to the group \"Sports Fans\".','2025-01-31 22:50:12',0,'ADDTOGROUP','1234567890'),
+(5,'3344556677','Charlie sent you a file.','2025-01-31 22:50:12',0,'MESSAGE','1234567890');
 /*!40000 ALTER TABLE `notifications` ENABLE KEYS */;
 UNLOCK TABLES;
 
