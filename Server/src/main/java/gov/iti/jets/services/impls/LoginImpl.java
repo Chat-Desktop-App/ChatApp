@@ -104,7 +104,7 @@ public class LoginImpl extends UnicastRemoteObject implements Login {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        onlineClients.remove(phoneNumber);
+        //onlineClients.remove(phoneNumber);
 
     }
 
@@ -124,7 +124,7 @@ public class LoginImpl extends UnicastRemoteObject implements Login {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        onlineClients.put(session.getPhoneNumber(),client);
+        //onlineClients.put(session.getPhoneNumber(),client);
     }
 
     @Override
