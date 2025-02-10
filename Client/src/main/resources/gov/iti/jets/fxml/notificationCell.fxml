@@ -21,12 +21,12 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Text fx:id="contentOfNotification" fill="#2854c5" layoutX="196.33333333333334" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="has accepted your friend request" AnchorPane.leftAnchor="196.33333333333334">
+      <Text fx:id="contentOfNotification" fill="#2854c5" layoutX="72.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="has accepted your friend request" AnchorPane.leftAnchor="72.0">
          <font>
             <Font size="15.0" />
          </font>
       </Text>
-      <Button fx:id="deleteButton" layoutY="44.0" mnemonicParsing="false" onAction="#handleDeleteButton" prefHeight="34.0" prefWidth="150.0" styleClass="delete_button" stylesheets="@../styles/notification.css" visible="false" AnchorPane.leftAnchor="385.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="44.0">
+      <Button fx:id="deleteButton" layoutY="44.0" mnemonicParsing="false" onAction="#handleDeleteButton" prefHeight="34.0" prefWidth="150.0" styleClass="delete_button" stylesheets="@../styles/notification.css" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="385.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="44.0">
          <graphic>
             <Label prefHeight="21.0" prefWidth="126.0" text="Delete" textFill="WHITE">
                <font>

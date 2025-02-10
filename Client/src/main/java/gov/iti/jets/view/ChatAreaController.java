@@ -140,7 +140,10 @@ public class ChatAreaController {
 
     @FXML
     void handleAttachmentButton(ActionEvent event) {
-        AttachmentHBOX.setVisible(true);
+
+       // AttachmentHBOX.setVisible(true);
+        AttachmentHBOX.setVisible(!AttachmentHBOX.isVisible());
+
     }
 
     @FXML
