@@ -11,6 +11,8 @@ import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
+import java.time.LocalDateTime;
+import java.util.List;
 
 import static gov.iti.jets.controller.Session.chatsControllerMap;
 
@@ -37,15 +39,25 @@ public class GroupServiceController {
 
 
             try {
+                // create in db
                 Group group = addGroupService.createGroup(groupDTO);
-
+                // add it to the session
                 HomeServiceController.addToLastContactList(group);
+                // send notification to all memember of the group
+                List<GroupMemberDTO> members = groupDTO.members();
+                for(GroupMemberDTO member : members){
+                    Notifications notifications = new Notifications(member.phoneNumber(), group.getAdminId(), "You have been added to "+groupDTO.groupName()+" group", LocalDateTime.now(),false,Notification.ADDTOGROUP);
+                    NotificationServiceController.addNotification(notifications);
+                }
+
+
+
             } catch (RemoteException e) {
                 throw new RuntimeException(e);
             }
-            // add it to the session
-            //session.mylastChat
-            // send notification to all memember of the group
+
+
+
 
 
 
