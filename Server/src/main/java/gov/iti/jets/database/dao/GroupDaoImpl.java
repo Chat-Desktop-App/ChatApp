@@ -28,13 +28,40 @@ public class GroupDaoImpl implements GroupDao{
                VALUES (?, ?)
                """;
 
-        PreparedStatement ps
-                = con.prepareStatement(query);
+
+        PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
         ps.setString(1, group.getName());
         ps.setString(2, group.getAdminId());
 
+
+        int n = ps.executeUpdate();
+
+
+        ResultSet rs = ps.getGeneratedKeys();
+        if (rs.next()) {
+            return rs.getInt(1); // Return the generated ID
+        }
+
+        return -1; // Return -1 if no ID was generated
+    }
+
+    public int updateGroupPicture(int group_id, byte[] image) throws SQLException {
+
+        String path = PictureUtil.saveGroupProfilePicture(image, String.valueOf(group_id));
+        String query = """ 
+                            UPDATE `groups`
+                            SET picture = ?
+                            WHERE group_id = ?""";
+        Connection con = dataBaseConnection.getConnection();
+        PreparedStatement ps = con.prepareStatement(query);
+        ps.setString(1, path);
+        ps.setInt(2, group_id);
         int n = ps.executeUpdate();
         return n;
+
+
+
+
     }
 
 
@@ -99,7 +126,7 @@ public class GroupDaoImpl implements GroupDao{
             String pic = rs.getString("picture");
             group.setPicturePath(pic);
             group.setPicture(PictureUtil.getPicture(pic));
-            group.setLastChatAt(LocalDateTime.parse(rs.getString("last_chat_at")));
+            group.setLastChatAt(rs.getTimestamp("last_chat_at").toLocalDateTime());
             return group;
         }else{
             return null;
@@ -147,6 +174,8 @@ public class GroupDaoImpl implements GroupDao{
         }
         return groups;
     }
+
+
 
     @Override
     public List<User> getAllGroupMembers(int groupId) throws SQLException {

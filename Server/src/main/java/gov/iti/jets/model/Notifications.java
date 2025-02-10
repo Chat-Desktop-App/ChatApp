@@ -23,6 +23,14 @@ public class Notifications implements Serializable {
         this.isRead = isRead;
         notificationType = type;
     }
+    public Notifications(String userId, String senderId, String message, LocalDateTime sentAt, boolean isRead, Notification type) {
+        this.userId = userId;
+        this.senderId = senderId;
+        this.message = message;
+        this.sentAt = sentAt;
+        this.isRead = isRead;
+        notificationType = type;
+    }
 
     public int getNotificationId() {
         return notificationId;

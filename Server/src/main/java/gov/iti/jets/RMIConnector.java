@@ -39,6 +39,8 @@ public class RMIConnector {
             registry.bind("NotificationsService", new NotificationsServiceImpl());
             registry.bind("LoadHome", new LoadHomeImp());
             registry.bind("FileTransferService", new FileTransferServiceImpl());
+            registry.bind("AddGroup", new AddGroupImpl());
+
             registry.bind("UserSettingsService", new UserSettingsServiceImpl());
 
             isRunning = true; // Mark the server as running

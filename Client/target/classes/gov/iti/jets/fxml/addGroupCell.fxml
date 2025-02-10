@@ -1,23 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<CheckBox fx:id="friendName" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#handleCheckbox" prefHeight="42.0" prefWidth="354.0" styleClass="check_box" stylesheets="@../styles/addGroupCell.css" text="Amin" textFill="#232440" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <padding>
-      <Insets left="20.0" right="10.0" />
-   </padding>
-   <font>
-      <Font name="System Bold" size="14.0" />
-   </font>
-   <graphic>
+<HBox prefWidth="320.0" spacing="10.0" styleClass="check_box" stylesheets="@../styles/addGroupCell.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.view.AddGroupCellController">
+   <children>
       <ImageView fx:id="friendIcon" fitHeight="40.0" fitWidth="40.0">
          <image>
             <Image url="@../images/person.png" />
          </image>
       </ImageView>
-   </graphic>
-</CheckBox>
+      <VBox prefHeight="40.0" prefWidth="250.0">
+         <Label fx:id="name" stylesheets="@../styles/addGroupCell.css" text="Amin">
+            <font>
+               <Font name="System Bold" size="12.800000190734863" />
+            </font>
+         </Label>
+         <Label fx:id="phoneNum" text="Phone Number" />
+      </VBox>
+      <HBox alignment="CENTER_RIGHT" prefHeight="0.0" prefWidth="107.0">
+         <children>
+            <CheckBox fx:id="add" mnemonicParsing="false" onAction="#handleAdd" />
+         </children>
+      </HBox>
+   </children>
+</HBox>

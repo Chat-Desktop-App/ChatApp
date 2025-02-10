@@ -35,6 +35,12 @@ public class Group implements  Chatable {
 
     }
 
+    public Group(String groupName, String adminId, byte[] picture) {
+        this.groupName = groupName;
+        this.adminId = adminId;
+        this.picture = picture;
+    }
+
     public int getGroupId() {
         return groupId;
     }

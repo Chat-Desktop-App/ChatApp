@@ -17,6 +17,7 @@ public class RMIConnector {
     private LoadHome loadHome;
     private MessagingService messagingService;
     private NotificationsService notificationsService;
+    private AddGroup addGroupService;
     private UserSettingsService userSettingsService;
 
     // Private constructor to handle the connection to services
@@ -30,6 +31,8 @@ public class RMIConnector {
                 loadHome = (LoadHome) reg.lookup("LoadHome");
                 messagingService = (MessagingService) reg.lookup("MessagingService");
                 notificationsService = (NotificationsService) reg.lookup("NotificationsService");
+                addGroupService = (AddGroup) reg.lookup("AddGroup");
+
                 userSettingsService = (UserSettingsService) reg.lookup("UserSettingsService");
                 break;
             } catch (RemoteException | NotBoundException e) {
@@ -84,6 +87,11 @@ public class RMIConnector {
         return notificationsService;
     }
 
+    public AddGroup getAddGroupService() {
+        return addGroupService;
+    }
+
+
     public UserSettingsService getUserSettingsService() {
         return userSettingsService;
     }
@@ -97,6 +105,7 @@ public class RMIConnector {
         messagingService = null;
         rmiConnector = null;
         notificationsService = null;
+        addGroupService = null;
         userSettingsService = null;
     }
 
