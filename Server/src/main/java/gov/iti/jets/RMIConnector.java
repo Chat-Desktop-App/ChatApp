@@ -1,4 +1,3 @@
-
 package gov.iti.jets;
 
 import gov.iti.jets.services.impls.*;
@@ -42,6 +41,7 @@ public class RMIConnector {
             registry.bind("FileTransferService", new FileTransferServiceImpl());
             registry.bind("AddGroup", new AddGroupImpl());
 
+            registry.bind("UserSettingsService", new UserSettingsServiceImpl());
 
             isRunning = true; // Mark the server as running
             System.out.println("Server is up and running.");
