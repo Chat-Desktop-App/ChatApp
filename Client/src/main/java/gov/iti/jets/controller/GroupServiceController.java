@@ -42,7 +42,7 @@ public class GroupServiceController {
                 // create in db
                 Group group = addGroupService.createGroup(groupDTO);
                 // add it to the session
-                HomeServiceController.addToLastContactList(group);
+
                 // send notification to all memember of the group
                 List<GroupMemberDTO> members = groupDTO.members();
                 for(GroupMemberDTO member : members){

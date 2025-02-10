@@ -183,7 +183,7 @@ public class HomeServiceController {
                     }
                     controller.setChat(chatable);
                     addListener(chatable);
-                    myLastChatList.add(0, anchorPane);
+                   Platform.runLater( () -> {myLastChatList.add(0, anchorPane);});
             }
         } catch (IOException e) {
             System.out.println("Error when loading " + fxmlPath + ": " + e.getMessage());
