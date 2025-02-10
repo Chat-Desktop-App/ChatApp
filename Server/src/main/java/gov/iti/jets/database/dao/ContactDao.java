@@ -21,4 +21,5 @@ public interface ContactDao {
     Boolean updateLastContact(String u1, String u2, Timestamp lastChat) throws SQLException;
 
     public List<ContactUser> getLastContact(String phoneNumber) throws SQLException;
+    public ContactUser getFriendContact(String phoneNumber) throws SQLException;
 }

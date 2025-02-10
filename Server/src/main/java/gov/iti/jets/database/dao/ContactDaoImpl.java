@@ -313,8 +313,33 @@ public class ContactDaoImpl implements  ContactDao{
         }
 
     }
+    public ContactUser getFriendContact(String phoneNumber) throws SQLException {
+        Connection con = dataBaseConnection.getConnection();
+        String query = """
+            SELECT c.contact_id, u.fname, u.lname, u.status AS user_status, u.picture, c.status, c.user_id
+            FROM contacts c
+            JOIN users u ON c.contact_id = u.phone_number
+            WHERE (c.user_id = ? OR c.contact_id = ?) AND c.status = 'ACCEPTED'
+            LIMIT 1
+            """;
+        PreparedStatement ps = con.prepareStatement(query);
+        ps.setString(1, phoneNumber);
+        ps.setString(2, phoneNumber);
+        ResultSet rs = ps.executeQuery();
 
+        if (rs.next()) {
+            ContactUser contactUser = new ContactUser(
+                    rs.getString(1),
+                    rs.getString(2),
+                    rs.getString(3), Status.valueOf(rs.getString(4)),
+                    rs.getString(5));
+            byte[] profilePicture = PictureUtil.getPicture(contactUser.getPicturePath());
+            contactUser.setPicture(profilePicture);
+            return contactUser;
+        }
 
+        return null;
+    }
 
 
 }

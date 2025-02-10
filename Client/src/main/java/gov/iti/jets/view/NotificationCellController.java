@@ -1,6 +1,8 @@
 package gov.iti.jets.view;
 
 import gov.iti.jets.controller.NotificationServiceController;
+import gov.iti.jets.model.ContactUser;
+import gov.iti.jets.model.Notification;
 import gov.iti.jets.model.Notifications;
 import gov.iti.jets.model.User;
 import javafx.event.ActionEvent;
@@ -49,7 +51,7 @@ public class NotificationCellController {
 
     @FXML
     void handleMoreButton(ActionEvent event) {
-        deleteButton.setVisible(true);
+        deleteButton.setVisible(!deleteButton.isVisible());
     }
 
     public void setNotificationData(Notifications notification) throws SQLException {
@@ -76,16 +78,22 @@ public class NotificationCellController {
             }
         try {
             if (notification.getSenderId() != null) {
-                User sender = NotificationServiceController.getUser(notification.getSenderId());
+                ContactUser sender = NotificationServiceController.getUser(notification.getSenderId());
                 if (sender != null) {
-                    friendName.setText(sender.getFname() + " " + sender.getLname());
+                    friendName.setText(sender.getName());
 
-                    byte[] pic = sender.getPicture();
-                    if (pic != null) {
-                        friendPic.setImage(new Image(new ByteArrayInputStream(pic)));
-                    } else {
-                        // Set a default image
-                        friendPic = friendPic;
+                    if(notification.getNotificationType() == Notification.ANNOUNCEMENT){
+                        Image image = new Image(getClass().getResource("/gov/iti/jets/images/orca.png").toExternalForm());
+                        friendPic.setImage(image);
+
+                    }else {
+                        byte[] pic = sender.getPicture();
+                        if (pic != null) {
+                            friendPic.setImage(new Image(new ByteArrayInputStream(pic)));
+                        } else {
+                            // Set a default image
+                            friendPic = friendPic;
+                        }
                     }
                 } else {
                     friendName.setText("Unknown User");
