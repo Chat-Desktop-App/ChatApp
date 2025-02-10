@@ -30,20 +30,15 @@ public class ClientApp extends Application {
     private static final String HOME_FXML = "fxml/home.fxml";
     private Login login =  RMIConnector.getRmiConnector().getLoginService();
 
-
     @Override
     public void start(Stage stage)  {
 
         System.out.println("client running.......");
         Parent root = loadView();
         Scene scene = new Scene(root);
-
         stage.setTitle("Orca");
-
         stage.setScene(scene);
         stage.show();
-
-
     }
 
     private Parent loadView() {

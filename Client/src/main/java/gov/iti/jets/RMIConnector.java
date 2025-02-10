@@ -1,10 +1,6 @@
 package gov.iti.jets;
 
-import gov.iti.jets.services.interfaces.LoadHome;
-import gov.iti.jets.services.interfaces.Login;
-import gov.iti.jets.services.interfaces.MessagingService;
-import gov.iti.jets.services.interfaces.NotificationsService;
-import gov.iti.jets.services.interfaces.Register;
+import gov.iti.jets.services.interfaces.*;
 import javafx.scene.Scene;
 
 import java.rmi.NotBoundException;
@@ -21,6 +17,7 @@ public class RMIConnector {
     private LoadHome loadHome;
     private MessagingService messagingService;
     private NotificationsService notificationsService;
+    private ContactService contactService;
 
     // Private constructor to handle the connection to services
     private RMIConnector() {
@@ -28,6 +25,7 @@ public class RMIConnector {
             try {
                 // Get the registry and lookup each service
                 Registry reg = LocateRegistry.getRegistry(1099);
+                contactService = (ContactService) reg.lookup("ContactService");
                 loginService = (Login) reg.lookup("LogIn");
                 registerService = (Register) reg.lookup("Register");
                 loadHome = (LoadHome) reg.lookup("LoadHome");

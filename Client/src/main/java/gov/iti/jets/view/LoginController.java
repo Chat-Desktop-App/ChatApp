@@ -3,6 +3,7 @@ package gov.iti.jets.view;
 import gov.iti.jets.ClientApp;
 import gov.iti.jets.controller.HomeServiceController;
 import gov.iti.jets.controller.LogInServiceController;
+import gov.iti.jets.controller.Session;
 import gov.iti.jets.model.User;
 import javafx.application.Platform;
 import javafx.beans.property.StringProperty;
@@ -119,6 +120,7 @@ public class LoginController implements Initializable {
                 showAlert("Invalid Password", stage);
             }else{
                 System.out.println(user.getFname()+" logged in successfully");
+                Session.getInstance().setPhoneNumber(phoneNumber.getText().trim());
                 FXMLLoader fxmlLoader = new FXMLLoader(ClientApp.class.getResource("fxml/home.fxml"));
                 HomeServiceController.setUser(user);
                 try {

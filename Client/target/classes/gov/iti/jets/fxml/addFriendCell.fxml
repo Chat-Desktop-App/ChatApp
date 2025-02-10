@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="58.0" prefWidth="382.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.view.AddFriendCellController">
+<AnchorPane fx:id="rootPane" fx:controller="gov.iti.jets.view.AddFriendCellController" prefHeight="58.0" prefWidth="382.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label fx:id="friendName" layoutX="84.8" layoutY="15.0" text="Alyaa" AnchorPane.leftAnchor="84.8">
          <font>

@@ -104,7 +104,7 @@ public class ContactDaoImpl implements  ContactDao{
                 SELECT c.contact_id, u.fname, u.lname,  u.status AS user_status, u.picture,  c.status, c.user_id
                 FROM contacts c
                 JOIN users u ON c.contact_id = u.phone_number
-                WHERE c.user_id = ? AND c.status = 'PENDING'
+                WHERE c.contact_id = ? AND c.status = 'PENDING'
                 """;
         PreparedStatement ps
                 = con.prepareStatement(query);

@@ -7,4 +7,5 @@ import java.rmi.RemoteException;
 
 public interface ChatClient extends Remote {
     void receive(Message message) throws RemoteException;
+    
 }
