@@ -94,7 +94,6 @@ public class LoginController implements Initializable {
             if (phoneNumber.getText().isBlank()) {
                 Platform.exit();
 
-
             } else {
                 if(LogInServiceController.checkPhoneNumber(phoneNumber.getText().trim())){
 

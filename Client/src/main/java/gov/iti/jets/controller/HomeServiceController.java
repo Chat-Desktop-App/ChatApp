@@ -77,7 +77,7 @@ public class HomeServiceController {
     }
 
     public static ObservableList<AnchorPane> getPendingContacts() {
-        if (myPendingList == null) {
+//        if (myPendingList == null) {
             String fxmlPath = "/gov/iti/jets/fxml/pendingCard.fxml";
             try {
                 myPendingList = FXCollections.observableArrayList();
@@ -87,12 +87,12 @@ public class HomeServiceController {
                 loadHome = RMIConnector.rmiReconnect().getLoadHome();
                 return getPendingContacts();
             }
-        }
+//        }
         return myPendingList;
     }
 
     public static ObservableList<AnchorPane> getBlockedContacts() {
-        if(myBlockedList == null) {
+//        if(myBlockedList == null) {
             String fxmlPath = "/gov/iti/jets/fxml/blockedCard.fxml";
             try {
                 myBlockedList = FXCollections.observableArrayList();
@@ -102,12 +102,12 @@ public class HomeServiceController {
                 loadHome = RMIConnector.rmiReconnect().getLoadHome();
                 return getBlockedContacts();
             }
-        }
+//        }
         return myBlockedList;
     }
 
     public static ObservableList<AnchorPane> getAllContacts() {
-        if (myAllList == null) {
+//        if (myAllList == null) {
             String fxmlPath = "/gov/iti/jets/fxml/allCard.fxml";
             try {
                 myAllList = FXCollections.observableArrayList();
@@ -117,12 +117,12 @@ public class HomeServiceController {
                 loadHome = RMIConnector.rmiReconnect().getLoadHome();
                 return getAllContacts();
             }
-        }
+//        }
         return myAllList;
     }
 
     public static ObservableList<AnchorPane> getOnlineContacts() {
-        if(myOnlineList == null) {
+//        if(myOnlineList == null) {
             String fxmlPath = "/gov/iti/jets/fxml/onlineCard.fxml";
             try {
                 myOnlineList = FXCollections.observableArrayList();
@@ -132,7 +132,7 @@ public class HomeServiceController {
                 loadHome = RMIConnector.rmiReconnect().getLoadHome();
                 return getOnlineContacts();
             }
-        }
+//        }
         return myOnlineList;
     }
 

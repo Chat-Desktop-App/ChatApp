@@ -17,5 +17,14 @@ public class Session {
     static  ObservableList<AnchorPane> myBlockedList ;
     public static User user ;
     static HashMap<String, ChatsController> chatsControllerMap = new HashMap<>() ;
-
+    public static void clearSession(){
+        homeController= null;
+        myLastChatList= null;
+        myOnlineList = null;
+        myBlockedList = null;
+        myAllList = null;
+        myPendingList = null;
+        chatsControllerMap.clear();
+        user = null;
+    }
 }

@@ -291,6 +291,7 @@ public class ChatAreaController {
         if (hBox != null ){
             Platform.runLater(() -> {
                 messagesList.add(hBox);
+                chatListView.scrollTo(messagesList.size() - 1);
             });
         }
 

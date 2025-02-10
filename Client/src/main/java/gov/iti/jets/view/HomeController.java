@@ -103,8 +103,8 @@ public class HomeController {
 
     @FXML
     void handleHomeIcon(ActionEvent event) {
-
         mainBorderPane.setCenter(mainAnchorPane);
+        MessageServiceController.setActiveChat(null);
     }
 
     @FXML
@@ -120,10 +120,13 @@ public class HomeController {
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
             primaryStage.show();
+            Session.clearSession();
+            MessageServiceController.setActiveChat(null);
 
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.out.println("can't load login");
+            e.printStackTrace();
         }
 
 
@@ -215,9 +218,7 @@ public class HomeController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
             Region region = loader.load();
-            region.prefWidthProperty().bind(mainBorderPane.widthProperty());
-            region.prefHeightProperty().bind(mainBorderPane.heightProperty());
-            mainBorderPane.setCenter(region);
+            setMainBorderPane(region);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
