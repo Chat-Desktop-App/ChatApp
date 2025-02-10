@@ -58,7 +58,7 @@
             </VBox>
             <HBox alignment="CENTER" layoutX="286.0" layoutY="434.0" prefHeight="36.0" prefWidth="102.0" visible="false" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0">
                <children>
-                  <Button fx:id="edit" alignment="CENTER" mnemonicParsing="false" onAction="#handleEditButton" prefHeight="36.0" prefWidth="110.0" text="Edit" textAlignment="CENTER" textFill="WHITE">
+                  <Button fx:id="edit" alignment="CENTER" mnemonicParsing="false" onAction="#handleEditButton" prefHeight="36.0" prefWidth="67.0" text="Save" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="System Bold Italic" size="17.0" />
                      </font>

@@ -50,50 +50,57 @@ public class ProfileController {
     }
     @FXML
     void initialize() {
-            // Populate the ComboBox with Status values
-            status.setItems(FXCollections.observableArrayList(Status.values()));
+        status.setItems(FXCollections.observableArrayList(Status.values()));
 
-            // Custom cell factory to change text color based on Status
-            status.setCellFactory(listView -> new ListCell<>() {
-                @Override
-                protected void updateItem(Status item, boolean empty) {
-                    super.updateItem(item, empty);
-                    if (empty || item == null) {
-                        setText(null);
-                        setGraphic(null);
-                    } else {
-                        setTextFill(getColorForStatus(item)); // Change color based on status
-                    }
+        status.setCellFactory(listView -> new ListCell<>() {
+            @Override
+            protected void updateItem(Status item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                    setGraphic(null);
+                } else {
+                    setText(formatStatusText(item));
+                    setTextFill(getColorForStatus(item));
+                    setStyle("-fx-font-weight: bold;");
                 }
-            });
+            }
+        });
 
-            // Also customize the selected item display
-            status.setButtonCell(new ListCell<>() {
-                @Override
-                protected void updateItem(Status item, boolean empty) {
-                    super.updateItem(item, empty);
-                    if (empty || item == null) {
-                        setText(null);
-                        setGraphic(null);
-                    } else {
-                        setTextFill(getColorForStatus(item)); // Change text color
-                    }
+        status.setButtonCell(new ListCell<>() {
+            @Override
+            protected void updateItem(Status item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                    setGraphic(null);
+                } else {
+                    setText(formatStatusText(item));
+                    setTextFill(getColorForStatus(item));
+                    setStyle("-fx-font-weight: bold;");
                 }
-            });
+            }
+        });
 
-            //  Set default selection
-            status.setValue(Status.AVAILABLE);
-        }
+        status.setValue(Status.AVAILABLE);
+        //status.getSelectionModel().selectFirst();
+    }
 
-//  to return a color based on Status
-        private Color getColorForStatus(Status status) {
-            return switch (status) {
-                case AVAILABLE -> Color.GREEN;
-                case AWAY -> Color.ORANGE;
-                case BUSY -> Color.RED;
-                case OFFLINE -> Color.GRAY;
-            };
-        }
+    // Helper method to return a color based on Status
+    private Color getColorForStatus(Status status) {
+        return switch (status) {
+            case AVAILABLE -> Color.GREEN;
+            case AWAY -> Color.ORANGE;
+            case BUSY -> Color.RED;
+            case OFFLINE -> Color.GRAY;
+        };
+    }
+
+    // Helper method to format status text nicely
+    private String formatStatusText(Status status) {
+        return status.name().charAt(0) + status.name().substring(1);
+    }
+
     @FXML
     void handleStatus(ActionEvent event) {
         UserSettingsServiceController.updateProfileStatus(status.getValue());
@@ -103,20 +110,17 @@ public class ProfileController {
         String BioText = bio.getText();
         UserSettingsServiceController.updateProfileBio(BioText);
     }
-
     @FXML
     void handleEmail(ActionEvent event) {
         String emailText = email.getText();
         UserSettingsServiceController.updateProfileEmail(emailText);
 
     }
-
     @FXML
     void handleFullName(ActionEvent event) {
         String NameText = fullName.getText();
         UserSettingsServiceController.updateProfileName(NameText);
     }
-
     @FXML
     void handleProfilePic(ActionEvent event) throws IOException {
             FileChooser chooser = new FileChooser();
@@ -124,16 +128,15 @@ public class ProfileController {
             chooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif", "*.bmp"));
             File file = chooser.showOpenDialog(picId.getScene().getWindow()); // Use the current window
             if(file != null) {
-               /* String imagepath = file.toURI().toString();
 
-                Image image = new Image(imagepath);
-                picId.setImage(image);*/
+                String imagePath = file.getAbsolutePath(); // Get the absolute path
 
-                byte[] imageBytes = Files.readAllBytes(file.toPath());
-                if (imageBytes != null) {
-                    picId.setImage(new Image(new ByteArrayInputStream(imageBytes)));
-                }
-                UserSettingsServiceController.updateProfilePicture(imageBytes);
+                // Display the image
+                Image image = new Image(file.toURI().toString());
+                picId.setImage(image);
+
+                // Update the profile picture path
+                UserSettingsServiceController.updateProfilePicture(imagePath);
             }
             else
             {

@@ -7,7 +7,7 @@ import java.rmi.RemoteException;
 
 public interface UserSettingsService extends Remote  {
 
-    void UpdatePicture(String phoneNumber,byte[] picture) throws RemoteException;
+    void UpdatePicture(String phoneNumber,String picturepath) throws RemoteException;
     void UpdateBio(String phoneNumber,String bio) throws RemoteException;
     void UpdateFullName(String phoneNumber,String fullName) throws RemoteException;
     void UpdateStatus(String phoneNumber, Status status) throws RemoteException;

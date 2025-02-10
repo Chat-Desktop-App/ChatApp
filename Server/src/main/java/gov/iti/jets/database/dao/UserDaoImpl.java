@@ -214,7 +214,24 @@ public class UserDaoImpl implements UserDao{
         }
         return ps.executeUpdate();
     }
-
+    public int updateFName(String phoneNumber,String FName) throws SQLException {
+        Connection con = dataBaseConnection.getConnection();
+        String query = "UPDATE users SET fname = ? WHERE phone_number = ?";
+        PreparedStatement ps = con.prepareStatement(query);
+        ps.setString(1, FName);
+        ps.setString(2, phoneNumber);
+        int n = ps.executeUpdate();
+        return n;
+    }
+    public int updateLName(String phoneNumber,String LName) throws SQLException {
+        Connection con = dataBaseConnection.getConnection();
+        String query = "UPDATE users SET lname = ? WHERE phone_number = ?";
+        PreparedStatement ps = con.prepareStatement(query);
+        ps.setString(1, LName);
+        ps.setString(2, phoneNumber);
+        int n = ps.executeUpdate();
+        return n;
+    }
     public int updatePicture(String phoneNumber,String picturePath) throws SQLException {
         Connection con = dataBaseConnection.getConnection();
         String query = "UPDATE users SET picture = ? WHERE phone_number = ?";
@@ -225,7 +242,33 @@ public class UserDaoImpl implements UserDao{
         return n;
 
     }
-
+    public int updateStatus(String phoneNumber,Status status) throws SQLException {
+        Connection con = dataBaseConnection.getConnection();
+        String query = "UPDATE users SET status = ? WHERE phone_number = ?";
+        PreparedStatement ps = con.prepareStatement(query);
+        ps.setString(1, status.toString());
+        ps.setString(2, phoneNumber);
+        int n = ps.executeUpdate();
+        return n;
+    }
+    public int updateEmail(String phoneNumber,String email) throws SQLException {
+        Connection con = dataBaseConnection.getConnection();
+        String query = "UPDATE users SET email = ? WHERE phone_number = ?";
+        PreparedStatement ps = con.prepareStatement(query);
+        ps.setString(1, email);
+        ps.setString(2, phoneNumber);
+        int n = ps.executeUpdate();
+        return n;
+    }
+    public int updateBio(String phoneNumber,String Bio) throws SQLException {
+        Connection con = dataBaseConnection.getConnection();
+        String query = "UPDATE users SET bio = ? WHERE phone_number = ?";
+        PreparedStatement ps = con.prepareStatement(query);
+        ps.setString(1, Bio);
+        ps.setString(2, phoneNumber);
+        int n = ps.executeUpdate();
+        return n;
+    }
     @Override
     public Map<String, Integer> getUserStatus() throws SQLException {
         Connection connection = dataBaseConnection.getConnection();

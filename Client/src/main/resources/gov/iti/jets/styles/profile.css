@@ -31,6 +31,7 @@
 }
 .chomboBox {
     -fx-background-color: linear-gradient(to left, #4bd6f2e4, #1657d8);
+    -fx-text-fill: black;
 
 }
 .Profile_button {

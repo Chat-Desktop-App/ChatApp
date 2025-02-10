@@ -19,11 +19,9 @@ public class UserSettingsServiceImpl extends UnicastRemoteObject implements User
         this.user = new UserDaoImpl();
     }
     @Override
-    public void UpdatePicture(String phoneNumber, byte[] picture) throws RemoteException {
+    public void UpdatePicture(String phoneNumber, String picturepath) throws RemoteException {
         try {
-            this.updatedUser = user.getUser(phoneNumber);
-            this.updatedUser.setPicture(picture);
-            this.user.update(updatedUser);
+            this.user.updatePicture(phoneNumber,picturepath);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -32,9 +30,7 @@ public class UserSettingsServiceImpl extends UnicastRemoteObject implements User
     @Override
     public void UpdateBio(String phoneNumber, String bio) throws RemoteException {
         try {
-            this.updatedUser = user.getUser(phoneNumber);
-            this.updatedUser.setBio(bio);
-            this.user.update(updatedUser);
+            this.user.updateBio(phoneNumber,bio);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -42,9 +38,15 @@ public class UserSettingsServiceImpl extends UnicastRemoteObject implements User
     @Override
     public void UpdateFullName(String phoneNumber, String fullName) throws RemoteException {
         try {
-            this.updatedUser = user.getUser(phoneNumber);
-            this.updatedUser.setFullname(fullName);
-            this.user.update(updatedUser);
+            String[] nameParts = fullName.trim().split("\\s+"); // Split by spaces
+
+            String firstName = nameParts[0]; // First word
+            String lastName = (nameParts.length > 1) ? nameParts[nameParts.length - 1] : ""; // Last word
+
+            this.user.updateFName(phoneNumber,firstName);
+            this.user.updateLName(phoneNumber,lastName);
+
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -52,9 +54,8 @@ public class UserSettingsServiceImpl extends UnicastRemoteObject implements User
     @Override
     public void UpdateStatus(String phoneNumber, Status status) throws RemoteException {
         try {
-            this.updatedUser = user.getUser(phoneNumber);
-            this.updatedUser.setStatus(status);
-            this.user.update(updatedUser);
+            this.user.updateStatus(phoneNumber,status);
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -62,9 +63,7 @@ public class UserSettingsServiceImpl extends UnicastRemoteObject implements User
     @Override
     public void UpdateEmail(String phoneNumber, String email) throws RemoteException {
         try {
-            this.updatedUser = user.getUser(phoneNumber);
-            this.updatedUser.setEmail(email);
-            this.user.update(updatedUser);
+            this.user.updateEmail(phoneNumber,email);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

@@ -13,9 +13,9 @@ public class UserSettingsServiceController {
 
 
 
-    public static void updateProfilePicture(byte[] Pict){
+    public static void updateProfilePicture(String PicturePath){
         try {
-            userSettingsService.UpdatePicture(Session.user.getPhoneNumber(),Pict);
+            userSettingsService.UpdatePicture(Session.user.getPhoneNumber(),PicturePath);
         } catch (RemoteException e) {
             throw new RuntimeException(e);
         }
