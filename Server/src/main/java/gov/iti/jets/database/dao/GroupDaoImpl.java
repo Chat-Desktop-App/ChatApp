@@ -203,6 +203,19 @@ public class GroupDaoImpl implements GroupDao{
         return groupMembers;
     }
 
+    @Override
+    public boolean updateLastMessage(int groupId, Timestamp timestamp) throws SQLException {
+        Connection con = dataBaseConnection.getConnection();
+        String query = """
+                UPDATE `groups` SET last_chat_at = ?
+                WHERE group_id = ?
+                """;
+        PreparedStatement ps = con.prepareStatement(query);
+        ps.setTimestamp(1, timestamp);
+        ps.setInt(2, groupId);
+        return ps.executeUpdate() > 0;
+    }
+
     public static void main(String[] args) {
         GroupDaoImpl groupDao = new GroupDaoImpl();
 

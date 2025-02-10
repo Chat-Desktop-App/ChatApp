@@ -1,6 +1,7 @@
 package gov.iti.jets.controller;
 
 import gov.iti.jets.RMIConnector;
+import gov.iti.jets.model.ContactUser;
 import gov.iti.jets.model.Notifications;
 import gov.iti.jets.model.User;
 import gov.iti.jets.services.interfaces.NotificationsService;
@@ -76,13 +77,13 @@ public class NotificationServiceController {
             }
         }
     }
-    public static User getUser(String phoneNum) {
+    public static ContactUser getUser(String phoneNum) {
         if (phoneNum == null) {
             System.err.println("Phone number is null");
             return null;
         }
         try {
-            User user = notificationsService.getUserInfo(phoneNum);
+            ContactUser user = notificationsService.getUserInfo(phoneNum);
             if (user == null) {
                 System.err.println("No user found for phone number: " + phoneNum);
             }
