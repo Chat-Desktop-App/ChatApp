@@ -33,6 +33,7 @@ public class GroupDaoImpl implements GroupDao{
         ps.setString(1, group.getName());
         ps.setString(2, group.getAdminId());
 
+
         int n = ps.executeUpdate();
 
 
@@ -42,6 +43,25 @@ public class GroupDaoImpl implements GroupDao{
         }
 
         return -1; // Return -1 if no ID was generated
+    }
+
+    public int updateGroupPicture(int group_id, byte[] image) throws SQLException {
+
+        String path = PictureUtil.saveGroupProfilePicture(image, String.valueOf(group_id));
+        String query = """ 
+                            UPDATE `groups`
+                            SET picture = ?
+                            WHERE group_id = ?""";
+        Connection con = dataBaseConnection.getConnection();
+        PreparedStatement ps = con.prepareStatement(query);
+        ps.setString(1, path);
+        ps.setInt(2, group_id);
+        int n = ps.executeUpdate();
+        return n;
+
+
+
+
     }
 
 

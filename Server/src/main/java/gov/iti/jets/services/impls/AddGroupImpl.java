@@ -9,6 +9,7 @@ import gov.iti.jets.model.CreateGroupDTO;
 import gov.iti.jets.model.Group;
 import gov.iti.jets.model.GroupMemberDTO;
 import gov.iti.jets.services.interfaces.AddGroup;
+import gov.iti.jets.utility.PictureUtil;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -40,10 +41,14 @@ public class AddGroupImpl extends UnicastRemoteObject implements AddGroup {
 
     @Override
     public void createGroup(CreateGroupDTO groupDTO) throws RemoteException {
+
         Group group = new Group(groupDTO.groupName(), groupDTO.adminPhoneNumber(), groupDTO.groupPicture());
         try {
             // return group id
             int group_id = groupDao.addGroup(group);
+            if(groupDTO.groupPicture() != null && groupDTO.groupPicture().length > 0){
+                groupDao.updateGroupPicture(group_id, groupDTO.groupPicture());
+            }
             if(group_id != -1){
                 groupDao.addGroupMember(group_id, groupDTO.adminPhoneNumber());
                 List<GroupMemberDTO> members = groupDTO.members();

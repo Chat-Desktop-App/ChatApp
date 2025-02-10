@@ -149,7 +149,7 @@ public class AddGroupController implements Initializable {
                     HomeServiceController.getUser().getPhoneNumber(), selectedImageBytes,selectedUsers);
             GroupServiceController.createGroup(group);
             Stage stage = (Stage) createGroupButton.getScene().getWindow();
-            showSucess("Group"+GroupName_Field.getText().trim(), stage);
+            showSucess("Group "+GroupName_Field.getText().trim()+" has been created Successfully", stage);
 
         }
         // handle that the group name not blank
