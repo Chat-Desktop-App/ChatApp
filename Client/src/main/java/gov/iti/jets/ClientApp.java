@@ -71,9 +71,6 @@ public class ClientApp extends Application {
 
                 }
 
-
-
-
             } catch (JAXBException e) {
                 throw new RuntimeException(e);
             } catch (FileNotFoundException e) {

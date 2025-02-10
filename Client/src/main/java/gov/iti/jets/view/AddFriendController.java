@@ -37,7 +37,7 @@ public class AddFriendController {
     private TextField phoneField;
 
     @FXML
-    private Button sendInvetation;
+    private Button sendInvitation;
     private ContactService contactService;
     private ObservableList<AnchorPane> friendList = FXCollections.observableArrayList();
     private Set<String> addedPhoneNumbers = new HashSet<>();
@@ -85,8 +85,10 @@ public class AddFriendController {
                 if(!requestSent) {
                     showAlert(Alert.AlertType.ERROR, "Error", "Failed to send Request to " + receiverPhone);
                 }
+                else {
+                    showAlert(Alert.AlertType.INFORMATION, "Success", "Friend requests sent successfully.");
+                }
             }
-            showAlert(Alert.AlertType.INFORMATION, "Success", "Friend requests sent successfully.");
             friendList.clear();
             addedPhoneNumbers.clear();
         } catch (RemoteException exception) {

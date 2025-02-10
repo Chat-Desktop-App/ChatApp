@@ -96,6 +96,32 @@ public class ContactDaoImpl implements  ContactDao{
         return  contactUsers;
     }
 
+    @Override
+    public List<ContactUser> getRejectedContacts(String phoneNumber) throws SQLException {
+        Connection con = dataBaseConnection.getConnection();
+        String query = """
+                SELECT c.contact_id, u.fname, u.lname,  u.status AS user_status, u.picture,  c.status, c.user_id
+                FROM contacts c
+                JOIN users u ON c.contact_id = u.phone_number
+                WHERE c.contact_id = ? AND c.status = 'REJECTED'
+                """;
+        PreparedStatement ps
+                = con.prepareStatement(query);
+        ps.setString(1, phoneNumber);
+        ResultSet rs = ps.executeQuery();
+        List<ContactUser> contactUsers = new ArrayList<>();
+
+        while(rs.next()){
+            ContactUser contactUser = new ContactUser(rs.getString(1),
+                    rs.getString(2), rs.getString(3), Status.valueOf(rs.getString(4)), rs.getString(5));
+            byte[] profilePicture = PictureUtil.getPicture(contactUser.getPicturePath());
+            contactUser.setPicture(profilePicture);
+            contactUsers.add(contactUser);
+        }
+        return  contactUsers;
+
+    }
+
 
     @Override
     public List<ContactUser> getPendingContacts(String phoneNumber) throws SQLException {
@@ -188,7 +214,156 @@ public class ContactDaoImpl implements  ContactDao{
 
     @Override
     public int addContact(String phoneNumber, String contactPhoneNumber) throws SQLException {
-        // add phone number as a contact to co
+        Connection con = dataBaseConnection.getConnection();
+
+        // Check existing status between users
+        String checkQuery = """
+        SELECT user_id, contact_id, status FROM contacts 
+        WHERE (user_id = ? AND contact_id = ?) 
+           OR (user_id = ? AND contact_id = ?)
+    """;
+        PreparedStatement checkStmt = con.prepareStatement(checkQuery);
+        checkStmt.setString(1, phoneNumber);
+        checkStmt.setString(2, contactPhoneNumber);
+        checkStmt.setString(3, contactPhoneNumber);
+        checkStmt.setString(4, phoneNumber);
+
+        ResultSet rs = checkStmt.executeQuery();
+
+        boolean senderPending = false;
+        boolean receiverPending = false;
+        boolean rejectedExists = false;
+
+        while (rs.next()) {
+            String userId = rs.getString("user_id");
+            String contactId = rs.getString("contact_id");
+            String status = rs.getString("status");
+
+            if (userId.equals(phoneNumber) && contactId.equals(contactPhoneNumber) && "PENDING".equals(status)) {
+                senderPending = true;
+            }
+            if (userId.equals(contactPhoneNumber) && contactId.equals(phoneNumber) && "PENDING".equals(status)) {
+                receiverPending = true;
+            }
+            if ("REJECTED".equals(status)) {
+                rejectedExists = true;
+            }
+        }
+
+        // If both requests are pending, update both to ACCEPTED
+        if (senderPending && receiverPending) {
+            String updateToAcceptedQuery = """
+            UPDATE contacts SET status = 'ACCEPTED'
+            WHERE (user_id = ? AND contact_id = ? AND status = 'PENDING')
+               OR (user_id = ? AND contact_id = ? AND status = 'PENDING')
+        """;
+            PreparedStatement updateStmt = con.prepareStatement(updateToAcceptedQuery);
+            updateStmt.setString(1, phoneNumber);
+            updateStmt.setString(2, contactPhoneNumber);
+            updateStmt.setString(3, contactPhoneNumber);
+            updateStmt.setString(4, phoneNumber);
+
+            return updateStmt.executeUpdate(); // Should return 2 if both are updated
+        }
+
+        // If the relationship was REJECTED, update to ACCEPTED
+        if (rejectedExists) {
+            String updateRejectedQuery = """
+            UPDATE contacts SET status = 'ACCEPTED'
+            WHERE (user_id = ? AND contact_id = ? AND status = 'REJECTED')
+               OR (user_id = ? AND contact_id = ? AND status = 'REJECTED')
+        """;
+            PreparedStatement updateStmt = con.prepareStatement(updateRejectedQuery);
+            updateStmt.setString(1, phoneNumber);
+            updateStmt.setString(2, contactPhoneNumber);
+            updateStmt.setString(3, contactPhoneNumber);
+            updateStmt.setString(4, phoneNumber);
+
+            return updateStmt.executeUpdate(); // Should return 1 if updated
+        }
+
+        // If no existing request, insert a new PENDING request
+        String insertQuery = "INSERT INTO contacts (user_id, contact_id, status) VALUES (?, ?, ?)";
+        PreparedStatement insertStmt = con.prepareStatement(insertQuery);
+        insertStmt.setString(1, phoneNumber);
+        insertStmt.setString(2, contactPhoneNumber);
+        insertStmt.setString(3, ContactStatus.PENDING.toString());
+
+        return insertStmt.executeUpdate();
+        /*Connection con = dataBaseConnection.getConnection();
+
+        // Check if the contact already exists
+        String checkQuery = """
+        SELECT status FROM contacts 
+        WHERE (user_id = ? AND contact_id = ?) 
+           OR (user_id = ? AND contact_id = ?)
+    """;
+        PreparedStatement checkStmt = con.prepareStatement(checkQuery);
+        checkStmt.setString(1, phoneNumber);
+        checkStmt.setString(2, contactPhoneNumber);
+        checkStmt.setString(3, contactPhoneNumber);
+        checkStmt.setString(4, phoneNumber);
+
+        ResultSet rs = checkStmt.executeQuery();
+        if (rs.next()) {
+            String existingStatus = rs.getString("status");
+
+            // If the existing status is REJECTED, update it to ACCEPTED
+            if ("REJECTED".equals(existingStatus)) {
+                String updateQuery = """
+                UPDATE contacts SET status = 'ACCEPTED'
+                WHERE (user_id = ? AND contact_id = ? AND status = 'REJECTED')
+                   OR (user_id = ? AND contact_id = ? AND status = 'REJECTED')
+            """;
+                PreparedStatement updateStmt = con.prepareStatement(updateQuery);
+                updateStmt.setString(1, phoneNumber);
+                updateStmt.setString(2, contactPhoneNumber);
+                updateStmt.setString(3, contactPhoneNumber);
+                updateStmt.setString(4, phoneNumber);
+
+                return updateStmt.executeUpdate(); // Return 1 if updated
+            }
+
+            return 0; // Contact already exists and is not rejected, so no insertion needed
+        }
+
+        // Insert new contact if it doesn't exist
+        String insertQuery = "INSERT INTO contacts (user_id, contact_id, status) VALUES (?, ?, ?)";
+        PreparedStatement insertStmt = con.prepareStatement(insertQuery);
+        insertStmt.setString(1, phoneNumber);
+        insertStmt.setString(2, contactPhoneNumber);
+        insertStmt.setString(3, ContactStatus.PENDING.toString());
+
+        return insertStmt.executeUpdate();*/
+        // avoid duplicate entries
+        /*Connection con = dataBaseConnection.getConnection();
+
+        // Check if contact already exists
+        String checkQuery = """
+        SELECT COUNT(*) FROM contacts 
+        WHERE (user_id = ? AND contact_id = ?) OR (user_id = ? AND contact_id = ?)
+    """;
+        PreparedStatement checkStmt = con.prepareStatement(checkQuery);
+        checkStmt.setString(1, phoneNumber);
+        checkStmt.setString(2, contactPhoneNumber);
+        checkStmt.setString(3, contactPhoneNumber);
+        checkStmt.setString(4, phoneNumber);
+
+        ResultSet rs = checkStmt.executeQuery();
+        if (rs.next() && rs.getInt(1) > 0) {
+            return 0; // Contact already exists, no insertion needed
+        }
+
+        // Insert new contact if it doesn't exist
+        String insertQuery = "INSERT INTO contacts (user_id, contact_id, status) VALUES (?, ?, ?)";
+        PreparedStatement insertStmt = con.prepareStatement(insertQuery);
+        insertStmt.setString(1, phoneNumber);
+        insertStmt.setString(2, contactPhoneNumber);
+        insertStmt.setString(3, ContactStatus.PENDING.toString());
+
+        return insertStmt.executeUpdate();*/
+
+        /*// add phone number as a contact to co
         // add contact and set status to ?
         Connection con = dataBaseConnection.getConnection();
         String query = "INSERT INTO contacts (contact_id, user_id, status) VALUES (?, ?, ?)";
@@ -197,7 +372,7 @@ public class ContactDaoImpl implements  ContactDao{
         ps.setString(2, contactPhoneNumber);
         ps.setString(3,ContactStatus.PENDING.toString());
 
-        return ps.executeUpdate();
+        return ps.executeUpdate();*/
 
     }
 
@@ -261,48 +436,6 @@ public class ContactDaoImpl implements  ContactDao{
         }
         return  contactUsers;
     }
-
-    public static void main(String[] args){
-        ContactDaoImpl contactDao = new ContactDaoImpl();
-        String phoneNumber = "+1234567890";  // Janes's phone number
-        String contactPhoneNumber = "+1122334455"; // alice's phone number
-        try{
-            //contactDao.addContact(phoneNumber, contactPhoneNumber);
-            // Test for friends contacts
-            List<ContactUser> friends = contactDao.getFriendsContacts(contactPhoneNumber);
-            System.out.println("Friends Contacts: " + friends.size());
-            for (ContactUser contact : friends) {
-                System.out.println(contact);
-            }
-
-            // Test for pending contacts
-            List<ContactUser> pending = contactDao.getPendingContacts(contactPhoneNumber);
-            System.out.println("Pending Contacts: " + pending.size());
-            for (ContactUser contact : pending) {
-                System.out.println(contact);
-            }
-
-            // Test for blocked contacts
-            List<ContactUser> blocked = contactDao.getBlockedContacts(contactPhoneNumber);
-            System.out.println("Blocked Contacts: " + blocked.size());
-            for (ContactUser contact : blocked) {
-                System.out.println(contact);
-            }
-
-            // Test for all contacts
-            List<ContactUser> allContacts = contactDao.getAllContacts(contactPhoneNumber);
-            System.out.println("All Contacts: " + allContacts.size());
-            for (ContactUser contact : allContacts) {
-                System.out.println(contact);
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-
 
 
 }
