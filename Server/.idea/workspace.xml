@@ -5,54 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="29434122-bddf-47bf-bcd9-02e3da6dc58d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/controller/SettingsServiceController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Client/session.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/session.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/RMIConnector.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/RMIConnector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/controller/GroupServiceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/controller/GroupServiceController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/controller/HomeServiceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/controller/HomeServiceController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/controller/MessageServiceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/controller/MessageServiceController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/controller/NotificationServiceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/controller/NotificationServiceController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/model/Chatable.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/model/Chatable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/model/ContactUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/model/ContactUser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/model/Group.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/model/Group.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/model/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/model/Message.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/services/impls/ChatClientImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/services/impls/ChatClientImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/services/interfaces/ChatClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/services/interfaces/ChatClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/services/interfaces/NotificationsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/services/interfaces/NotificationsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/view/BlockedCardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/view/BlockedCardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/view/ChatAreaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/view/ChatAreaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/view/ChatsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/view/ChatsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/view/NotificationCellController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/view/NotificationCellController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/view/PendingCardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/view/PendingCardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/view/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/view/ProfileController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/resources/gov/iti/jets/fxml/notificationCell.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/resources/gov/iti/jets/fxml/notificationCell.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/resources/gov/iti/jets/fxml/profile.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/resources/gov/iti/jets/fxml/profile.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/target/classes/gov/iti/jets/fxml/notificationCell.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/target/classes/gov/iti/jets/fxml/notificationCell.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/target/classes/gov/iti/jets/fxml/profile.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/target/classes/gov/iti/jets/fxml/profile.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/target/classes/gov/iti/jets/model/ContactUser.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/target/classes/gov/iti/jets/model/ContactUser.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/services/interfaces/AddGroup.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/services/interfaces/AddGroup.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Client/target/classes/gov/iti/jets/model/Group.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/target/classes/gov/iti/jets/model/Group.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/target/classes/gov/iti/jets/model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/target/classes/gov/iti/jets/model/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/target/classes/gov/iti/jets/view/BlockedCardController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/target/classes/gov/iti/jets/view/BlockedCardController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/target/classes/gov/iti/jets/view/ChatAreaController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/target/classes/gov/iti/jets/view/ChatAreaController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/target/classes/gov/iti/jets/view/NotificationCellController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/target/classes/gov/iti/jets/view/NotificationCellController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/target/classes/gov/iti/jets/view/PendingCardController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/target/classes/gov/iti/jets/view/PendingCardController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/target/classes/gov/iti/jets/view/ProfileController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/target/classes/gov/iti/jets/view/ProfileController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gov/iti/jets/database/dao/ContactDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gov/iti/jets/database/dao/ContactDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gov/iti/jets/database/dao/ContactDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gov/iti/jets/database/dao/ContactDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gov/iti/jets/database/dao/GroupDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gov/iti/jets/database/dao/GroupDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/11_group_pic.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/pictures/11_group_pic.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/gov/iti/jets/database/dao/GroupDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gov/iti/jets/database/dao/GroupDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gov/iti/jets/database/dao/UserDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gov/iti/jets/database/dao/UserDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gov/iti/jets/model/ContactUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gov/iti/jets/model/ContactUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gov/iti/jets/model/Group.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gov/iti/jets/model/Group.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gov/iti/jets/model/LastChatable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gov/iti/jets/model/Chatable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gov/iti/jets/model/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gov/iti/jets/model/Message.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gov/iti/jets/services/impls/LoadHomeImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gov/iti/jets/services/impls/LoadHomeImp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gov/iti/jets/services/impls/MessagingServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gov/iti/jets/services/impls/MessagingServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gov/iti/jets/services/impls/NotificationsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gov/iti/jets/services/impls/NotificationsServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gov/iti/jets/services/interfaces/ChatClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gov/iti/jets/services/interfaces/ChatClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gov/iti/jets/services/interfaces/LoadHome.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gov/iti/jets/services/interfaces/LoadHome.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gov/iti/jets/services/interfaces/NotificationsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gov/iti/jets/services/interfaces/NotificationsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gov/iti/jets/services/impls/AddGroupImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gov/iti/jets/services/impls/AddGroupImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gov/iti/jets/services/interfaces/AddGroup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gov/iti/jets/services/interfaces/AddGroup.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,7 +76,7 @@
     "Application.RMIConnector.executor": "Run",
     "RunOnceActivity.git.unshallow": "true",
     "com.codeium.enabled": "true",
-    "git-widget-placeholder": "Merging group-service",
+    "git-widget-placeholder": "group-service",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true"
   }

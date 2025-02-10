@@ -34,26 +34,23 @@ public class GroupServiceController {
 
 
     public static void createGroup(CreateGroupDTO groupDTO){
-        try {
-            addGroupService.createGroup(groupDTO);
+
+
+            try {
+                Group group = addGroupService.createGroup(groupDTO);
+
+                HomeServiceController.addToLastContactList(group);
+            } catch (RemoteException e) {
+                throw new RuntimeException(e);
+            }
             // add it to the session
             //session.mylastChat
             // send notification to all memember of the group
 
-            try {
-                String fxmlPath = "/gov/iti/jets/fxml/Chats.fxml";
-                FXMLLoader loader = new FXMLLoader(HomeServiceController.class.getResource(fxmlPath));
-                AnchorPane anchorPane = loader.load();
-                ChatsController controller = loader.getController();
 
-                //chatsControllerMap.put(String.valueOf(((Group)chatable).getGroupId()), controller);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            //add to chatable map
-        } catch (RemoteException e) {
-            throw new RuntimeException(e);
-        }
+
+
+
     }
 
 

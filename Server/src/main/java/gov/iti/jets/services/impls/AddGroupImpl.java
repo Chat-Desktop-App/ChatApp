@@ -40,12 +40,13 @@ public class AddGroupImpl extends UnicastRemoteObject implements AddGroup {
     }
 
     @Override
-    public void createGroup(CreateGroupDTO groupDTO) throws RemoteException {
+    public Group createGroup(CreateGroupDTO groupDTO) throws RemoteException {
 
         Group group = new Group(groupDTO.groupName(), groupDTO.adminPhoneNumber(), groupDTO.groupPicture());
+        Group resGroup = null;
         try {
             // return group id
-            int group_id = groupDao.addGroup(group);
+             int group_id = groupDao.addGroup(group);
             if(groupDTO.groupPicture() != null && groupDTO.groupPicture().length > 0){
                 groupDao.updateGroupPicture(group_id, groupDTO.groupPicture());
             }
@@ -56,11 +57,13 @@ public class AddGroupImpl extends UnicastRemoteObject implements AddGroup {
                     groupDao.addGroupMember(group_id, member.phoneNumber());
                 }
             }
+             resGroup = groupDao.getGroupByID(group_id);
 
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        return  resGroup;
 
     }
 }

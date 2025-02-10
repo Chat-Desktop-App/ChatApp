@@ -126,7 +126,7 @@ public class GroupDaoImpl implements GroupDao{
             String pic = rs.getString("picture");
             group.setPicturePath(pic);
             group.setPicture(PictureUtil.getPicture(pic));
-            group.setLastChatAt(LocalDateTime.parse(rs.getString("last_chat_at")));
+            group.setLastChatAt(rs.getTimestamp("last_chat_at").toLocalDateTime());
             return group;
         }else{
             return null;
