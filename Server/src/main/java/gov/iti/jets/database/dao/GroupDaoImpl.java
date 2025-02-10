@@ -5,10 +5,7 @@ import gov.iti.jets.model.Group;
 import gov.iti.jets.model.User;
 import gov.iti.jets.utility.PictureUtil;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,14 +28,22 @@ public class GroupDaoImpl implements GroupDao{
                VALUES (?, ?)
                """;
 
-        PreparedStatement ps
-                = con.prepareStatement(query);
+
+        PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
         ps.setString(1, group.getName());
         ps.setString(2, group.getAdminId());
 
         int n = ps.executeUpdate();
-        return n;
+
+
+        ResultSet rs = ps.getGeneratedKeys();
+        if (rs.next()) {
+            return rs.getInt(1); // Return the generated ID
+        }
+
+        return -1; // Return -1 if no ID was generated
     }
+
 
     @Override
     public List<Group> getGroups(String phoneNumber) throws SQLException {

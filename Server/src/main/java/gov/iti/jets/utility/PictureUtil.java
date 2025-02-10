@@ -53,6 +53,9 @@ public class PictureUtil{
 
     // get user picture
     public static byte[] getPicture(String picturePath){
+        if(picturePath == null){
+            return null;
+        }
         File file = new File(picturePath);
         try (FileInputStream fis = new FileInputStream(file);
              FileChannel fileChannel = fis.getChannel()) {

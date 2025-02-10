@@ -120,6 +120,7 @@ public class LoginController implements Initializable {
                 showAlert("Invalid Password", stage);
             }else{
                 System.out.println(user.getFname()+" logged in successfully");
+                System.out.println(user.getPhoneNumber());
                 FXMLLoader fxmlLoader = new FXMLLoader(ClientApp.class.getResource("fxml/home.fxml"));
                 HomeServiceController.setUser(user);
                 try {
