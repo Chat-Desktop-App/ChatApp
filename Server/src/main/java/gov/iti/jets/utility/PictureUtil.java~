@@ -59,11 +59,14 @@ public class PictureUtil{
         File file = new File(picturePath);
         try (FileInputStream fis = new FileInputStream(file);
              FileChannel fileChannel = fis.getChannel()) {
+
             ByteBuffer buffer = ByteBuffer.allocate((int) fileChannel.size());
             fileChannel.read(buffer);
             return buffer.array();
+
         } catch (IOException e) {
             e.printStackTrace();
+            System.out.println("aaa");
             return null;
         }
     }

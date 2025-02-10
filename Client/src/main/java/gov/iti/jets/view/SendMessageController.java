@@ -47,7 +47,7 @@ public class SendMessageController {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("E h:mm a", Locale.ENGLISH);
         String formattedTimestamp = dateTime.format(formatter);
         timeStamp.setText(formattedTimestamp);
-        timeStamp.setText(message.getTimestamp().toLocalDateTime().toString());
+//        timeStamp.setText(message.getTimestamp().toLocalDateTime().toString());
         setTextFormat();
     }
 
@@ -63,7 +63,6 @@ public class SendMessageController {
 
         text.setFill(Paint.valueOf(message.getFontColour()));
         contentVBox.setStyle("-fx-background-color:" + message.getTextBackGroundColour()+ ";");
-        System.out.println(message.getTextBackGroundColour());
     }
 
 }

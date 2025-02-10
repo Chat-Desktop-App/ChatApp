@@ -1,29 +1,38 @@
 package gov.iti.jets.view;
 
-import java.net.URL;
+
+import java.io.ByteArrayInputStream;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
-import java.util.ResourceBundle;
-
-import gov.iti.jets.model.Message;
+import gov.iti.jets.model.GroupMessage;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
 
-public class receiveMessageController {
-    Message message;
+public class ReceiveGroupMessageController {
+
+    private GroupMessage message;
 
     @FXML
-    private VBox contentVBox;
+    private Text messageContent;
+
+    @FXML
+    private Text name;
+
     @FXML
     private HBox parentHBox;
 
     @FXML
-    private Text text;
+    private ImageView profilePic;
+
+    @FXML
+    private VBox contentVBox;
 
     @FXML
     private Label timeStamp;
@@ -33,15 +42,19 @@ public class receiveMessageController {
 
     }
 
-    public void setMessage(Message message) {
+    public void setMessage(GroupMessage message) {
         this.message = message;
-        System.out.println(message.getContent());
-        text.setText(message.getContent());
-
+        messageContent.setText(message.getContent());
         LocalDateTime dateTime = message.getTimestamp().toLocalDateTime();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("E h:mm a", Locale.ENGLISH);
         String formattedTimestamp = dateTime.format(formatter);
         timeStamp.setText(formattedTimestamp);
+        name.setText(message.getName());
+        byte [] pic = message.getProfilePicture();
+        if (pic != null){
+            profilePic.setImage(new Image(new ByteArrayInputStream(pic)));
+        }
+
         timeStamp.setText(message.getTimestamp().toLocalDateTime().toString());
         setTextFormat();
     }
@@ -54,11 +67,9 @@ public class receiveMessageController {
         if (message.getFontSize() != 0){builder.append("-fx-font-size: ").append(message.getFontSize()).append("px;\n");}
         if (message.getFontStyle() != null){builder.append("-fx-font-family: '").append(message.getFontStyle()).append("';\n");}
 
-        text.setStyle(builder.toString());
+        messageContent.setStyle(builder.toString());
 
-        text.setFill(Paint.valueOf(message.getFontColour()));
+        messageContent.setFill(Paint.valueOf(message.getFontColour()));
         contentVBox.setStyle("-fx-background-color:" + message.getTextBackGroundColour()+ ";");
-        System.out.println(message.getTextBackGroundColour());
     }
-
 }

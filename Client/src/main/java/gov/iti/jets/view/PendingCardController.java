@@ -30,12 +30,12 @@ public class PendingCardController {
 
     @FXML
     void handleAccept_Invit(ActionEvent event) {
-        Boolean flag = HomeServiceController.updateContact(contactUser.getPhoneNumber(), ContactStatus.ACCEPTED , ContactStatus.PENDING);
+        Boolean flag = HomeServiceController.updateContact(contactUser, ContactStatus.ACCEPTED , ContactStatus.PENDING);
     }
 
     @FXML
     void handleReject_Invit(ActionEvent event) {
-        Boolean flag = HomeServiceController.updateContact(contactUser.getPhoneNumber(), ContactStatus.REJECTED , ContactStatus.PENDING);
+        Boolean flag = HomeServiceController.updateContact(contactUser, ContactStatus.REJECTED , ContactStatus.PENDING);
     }
 
     @FXML

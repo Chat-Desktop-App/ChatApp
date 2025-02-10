@@ -87,7 +87,7 @@ public class UserDaoImpl implements UserDao{
             user.setNumberEnteries(rs.getLong(12));
             user.setLastSeen(rs.getTimestamp(13).toLocalDateTime());
             user.setAdmin(rs.getBoolean(14));
-            user.setPicture(PictureUtil.getPicture(user.getPicturePath()));
+//            user.setPicture(PictureUtil.getPicture(user.getPicturePath()));
             return user;
         }else{
         return null;

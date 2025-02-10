@@ -1,38 +1,27 @@
 package gov.iti.jets.view;
 
-
-import java.io.ByteArrayInputStream;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
-import gov.iti.jets.model.GroupMessage;
+
+import gov.iti.jets.model.Message;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
 
-public class receiveGroupMessageController {
-
-    private GroupMessage message;
-
-    @FXML
-    private Text messageContent;
+public class ReceiveMessageController {
+    Message message;
 
     @FXML
-    private Text name;
-
+    private VBox contentVBox;
     @FXML
     private HBox parentHBox;
 
     @FXML
-    private ImageView profilePic;
-
-    @FXML
-    private VBox contentVBox;
+    private Text text;
 
     @FXML
     private Label timeStamp;
@@ -42,20 +31,15 @@ public class receiveGroupMessageController {
 
     }
 
-    public void setMessage(GroupMessage message) {
+    public void setMessage(Message message) {
         this.message = message;
-        messageContent.setText(message.getContent());
+        text.setText(message.getContent());
+
         LocalDateTime dateTime = message.getTimestamp().toLocalDateTime();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("E h:mm a", Locale.ENGLISH);
         String formattedTimestamp = dateTime.format(formatter);
         timeStamp.setText(formattedTimestamp);
-        name.setText(message.getName());
-        byte [] pic = message.getProfilePicture();
-        if (pic != null){
-            profilePic.setImage(new Image(new ByteArrayInputStream(pic)));
-        }
-
-        timeStamp.setText(message.getTimestamp().toLocalDateTime().toString());
+//        timeStamp.setText(message.getTimestamp().toLocalDateTime().toString());
         setTextFormat();
     }
 
@@ -67,10 +51,10 @@ public class receiveGroupMessageController {
         if (message.getFontSize() != 0){builder.append("-fx-font-size: ").append(message.getFontSize()).append("px;\n");}
         if (message.getFontStyle() != null){builder.append("-fx-font-family: '").append(message.getFontStyle()).append("';\n");}
 
-        messageContent.setStyle(builder.toString());
+        text.setStyle(builder.toString());
 
-        messageContent.setFill(Paint.valueOf(message.getFontColour()));
+        text.setFill(Paint.valueOf(message.getFontColour()));
         contentVBox.setStyle("-fx-background-color:" + message.getTextBackGroundColour()+ ";");
-        System.out.println(message.getTextBackGroundColour());
     }
+
 }

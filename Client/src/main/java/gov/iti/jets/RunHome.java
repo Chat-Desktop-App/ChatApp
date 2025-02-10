@@ -20,15 +20,15 @@ public class RunHome extends Application {
     public void start(Stage stage)  {
         primaryStage= stage;
         System.out.println("client running.......");
-        FXMLLoader loader = new FXMLLoader(RunHome.class.getResource("fxml/addGroup.fxml"));
-        //FXMLLoader loader2 = new FXMLLoader(RunHome.class.getResource("fxml/loading.fxml"));
-        //HomeServiceController.setUser(new User("1234567890","John","Doe"));
+        FXMLLoader loader = new FXMLLoader(RunHome.class.getResource("fxml/home.fxml"));
+        FXMLLoader loader2 = new FXMLLoader(RunHome.class.getResource("fxml/loading.fxml"));
+        HomeServiceController.setUser(new User("0987654321","John","Doe"));
 
         Scene scene = null;
         try {
             scene = new Scene(loader.load());
 
-            //loadingScene = new Scene(loader2.load());
+            loadingScene = new Scene(loader2.load());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

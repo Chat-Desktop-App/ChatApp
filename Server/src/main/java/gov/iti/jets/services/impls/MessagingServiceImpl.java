@@ -1,25 +1,33 @@
 package gov.iti.jets.services.impls;
 
+import gov.iti.jets.database.dao.GroupDaoImpl;
 import gov.iti.jets.database.dao.MessageDaoImpl;
 import gov.iti.jets.model.GroupMessage;
 import gov.iti.jets.model.Message;
+import gov.iti.jets.model.Recipient;
+import gov.iti.jets.model.User;
+import gov.iti.jets.services.interfaces.ChatClient;
 import gov.iti.jets.services.interfaces.MessagingService;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.sql.SQLException;
 import java.util.List;
 
 public class MessagingServiceImpl extends UnicastRemoteObject implements MessagingService {
     private MessageDaoImpl messageDaoImpl;
+    private GroupDaoImpl groupDao;
 
     public MessagingServiceImpl() throws RemoteException {
         super();
         this.messageDaoImpl = new MessageDaoImpl();
+        this.groupDao = new GroupDaoImpl();
     }
 
     @Override
     public boolean sendMessage(Message message) throws RemoteException {
         int rowsAffected = messageDaoImpl.addMessage(message);
+        resendMessage(message);
         return rowsAffected > 0;
     }
 
@@ -51,5 +59,30 @@ public class MessagingServiceImpl extends UnicastRemoteObject implements Messagi
     @Override
     public void deleteMessage(int messageId) throws RemoteException {
         messageDaoImpl.deleteMessage(messageId);
+    }
+
+    public void resendMessage(Message message) throws RemoteException {
+        if(message.getRecipient() == Recipient.GROUP){
+            try {
+                List<User> userList = groupDao.getAllGroupMembers(message.getGroupId());
+                for (User user: userList){
+                    if (user.getPhoneNumber().equals(message.getSenderId())){continue;}
+                    ChatClient client=LoginImpl.getOnlineClients().get(user.getPhoneNumber());
+                    if(client!=null){
+                        client.receive(message);
+                    }
+                }
+            } catch (SQLException e) {
+                System.out.println("error loading message");
+                e.printStackTrace();
+            }
+        }
+        else{
+            ChatClient client=LoginImpl.getOnlineClients().get(message.getReceiverId());
+            if(client!=null){
+                client.receive(message);
+            }
+        }
+
     }
 }

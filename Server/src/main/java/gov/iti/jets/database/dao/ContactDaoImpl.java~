@@ -170,9 +170,7 @@ public class ContactDaoImpl implements  ContactDao{
                 ;
                 """;
         PreparedStatement ps = con.prepareStatement(query);
-        for (int i = 1; i <= 7; i++) {
-            ps.setString(i, phoneNumber);
-        }
+        ps.setString(1, phoneNumber);
         ResultSet rs = ps.executeQuery();
         List<ContactUser> contactUsers = new ArrayList<>();
 

@@ -1,5 +1,7 @@
 package gov.iti.jets.services.impls;
 
+import gov.iti.jets.controller.MessageServiceController;
+import gov.iti.jets.model.Message;
 import gov.iti.jets.services.interfaces.ChatClient;
 
 import java.rmi.RemoteException;
@@ -10,7 +12,7 @@ public class ChatClientImpl extends UnicastRemoteObject implements ChatClient  {
     }
 
     @Override
-    public void receive(String msg) throws RemoteException {
-
+    public void receive(Message message) throws RemoteException {
+        MessageServiceController.receiveMessage(message);
     }
 }

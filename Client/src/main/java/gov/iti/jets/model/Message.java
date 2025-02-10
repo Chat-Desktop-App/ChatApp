@@ -32,6 +32,24 @@ public class Message implements Serializable {
 
     }
 
+    public Message(Message message){
+        messageId = message.getMessageId();
+        senderId = message.getSenderId();
+        recipient = message.getRecipient();
+        receiverId = message.getReceiverId();
+        groupId = message.getGroupId();
+        content = message.getContent();
+        fileId = message.getFileId();
+        fontSize = message.getFontSize();
+        fontStyle = message.getFontStyle();
+        fontColour = message.getFontColour();
+        isBold = message.isBold();
+        isItalic = message.isItalic();
+        isUnderLine = message.isUnderLine();
+        textBackGroundColour = message.getTextBackGroundColour();
+        timestamp = message.gettimestamp();
+        emoji = message.getEmoji();
+    }
     public Message(int messageId, String senderId, Recipient recipient, String receiverId, int groupId, String content, int fileId, int fontSize, String fontStyle, String fontColour, boolean isBold, boolean isItalic, boolean isUnderLine, String textBackGroundColour, Timestamp timestamp, String emoji) {
         this.messageId = messageId;
         this.senderId = senderId;

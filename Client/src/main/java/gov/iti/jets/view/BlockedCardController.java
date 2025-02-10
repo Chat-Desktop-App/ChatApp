@@ -35,7 +35,7 @@ public class BlockedCardController {
 
     @FXML
     void handleUnblockButton(ActionEvent event) {
-        Boolean flag = HomeServiceController.updateContact(contactUser.getPhoneNumber(), ContactStatus.ACCEPTED , ContactStatus.BLOCKED);
+        Boolean flag = HomeServiceController.updateContact(contactUser, ContactStatus.ACCEPTED , ContactStatus.BLOCKED);
     }
 
     public void setContact(ContactUser contactUser) {

@@ -4,6 +4,8 @@ import gov.iti.jets.ClientApp;
 import gov.iti.jets.controller.HomeServiceController;
 import gov.iti.jets.controller.LogInServiceController;
 import gov.iti.jets.controller.MessageServiceController;
+import gov.iti.jets.controller.Session;
+import gov.iti.jets.controller.NotificationServiceController;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,6 +17,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -23,9 +26,14 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 
 public class HomeController {
+
+
+    @FXML
+    private ImageView newNotifiction;
 
     @FXML
     private Button addFriendIcon;
@@ -95,8 +103,8 @@ public class HomeController {
 
     @FXML
     void handleHomeIcon(ActionEvent event) {
-
         mainBorderPane.setCenter(mainAnchorPane);
+        MessageServiceController.setActiveChat(null);
     }
 
     @FXML
@@ -112,10 +120,13 @@ public class HomeController {
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
             primaryStage.show();
+            Session.clearSession();
+            MessageServiceController.setActiveChat(null);
 
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.out.println("can't load login");
+            e.printStackTrace();
         }
 
 
@@ -167,16 +178,19 @@ public class HomeController {
         String fxmlPath = "/gov/iti/jets/fxml/profile.fxml";
         handleButtonAction(fxmlPath);
     }
-
     @FXML
     void initialize() {
-       // loadHome = RMIConnector.getRmiConnector().getLoadHome();
         HomeServiceController.setHomeController(this);
+        byte [] pic = Session.user.getPicture();
+        if (pic != null){
+            pictureIcon.setImage(new Image(new ByteArrayInputStream(pic)));
+        }
         loadChatsList();
-
+        if(!NotificationServiceController.getNotifications(HomeServiceController.getUser().getPhoneNumber()).isEmpty()){
+            newNotifiction.setVisible(true);
+        }
 
     }
-
     private void loadChatsList() {
         ObservableList<AnchorPane> items = HomeServiceController.getLast();
         chatsTree.prefWidthProperty().bind(chatsBorderPane.widthProperty());
@@ -200,14 +214,11 @@ public class HomeController {
         });
 
     }
-
     private void handleButtonAction(String fxmlPath) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
             Region region = loader.load();
-            region.prefWidthProperty().bind(mainBorderPane.widthProperty());
-            region.prefHeightProperty().bind(mainBorderPane.heightProperty());
-            mainBorderPane.setCenter(region);
+            setMainBorderPane(region);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

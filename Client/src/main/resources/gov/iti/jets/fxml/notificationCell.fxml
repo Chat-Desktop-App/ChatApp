@@ -11,22 +11,22 @@
 
 <AnchorPane fx:id="root" styleClass="anchor_Pane" stylesheets="@../styles/notificationCell.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.view.NotificationCellController">
    <children>
-      <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="23.0" layoutY="8.0" AnchorPane.leftAnchor="23.0">
+      <ImageView fx:id="friendPic" fitHeight="40.0" fitWidth="40.0" layoutX="23.0" layoutY="8.0" AnchorPane.leftAnchor="23.0">
          <image>
             <Image url="@../images/person.png" />
          </image>
       </ImageView>
-      <Label fx:id="friendName" layoutX="71.0" layoutY="15.0" text="Amany" textFill="#2854c5" AnchorPane.leftAnchor="71.0">
+      <Label fx:id="friendName" layoutX="71.0" layoutY="15.0" text="Amany Ahmed " textFill="#2854c5" AnchorPane.leftAnchor="71.0">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Text fx:id="contentOfNotification" fill="#2854c5" layoutX="126.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="has accepted your friend request" AnchorPane.leftAnchor="126.0">
+      <Text fx:id="contentOfNotification" fill="#2854c5" layoutX="196.33333333333334" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="has accepted your friend request" AnchorPane.leftAnchor="196.33333333333334">
          <font>
             <Font size="15.0" />
          </font>
       </Text>
-      <Button fx:id="deleteButton" layoutX="439.0" layoutY="44.0" mnemonicParsing="false" onAction="#handleDeleteButton" prefHeight="34.0" prefWidth="150.0" styleClass="delete_button" stylesheets="@../styles/notification.css" visible="false" AnchorPane.leftAnchor="439.0" AnchorPane.rightAnchor="29.0" AnchorPane.topAnchor="44.0">
+      <Button fx:id="deleteButton" layoutY="44.0" mnemonicParsing="false" onAction="#handleDeleteButton" prefHeight="34.0" prefWidth="150.0" styleClass="delete_button" stylesheets="@../styles/notification.css" visible="false" AnchorPane.leftAnchor="385.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="44.0">
          <graphic>
             <Label prefHeight="21.0" prefWidth="126.0" text="Delete" textFill="WHITE">
                <font>
@@ -38,7 +38,7 @@
             </Label>
          </graphic>
       </Button>
-            <Button fx:id="moreButton" layoutX="512.0" layoutY="13.0" mnemonicParsing="false" onAction="#handleMoreButton" prefHeight="30.0" prefWidth="35.0" styleClass="more_button" AnchorPane.rightAnchor="28.86149088541663">
+            <Button fx:id="moreButton" layoutY="13.0" mnemonicParsing="false" onAction="#handleMoreButton" prefHeight="30.0" prefWidth="35.0" styleClass="more_button" AnchorPane.leftAnchor="500.0">
          <graphic>
             <ImageView fitHeight="20.0" fitWidth="20.0">
                <image>
@@ -48,4 +48,7 @@
          </graphic>
       </Button>
    </children>
+   <padding>
+      <Insets right="5.0" />
+   </padding>
 </AnchorPane>
