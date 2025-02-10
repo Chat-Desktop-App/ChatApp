@@ -97,6 +97,7 @@ public class RMIConnector {
         messagingService = null;
         rmiConnector = null;
         notificationsService = null;
+        userSettingsService = null;
     }
 
 }

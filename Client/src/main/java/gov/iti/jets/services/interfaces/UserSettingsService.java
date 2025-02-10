@@ -4,7 +4,11 @@ import gov.iti.jets.model.Status;
 
 import java.rmi.RemoteException;
 
-public interface UserSettingsService {
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+import java.util.List;
+
+public interface UserSettingsService extends Remote {
 
     void UpdatePicture(String phoneNumber,byte[] picture) throws RemoteException;
     void UpdateBio(String phoneNumber,String bio) throws RemoteException;
