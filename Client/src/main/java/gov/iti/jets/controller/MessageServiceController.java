@@ -1,6 +1,7 @@
 package gov.iti.jets.controller;
 
 import gov.iti.jets.RMIConnector;
+import gov.iti.jets.model.Chatable;
 import gov.iti.jets.model.GroupMessage;
 import gov.iti.jets.model.Message;
 import gov.iti.jets.model.Recipient;
@@ -9,14 +10,16 @@ import gov.iti.jets.view.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
+import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.List;
 
-import static gov.iti.jets.controller.Session.user;
-import static gov.iti.jets.controller.Session.chatsControllerMap;
+import static gov.iti.jets.controller.Session.*;
 
 
 public class MessageServiceController {
@@ -40,12 +43,10 @@ public class MessageServiceController {
                     return;
                 }
             }else if (message.getRecipient() == Recipient.GROUP && !activeChat.isContact()){
-                System.out.println("111111111111");
                 if(message.getGroupId() == activeChat.getGroup().getGroupId()){
                     FXMLLoader loader = new FXMLLoader(MessageServiceController.class.getResource("/gov/iti/jets/fxml/receiveGroupMessage.fxml"));
                     try {
                         HBox hBox = loader.load();
-                        System.out.println("2222222222");
                         ((ReceiveGroupMessageController) loader.getController()).setMessage((GroupMessage) message);
                         activeChat.receivedMessage(hBox);
                     } catch (IOException e) {
@@ -77,6 +78,12 @@ public class MessageServiceController {
             if (flag) {
                 hBox = loader.load();
                 ((SendMessageController) loader.getController()).setMessage(message);
+                if(message.getRecipient() == Recipient.PRIVATE){
+                    ChatsController chatsController = chatsControllerMap.get(message.getReceiverId());
+                    chatsController.getChatable().setLastChatAt(message.getTimestamp().toLocalDateTime());
+                }else{
+                    chatsControllerMap.get(String.valueOf(message.getGroupId())).getChatable().setLastChatAt(message.getTimestamp().toLocalDateTime());
+                }
             }
         } catch (RemoteException e) {
             messagingService = RMIConnector.rmiReconnect().getMessagingService();

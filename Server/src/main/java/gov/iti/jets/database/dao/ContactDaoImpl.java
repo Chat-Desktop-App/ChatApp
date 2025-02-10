@@ -6,10 +6,7 @@ import gov.iti.jets.model.ContactUser;
 import gov.iti.jets.model.Status;
 import gov.iti.jets.utility.PictureUtil;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -210,6 +207,21 @@ public class ContactDaoImpl implements  ContactDao{
                 """;
         PreparedStatement ps = con.prepareStatement(query);
         ps.setString(1, status.toString());
+        ps.setString(2, u1);
+        ps.setString(3, u2);
+        ps.setString(4, u2);
+        ps.setString(5, u1);
+        return ps.executeUpdate() > 0;
+    }
+    @Override
+    public Boolean updateLastContact(String u1, String u2, Timestamp lastChat) throws SQLException {
+        Connection con = dataBaseConnection.getConnection();
+        String query = """
+                UPDATE contacts SET last_chat_at = ?
+                WHERE (contact_id = ? AND user_id = ?) OR ((contact_id = ? AND user_id = ?))
+                """;
+        PreparedStatement ps = con.prepareStatement(query);
+        ps.setTimestamp(1, lastChat);
         ps.setString(2, u1);
         ps.setString(3, u2);
         ps.setString(4, u2);

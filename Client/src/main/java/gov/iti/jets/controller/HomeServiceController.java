@@ -4,6 +4,9 @@ import gov.iti.jets.RMIConnector;
 import gov.iti.jets.model.*;
 import gov.iti.jets.services.interfaces.LoadHome;
 import gov.iti.jets.view.*;
+import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -13,6 +16,7 @@ import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static gov.iti.jets.controller.Session.*;
@@ -46,33 +50,35 @@ public class HomeServiceController {
     }
 
     public static ObservableList<AnchorPane> getLast() {
-            String fxmlPath = "/gov/iti/jets/fxml/Chats.fxml";
-            try {
-                myLastChatList = FXCollections.observableArrayList();
-                List<Chatable> list = loadHome.getLastChats(user.getPhoneNumber());
-                if(list != null){
-                    for (Chatable chatable : list) {
-                        FXMLLoader loader = new FXMLLoader(HomeServiceController.class.getResource(fxmlPath));
-                        AnchorPane anchorPane = loader.load();
-                        ChatsController controller = loader.getController();
-                        if (chatable instanceof ContactUser con) {
-                            chatsControllerMap.put(con.getPhoneNumber(), controller);
-                        }else {
-                            chatsControllerMap.put(String.valueOf(((Group)chatable).getGroupId()), controller);
-                        }
+        String fxmlPath = "/gov/iti/jets/fxml/Chats.fxml";
+        try {
+            myLastChatList = FXCollections.observableArrayList();
+            List<Chatable> list = loadHome.getLastChats(user.getPhoneNumber());
 
-                        controller.setLastChat(chatable);
-
-                        myLastChatList.add(anchorPane);
+            if(list != null){
+                for (Chatable chatable : list) {
+                    FXMLLoader loader = new FXMLLoader(HomeServiceController.class.getResource(fxmlPath));
+                    AnchorPane anchorPane = loader.load();
+                    ChatsController controller = loader.getController();
+                    anchorPane.setUserData(controller);
+                    if (chatable instanceof ContactUser con) {
+                        chatsControllerMap.put(con.getPhoneNumber(), controller);
+                    } else {
+                        chatsControllerMap.put(String.valueOf(((Group)chatable).getGroupId()), controller);
                     }
+
+                    controller.setChat(chatable);
+                    addListener(chatable);
+                    myLastChatList.add(anchorPane);
                 }
-            } catch (RemoteException e) {
-                System.out.println("Error when loadHomeservice: " + e.getMessage());
-                loadHome = RMIConnector.rmiReconnect().getLoadHome();
-                return getLast();
-            } catch (IOException e) {
-                System.out.println("Error when loading " + fxmlPath + ": " + e.getMessage());
             }
+        } catch (RemoteException e) {
+            System.out.println("Error when loading HomeService: " + e.getMessage());
+            loadHome = RMIConnector.rmiReconnect().getLoadHome();
+            return getLast();
+        } catch (IOException e) {
+            System.out.println("Error when loading " + fxmlPath + ": " + e.getMessage());
+        }
         return myLastChatList;
     }
 
@@ -136,7 +142,7 @@ public class HomeServiceController {
         return myOnlineList;
     }
 
-    public static boolean updateContact(ContactUser contact, ContactStatus status, ContactStatus prevStatus) {
+    public static boolean updateLastContactList(ContactUser contact, ContactStatus status, ContactStatus prevStatus) {
         try {
             boolean flag = loadHome.updateContact(user.getPhoneNumber(), contact.getPhoneNumber(), status);
             if (flag) {
@@ -149,14 +155,16 @@ public class HomeServiceController {
                 FXMLLoader loader = new FXMLLoader(HomeServiceController.class.getResource(fxmlPath));
                 AnchorPane anchorPane = loader.load();
                 ChatsController controller = loader.getController();
-                controller.setLastChat(contact);
+                anchorPane.setUserData(controller);
+                controller.setChat(contact);
+                addListener(contact);
                 myLastChatList.add(anchorPane);
             }
             return flag;
         } catch (RemoteException e) {
             System.out.println("Error when updating contact");
             loadHome = RMIConnector.rmiReconnect().getLoadHome();
-            return updateContact(contact, status, prevStatus);
+            return updateLastContactList(contact, status, prevStatus);
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         }
@@ -178,6 +186,29 @@ public class HomeServiceController {
         Session.user = user;
     }
 
+    private static void addListener(Chatable chatable){
+        if (chatable.getLastChatAt() != null) {
+            chatable.setLastChatAtListener(new ChangeListener<LocalDateTime>() {
+                @Override
+                public void changed(ObservableValue<? extends LocalDateTime> observable, LocalDateTime oldValue, LocalDateTime newValue) {
+                    // Sort the list whenever lastChatAt changes
+                    Platform.runLater(() -> {
+                        FXCollections.sort(myLastChatList, (o1, o2) -> {
+                            ChatsController controller1 = (ChatsController) o1.getUserData();
+                            ChatsController controller2 = (ChatsController) o2.getUserData();
 
+                            Chatable chatable1 = controller1 != null ? controller1.getChatable() : null;
+                            Chatable chatable2 = controller2 != null ? controller2.getChatable() : null;
+
+                            LocalDateTime lastChatAt1 = chatable1 != null ? chatable1.getLastChatAt() : LocalDateTime.MIN;
+                            LocalDateTime lastChatAt2 = chatable2 != null ? chatable2.getLastChatAt() : LocalDateTime.MIN;
+
+                            return lastChatAt2.compareTo(lastChatAt1); // Sorting descending (latest first)
+                        });
+                    });
+                }
+            });
+        }
     }
+}
 

@@ -1,5 +1,6 @@
 package gov.iti.jets.services.impls;
 
+import gov.iti.jets.database.dao.ContactDaoImpl;
 import gov.iti.jets.database.dao.GroupDaoImpl;
 import gov.iti.jets.database.dao.MessageDaoImpl;
 import gov.iti.jets.model.GroupMessage;
@@ -17,16 +18,28 @@ import java.util.List;
 public class MessagingServiceImpl extends UnicastRemoteObject implements MessagingService {
     private MessageDaoImpl messageDaoImpl;
     private GroupDaoImpl groupDao;
+    private ContactDaoImpl contactDao;
 
     public MessagingServiceImpl() throws RemoteException {
         super();
         this.messageDaoImpl = new MessageDaoImpl();
         this.groupDao = new GroupDaoImpl();
+        this.contactDao = new ContactDaoImpl();
     }
 
     @Override
     public boolean sendMessage(Message message) throws RemoteException {
         int rowsAffected = messageDaoImpl.addMessage(message);
+        try {
+            if(message.getRecipient() == Recipient.GROUP){
+                groupDao.updateLastMessage(message.getGroupId(),message.getTimestamp());
+            }else {
+                contactDao.updateLastContact(message.getSenderId(), message.getReceiverId(), message.getTimestamp());
+            }
+        } catch (SQLException e) {
+            System.out.println("can't update last contact");
+            e.printStackTrace();
+        }
         resendMessage(message);
         return rowsAffected > 0;
     }

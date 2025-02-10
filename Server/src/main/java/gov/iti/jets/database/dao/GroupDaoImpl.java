@@ -5,10 +5,7 @@ import gov.iti.jets.model.Group;
 import gov.iti.jets.model.User;
 import gov.iti.jets.utility.PictureUtil;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -175,6 +172,19 @@ public class GroupDaoImpl implements GroupDao{
             groupMembers.add(user);
         }
         return groupMembers;
+    }
+
+    @Override
+    public boolean updateLastMessage(int groupId, Timestamp timestamp) throws SQLException {
+        Connection con = dataBaseConnection.getConnection();
+        String query = """
+                UPDATE `groups` SET last_chat_at = ?
+                WHERE group_id = ?
+                """;
+        PreparedStatement ps = con.prepareStatement(query);
+        ps.setTimestamp(1, timestamp);
+        ps.setInt(2, groupId);
+        return ps.executeUpdate() > 0;
     }
 
     public static void main(String[] args) {

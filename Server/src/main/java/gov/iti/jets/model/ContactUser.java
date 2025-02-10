@@ -1,11 +1,12 @@
 package gov.iti.jets.model;
 
 
+import javafx.beans.value.ChangeListener;
+
 import java.io.Serial;
-import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class ContactUser implements   LastChatable {
+public class ContactUser implements  Chatable {
     @Serial
     private static final long serialVersionUID = 5677958496409793424L;
     private String phoneNumber;
@@ -16,6 +17,8 @@ public class ContactUser implements   LastChatable {
     private transient String picturePath;
     private byte[] picture;
     private LocalDateTime lastChatAt;
+    private ChangeListener<LocalDateTime> lastChatAtListener;
+
 
 
 
@@ -34,7 +37,11 @@ public class ContactUser implements   LastChatable {
     }
 
     public void setLastChatAt(LocalDateTime lastChatAt) {
+        LocalDateTime oldValue = this.lastChatAt;
         this.lastChatAt = lastChatAt;
+        if (lastChatAtListener != null) {
+            lastChatAtListener.changed(null, oldValue, lastChatAt);
+        }
     }
 
     public ContactUser(String phoneNumber, String fname, String lname, Status status, LocalDateTime lastChatAt) {
@@ -117,6 +124,11 @@ public class ContactUser implements   LastChatable {
     @Override
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public void setLastChatAtListener(ChangeListener<LocalDateTime> listener) {
+        this.lastChatAtListener = listener;
     }
 
 }
