@@ -75,12 +75,12 @@ public class NotificationServiceController {
         try {
             notificationsService.addNotification(notifications);
         } catch (RemoteException e) {
-            System.out.println("Error deleting notification: " + e.getMessage());
+            System.out.println("Error Adding notification: " + e.getMessage());
             notificationsService = RMIConnector.rmiReconnect().getNotificationService();
             try {
                 notificationsService.addNotification(notifications);
             } catch (RemoteException ex) {
-                System.out.println("Failed to delete notification: " + ex.getMessage());
+                System.out.println("Failed to add notification: " + ex.getMessage());
             }
         }
     }
