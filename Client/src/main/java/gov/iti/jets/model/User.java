@@ -22,8 +22,6 @@ public class User implements Serializable{
     private byte[] picture;
 
 
-
-
     public User(){}
 
     public User(String phoneNumber, String fname, String lname, String email, String passwordHashed, Gender gender, String country, LocalDate dob, String bio) {
