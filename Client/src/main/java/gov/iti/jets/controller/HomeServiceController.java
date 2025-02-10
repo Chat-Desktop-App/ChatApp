@@ -9,10 +9,8 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
-
 
 import java.io.IOException;
 import java.rmi.RemoteException;
@@ -55,7 +53,7 @@ public class HomeServiceController {
             myLastChatList = FXCollections.observableArrayList();
             List<Chatable> list = loadHome.getLastChats(user.getPhoneNumber());
 
-            if(list != null){
+            if (list != null) {
                 for (Chatable chatable : list) {
                     FXMLLoader loader = new FXMLLoader(HomeServiceController.class.getResource(fxmlPath));
                     AnchorPane anchorPane = loader.load();
@@ -64,7 +62,7 @@ public class HomeServiceController {
                     if (chatable instanceof ContactUser con) {
                         chatsControllerMap.put(con.getPhoneNumber(), controller);
                     } else {
-                        chatsControllerMap.put(String.valueOf(((Group)chatable).getGroupId()), controller);
+                        chatsControllerMap.put(String.valueOf(((Group) chatable).getGroupId()), controller);
                     }
 
                     controller.setChat(chatable);
@@ -84,60 +82,60 @@ public class HomeServiceController {
 
     public static ObservableList<AnchorPane> getPendingContacts() {
 //        if (myPendingList == null) {
-            String fxmlPath = "/gov/iti/jets/fxml/pendingCard.fxml";
-            try {
-                myPendingList = FXCollections.observableArrayList();
-                List<ContactUser> list = loadHome.getPendingContacts(user.getPhoneNumber());
-                if(list != null) myPendingList.addAll(getContacts(fxmlPath, list));
-            } catch (IOException e) {
-                loadHome = RMIConnector.rmiReconnect().getLoadHome();
-                return getPendingContacts();
-            }
+        String fxmlPath = "/gov/iti/jets/fxml/pendingCard.fxml";
+        try {
+            myPendingList = FXCollections.observableArrayList();
+            List<ContactUser> list = loadHome.getPendingContacts(user.getPhoneNumber());
+            if (list != null) myPendingList.addAll(getContacts(fxmlPath, list));
+        } catch (IOException e) {
+            loadHome = RMIConnector.rmiReconnect().getLoadHome();
+            return getPendingContacts();
+        }
 //        }
         return myPendingList;
     }
 
     public static ObservableList<AnchorPane> getBlockedContacts() {
 //        if(myBlockedList == null) {
-            String fxmlPath = "/gov/iti/jets/fxml/blockedCard.fxml";
-            try {
-                myBlockedList = FXCollections.observableArrayList();
-                List<ContactUser> list = loadHome.getBlockedContacts(user.getPhoneNumber());
-                if(list != null) myBlockedList.addAll(getContacts(fxmlPath, list));
-            } catch (IOException e) {
-                loadHome = RMIConnector.rmiReconnect().getLoadHome();
-                return getBlockedContacts();
-            }
+        String fxmlPath = "/gov/iti/jets/fxml/blockedCard.fxml";
+        try {
+            myBlockedList = FXCollections.observableArrayList();
+            List<ContactUser> list = loadHome.getBlockedContacts(user.getPhoneNumber());
+            if (list != null) myBlockedList.addAll(getContacts(fxmlPath, list));
+        } catch (IOException e) {
+            loadHome = RMIConnector.rmiReconnect().getLoadHome();
+            return getBlockedContacts();
+        }
 //        }
         return myBlockedList;
     }
 
     public static ObservableList<AnchorPane> getAllContacts() {
 //        if (myAllList == null) {
-            String fxmlPath = "/gov/iti/jets/fxml/allCard.fxml";
-            try {
-                myAllList = FXCollections.observableArrayList();
-                List<ContactUser> list = loadHome.getAllContacts(user.getPhoneNumber());
-                if(list != null) myAllList.addAll(getContacts(fxmlPath, list));
-            } catch (IOException e) {
-                loadHome = RMIConnector.rmiReconnect().getLoadHome();
-                return getAllContacts();
-            }
+        String fxmlPath = "/gov/iti/jets/fxml/allCard.fxml";
+        try {
+            myAllList = FXCollections.observableArrayList();
+            List<ContactUser> list = loadHome.getAllContacts(user.getPhoneNumber());
+            if (list != null) myAllList.addAll(getContacts(fxmlPath, list));
+        } catch (IOException e) {
+            loadHome = RMIConnector.rmiReconnect().getLoadHome();
+            return getAllContacts();
+        }
 //        }
         return myAllList;
     }
 
     public static ObservableList<AnchorPane> getOnlineContacts() {
 //        if(myOnlineList == null) {
-            String fxmlPath = "/gov/iti/jets/fxml/onlineCard.fxml";
-            try {
-                myOnlineList = FXCollections.observableArrayList();
-                List<ContactUser> list = loadHome.getOnlineContacts(user.getPhoneNumber());
-                if(list != null) myOnlineList.addAll(getContacts(fxmlPath, list));
-            } catch (IOException e) {
-                loadHome = RMIConnector.rmiReconnect().getLoadHome();
-                return getOnlineContacts();
-            }
+        String fxmlPath = "/gov/iti/jets/fxml/onlineCard.fxml";
+        try {
+            myOnlineList = FXCollections.observableArrayList();
+            List<ContactUser> list = loadHome.getOnlineContacts(user.getPhoneNumber());
+            if (list != null) myOnlineList.addAll(getContacts(fxmlPath, list));
+        } catch (IOException e) {
+            loadHome = RMIConnector.rmiReconnect().getLoadHome();
+            return getOnlineContacts();
+        }
 //        }
         return myOnlineList;
     }
@@ -170,7 +168,30 @@ public class HomeServiceController {
         }
     }
 
-        public static HomeController getHomeController() {
+    public static boolean addToLastContactList(Chatable chatable) {
+        String fxmlPath = "/gov/iti/jets/fxml/Chats.fxml";
+        try {
+            if(chatable != null){
+                    FXMLLoader loader = new FXMLLoader(HomeServiceController.class.getResource(fxmlPath));
+                    AnchorPane anchorPane = loader.load();
+                    ChatsController controller = loader.getController();
+                    anchorPane.setUserData(controller);
+                    if (chatable instanceof ContactUser con) {
+                        chatsControllerMap.put(con.getPhoneNumber(), controller);
+                    } else {
+                        chatsControllerMap.put(String.valueOf(((Group)chatable).getGroupId()), controller);
+                    }
+                    controller.setChat(chatable);
+                    addListener(chatable);
+                    myLastChatList.add(anchorPane);
+            }
+        } catch (IOException e) {
+            System.out.println("Error when loading " + fxmlPath + ": " + e.getMessage());
+            return false;
+        }
+        return true;
+    }
+    public static HomeController getHomeController() {
         return homeController;
     }
 
@@ -186,7 +207,7 @@ public class HomeServiceController {
         Session.user = user;
     }
 
-    private static void addListener(Chatable chatable){
+    private static void addListener(Chatable chatable) {
         if (chatable.getLastChatAt() != null) {
             chatable.setLastChatAtListener(new ChangeListener<LocalDateTime>() {
                 @Override

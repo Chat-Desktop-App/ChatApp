@@ -1,7 +1,6 @@
 package gov.iti.jets.controller;
 
 import gov.iti.jets.RMIConnector;
-import gov.iti.jets.model.Chatable;
 import gov.iti.jets.model.GroupMessage;
 import gov.iti.jets.model.Message;
 import gov.iti.jets.model.Recipient;
@@ -10,13 +9,9 @@ import gov.iti.jets.view.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-
 import java.io.IOException;
 import java.rmi.RemoteException;
-import java.time.LocalDateTime;
-import java.util.Comparator;
 import java.util.List;
 
 import static gov.iti.jets.controller.Session.*;
@@ -64,6 +59,7 @@ public class MessageServiceController {
         }
         if (controller != null) {
             controller.addMessageToCounter();
+            controller.getChatable().setLastChatAt(message.getTimestamp().toLocalDateTime());
         }
     }
 
@@ -86,7 +82,9 @@ public class MessageServiceController {
                 }
             }
         } catch (RemoteException e) {
+            e.printStackTrace();
             messagingService = RMIConnector.rmiReconnect().getMessagingService();
+            System.out.println("sssss");
             return sendMessage(message);
         } catch (IOException e) {
             System.out.println("failed load message");

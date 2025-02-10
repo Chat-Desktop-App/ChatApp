@@ -58,10 +58,10 @@ public class RMIConnector {
     public static RMIConnector rmiReconnect() {
         rmiConnector = new RMIConnector();  // Recreate the instance to reconnect
 
-        Scene saveScene = RunHome.primaryStage.getScene();
-        RunHome.primaryStage.setScene(RunHome.loadingScene);
+        //Scene saveScene = RunHome.primaryStage.getScene();
+        //RunHome.primaryStage.setScene(RunHome.loadingScene);
             rmiConnector = new RMIConnector();
-        RunHome.primaryStage.setScene(saveScene);
+        //RunHome.primaryStage.setScene(saveScene);
         return rmiConnector;
     }
 
