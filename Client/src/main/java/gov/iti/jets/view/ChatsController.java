@@ -8,7 +8,7 @@ import gov.iti.jets.controller.MessageServiceController;
 import gov.iti.jets.model.ContactUser;
 import gov.iti.jets.model.Chatable;
 import gov.iti.jets.model.Group;
-import javafx.collections.ObservableList;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -16,13 +16,13 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
 public class ChatsController {
     Chatable chatable;
+
     private ContactUser contactUser;
     private Group group;
     private boolean isContact = false;
@@ -45,7 +45,7 @@ public class ChatsController {
 
     }
 
-    public void setLastChat(Chatable chatable) {
+    public void setChat(Chatable chatable) {
         this.chatable = chatable;
         friendName.setText(chatable.getName());
         byte [] pic = chatable.getPicture();
@@ -72,7 +72,18 @@ public class ChatsController {
         controller.setChat(chatable);
         HomeServiceController.getHomeController().setMainBorderPane(region);
         MessageServiceController.setActiveChat(controller);
-
+        messageCounter.setVisible(false);
+        messageCounter.setText(0+"");
     }
 
+    public void addMessageToCounter() {
+        Platform.runLater(()->{
+            messageCounter.setVisible(true);
+            messageCounter.setText((Integer.parseInt(messageCounter.getText()) + 1)+"");
+        });
+    }
+
+    public Chatable getChatable() {
+        return chatable;
+    }
 }

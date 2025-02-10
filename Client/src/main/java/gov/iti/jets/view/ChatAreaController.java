@@ -1,6 +1,7 @@
 package gov.iti.jets.view;
 
 import gov.iti.jets.controller.MessageServiceController;
+import gov.iti.jets.controller.Session;
 import gov.iti.jets.model.*;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
@@ -267,17 +268,21 @@ public class ChatAreaController {
     }
 
     private void sendMessage(){
+        message.setTimestamp(new Timestamp(System.currentTimeMillis()));
+        message.setContent(textArea.getText().trim());
+        HBox hBox ;
         if(isContact){
             message.setReceiverId(contactUser.getPhoneNumber());
             message.setRecipient(Recipient.PRIVATE);
+            hBox = MessageServiceController.sendMessage(message);
         }else {
             message.setGroupId(group.getGroupId());
             message.setRecipient(Recipient.GROUP);
+            GroupMessage groupMessage = new GroupMessage(message,
+                    (Session.user.getFname() + " "+ Session.user.getLname()),Session.user.getPicture());
+            hBox = MessageServiceController.sendMessage(groupMessage);
         }
-        message.setTimestamp(new Timestamp(System.currentTimeMillis()));
-        message.setContent(textArea.getText().trim());
         textArea.clear();
-        HBox hBox = MessageServiceController.sendMessage(message);
         if (hBox != null ){
             Platform.runLater(() -> {
                 messagesList.add(hBox);
@@ -289,6 +294,7 @@ public class ChatAreaController {
         if (hBox != null ){
             Platform.runLater(() -> {
                 messagesList.add(hBox);
+                chatListView.scrollTo(messagesList.size() - 1);
             });
         }
 

@@ -6,6 +6,7 @@ import gov.iti.jets.database.DataBaseConnection;
 import gov.iti.jets.model.Gender;
 import gov.iti.jets.model.Status;
 import gov.iti.jets.model.User;
+import gov.iti.jets.utility.PictureUtil;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -76,6 +77,7 @@ public class UserDaoImpl implements UserDao{
             user.setFname(rs.getNString(2));
             user.setLname(rs.getNString(3));
             user.setEmail(rs.getString(4));
+            user.setPicturePath(rs.getString(5));
             user.setPasswordHashed(rs.getString(6));
             user.setGender(Gender.valueOf(rs.getString(7)));
             user.setCountry(rs.getString(8));
@@ -85,6 +87,7 @@ public class UserDaoImpl implements UserDao{
             user.setNumberEnteries(rs.getLong(12));
             user.setLastSeen(rs.getTimestamp(13).toLocalDateTime());
             user.setAdmin(rs.getBoolean(14));
+            user.setPicture(PictureUtil.getPicture(user.getPicturePath()));
             return user;
         }else{
         return null;
@@ -107,6 +110,7 @@ public class UserDaoImpl implements UserDao{
             user.setFname(rs.getNString(2));
             user.setLname(rs.getNString(3));
             user.setEmail(rs.getString(4));
+            user.setPicturePath(rs.getString(5));
             user.setPasswordHashed(rs.getString(6));
             user.setGender(Gender.valueOf(rs.getString(7)));
             user.setCountry(rs.getString(8));
@@ -116,6 +120,7 @@ public class UserDaoImpl implements UserDao{
             user.setNumberEnteries(rs.getLong(12));
             user.setLastSeen(rs.getTimestamp(13).toLocalDateTime());
             user.setAdmin(rs.getBoolean(14));
+            user.setPicture(PictureUtil.getPicture(user.getPicturePath()));
             users.add(user);
         }
         return users;

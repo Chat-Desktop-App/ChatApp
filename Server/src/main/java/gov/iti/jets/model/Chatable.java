@@ -1,9 +1,11 @@
 package gov.iti.jets.model;
 
+import javafx.beans.value.ChangeListener;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public interface LastChatable extends Serializable {
+public interface Chatable extends Serializable {
 
     LocalDateTime getLastChatAt();
     void setLastChatAt(LocalDateTime lastChatAt);
@@ -11,4 +13,6 @@ public interface LastChatable extends Serializable {
     void setPicture(byte[] picture);
     String getName();
     void setName(String groupName);
+
+    void setLastChatAtListener(ChangeListener<LocalDateTime> changeListener);
 }

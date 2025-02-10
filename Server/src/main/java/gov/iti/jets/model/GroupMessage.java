@@ -14,12 +14,17 @@ public class GroupMessage extends Message implements Serializable {
 
     public GroupMessage(int messageId, String senderId, Recipient recipient, String receiverId, int groupId,
                         String content, int fileId, int fontSize, String fontStyle, String fontColour, boolean isBold,
-                        boolean isItalic,boolean isUnderLine, String textBackGroundColour, Timestamp timestamp,
+                        boolean isItalic, boolean isUnderLine, String textBackGroundColour, Timestamp timestamp,
                         String emoji, String name, byte[] profilePicture) {
 
         super(messageId, senderId, recipient, receiverId, groupId, content, fileId, fontSize, fontStyle, fontColour,
                 isBold, isItalic,isUnderLine, textBackGroundColour, timestamp, emoji);
 
+        this.profilePicture =profilePicture;
+        this.name = name;
+    }
+    public GroupMessage(Message message, String name, byte[] profilePicture) {
+        super(message);
         this.profilePicture =profilePicture;
         this.name = name;
     }

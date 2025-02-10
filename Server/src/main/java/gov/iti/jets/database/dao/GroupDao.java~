@@ -17,5 +17,5 @@ public interface GroupDao {
 
     List<User> getAllGroupMembers(int groupId) throws SQLException;
 
-    boolean updateLastMessage(int groupId, Timestamp timestamp) throws SQLException;
+    void updateLastMessage(int groupId, Timestamp timestamp);
 }

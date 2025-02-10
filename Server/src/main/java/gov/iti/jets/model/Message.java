@@ -1,4 +1,6 @@
 package gov.iti.jets.model;
+import javafx.scene.text.Font;
+
 import java.io.Serial;
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -10,26 +12,53 @@ public class Message implements Serializable {
 
     private int messageId;
     private String senderId;
-    private Recipient recipient;
-    private String receiverId;
-    private int groupId;
+    private Recipient recipient = null;
+    private String receiverId = null;
+    private int groupId ;
     private String content;
     private int fileId;
     private int fontSize;
-    private String fontStyle;
-    private String fontColour;
+    private String fontStyle ;
+    private String fontColour ;
     private boolean isBold;
     private boolean isItalic;
-    private boolean isUnderLine;
+    private boolean isUnderLine ;
     private String textBackGroundColour;
     private Timestamp timestamp;
     private String emoji;
 
 
     public Message() {
-
+        recipient = null;
+        receiverId =null;
+        groupId = 0;
+        fontSize = 14;
+        fontStyle = Font.getDefault().getName();
+        fontColour= "#000000";
+        isBold = false;
+        isItalic = false;
+        isUnderLine = false;
+        textBackGroundColour ="#3d7eb6";
     }
 
+    public Message(Message message){
+        messageId = message.getMessageId();
+        senderId = message.getSenderId();
+        recipient = message.getRecipient();
+        receiverId = message.getReceiverId();
+        groupId = message.getGroupId();
+        content = message.getContent();
+        fileId = message.getFileId();
+        fontSize = message.getFontSize();
+        fontStyle = message.getFontStyle();
+        fontColour = message.getFontColour();
+        isBold = message.isBold();
+        isItalic = message.isItalic();
+        isUnderLine = message.isUnderLine();
+        textBackGroundColour = message.getTextBackGroundColour();
+        timestamp = message.gettimestamp();
+        emoji = message.getEmoji();
+    }
     public Message(int messageId, String senderId, Recipient recipient, String receiverId, int groupId, String content, int fileId, int fontSize, String fontStyle, String fontColour, boolean isBold, boolean isItalic, boolean isUnderLine, String textBackGroundColour, Timestamp timestamp, String emoji) {
         this.messageId = messageId;
         this.senderId = senderId;

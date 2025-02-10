@@ -5,25 +5,22 @@ import gov.iti.jets.model.GroupMessage;
 import gov.iti.jets.model.Message;
 import gov.iti.jets.model.Recipient;
 import gov.iti.jets.services.interfaces.MessagingService;
-import gov.iti.jets.view.ChatAreaController;
-import gov.iti.jets.view.SendMessageController;
-import gov.iti.jets.view.ReceiveGroupMessageController;
-import gov.iti.jets.view.ReceiveMessageController;
+import gov.iti.jets.view.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.HBox;
-
 import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.List;
 
-import static gov.iti.jets.controller.Session.user;
+import static gov.iti.jets.controller.Session.*;
 
 
 public class MessageServiceController {
     private static MessagingService messagingService = RMIConnector.getRmiConnector().getMessagingService();
     private static ChatAreaController activeChat;
+
 
 
     public static void receiveMessage(Message message) {
@@ -38,6 +35,7 @@ public class MessageServiceController {
                     } catch (IOException e) {
                         System.out.println("error load received-message");
                     }
+                    return;
                 }
             }else if (message.getRecipient() == Recipient.GROUP && !activeChat.isContact()){
                 if(message.getGroupId() == activeChat.getGroup().getGroupId()){
@@ -49,10 +47,19 @@ public class MessageServiceController {
                     } catch (IOException e) {
                         System.out.println("error load receiveGroupMessage");
                     }
+                    return;
                 }
             }
-        }else {
-            System.out.println("not active");
+        }
+        ChatsController controller ;
+        if(message.getRecipient() == Recipient.PRIVATE){
+            controller = chatsControllerMap.get(message.getSenderId());
+        } else {
+            controller = chatsControllerMap.get(message.getGroupId()+"");
+        }
+        if (controller != null) {
+            controller.addMessageToCounter();
+            controller.getChatable().setLastChatAt(message.getTimestamp().toLocalDateTime());
         }
     }
 
@@ -67,9 +74,17 @@ public class MessageServiceController {
             if (flag) {
                 hBox = loader.load();
                 ((SendMessageController) loader.getController()).setMessage(message);
+                if(message.getRecipient() == Recipient.PRIVATE){
+                    ChatsController chatsController = chatsControllerMap.get(message.getReceiverId());
+                    chatsController.getChatable().setLastChatAt(message.getTimestamp().toLocalDateTime());
+                }else{
+                    chatsControllerMap.get(String.valueOf(message.getGroupId())).getChatable().setLastChatAt(message.getTimestamp().toLocalDateTime());
+                }
             }
         } catch (RemoteException e) {
+            e.printStackTrace();
             messagingService = RMIConnector.rmiReconnect().getMessagingService();
+            System.out.println("sssss");
             return sendMessage(message);
         } catch (IOException e) {
             System.out.println("failed load message");
