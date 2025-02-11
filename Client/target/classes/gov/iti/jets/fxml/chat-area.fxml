@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane styleClass="borderpane_background" stylesheets="@../styles/chatArea.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.view.ChatAreaController">
+<BorderPane styleClass="borderpane_background" stylesheets="@../styles/chatArea.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.view.ChatAreaController">
     <center>
       <AnchorPane fx:id="chatAnchorPane" styleClass="Background">
          <children>
@@ -109,11 +109,11 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="camera" mnemonicParsing="false" onAction="#camerAction">
+            <Button fx:id="AI" mnemonicParsing="false" onAction="#replyWithAI">
                <graphic>
-                      <ImageView fitHeight="32.0" fitWidth="100.0" onMouseClicked="#sendVideo" pickOnBounds="true" preserveRatio="true">
+                      <ImageView fitHeight="34.0" fitWidth="46.0" onMouseClicked="#sendVideo" pickOnBounds="true" preserveRatio="true">
                           <image>
-                              <Image url="@../images/photo-camera.png" />
+                              <Image url="@../images/AI.png" />
                           </image>
                       </ImageView>
                </graphic>

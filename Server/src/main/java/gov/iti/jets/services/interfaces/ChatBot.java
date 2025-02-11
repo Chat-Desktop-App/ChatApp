@@ -1,4 +1,9 @@
 package gov.iti.jets.services.interfaces;
 
-public interface ChatBot {
+
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+
+public interface ChatBot extends Remote {
+    String chatWithAI(String userMessage, String fname)  throws RemoteException;
 }

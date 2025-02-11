@@ -1,5 +1,6 @@
 package gov.iti.jets.view;
 
+import gov.iti.jets.controller.ChatBotController;
 import gov.iti.jets.controller.MessageServiceController;
 import gov.iti.jets.controller.Session;
 import gov.iti.jets.model.*;
@@ -20,8 +21,11 @@ import javafx.scene.layout.VBox;
 import javafx.scene.control.ListView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.sql.Timestamp;
 
 public class ChatAreaController {
@@ -90,6 +94,9 @@ public class ChatAreaController {
 
     @FXML
     private Button video;
+
+    @FXML
+    private Button AI;
 
     @FXML
     public void initialize() {
@@ -181,6 +188,7 @@ public class ChatAreaController {
 
     }
 
+
     @FXML
     void sendEmojiAction(ActionEvent event) {
 
@@ -231,6 +239,39 @@ public class ChatAreaController {
 
     @FXML
     void voiceCall(MouseEvent event) {
+
+    }
+
+    @FXML
+    void replyWithAI(ActionEvent event) {
+        if (messagesList != null && !messagesList.isEmpty()) {
+            HBox lastMessageBox = messagesList.get(messagesList.size() - 1); // Get last message HBox
+            for (var node : lastMessageBox.getChildren()) {
+                if (node instanceof VBox contentVBox) {
+                    for (var child : contentVBox.getChildren()) {
+                        if (child instanceof TextFlow textFlow) {
+                            for (var textNode : textFlow.getChildren()) {
+                                if (textNode instanceof Text text) {
+
+                                        Platform.runLater(() ->{
+                                            try {
+                                                textArea.setText(ChatBotController.chatWithAI(text.getText()));
+                                            } catch (IOException e) {
+                                                throw new RuntimeException(e);
+                                            }
+                                        });
+
+
+
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+
 
     }
 
