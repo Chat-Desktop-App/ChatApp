@@ -1,13 +1,13 @@
 package gov.iti.jets.database.dao;
 
-import gov.iti.jets.model.Files;
+import gov.iti.jets.model.MyFile;
 
 import java.util.List;
 
 public interface FilesDao {
-    int addFile(Files file);
-    Files getFileById(int fileId);
-    List<Files> getAllFiles();
-    void updateFile(Files file);
+    int addFile(MyFile file);
+    MyFile getFileById(int fileId);
+    List<MyFile> getAllFiles();
+    void updateFile(MyFile file);
     void deleteFile(int fileId);
 }

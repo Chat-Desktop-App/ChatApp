@@ -8,7 +8,7 @@ import java.util.List;
 public interface MessageDao {
     int addMessage(Message message);
     List<Message> getDirectMessages(String userPhone , String contactPhone);
-    List<GroupMessage> getMessagesByGroupId(int groupId);
+    List<Message> getMessagesByGroupId(int groupId);
     Message getMessageById(int messageId);
     List<Message> getAllMessages();
     void updateMessage(Message message);

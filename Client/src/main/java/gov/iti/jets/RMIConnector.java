@@ -17,6 +17,7 @@ public class RMIConnector {
     private LoadHome loadHome;
     private MessagingService messagingService;
     private NotificationsService notificationsService;
+    private ContactService contactService;
     private AddGroup addGroupService;
     private UserSettingsService userSettingsService;
     private ChatBot chatBot;
@@ -27,6 +28,7 @@ public class RMIConnector {
             try {
                 // Get the registry and lookup each service
                 Registry reg = LocateRegistry.getRegistry(1099);
+                contactService = (ContactService) reg.lookup("ContactService");
                 loginService = (Login) reg.lookup("LogIn");
                 registerService = (Register) reg.lookup("Register");
                 loadHome = (LoadHome) reg.lookup("LoadHome");
