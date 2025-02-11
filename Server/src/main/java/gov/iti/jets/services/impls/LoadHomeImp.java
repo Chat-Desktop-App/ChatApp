@@ -111,4 +111,13 @@ public class LoadHomeImp extends UnicastRemoteObject implements LoadHome {
             throw new RuntimeException(e);
         }
     }
+    @Override
+    public ContactUser refreshUserData(String phoneNumber) throws RemoteException {
+        try {
+            return contactDao.getUserByPhoneNumber(phoneNumber);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

@@ -4,6 +4,7 @@ package gov.iti.jets.controller;
 
 import gov.iti.jets.RMIConnector;
 import gov.iti.jets.model.Status;
+import gov.iti.jets.services.impls.ChatClientImpl;
 import gov.iti.jets.services.interfaces.UserSettingsService;
 
 import java.rmi.RemoteException;
@@ -11,7 +12,16 @@ import java.rmi.RemoteException;
 public class UserSettingsServiceController {
     private static UserSettingsService userSettingsService = (UserSettingsService) RMIConnector.getRmiConnector().getUserSettingsService();
 
+    private static ChatClientImpl chatClient;
 
+    static {
+        try {
+            chatClient = new ChatClientImpl(Session.user.getPhoneNumber());
+            userSettingsService.registerClient(chatClient);
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public static void updateProfilePicture(String PicturePath){
         try {

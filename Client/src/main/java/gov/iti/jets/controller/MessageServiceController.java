@@ -78,8 +78,6 @@ public class MessageServiceController {
             controller.getChatable().setLastChatAt(message.getTimestamp().toLocalDateTime());
         }
     }
-
-
     public static HBox sendMessage(Message message) {
         boolean flag;
         HBox hBox = null;

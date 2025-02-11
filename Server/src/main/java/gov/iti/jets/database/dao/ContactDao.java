@@ -23,4 +23,6 @@ public interface ContactDao {
 
     public List<ContactUser> getLastContact(String phoneNumber) throws SQLException;
     public ContactUser getFriendContact(String phoneNumber) throws SQLException;
+
+    public ContactUser getUserByPhoneNumber(String phoneNumber) throws SQLException;
 }

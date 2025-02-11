@@ -8,6 +8,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
+import java.nio.file.Files;
 
 public class PictureUtil{
     private static final String FOLDER_PATH = "pictures" + File.separator;
@@ -52,7 +53,7 @@ public class PictureUtil{
 
 
     // get user picture
-    public static byte[] getPicture(String picturePath){
+   /* public static byte[] getPicture(String picturePath){
         if (picturePath == null) {
             return null;
         }
@@ -72,8 +73,19 @@ public class PictureUtil{
 
         }
         return null;
+    }*/
+        public static byte[] getPicture(String picturePath) {
+            if (picturePath == null) return null;
+
+            try {
+                File file = new File(picturePath);
+                if (!file.exists()) return null;
+
+                return Files.readAllBytes(file.toPath());
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
     }
 
-
-
-}

@@ -215,6 +215,50 @@ public class ContactDaoImpl implements  ContactDao{
         }
         return  contactUsers;
     }
+    public ContactUser getUserByPhoneNumber(String phoneNumber) throws SQLException {
+        Connection con = dataBaseConnection.getConnection();
+        String query = """
+            SELECT
+            CASE
+                WHEN c.user_id = ? THEN u2.phone_number ELSE u1.phone_number END AS contacted_user,
+            CASE
+                WHEN c.user_id = ? THEN u2.fname ELSE u1.fname END AS fname,
+            CASE
+                WHEN c.user_id = ? THEN u2.lname ELSE u1.lname END AS lname,
+            CASE
+                WHEN c.user_id = ? THEN u2.status ELSE u1.status END AS user_status,
+            CASE 
+                WHEN c.user_id = ? THEN u2.picture ELSE u1.picture END AS picture,
+            c.status AS contact_status, c.last_chat_at
+            FROM contacts c
+            JOIN users u1 ON c.user_id = u1.phone_number
+            JOIN users u2 ON c.contact_id = u2.phone_number
+            WHERE (c.user_id = ? OR c.contact_id = ?)
+                  AND c.status = 'ACCEPTED'
+            LIMIT 1;
+            """;
+
+        PreparedStatement ps = con.prepareStatement(query);
+        for (int i = 1; i <= 7; i++) {
+            ps.setString(i, phoneNumber);
+        }
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            ContactUser contactUser = new ContactUser(
+                    rs.getString(1), // contacted_user
+                    rs.getString(2), // fname
+                    rs.getString(3), // lname
+                    Status.valueOf(rs.getString(4)), // user_status
+                    rs.getString(5) // picture path
+            );
+            byte[] profilePicture = PictureUtil.getPicture(contactUser.getPicturePath());
+            contactUser.setPicture(profilePicture);
+            return contactUser;
+        }
+        return null; // Return null if no user is found
+    }
+
 
     @Override
     public int addContact(String phoneNumber, String contactPhoneNumber) throws SQLException {
@@ -402,30 +446,29 @@ public class ContactDaoImpl implements  ContactDao{
         ps.setString(5, u1);
         return ps.executeUpdate() > 0;
     }
-
     @Override
     public List<ContactUser> getLastContact(String phoneNumber) throws SQLException {
         Connection con = dataBaseConnection.getConnection();
         String query = """
-                SELECT
-                CASE
-                    WHEN c.user_id = ? THEN u2.phone_number ELSE u1.phone_number END AS contacted_user,
-                CASE
-                    WHEN c.user_id = ? THEN u2.fname ELSE u1.fname END AS fname,
-                CASE
-                    WHEN c.user_id = ? THEN u2.lname ELSE u1.lname END AS lname,
-                CASE
-                    WHEN c.user_id = ? THEN u2.status ELSE u1.status END AS user_status,
-                CASE WHEN c.user_id = ? THEN u2.picture ELSE u1.picture END AS picture,
-                c.status AS contact_status,c.last_chat_at
-                FROM contacts c
-                JOIN users u1 ON c.user_id = u1.phone_number
-                JOIN users u2 ON c.contact_id = u2.phone_number
-                WHERE (c.user_id = ? OR c.contact_id = ?)
-                      AND c.status = 'ACCEPTED' AND c.last_chat_at IS NOT NULL
-                      ORDER BY c.last_chat_at DESC;
-                ;
-                """;
+            SELECT
+            CASE
+                WHEN c.user_id = ? THEN u2.phone_number ELSE u1.phone_number END AS contacted_user,
+            CASE
+                WHEN c.user_id = ? THEN u2.fname ELSE u1.fname END AS fname,
+            CASE
+                WHEN c.user_id = ? THEN u2.lname ELSE u1.lname END AS lname,
+            CASE
+                WHEN c.user_id = ? THEN u2.status ELSE u1.status END AS user_status,
+            CASE WHEN c.user_id = ? THEN u2.picture ELSE u1.picture END AS picture,
+            c.status AS contact_status,c.last_chat_at
+            FROM contacts c
+            JOIN users u1 ON c.user_id = u1.phone_number
+            JOIN users u2 ON c.contact_id = u2.phone_number
+            WHERE (c.user_id = ? OR c.contact_id = ?)
+                  AND c.status = 'ACCEPTED' AND c.last_chat_at IS NOT NULL
+                  ORDER BY c.last_chat_at DESC;
+            ;
+            """;
         PreparedStatement ps = con.prepareStatement(query);
         for (int i = 1; i <= 7; i++) {
             ps.setString(i, phoneNumber);
@@ -447,7 +490,6 @@ public class ContactDaoImpl implements  ContactDao{
         }
         return  contactUsers;
     }
-
     public static void main(String[] args){
         ContactDaoImpl contactDao = new ContactDaoImpl();
         String phoneNumber = "+1234567890";  // Janes's phone number

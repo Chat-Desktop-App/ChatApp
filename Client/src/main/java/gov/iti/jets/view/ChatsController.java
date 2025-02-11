@@ -45,7 +45,7 @@ public class ChatsController {
 
     }
 
-    public void setChat(Chatable chatable) {
+   /* public void setChat(Chatable chatable) {
         this.chatable = chatable;
         friendName.setText(chatable.getName());
         byte [] pic = chatable.getPicture();
@@ -60,6 +60,32 @@ public class ChatsController {
                 case OFFLINE -> status.setFill(Color.GRAY);
             }
         }else {
+            status.setVisible(false);
+        }
+    }*/
+    public void setChat(Chatable chatable) {
+        this.chatable = chatable;
+        friendName.setText(chatable.getName());
+
+        // Always create a new Image instance to avoid caching
+        byte[] pic = chatable.getPicture();
+        if (pic != null) {
+            friendIcon.setImage(null); // Clear existing image
+            Image image = new Image(new ByteArrayInputStream(pic));
+            friendIcon.setImage(image);
+        } else {
+            friendIcon.setImage(null);
+        }
+
+        if (chatable instanceof ContactUser contactUser) {
+            status.setVisible(true);
+            switch (contactUser.getStatus()) {
+                case AVAILABLE -> status.setFill(Color.LIGHTGREEN);
+                case AWAY -> status.setFill(Color.GOLD);
+                case BUSY -> status.setFill(Color.INDIANRED);
+                case OFFLINE -> status.setFill(Color.GRAY);
+            }
+        } else {
             status.setVisible(false);
         }
     }

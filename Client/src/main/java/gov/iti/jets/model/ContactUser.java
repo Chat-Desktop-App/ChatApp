@@ -2,12 +2,14 @@ package gov.iti.jets.model;
 
 
 import javafx.beans.value.ChangeListener;
+import javafx.scene.Node;
+import javafx.scene.layout.AnchorPane;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class ContactUser implements  Chatable {
+public class ContactUser extends AnchorPane implements  Chatable {
     @Serial
     private static final long serialVersionUID = 5677958496409793424L;
     private String phoneNumber;
@@ -132,4 +134,8 @@ public class ContactUser implements  Chatable {
         this.lastChatAtListener = listener;
     }
 
+    @Override
+    public Node getStyleableNode() {
+        return super.getStyleableNode();
+    }
 }
