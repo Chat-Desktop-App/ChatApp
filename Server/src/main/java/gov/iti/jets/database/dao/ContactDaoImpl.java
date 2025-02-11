@@ -10,8 +10,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ContactDaoImpl implements  ContactDao{
+public class ContactDaoImpl implements ContactDao {
     static DataBaseConnection dataBaseConnection;
+
     static {
         try {
             dataBaseConnection = DataBaseConnection.getInstance();
@@ -19,19 +20,60 @@ public class ContactDaoImpl implements  ContactDao{
             throw new RuntimeException(e);
         }
     }
+
+    public static void main(String[] args) {
+        ContactDaoImpl contactDao = new ContactDaoImpl();
+        String phoneNumber = "+1234567890";  // Janes's phone number
+        String contactPhoneNumber = "+1122334455"; // alice's phone number
+        try {
+            //contactDao.addContact(phoneNumber, contactPhoneNumber);
+            // Test for friends contacts
+            List<ContactUser> friends = contactDao.getFriendsContacts(contactPhoneNumber);
+            System.out.println("Friends Contacts: " + friends.size());
+            for (ContactUser contact : friends) {
+                System.out.println(contact);
+            }
+
+            // Test for pending contacts
+            List<ContactUser> pending = contactDao.getPendingContacts(contactPhoneNumber);
+            System.out.println("Pending Contacts: " + pending.size());
+            for (ContactUser contact : pending) {
+                System.out.println(contact);
+            }
+
+            // Test for blocked contacts
+            List<ContactUser> blocked = contactDao.getBlockedContacts(contactPhoneNumber);
+            System.out.println("Blocked Contacts: " + blocked.size());
+            for (ContactUser contact : blocked) {
+                System.out.println(contact);
+            }
+
+            // Test for all contacts
+            List<ContactUser> allContacts = contactDao.getAllContacts(contactPhoneNumber);
+            System.out.println("All Contacts: " + allContacts.size());
+            for (ContactUser contact : allContacts) {
+                System.out.println(contact);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     @Override
     public List<ContactUser> getFriendsContacts(String phoneNumber) throws SQLException {
         Connection con = dataBaseConnection.getConnection();
         String query = """
-    SELECT u.phone_number as contact_id, u.fname, u.lname, u.status AS user_status, u.picture, c.status, c.user_id
-    FROM contacts c
-    JOIN users u ON (CASE 
-        WHEN c.user_id = ? THEN c.contact_id = u.phone_number
-        WHEN c.contact_id = ? THEN c.user_id = u.phone_number
-    END)
-    WHERE (c.user_id = ? OR c.contact_id = ?)
-    AND c.status = 'ACCEPTED'
-""";
+                    SELECT u.phone_number as contact_id, u.fname, u.lname, u.status AS user_status, u.picture, c.status, c.user_id
+                    FROM contacts c
+                    JOIN users u ON (CASE
+                        WHEN c.user_id = ? THEN c.contact_id = u.phone_number
+                        WHEN c.contact_id = ? THEN c.user_id = u.phone_number
+                    END)
+                    WHERE (c.user_id = ? OR c.contact_id = ?)
+                    AND c.status = 'ACCEPTED'
+                """;
         PreparedStatement ps
                 = con.prepareStatement(query);
         ps.setString(1, phoneNumber);
@@ -42,7 +84,7 @@ public class ContactDaoImpl implements  ContactDao{
         ResultSet rs = ps.executeQuery();
         List<ContactUser> contactUsers = new ArrayList<>();
 
-        while(rs.next()){
+        while (rs.next()) {
             ContactUser contactUser = new ContactUser(
                     rs.getString(1),
                     rs.getString(2), rs.getString(3), Status.valueOf(rs.getString(4)),
@@ -51,7 +93,7 @@ public class ContactDaoImpl implements  ContactDao{
             contactUser.setPicture(profilePicture);
             contactUsers.add(contactUser);
         }
-        return  contactUsers;
+        return contactUsers;
     }
 
     @Override
@@ -86,18 +128,18 @@ public class ContactDaoImpl implements  ContactDao{
             ps.setString(i, phoneNumber);
         }
         ResultSet rs = ps.executeQuery();
-        while(rs.next()){
+        while (rs.next()) {
             ContactUser contactUser = new ContactUser(
                     rs.getString(1),
                     rs.getString(2),
                     rs.getString(3),
                     Status.valueOf(rs.getString(4)),
-                    rs.getString(5) );
+                    rs.getString(5));
             byte[] profilePicture = PictureUtil.getPicture(contactUser.getPicturePath());
             contactUser.setPicture(profilePicture);
             contactUsers.add(contactUser);
         }
-        return  contactUsers;
+        return contactUsers;
     }
 
     @Override
@@ -115,17 +157,16 @@ public class ContactDaoImpl implements  ContactDao{
         ResultSet rs = ps.executeQuery();
         List<ContactUser> contactUsers = new ArrayList<>();
 
-        while(rs.next()){
+        while (rs.next()) {
             ContactUser contactUser = new ContactUser(rs.getString(1),
                     rs.getString(2), rs.getString(3), Status.valueOf(rs.getString(4)), rs.getString(5));
             byte[] profilePicture = PictureUtil.getPicture(contactUser.getPicturePath());
             contactUser.setPicture(profilePicture);
             contactUsers.add(contactUser);
         }
-        return  contactUsers;
+        return contactUsers;
 
     }
-
 
     @Override
     public List<ContactUser> getPendingContacts(String phoneNumber) throws SQLException {
@@ -142,14 +183,14 @@ public class ContactDaoImpl implements  ContactDao{
         ResultSet rs = ps.executeQuery();
         List<ContactUser> contactUsers = new ArrayList<>();
 
-        while(rs.next()){
+        while (rs.next()) {
             ContactUser contactUser = new ContactUser(rs.getString(1),
                     rs.getString(2), rs.getString(3), Status.valueOf(rs.getString(4)), rs.getString(5));
             byte[] profilePicture = PictureUtil.getPicture(contactUser.getPicturePath());
             contactUser.setPicture(profilePicture);
             contactUsers.add(contactUser);
         }
-        return  contactUsers;
+        return contactUsers;
     }
 
     @Override
@@ -167,14 +208,14 @@ public class ContactDaoImpl implements  ContactDao{
         ResultSet rs = ps.executeQuery();
         List<ContactUser> contactUsers = new ArrayList<>();
 
-        while(rs.next()){
+        while (rs.next()) {
             ContactUser contactUser = new ContactUser(rs.getString(1),
-                    rs.getString(2), rs.getString(3), Status.valueOf(rs.getString(4)),rs.getString(5));
+                    rs.getString(2), rs.getString(3), Status.valueOf(rs.getString(4)), rs.getString(5));
             byte[] profilePicture = PictureUtil.getPicture(contactUser.getPicturePath());
             contactUser.setPicture(profilePicture);
             contactUsers.add(contactUser);
         }
-        return  contactUsers;
+        return contactUsers;
     }
 
     @Override
@@ -206,24 +247,24 @@ public class ContactDaoImpl implements  ContactDao{
         ResultSet rs = ps.executeQuery();
         List<ContactUser> contactUsers = new ArrayList<>();
 
-        while(rs.next()){
+        while (rs.next()) {
             ContactUser contactUser = new ContactUser(rs.getString(1),
                     rs.getString(2), rs.getString(3), Status.valueOf(rs.getString(4)), rs.getString(5));
             byte[] profilePicture = PictureUtil.getPicture(contactUser.getPicturePath());
             contactUser.setPicture(profilePicture);
             contactUsers.add(contactUser);
         }
-        return  contactUsers;
+        return contactUsers;
     }
 
     @Override
     public int addContact(String phoneNumber, String contactPhoneNumber) throws SQLException {
         Connection con = dataBaseConnection.getConnection();
         String checkQuery = """
-        SELECT user_id, contact_id, status FROM contacts 
-        WHERE (user_id = ? AND contact_id = ?) 
-           OR (user_id = ? AND contact_id = ?)
-    """;
+                    SELECT user_id, contact_id, status FROM contacts 
+                    WHERE (user_id = ? AND contact_id = ?) 
+                       OR (user_id = ? AND contact_id = ?)
+                """;
         PreparedStatement checkStmt = con.prepareStatement(checkQuery);
         checkStmt.setString(1, phoneNumber);
         checkStmt.setString(2, contactPhoneNumber);
@@ -251,10 +292,10 @@ public class ContactDaoImpl implements  ContactDao{
 
         if (senderPending && receiverPending) {
             String updateToAcceptedQuery = """
-            UPDATE contacts SET status = 'ACCEPTED'
-            WHERE (user_id = ? AND contact_id = ? AND status = 'PENDING')
-               OR (user_id = ? AND contact_id = ? AND status = 'PENDING')
-        """;
+                        UPDATE contacts SET status = 'ACCEPTED'
+                        WHERE (user_id = ? AND contact_id = ? AND status = 'PENDING')
+                           OR (user_id = ? AND contact_id = ? AND status = 'PENDING')
+                    """;
             PreparedStatement updateStmt = con.prepareStatement(updateToAcceptedQuery);
             updateStmt.setString(1, phoneNumber);
             updateStmt.setString(2, contactPhoneNumber);
@@ -266,10 +307,10 @@ public class ContactDaoImpl implements  ContactDao{
 
         if (rejectedExists) {
             String updateRejectedQuery = """
-            UPDATE contacts SET status = 'ACCEPTED'
-            WHERE (user_id = ? AND contact_id = ? AND status = 'REJECTED')
-               OR (user_id = ? AND contact_id = ? AND status = 'REJECTED')
-        """;
+                        UPDATE contacts SET status = 'ACCEPTED'
+                        WHERE (user_id = ? AND contact_id = ? AND status = 'REJECTED')
+                           OR (user_id = ? AND contact_id = ? AND status = 'REJECTED')
+                    """;
             PreparedStatement updateStmt = con.prepareStatement(updateRejectedQuery);
             updateStmt.setString(1, phoneNumber);
             updateStmt.setString(2, contactPhoneNumber);
@@ -290,8 +331,8 @@ public class ContactDaoImpl implements  ContactDao{
 
         // Check if the contact already exists
         String checkQuery = """
-        SELECT status FROM contacts 
-        WHERE (user_id = ? AND contact_id = ?) 
+        SELECT status FROM contacts
+        WHERE (user_id = ? AND contact_id = ?)
            OR (user_id = ? AND contact_id = ?)
     """;
         PreparedStatement checkStmt = con.prepareStatement(checkQuery);
@@ -336,7 +377,7 @@ public class ContactDaoImpl implements  ContactDao{
 
         // Check if contact already exists
         String checkQuery = """
-        SELECT COUNT(*) FROM contacts 
+        SELECT COUNT(*) FROM contacts
         WHERE (user_id = ? AND contact_id = ?) OR (user_id = ? AND contact_id = ?)
     """;
         PreparedStatement checkStmt = con.prepareStatement(checkQuery);
@@ -387,6 +428,7 @@ public class ContactDaoImpl implements  ContactDao{
         ps.setString(5, u1);
         return ps.executeUpdate() > 0;
     }
+
     @Override
     public Boolean updateLastContact(String u1, String u2, Timestamp lastChat) throws SQLException {
         Connection con = dataBaseConnection.getConnection();
@@ -434,7 +476,7 @@ public class ContactDaoImpl implements  ContactDao{
         ResultSet rs = ps.executeQuery();
         List<ContactUser> contactUsers = new ArrayList<>();
 
-        while(rs.next()){
+        while (rs.next()) {
             ContactUser contactUser = new ContactUser(
                     rs.getString(1),
                     rs.getString(2), rs.getString(3),
@@ -445,57 +487,18 @@ public class ContactDaoImpl implements  ContactDao{
             contactUser.setLastChatAt(rs.getTimestamp("last_chat_at").toLocalDateTime());
             contactUsers.add(contactUser);
         }
-        return  contactUsers;
+        return contactUsers;
     }
 
-    public static void main(String[] args){
-        ContactDaoImpl contactDao = new ContactDaoImpl();
-        String phoneNumber = "+1234567890";  // Janes's phone number
-        String contactPhoneNumber = "+1122334455"; // alice's phone number
-        try{
-            //contactDao.addContact(phoneNumber, contactPhoneNumber);
-            // Test for friends contacts
-            List<ContactUser> friends = contactDao.getFriendsContacts(contactPhoneNumber);
-            System.out.println("Friends Contacts: " + friends.size());
-            for (ContactUser contact : friends) {
-                System.out.println(contact);
-            }
-
-            // Test for pending contacts
-            List<ContactUser> pending = contactDao.getPendingContacts(contactPhoneNumber);
-            System.out.println("Pending Contacts: " + pending.size());
-            for (ContactUser contact : pending) {
-                System.out.println(contact);
-            }
-
-            // Test for blocked contacts
-            List<ContactUser> blocked = contactDao.getBlockedContacts(contactPhoneNumber);
-            System.out.println("Blocked Contacts: " + blocked.size());
-            for (ContactUser contact : blocked) {
-                System.out.println(contact);
-            }
-
-            // Test for all contacts
-            List<ContactUser> allContacts = contactDao.getAllContacts(contactPhoneNumber);
-            System.out.println("All Contacts: " + allContacts.size());
-            for (ContactUser contact : allContacts) {
-                System.out.println(contact);
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-    }
     public ContactUser getFriendContact(String phoneNumber) throws SQLException {
         Connection con = dataBaseConnection.getConnection();
         String query = """
-            SELECT c.contact_id, u.fname, u.lname, u.status AS user_status, u.picture, c.status, c.user_id
-            FROM contacts c
-            JOIN users u ON c.contact_id = u.phone_number
-            WHERE (c.user_id = ? OR c.contact_id = ?) AND c.status = 'ACCEPTED'
-            LIMIT 1
-            """;
+                SELECT c.contact_id, u.fname, u.lname, u.status AS user_status, u.picture, c.status, c.user_id
+                FROM contacts c
+                JOIN users u ON c.contact_id = u.phone_number
+                WHERE (c.user_id = ? OR c.contact_id = ?) AND c.status = 'ACCEPTED'
+                LIMIT 1
+                """;
         PreparedStatement ps = con.prepareStatement(query);
         ps.setString(1, phoneNumber);
         ps.setString(2, phoneNumber);

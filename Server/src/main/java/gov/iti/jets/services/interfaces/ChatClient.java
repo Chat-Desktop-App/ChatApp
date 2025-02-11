@@ -2,6 +2,7 @@ package gov.iti.jets.services.interfaces;
 
 import gov.iti.jets.model.Chatable;
 import gov.iti.jets.model.Message;
+import gov.iti.jets.model.Status;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -11,4 +12,5 @@ public interface ChatClient extends Remote {
     
     boolean addToLastContactList(Chatable chatable) throws RemoteException;
 
+    void updateStatus(String contactPhone , Status status) throws RemoteException;
 }

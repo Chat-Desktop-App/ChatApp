@@ -8,6 +8,7 @@ import gov.iti.jets.controller.MessageServiceController;
 import gov.iti.jets.model.ContactUser;
 import gov.iti.jets.model.Chatable;
 import gov.iti.jets.model.Group;
+import gov.iti.jets.model.Status;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -53,12 +54,7 @@ public class ChatsController {
             friendIcon.setImage(new Image(new ByteArrayInputStream(pic)));
         }
         if (chatable instanceof ContactUser m){
-            switch (m.getStatus()) {
-                case AVAILABLE -> status.setFill(Color.LIGHTGREEN);
-                case AWAY -> status.setFill(Color.GOLD);
-                case BUSY -> status.setFill(Color.INDIANRED);
-                case OFFLINE -> status.setFill(Color.GRAY);
-            }
+            updateStatus(m.getStatus());
         }else {
             status.setVisible(false);
         }
@@ -85,5 +81,16 @@ public class ChatsController {
 
     public Chatable getChatable() {
         return chatable;
+    }
+
+    public void updateStatus(Status newstatus){
+        Platform.runLater(()->{
+            switch (newstatus) {
+                case AVAILABLE -> status.setFill(Color.LIGHTGREEN);
+                case AWAY -> status.setFill(Color.GOLD);
+                case BUSY -> status.setFill(Color.INDIANRED);
+                case OFFLINE -> status.setFill(Color.GRAY);
+            }
+        });
     }
 }

@@ -1,7 +1,9 @@
 package gov.iti.jets.services.impls;
 
+import gov.iti.jets.database.dao.ContactDaoImpl;
 import gov.iti.jets.database.dao.UserDao;
 import gov.iti.jets.database.dao.UserDaoImpl;
+import gov.iti.jets.model.ContactUser;
 import gov.iti.jets.model.Status;
 import gov.iti.jets.model.User;
 import gov.iti.jets.services.interfaces.UserSettingsService;
@@ -9,6 +11,7 @@ import gov.iti.jets.services.interfaces.UserSettingsService;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.SQLException;
+import java.util.List;
 
 public class UserSettingsServiceImpl extends UnicastRemoteObject implements UserSettingsService {
     private UserDao user;
@@ -54,8 +57,12 @@ public class UserSettingsServiceImpl extends UnicastRemoteObject implements User
     @Override
     public void UpdateStatus(String phoneNumber, Status status) throws RemoteException {
         try {
-            this.user.updateStatus(phoneNumber,status);
+            this.user.updateStatus(phoneNumber, status);
 
+            List<ContactUser> contacts  = new ContactDaoImpl().getFriendsContacts(phoneNumber);
+            for (ContactUser contactUser : contacts) {
+                LoginImpl.getOnlineClients().get(contactUser.getPhoneNumber()).updateStatus(phoneNumber,status);
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
