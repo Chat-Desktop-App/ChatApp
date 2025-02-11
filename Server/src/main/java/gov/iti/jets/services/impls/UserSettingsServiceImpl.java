@@ -6,6 +6,7 @@ import gov.iti.jets.database.dao.UserDaoImpl;
 import gov.iti.jets.model.ContactUser;
 import gov.iti.jets.model.Status;
 import gov.iti.jets.model.User;
+import gov.iti.jets.services.interfaces.ChatClient;
 import gov.iti.jets.services.interfaces.UserSettingsService;
 
 import java.rmi.RemoteException;
@@ -61,7 +62,10 @@ public class UserSettingsServiceImpl extends UnicastRemoteObject implements User
 
             List<ContactUser> contacts  = new ContactDaoImpl().getFriendsContacts(phoneNumber);
             for (ContactUser contactUser : contacts) {
-                LoginImpl.getOnlineClients().get(contactUser.getPhoneNumber()).updateStatus(phoneNumber,status);
+                ChatClient chatClient = LoginImpl.getOnlineClients().get(contactUser.getPhoneNumber());
+                if(chatClient != null){
+                    chatClient.updateStatus(phoneNumber,status);
+                }
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

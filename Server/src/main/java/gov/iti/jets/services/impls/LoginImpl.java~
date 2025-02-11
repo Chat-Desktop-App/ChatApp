@@ -49,10 +49,7 @@ public class LoginImpl extends UnicastRemoteObject implements Login {
 
                 List<ContactUser> contacts  = new ContactDaoImpl().getFriendsContacts(phoneNumber);
                 for (ContactUser contactUser : contacts) {
-                    ChatClient chatClient = onlineClients.get(contactUser.getPhoneNumber());
-                    if(chatClient != null){
-                        chatClient.updateStatus(phoneNumber,Status.AVAILABLE);
-                    }
+                    LoginImpl.getOnlineClients().get(contactUser.getPhoneNumber()).updateStatus(phoneNumber,Status.AVAILABLE);
                 }
 
             }
