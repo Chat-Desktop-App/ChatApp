@@ -1,8 +1,5 @@
-package gov.iti.jets.services.interfaces;
+package gov.iti.jets.model;
 
-import gov.iti.jets.model.FileType;
-import gov.iti.jets.model.GroupMessage;
-import gov.iti.jets.model.Message;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.List;

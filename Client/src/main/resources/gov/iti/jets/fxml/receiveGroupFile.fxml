@@ -23,7 +23,7 @@
                <children>
                   <ImageView fx:id="fileImage" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/google-docs.png" />
+                        <Image url="@../images/fileIcon.png" />
                      </image>
                   </ImageView>
                   <VBox alignment="CENTER_LEFT">
@@ -32,7 +32,7 @@
                         <Label fx:id="fileSize" text="file size" />
                      </children>
                   </VBox>
-                  <Button fx:id="dowloadButton" mnemonicParsing="false" onAction="#dowloadButtonHandle" style="-fx-background-color: transparens;">
+                  <Button fx:id="dowloadButton" mnemonicParsing="false" onAction="#dowloadButtonHandle" style="-fx-background-color: transparent;">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>

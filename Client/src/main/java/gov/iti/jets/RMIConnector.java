@@ -17,7 +17,6 @@ public class RMIConnector {
     private LoadHome loadHome;
     private MessagingService messagingService;
     private NotificationsService notificationsService;
-    private FileTransferService fileTransferService;
 
     // Private constructor to handle the connection to services
     private RMIConnector() {
@@ -30,7 +29,6 @@ public class RMIConnector {
                 loadHome = (LoadHome) reg.lookup("LoadHome");
                 messagingService = (MessagingService) reg.lookup("MessagingService");
                 notificationsService = (NotificationsService) reg.lookup("NotificationsService");
-                fileTransferService = (FileTransferService) reg.lookup("FileTransferService");
                 break;
             } catch (RemoteException | NotBoundException e) {
                 System.out.println("Connection to services failed: " + e.getMessage());
@@ -84,7 +82,6 @@ public class RMIConnector {
         return notificationsService;
     }
 
-    public FileTransferService getFileTransferService() {return fileTransferService;}
 
     public void shutdown() {
         System.out.println("Shutting down RMI connection...");
@@ -95,7 +92,6 @@ public class RMIConnector {
         messagingService = null;
         rmiConnector = null;
         notificationsService = null;
-        fileTransferService = null;
     }
 
 }

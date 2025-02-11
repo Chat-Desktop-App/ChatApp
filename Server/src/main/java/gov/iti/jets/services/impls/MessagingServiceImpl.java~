@@ -81,11 +81,7 @@ public class MessagingServiceImpl extends UnicastRemoteObject implements Messagi
 
     @Override
     public byte[] downloadFile(int fileId) throws RemoteException {
-        MyFile myFile = FileUtil.getFile(fileId);
-        if (myFile != null){
-            return myFile.getFileData();
-        }
-        return null;
+        return new byte[0];
     }
 
     public void resendMessage(Message message) throws RemoteException {

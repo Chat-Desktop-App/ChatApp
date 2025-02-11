@@ -15,7 +15,8 @@ import java.nio.file.Files;
 import java.rmi.RemoteException;
 import java.util.List;
 
-import static gov.iti.jets.controller.Session.*;
+import static gov.iti.jets.controller.Session.chatsControllerMap;
+import static gov.iti.jets.controller.Session.user;
 
 
 public class MessageServiceController {
@@ -23,11 +24,10 @@ public class MessageServiceController {
     private static ChatAreaController activeChat;
 
 
-
     public static void receiveMessage(Message message) {
-        if(activeChat != null){
-            if (message.getRecipient() == Recipient.PRIVATE && activeChat.isContact()){
-                if(message.getSenderId().equals(activeChat.getContactUser().getPhoneNumber())){
+        if (activeChat != null) {
+            if (message.getRecipient() == Recipient.PRIVATE && activeChat.isContact()) {
+                if (message.getSenderId().equals(activeChat.getContactUser().getPhoneNumber())) {
                     String receivedMessage = "/gov/iti/jets/fxml/received-message.fxml";
                     String receivedFile = "/gov/iti/jets/fxml/receivedFile.fxml";
                     String fxml = "";
@@ -35,9 +35,9 @@ public class MessageServiceController {
                     FXMLLoader loader = new FXMLLoader(MessageServiceController.class.getResource(fxml));
                     try {
                         HBox hBox = loader.load();
-                        if(message instanceof FileMessage fileMessage){
+                        if (message instanceof FileMessage fileMessage) {
                             ((ReceiveFileController) loader.getController()).setFileMessage(fileMessage);
-                        }else{
+                        } else {
                             ((ReceiveMessageController) loader.getController()).setMessage(message);
                         }
                         activeChat.receivedMessage(hBox);
@@ -46,17 +46,17 @@ public class MessageServiceController {
                     }
                     return;
                 }
-            }else if (message.getRecipient() == Recipient.GROUP && !activeChat.isContact()){
-                if(message.getGroupId() == activeChat.getGroup().getGroupId()){
+            } else if (message.getRecipient() == Recipient.GROUP && !activeChat.isContact()) {
+                if (message.getGroupId() == activeChat.getGroup().getGroupId()) {
                     String receivedMessage = "/gov/iti/jets/fxml/receiveGroupMessage.fxml";
-                    String receivedFile = "/gov/iti/jets/fxml/receiveGroupFile.fxml.fxml";
+                    String receivedFile = "/gov/iti/jets/fxml/receiveGroupFile.fxml";
                     String fxml = message instanceof FileMessage ? receivedFile : receivedMessage;
                     FXMLLoader loader = new FXMLLoader(MessageServiceController.class.getResource(fxml));
                     try {
                         HBox hBox = loader.load();
-                        if(message instanceof FileMessage fileMessage){
+                        if (message instanceof FileMessage fileMessage) {
                             ((ReceiveGroupFileController) loader.getController()).setFileMessage(fileMessage);
-                        }else{
+                        } else {
                             ((ReceiveGroupMessageController) loader.getController()).setMessage((GroupMessage) message);
                         }
                         activeChat.receivedMessage(hBox);
@@ -67,11 +67,11 @@ public class MessageServiceController {
                 }
             }
         }
-        ChatsController controller ;
-        if(message.getRecipient() == Recipient.PRIVATE){
+        ChatsController controller;
+        if (message.getRecipient() == Recipient.PRIVATE) {
             controller = chatsControllerMap.get(message.getSenderId());
         } else {
-            controller = chatsControllerMap.get(message.getGroupId()+"");
+            controller = chatsControllerMap.get(message.getGroupId() + "");
         }
         if (controller != null) {
             controller.addMessageToCounter();
@@ -94,15 +94,15 @@ public class MessageServiceController {
             flag = messagingService.sendMessage(message);
             if (flag) {
                 hBox = loader.load();
-                if(message instanceof FileMessage){
+                if (message instanceof FileMessage) {
                     ((SendFileController) loader.getController()).setFileMessage((FileMessage) message);
-                }else {
+                } else {
                     ((SendMessageController) loader.getController()).setMessage(message);
                 }
-                if(message.getRecipient() == Recipient.PRIVATE){
+                if (message.getRecipient() == Recipient.PRIVATE) {
                     ChatsController chatsController = chatsControllerMap.get(message.getReceiverId());
                     chatsController.getChatable().setLastChatAt(message.getTimestamp().toLocalDateTime());
-                }else{
+                } else {
                     chatsControllerMap.get(String.valueOf(message.getGroupId())).getChatable().setLastChatAt(message.getTimestamp().toLocalDateTime());
                 }
             }
@@ -117,15 +117,18 @@ public class MessageServiceController {
         return hBox;
     }
 
-    public static HBox sendFile(Message message, File file){
+    public static HBox sendFile(Message message, File file, FileType fileType) {
         try {
             byte[] fileData = Files.readAllBytes(file.toPath());
-            FileMessage fileMessage ;
-            if(message instanceof GroupMessage groupMessage){
-                fileMessage = new FileMessage(groupMessage , fileData, file.getName());
-            }else {
-                fileMessage = new FileMessage(message , fileData, file.getName());
+            int fileId = messagingService.uploadFile(fileData,file.getName(),fileType);
+            if (fileId == 0){ return null;}
+            FileMessage fileMessage;
+            if (message instanceof GroupMessage groupMessage) {
+                fileMessage = new FileMessage(groupMessage, fileData.length, file.getName(), fileType );
+            } else {
+                fileMessage = new FileMessage(message, fileData.length, file.getName(), fileType );
             }
+            fileMessage.setFileId(fileId);
             return sendMessage(fileMessage);
         } catch (IOException e) {
             e.printStackTrace();
@@ -140,7 +143,7 @@ public class MessageServiceController {
         String sendMessage = "/gov/iti/jets/fxml/send-message.fxml";
         String receiveMessage = "/gov/iti/jets/fxml/received-message.fxml";
         String sendFile = "/gov/iti/jets/fxml/sendFile.fxml";
-        String receivedFile = "/gov/iti/jets/fxml/receiveGroupFile.fxml.fxml";
+        String receivedFile = "/gov/iti/jets/fxml/receivedFile.fxml";
 
 
         try {
@@ -148,10 +151,10 @@ public class MessageServiceController {
             for (Message m : list) {
                 FXMLLoader loader;
                 if (m.getSenderId().equals(user.getPhoneNumber())) {
-                    String path = messages instanceof FileMessage ? sendFile: sendMessage;
+                    String path = m instanceof FileMessage ? sendFile : sendMessage;
                     loader = new FXMLLoader(MessageServiceController.class.getResource(path));
                 } else {
-                    String path = messages instanceof FileMessage ? receivedFile: receiveMessage;
+                    String path = m instanceof FileMessage ? receivedFile : receiveMessage;
                     loader = new FXMLLoader(MessageServiceController.class.getResource(path));
                 }
                 HBox hBox = loader.load();
@@ -176,6 +179,7 @@ public class MessageServiceController {
             System.out.println("Error when loading FXML: " + e.getMessage());
             e.printStackTrace();
         }
+
         return messages;
     }
 
@@ -184,9 +188,9 @@ public class MessageServiceController {
         ObservableList<HBox> messages = FXCollections.observableArrayList();
 
         String sendMessage = "/gov/iti/jets/fxml/send-message.fxml";
-        String receiveMessage = "/gov/iti/jets/fxml/received-message.fxml";
+        String receiveMessage = "/gov/iti/jets/fxml/receiveGroupMessage.fxml";
         String sendFile = "/gov/iti/jets/fxml/sendFile.fxml";
-        String receivedFile = "/gov/iti/jets/fxml/receiveGroupFile.fxml.fxml";
+        String receivedFile = "/gov/iti/jets/fxml/receiveGroupFile.fxml";
 
 
         try {
@@ -194,10 +198,10 @@ public class MessageServiceController {
             for (Message m : list) {
                 FXMLLoader loader;
                 if (m.getSenderId().equals(user.getPhoneNumber())) {
-                    String path = messages instanceof FileMessage ? sendFile: sendMessage;
+                    String path = m instanceof FileMessage ? sendFile : sendMessage;
                     loader = new FXMLLoader(MessageServiceController.class.getResource(path));
                 } else {
-                    String path = messages instanceof FileMessage ? receivedFile: receiveMessage;
+                    String path = m instanceof FileMessage ? receivedFile : receiveMessage;
                     loader = new FXMLLoader(MessageServiceController.class.getResource(path));
                 }
                 HBox hBox = loader.load();
@@ -205,12 +209,12 @@ public class MessageServiceController {
 
                 if (controller instanceof SendMessageController sendMessageController) {
                     sendMessageController.setMessage(m);
-                } else if (controller instanceof ReceiveMessageController receiveMessageController) {
-                    receiveMessageController.setMessage(m);
+                } else if (controller instanceof ReceiveGroupMessageController receiveGroupMessageController) {
+                    receiveGroupMessageController.setMessage((GroupMessage) m);
                 } else if (controller instanceof SendFileController sendFileController) {
                     sendFileController.setFileMessage((FileMessage) m);
-                } else if (controller instanceof ReceiveFileController receiveFileController) {
-                    receiveFileController.setFileMessage((FileMessage) m);
+                } else if (controller instanceof ReceiveGroupFileController receiveGroupFileController) {
+                    receiveGroupFileController.setFileMessage((FileMessage) m);
                 }
                 messages.add(hBox);
             }
@@ -231,6 +235,16 @@ public class MessageServiceController {
 
     public static void setActiveChat(ChatAreaController activeChat) {
         MessageServiceController.activeChat = activeChat;
+    }
+
+    public static byte [] getFileData(int fileId) {
+        try {
+            return messagingService.downloadFile(fileId);
+        } catch (RemoteException e) {
+            System.out.println("Error when download data: " + e.getMessage());
+            messagingService = RMIConnector.rmiReconnect().getMessagingService();
+            return getFileData(fileId);
+        }
     }
 
 

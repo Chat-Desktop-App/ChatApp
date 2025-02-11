@@ -16,7 +16,7 @@
                <children>
                   <ImageView fx:id="fileImage" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/google-docs.png" />
+                        <Image url="@../images/fileIcon.png" />
                      </image>
                   </ImageView>
                   <VBox alignment="CENTER_LEFT">

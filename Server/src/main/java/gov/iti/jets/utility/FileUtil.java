@@ -2,6 +2,7 @@ package gov.iti.jets.utility;
 
 import gov.iti.jets.database.dao.FilesDao;
 import gov.iti.jets.database.dao.FilesDaoImpl;
+import gov.iti.jets.model.FileType;
 import gov.iti.jets.model.MyFile;
 
 import java.io.*;
@@ -18,7 +19,7 @@ public class FileUtil {
         }
     }
 
-    public static int addFile(byte[] fileData, String fileName) {
+    public static int addFile(byte[] fileData, String fileName , FileType fileType) {
         try {
             String filePath = FILE_STORAGE_PATH + fileName; // Save file in server_files/
 
@@ -29,7 +30,7 @@ public class FileUtil {
             }
 
             // Save file metadata to database
-            MyFile newFile = new MyFile(0, fileName, filePath);
+            MyFile newFile = new MyFile(0, fileName, filePath , fileType );
             return filesDao.addFile(newFile) ;
         } catch (IOException e) {
             e.printStackTrace();

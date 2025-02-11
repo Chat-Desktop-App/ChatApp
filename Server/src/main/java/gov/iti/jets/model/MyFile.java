@@ -7,14 +7,16 @@ public class MyFile {
     private String fileName;
     private String filePath;
     private byte[] fileData;
+    private FileType fileType;
     public MyFile() {
 
     }
 
-    public MyFile(int fileId, String fileName, String filePath) {
+    public MyFile(int fileId, String fileName, String filePath , FileType fileType) {
         this.fileId = fileId;
         this.fileName = fileName;
         this.filePath = filePath;
+        this.fileType = fileType;
     }
 
     public String getFilePath() {
@@ -41,6 +43,14 @@ public class MyFile {
         this.fileName = fileName;
     }
 
+    public FileType getFileType() {
+        return fileType;
+    }
+
+    public void setFileType(FileType fileType) {
+        this.fileType = fileType;
+    }
+
     public byte[] getFileData() {
         return fileData;
     }
@@ -56,6 +66,7 @@ public class MyFile {
                 ", fileName='" + fileName + '\'' +
                 ", filePath='" + filePath + '\'' +
                 ", fileData=" + Arrays.toString(fileData) +
+                ", fileType=" + fileType +
                 '}';
     }
 }

@@ -42,7 +42,7 @@
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0">
                            <image>
-                              <Image url="@../images/google-docs.png" />
+                              <Image url="@../images/fileIcon.png" />
                            </image>
                         </ImageView>
                      </graphic>

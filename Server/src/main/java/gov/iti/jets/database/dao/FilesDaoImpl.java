@@ -1,6 +1,7 @@
 package gov.iti.jets.database.dao;
 
 import gov.iti.jets.database.DataBaseConnection;
+import gov.iti.jets.model.FileType;
 import gov.iti.jets.model.MyFile;
 
 import java.sql.*;
@@ -21,10 +22,11 @@ public class FilesDaoImpl implements FilesDao{
     @Override
     public int addFile(MyFile file) {
         Connection connection = dataBaseConnection.getConnection();
-        String query = "INSERT INTO FILES (file_name, file_path) VALUES (?,?)";
+        String query = "INSERT INTO FILES (file_name, file_path , file_type) VALUES (?,?,?)";
         try(PreparedStatement preparedStatement = connection.prepareStatement(query,Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setString(1, file.getFileName());
             preparedStatement.setString(2, file.getFilePath());
+            preparedStatement.setString(3, file.getFileType().toString());
             int rowsAffected = preparedStatement.executeUpdate();
             if (rowsAffected > 0) {
                 ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
@@ -48,7 +50,8 @@ public class FilesDaoImpl implements FilesDao{
                 return new MyFile(
                         resultSet.getInt("file_id"),
                         resultSet.getString("file_name"),
-                        resultSet.getString("file_path")
+                        resultSet.getString("file_path"),
+                       FileType.valueOf( resultSet.getString("file_type"))
                 );
             }
         } catch (SQLException e) {
@@ -68,7 +71,9 @@ public class FilesDaoImpl implements FilesDao{
                 files.add(new MyFile(
                    resultSet.getInt("file_id"),
                    resultSet.getString("file_name"),
-                   resultSet.getString("file_path")
+                   resultSet.getString("file_path"),
+                   FileType.valueOf( resultSet.getString("file_type"))
+
                 ));
             }
         } catch (SQLException e) {

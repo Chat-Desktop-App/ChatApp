@@ -89,7 +89,7 @@ public class MessageDaoImpl implements MessageDao {
         List<Message> groupMessages = new ArrayList<>();
         // Updated query with JOIN
         String query = """
-            SELECT m.*,u.fname AS sender_name, u.picture AS sender_profile_picture
+            SELECT m.*, CONCAT(u.fname, ' ', u.lname) AS sender_name, u.picture AS sender_profile_picture
             FROM Messages m JOIN Users u ON m.sender_id = u.phone_number
             WHERE m.group_id = ?
             ORDER BY m.time_stand
@@ -119,11 +119,14 @@ public class MessageDaoImpl implements MessageDao {
                     resultSet.getString("sender_name"),
                     PictureUtil.getPicture(resultSet.getString("sender_profile_picture"))
                 );
-
+                groupMessage.getName();
                 if(groupMessage.getFileId() != 0) {
                     MyFile myFile = FileUtil.getFile(groupMessage.getFileId());
-                    FileMessage fileMessage = new FileMessage(groupMessage,myFile.getFileData(),myFile.getFileName());
-                    groupMessages.add(fileMessage);
+                    if(myFile == null) {
+                        groupMessages.add(new FileMessage(groupMessage,0,"can't find file);",FileType.FILE));
+                    }else {
+                        groupMessages.add(new FileMessage(groupMessage, myFile.getFileData().length, myFile.getFileName(), myFile.getFileType()));
+                    }
                 }else {
                     groupMessages.add(groupMessage);
                 }
@@ -171,7 +174,12 @@ public class MessageDaoImpl implements MessageDao {
         );
         if(message.getFileId() != 0) {
             MyFile f = FileUtil.getFile(message.getFileId());
-            return new FileMessage(message,f.getFileData(),f.getFileName());
+            if(f != null){
+                return new FileMessage(message,f.getFileData().length,f.getFileName(),f.getFileType());
+            }else{
+                return new FileMessage(message,0,"can't find file);",FileType.FILE);
+
+            }
         }
         return message;
     }

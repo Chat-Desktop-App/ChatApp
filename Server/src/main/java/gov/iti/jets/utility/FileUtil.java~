@@ -1,30 +1,24 @@
-package gov.iti.jets.services.impls;
+package gov.iti.jets.utility;
 
 import gov.iti.jets.database.dao.FilesDao;
 import gov.iti.jets.database.dao.FilesDaoImpl;
 import gov.iti.jets.model.MyFile;
-import gov.iti.jets.services.interfaces.FileTransferService;
 
 import java.io.*;
+import java.nio.file.Files;
 
-import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
-
-public class FileTransferServiceImpl extends UnicastRemoteObject implements FileTransferService {
-    private FilesDao filesDao = new FilesDaoImpl();
+public class FileUtil {
+    private static FilesDao filesDao = new FilesDaoImpl();
     private static final String FILE_STORAGE_PATH = "server_files/";
 
-    public FileTransferServiceImpl() throws RemoteException {
-        super();
-        this.filesDao = new FilesDaoImpl();
+     static {
         File directory = new File(FILE_STORAGE_PATH);
         if (!directory.exists()) {
             directory.mkdirs(); // Ensure the storage directory exists
         }
     }
 
-    @Override
-    public int uploadFile(byte[] fileData, String fileName) throws RemoteException {
+    public static int addFile(byte[] fileData, String fileName , String fileType) {
         try {
             String filePath = FILE_STORAGE_PATH + fileName; // Save file in server_files/
 
@@ -35,7 +29,7 @@ public class FileTransferServiceImpl extends UnicastRemoteObject implements File
             }
 
             // Save file metadata to database
-            MyFile newFile = new MyFile(0, fileName, filePath);
+            MyFile newFile = new MyFile(0, fileName, filePath , fileType );
             return filesDao.addFile(newFile) ;
         } catch (IOException e) {
             e.printStackTrace();
@@ -43,8 +37,8 @@ public class FileTransferServiceImpl extends UnicastRemoteObject implements File
         }
     }
 
-    @Override
-    public byte[] downloadFile(int fileId) throws RemoteException {
+
+    public static MyFile getFile(int fileId) {
         MyFile fileRecord = filesDao.getFileById(fileId);
         if (fileRecord == null || fileRecord.getFilePath() == null) {
             return null;
@@ -55,15 +49,10 @@ public class FileTransferServiceImpl extends UnicastRemoteObject implements File
             return null;
         }
 
-        try (FileInputStream fis = new FileInputStream(file);
-             ByteArrayOutputStream bos = new ByteArrayOutputStream()) {
-
-            byte[] buffer = new byte[1024];
-            int bytesRead;
-            while ((bytesRead = fis.read(buffer)) != -1) {
-                bos.write(buffer, 0, bytesRead);
-            }
-            return bos.toByteArray();
+        try {
+            byte[] fileData = Files.readAllBytes(file.toPath());
+            fileRecord.setFileData(fileData);
+            return fileRecord;
         } catch (IOException e) {
             e.printStackTrace();
             return null;
