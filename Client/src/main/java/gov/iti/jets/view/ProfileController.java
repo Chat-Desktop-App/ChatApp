@@ -1,6 +1,5 @@
 package gov.iti.jets.view;
 
-import gov.iti.jets.controller.Session;
 import gov.iti.jets.controller.UserSettingsServiceController;
 import gov.iti.jets.model.Status;
 import javafx.application.Platform;
@@ -13,10 +12,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 
-import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
 import javafx.collections.FXCollections;
 import javafx.scene.control.ListCell;
 import javafx.scene.paint.Color;
@@ -56,7 +53,10 @@ public class ProfileController {
 
     @FXML
     void handleEditButton(ActionEvent event) {
-
+        handleStatus(event);
+        handleBio(event);
+        handleEmail(event);
+        handleFullName(event);
     }
     @FXML
     void initialize() {
@@ -118,19 +118,30 @@ public class ProfileController {
     }
     @FXML
     void handleBio(ActionEvent event) {
-        String BioText = bio.getText();
-        UserSettingsServiceController.updateProfileBio(BioText);
+        if(bio!=null) {
+            String BioText = bio.getText();
+            UserSettingsServiceController.updateProfileBio(BioText);
+        }else{
+            bio=bio;
+        }
     }
     @FXML
     void handleEmail(ActionEvent event) {
-        String emailText = email.getText();
-        UserSettingsServiceController.updateProfileEmail(emailText);
-
+        if(email!=null) {
+            String emailText = email.getText();
+            UserSettingsServiceController.updateProfileEmail(emailText);
+        }else{
+            email=email;
+        }
     }
     @FXML
     void handleFullName(ActionEvent event) {
-        String NameText = fullName.getText();
-        UserSettingsServiceController.updateProfileName(NameText);
+        if(fullName!=null) {
+            String NameText = fullName.getText();
+            UserSettingsServiceController.updateProfileName(NameText);
+        }else {
+            fullName=fullName;
+        }
     }
     @FXML
     void handleProfilePic(ActionEvent event) throws IOException {
