@@ -20,7 +20,7 @@ import java.util.List;
 import static gov.iti.jets.controller.Session.*;
 
 public class HomeServiceController {
-    private static LoadHome loadHome = RMIConnector.getRmiConnector().getLoadHome();
+    public static LoadHome loadHome = RMIConnector.getRmiConnector().getLoadHome();
 
     private static ObservableList<AnchorPane> getContacts(String fxmlPath, List<ContactUser> contactList) {
         ObservableList<AnchorPane> observableList = FXCollections.observableArrayList();
@@ -38,7 +38,6 @@ public class HomeServiceController {
                 } else if (controller instanceof OnlineCardController) {
                     ((OnlineCardController) controller).setContact(contactUser);
                 }
-
                 observableList.add(anchorPane);
             }
         } catch (IOException e) {
@@ -46,7 +45,6 @@ public class HomeServiceController {
         }
         return observableList;
     }
-
     public static ObservableList<AnchorPane> getLast() {
         String fxmlPath = "/gov/iti/jets/fxml/Chats.fxml";
         try {

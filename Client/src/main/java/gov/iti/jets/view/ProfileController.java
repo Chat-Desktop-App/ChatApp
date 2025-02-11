@@ -3,6 +3,7 @@ package gov.iti.jets.view;
 import gov.iti.jets.controller.Session;
 import gov.iti.jets.controller.UserSettingsServiceController;
 import gov.iti.jets.model.Status;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -22,6 +23,15 @@ import javafx.scene.paint.Color;
 
 
 public class ProfileController {
+    private static ProfileController instance;
+
+    public static ProfileController getInstance() {
+        return instance;
+    }
+
+    public ProfileController() {
+        instance = this;
+    }
 
     @FXML
     private Button ChangeprofilePic;
@@ -103,6 +113,7 @@ public class ProfileController {
 
     @FXML
     void handleStatus(ActionEvent event) {
+
         UserSettingsServiceController.updateProfileStatus(status.getValue());
     }
     @FXML
@@ -142,8 +153,22 @@ public class ProfileController {
             {
                picId = picId;
             }
+    }
+    public void updateProfilePicture(String phoneNumber, String picturePath) {
+        Platform.runLater(() -> {
+            try {
+                Image image = new Image("file:" + picturePath);
+                picId.setImage(image);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+    }
 
-
+    public void updateProfileStatus(String phoneNumber, Status statusValue) {
+        Platform.runLater(() -> {
+            status.setValue(statusValue);
+        });
     }
 
 }

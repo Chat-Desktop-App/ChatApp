@@ -4,6 +4,7 @@ import gov.iti.jets.model.Status;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import gov.iti.jets.services.interfaces.ChatClient;
 
 public interface UserSettingsService extends Remote  {
 
@@ -12,6 +13,7 @@ public interface UserSettingsService extends Remote  {
     void UpdateFullName(String phoneNumber,String fullName) throws RemoteException;
     void UpdateStatus(String phoneNumber, Status status) throws RemoteException;
     void UpdateEmail(String phoneNumber,String email) throws RemoteException;
+    void registerClient(ChatClient client) throws RemoteException;
 
 
 }

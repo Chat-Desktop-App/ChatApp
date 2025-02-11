@@ -22,7 +22,6 @@ public class MessageServiceController {
     private static ChatAreaController activeChat;
 
 
-
     public static void receiveMessage(Message message) {
         if(activeChat != null){
             if (message.getRecipient() == Recipient.PRIVATE && activeChat.isContact()){
@@ -62,8 +61,6 @@ public class MessageServiceController {
             controller.getChatable().setLastChatAt(message.getTimestamp().toLocalDateTime());
         }
     }
-
-
     public static HBox sendMessage(Message message) {
         boolean flag;
         HBox hBox = null;

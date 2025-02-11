@@ -6,6 +6,9 @@ import gov.iti.jets.controller.LogInServiceController;
 import gov.iti.jets.controller.MessageServiceController;
 import gov.iti.jets.controller.Session;
 import gov.iti.jets.controller.NotificationServiceController;
+import gov.iti.jets.model.Chatable;
+import gov.iti.jets.model.ContactUser;
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -28,6 +31,8 @@ import javafx.stage.Stage;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.rmi.RemoteException;
+import java.util.List;
 
 public class HomeController {
 
@@ -189,7 +194,6 @@ public class HomeController {
         if(!NotificationServiceController.getNotifications(HomeServiceController.getUser().getPhoneNumber()).isEmpty()){
             newNotifiction.setVisible(true);
         }
-
     }
     private void loadChatsList() {
         ObservableList<AnchorPane> items = HomeServiceController.getLast();
@@ -230,5 +234,41 @@ public class HomeController {
         MessageServiceController.setActiveChat(null);
 
     }
+    public void updateProfilePicture(String picturePath) {
+        try {
+            Image image = new Image("file:" + picturePath);
+
+            pictureIcon.setImage(image);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public void refreshLastChats() {
+        Platform.runLater(() -> {
+            loadChatsList();
+        });
+    }
+    public void refreshChat(String phoneNumber) {
+        Platform.runLater(() -> {
+            try {
+                // Get fresh data for this specific contact
+                ObservableList<AnchorPane> currentChats = chatsTree.getItems();
+                for (int i = 0; i < currentChats.size(); i++) {
+                    Chatable chat = (Chatable) currentChats.get(i);
+                    if (chat instanceof ContactUser && ((ContactUser) chat).getPhoneNumber().equals(phoneNumber)) {
+                        // Get fresh contact data
+                        ContactUser updatedContact = HomeServiceController.loadHome.refreshUserData(phoneNumber);
+                        if (updatedContact != null) {
+                            currentChats.set(i, updatedContact);
+                        }
+                        break;
+                    }
+                }
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
 
 }
