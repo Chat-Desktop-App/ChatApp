@@ -24,12 +24,6 @@ public class NotificationServiceController {
         String fxmlPath = "/gov/iti/jets/fxml/notificationCell.fxml";
         try {
             List<Notifications> list = notificationsService.getAllNotificationsByUserId(phoneNumber);
-            // for debugging
-           /* System.out.println("Received notifications: " + list.size());
-            for (Notifications n : list) {
-                System.out.println("Notification: " + n.getMessage() +
-                        ", Type: " + n.getNotificationType());
-            }*/
             myNotificationsList.clear();
             loadNotifications(fxmlPath, list);
         } catch (RemoteException e) {
@@ -74,6 +68,19 @@ public class NotificationServiceController {
                 myNotificationsList.remove(notificationCell);
             } catch (RemoteException ex) {
                 System.out.println("Failed to delete notification: " + ex.getMessage());
+            }
+        }
+    }
+    public static void addNotification(Notifications notifications) {
+        try {
+            notificationsService.addNotification(notifications);
+        } catch (RemoteException e) {
+            System.out.println("Error Adding notification: " + e.getMessage());
+            notificationsService = RMIConnector.rmiReconnect().getNotificationService();
+            try {
+                notificationsService.addNotification(notifications);
+            } catch (RemoteException ex) {
+                System.out.println("Failed to add notification: " + ex.getMessage());
             }
         }
     }

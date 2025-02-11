@@ -56,7 +56,12 @@ public class PictureUtil{
         if (picturePath == null) {
             return null;
         }
+
         File file = new File(picturePath);
+        if (!file.exists()) {
+            System.err.println("File not found: " + picturePath);
+            return null;
+        }
         try (FileInputStream fis = new FileInputStream(file);
              FileChannel fileChannel = fis.getChannel()) {
             ByteBuffer buffer = ByteBuffer.allocate((int) fileChannel.size());
@@ -64,8 +69,9 @@ public class PictureUtil{
             return buffer.array();
         } catch (IOException e) {
             e.printStackTrace();
-            return null;
+
         }
+        return null;
     }
 
 

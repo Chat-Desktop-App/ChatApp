@@ -54,11 +54,6 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$/.." value="main" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -73,17 +68,10 @@
     &quot;accountId&quot;: &quot;31b6e34d-80f6-4d0d-8884-909eff46b356&quot;
   }
 }</component>
-  <component name="MavenImportPreferences">
-    <option name="generalSettings">
-      <MavenGeneralSettings>
-        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
-      </MavenGeneralSettings>
-    </option>
-  </component>
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 4
+  &quot;associatedIndex&quot;: 1
 }</component>
-  <component name="ProjectId" id="2s1vWyhmRLQ8Z9SVbTJyVPuEqRQ" />
+  <component name="ProjectId" id="2sopbyC4LU1q0FURRmIcO93HyA1" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
@@ -167,39 +155,9 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="gov.iti.jets.view.App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="gov.iti.jets.view.App" />
-      <module name="Server" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="gov.iti.jets.view.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="server230125" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="server230125" />
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.RMIConnector" />
-        <item itemvalue="Application.NotificationsDaoImpl" />
-        <item itemvalue="Application.gov.iti.jets.view.App" />
-        <item itemvalue="Application.HelloApplication" />
-        <item itemvalue="Application.App" />
       </list>
     </recent_temporary>
   </component>
@@ -207,20 +165,11 @@
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="29434122-bddf-47bf-bcd9-02e3da6dc58d" name="Changes" comment="" />
-      <created>1737635930757</created>
+      <created>1739131858089</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1737635930757</updated>
+      <updated>1739131858089</updated>
     </task>
     <servers />
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="a" />
-    <MESSAGE value="update top button" />
-    <option name="LAST_COMMIT_MESSAGE" value="update top button" />
-  </component>
-  <component name="XSLT-Support.FileAssociations.UIState">
-    <expand />
-    <select />
   </component>
 </project>

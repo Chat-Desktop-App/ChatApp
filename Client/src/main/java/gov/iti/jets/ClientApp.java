@@ -1,9 +1,11 @@
 package gov.iti.jets;
 
 import gov.iti.jets.controller.HomeServiceController;
+import gov.iti.jets.controller.LogInServiceController;
 import gov.iti.jets.controller.Session;
 import gov.iti.jets.model.LoginStatus;
 import gov.iti.jets.model.User;
+import gov.iti.jets.services.impls.ChatClientImpl;
 import gov.iti.jets.services.interfaces.Login;
 import gov.iti.jets.view.LoginController;
 import jakarta.xml.bind.JAXBContext;
@@ -30,20 +32,15 @@ public class ClientApp extends Application {
     private static final String HOME_FXML = "fxml/home.fxml";
     private Login login =  RMIConnector.getRmiConnector().getLoginService();
 
-
     @Override
     public void start(Stage stage)  {
 
         System.out.println("client running.......");
         Parent root = loadView();
         Scene scene = new Scene(root);
-
         stage.setTitle("Orca");
-
         stage.setScene(scene);
         stage.show();
-
-
     }
 
     private Parent loadView() {
@@ -61,7 +58,7 @@ public class ClientApp extends Application {
                 // if session is valid go to home page
                 // else load login page with user phone number
                 if(login.validateSession(loginStatus)){
-                    login.skipLogin(loginStatus);
+                    LogInServiceController.skipLogIn(loginStatus);
                     loader = new FXMLLoader(ClientApp.class.getResource(HOME_FXML));
                     HomeServiceController.setUser(login.getUser(loginStatus.getPhoneNumber()));
                     return loader.load();
@@ -75,9 +72,6 @@ public class ClientApp extends Application {
                     return  root;
 
                 }
-
-
-
 
             } catch (JAXBException e) {
                 throw new RuntimeException(e);

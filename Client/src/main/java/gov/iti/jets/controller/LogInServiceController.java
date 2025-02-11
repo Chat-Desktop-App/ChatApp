@@ -99,4 +99,12 @@ public class LogInServiceController {
             throw new RuntimeException(e);
         }
     }
+
+    public static void skipLogIn(LoginStatus status){
+        try {
+            service.skipLogin(status, client);
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

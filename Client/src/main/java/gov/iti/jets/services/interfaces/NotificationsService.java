@@ -2,7 +2,6 @@ package gov.iti.jets.services.interfaces;
 
 import gov.iti.jets.model.ContactUser;
 import gov.iti.jets.model.Notifications;
-import gov.iti.jets.model.User;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;

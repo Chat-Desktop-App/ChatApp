@@ -17,6 +17,9 @@ public class RMIConnector {
     private LoadHome loadHome;
     private MessagingService messagingService;
     private NotificationsService notificationsService;
+    private ContactService contactService;
+    private AddGroup addGroupService;
+    private UserSettingsService userSettingsService;
 
     // Private constructor to handle the connection to services
     private RMIConnector() {
@@ -24,11 +27,15 @@ public class RMIConnector {
             try {
                 // Get the registry and lookup each service
                 Registry reg = LocateRegistry.getRegistry(1099);
+                contactService = (ContactService) reg.lookup("ContactService");
                 loginService = (Login) reg.lookup("LogIn");
                 registerService = (Register) reg.lookup("Register");
                 loadHome = (LoadHome) reg.lookup("LoadHome");
                 messagingService = (MessagingService) reg.lookup("MessagingService");
                 notificationsService = (NotificationsService) reg.lookup("NotificationsService");
+                addGroupService = (AddGroup) reg.lookup("AddGroup");
+
+                userSettingsService = (UserSettingsService) reg.lookup("UserSettingsService");
                 break;
             } catch (RemoteException | NotBoundException e) {
                 System.out.println("Connection to services failed: " + e.getMessage());
@@ -82,6 +89,14 @@ public class RMIConnector {
         return notificationsService;
     }
 
+    public AddGroup getAddGroupService() {
+        return addGroupService;
+    }
+
+
+    public UserSettingsService getUserSettingsService() {
+        return userSettingsService;
+    }
 
     public void shutdown() {
         System.out.println("Shutting down RMI connection...");
@@ -92,6 +107,8 @@ public class RMIConnector {
         messagingService = null;
         rmiConnector = null;
         notificationsService = null;
+        addGroupService = null;
+        userSettingsService = null;
     }
 
 }
