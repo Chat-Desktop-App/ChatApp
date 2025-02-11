@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<HBox alignment="CENTER" styleClass="HBox_Background" stylesheets="@../styles/addGroug.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.view.AddGroupController">
+<HBox alignment="CENTER" styleClass="HBox_Background" stylesheets="@../styles/addGroug.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.view.AddGroupController">
    <children>
       <AnchorPane styleClass="anchor_Pane" stylesheets="@../styles/addGroug.css" HBox.hgrow="NEVER">
          <children>
@@ -43,13 +43,13 @@
                   <Font name="System Bold" size="17.0" />
                </font>
             </Text>
+            <TextField fx:id="selectFriend_Field" layoutX="34.0" layoutY="129.0" prefHeight="30.0" prefWidth="355.0" promptText="Enter Phone Number or Name" styleClass="text_Field" stylesheets="@../styles/addGroug.css" />
             <TextField fx:id="GroupName_Field" layoutX="35.0" layoutY="53.0" promptText="Enter Group name" styleClass="text_Field" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="227.0" AnchorPane.topAnchor="53.0" />
-            <TextField fx:id="selectFriend_Field" layoutX="37.0" layoutY="129.0" promptText="Write the phone number of a friend " styleClass="text_Field" AnchorPane.leftAnchor="37.0" AnchorPane.rightAnchor="227.0" AnchorPane.topAnchor="129.0" />
             <ListView fx:id="ListView_OfCheckBox" layoutX="35.0" layoutY="175.2" prefHeight="232.0" prefWidth="354.0" styleClass="listview" AnchorPane.bottomAnchor="69.0" AnchorPane.leftAnchor="34.400000000000034" AnchorPane.rightAnchor="227.0" AnchorPane.topAnchor="175.0" />
             <Separator layoutX="21.6" layoutY="419.8" opacity="0.2" stylesheets="@../styles/addGroug.css" AnchorPane.bottomAnchor="53.0" AnchorPane.leftAnchor="21.6" AnchorPane.rightAnchor="20.0" />
             <HBox alignment="CENTER" layoutX="187.0" layoutY="462.0" AnchorPane.bottomAnchor="10.0">
                <children>
-                  <Button fx:id="createGroupButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleCreategroup" prefHeight="34.0" prefWidth="278.0" stylesheets="@../styles/addGroug.css" text="Create DM" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="NEVER" />
+                  <Button fx:id="createGroupButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleCreategroup" prefHeight="34.0" prefWidth="278.0" stylesheets="@../styles/addGroug.css" text="Create Group" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="NEVER" />
                </children>
             </HBox>
          </children>

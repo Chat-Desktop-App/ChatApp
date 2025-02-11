@@ -5,7 +5,7 @@ import gov.iti.jets.database.dao.GroupDaoImpl;
 import gov.iti.jets.model.ContactStatus;
 import gov.iti.jets.model.ContactUser;
 import gov.iti.jets.model.Group;
-import gov.iti.jets.model.LastChatable;
+import gov.iti.jets.model.Chatable;
 import gov.iti.jets.services.interfaces.LoadHome;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -50,11 +50,11 @@ public class LoadHomeImp extends UnicastRemoteObject implements LoadHome {
     }
 
     @Override
-    public List<LastChatable> getLastChats(String phoneNumber) throws RemoteException {
+    public List<Chatable> getLastChats(String phoneNumber) throws RemoteException {
         try {
             List<ContactUser> contacts = contactDao.getLastContact(phoneNumber);
             List<Group> groups = groupDao.getLastGroups(phoneNumber);
-            List<LastChatable> lastChatables = new ArrayList<>(contacts);
+            List<Chatable> lastChatables = new ArrayList<>(contacts);
             lastChatables.addAll(groups);
             lastChatables.sort((o1, o2) -> o2.getLastChatAt().compareTo(o1.getLastChatAt()));
             return lastChatables;   

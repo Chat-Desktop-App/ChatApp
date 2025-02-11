@@ -8,6 +8,7 @@ public class User implements Serializable{
     private String phoneNumber;
     private String fname;
     private String lname;
+    private String fullname;
     private String email;
     private String passwordHashed;
     private Gender gender;
@@ -59,6 +60,14 @@ public class User implements Serializable{
 
     public void setFname(String fname) {
         this.fname = fname;
+    }
+
+    public String getFullname() {
+        return fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
     }
 
     public String getLname() {

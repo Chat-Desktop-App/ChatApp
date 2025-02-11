@@ -1,9 +1,6 @@
 package gov.iti.jets;
 
 import gov.iti.jets.services.impls.*;
-import gov.iti.jets.services.interfaces.LoadHome;
-import gov.iti.jets.services.interfaces.MessagingService;
-import gov.iti.jets.services.interfaces.NotificationsService;
 
 import java.rmi.AlreadyBoundException;
 import java.rmi.NotBoundException;
@@ -43,6 +40,9 @@ public class RMIConnector {
             registry.bind("LoadHome", new LoadHomeImp());
             registry.bind("FileTransferService", new FileTransferServiceImpl());
             registry.bind("ContactService", new ContactServiceImpl());
+            registry.bind("AddGroup", new AddGroupImpl());
+
+            registry.bind("UserSettingsService", new UserSettingsServiceImpl());
 
             isRunning = true; // Mark the server as running
             System.out.println("Server is up and running.");

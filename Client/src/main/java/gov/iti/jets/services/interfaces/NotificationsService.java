@@ -1,7 +1,7 @@
 package gov.iti.jets.services.interfaces;
 
+import gov.iti.jets.model.ContactUser;
 import gov.iti.jets.model.Notifications;
-import gov.iti.jets.model.User;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -13,6 +13,6 @@ public interface NotificationsService extends Remote {
     List<Notifications> getAllNotificationsByUserId(String userId) throws RemoteException;
     void updateNotification(Notifications notification) throws RemoteException;
     void deleteNotification(int notificationId) throws RemoteException;
-    User getUserInfo(String phone) throws RemoteException;
+    ContactUser getUserInfo(String phone) throws RemoteException;
 
 }

@@ -2,6 +2,7 @@ package gov.iti.jets.view;
 
 import gov.iti.jets.controller.HomeServiceController;
 import gov.iti.jets.controller.NotificationServiceController;
+import gov.iti.jets.controller.Session;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -16,7 +17,8 @@ public class NotificationController {
         assert listOFNotifications != null : "fx:id=\"listOFNotifications\" was not injected: check your FXML file 'notification.fxml'.";
 
         // Load actual notifications
-        listOFNotifications.setItems(NotificationServiceController.getNotifications(HomeServiceController.getUser().getPhoneNumber()));
+        //listOFNotifications.setItems(NotificationServiceController.getNotifications(HomeServiceController.getUser().getPhoneNumber()));
+        listOFNotifications.setItems(NotificationServiceController.getNotifications(Session.user.getPhoneNumber()));
 
         // Customize the ListView appearance
         listOFNotifications.setStyle("-fx-background-color: transparent;");

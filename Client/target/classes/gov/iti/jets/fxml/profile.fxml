@@ -23,7 +23,7 @@
                         <Font name="System Bold Italic" size="16.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="fullName" prefHeight="30.0" prefWidth="200.0" promptText="Enter your name" styleClass="textField" />
+                  <TextField fx:id="fullName" onAction="#handleFullName" prefHeight="30.0" prefWidth="200.0" promptText="Enter your name" styleClass="textField" />
                </children>
             </VBox>
             <VBox alignment="CENTER_LEFT" AnchorPane.bottomAnchor="86.0" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="260.0">
@@ -33,7 +33,7 @@
                         <Font name="System Bold Italic" size="16.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="email" prefHeight="30.0" prefWidth="200.0" promptText="Enter your email" styleClass="textField" />
+                  <TextField fx:id="email" onAction="#handleEmail" prefHeight="30.0" prefWidth="200.0" promptText="Enter your email" styleClass="textField" />
                </children>
             </VBox>
             <VBox alignment="CENTER_LEFT" AnchorPane.bottomAnchor="162.39999999999998" AnchorPane.rightAnchor="30.200000000000045" AnchorPane.topAnchor="184.0">
@@ -43,7 +43,7 @@
                         <Font name="System Bold Italic" size="16.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="status" prefHeight="30.0" prefWidth="200.0" styleClass="chomboBox" />
+                  <ComboBox fx:id="status" onAction="#handleStatus" prefHeight="30.0" prefWidth="200.0" styleClass="chomboBox" />
                </children>
             </VBox>
             <VBox alignment="CENTER_LEFT" layoutY="260.0" AnchorPane.bottomAnchor="86.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="260.0">
@@ -53,12 +53,12 @@
                         <Font name="System Bold Italic" size="16.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="bio" prefHeight="30.0" prefWidth="200.0" promptText="Write your Bio" styleClass="textField" />
+                  <TextField fx:id="bio" onAction="#handleBio" prefHeight="30.0" prefWidth="200.0" promptText="Write your Bio" styleClass="textField" />
                </children>
             </VBox>
-            <HBox alignment="CENTER" layoutX="286.0" layoutY="434.0" prefHeight="36.0" prefWidth="102.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0">
+            <HBox alignment="CENTER" layoutX="286.0" layoutY="434.0" prefHeight="36.0" prefWidth="102.0" visible="false" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0">
                <children>
-                  <Button fx:id="edit" alignment="CENTER" mnemonicParsing="false" onAction="#handleEditButton" prefHeight="36.0" prefWidth="110.0" text="Edit" textAlignment="CENTER" textFill="WHITE">
+                  <Button fx:id="edit" alignment="CENTER" mnemonicParsing="false" onAction="#handleEditButton" prefHeight="36.0" prefWidth="67.0" text="Save" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="System Bold Italic" size="17.0" />
                      </font>
@@ -66,7 +66,7 @@
                </children>
             </HBox>
             <Button fx:id="ChangeprofilePic" layoutX="235.0" layoutY="139.0" mnemonicParsing="false" onAction="#handleProfilePic" prefHeight="36.0" prefWidth="129.0" text="Change Picture" />
-            <ImageView fitHeight="100.0" fitWidth="160.0" layoutX="220.0" layoutY="30.0" nodeOrientation="INHERIT">
+            <ImageView fx:id="picId" fitHeight="120.0" fitWidth="150.0" layoutX="225.0" layoutY="14.0" nodeOrientation="INHERIT">
                <image>
                   <Image url="@../images/user.png" />
                </image>

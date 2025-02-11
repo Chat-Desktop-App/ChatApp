@@ -14,22 +14,31 @@ public class Message implements Serializable {
     private String senderId;
     private Recipient recipient = null;
     private String receiverId = null;
-    private int groupId = 0;
+    private int groupId ;
     private String content;
     private int fileId;
-    private int fontSize = 14;
-    private String fontStyle = Font.getDefault().getName();
-    private String fontColour = "#000000";
-    private boolean isBold = false;
-    private boolean isItalic = false;
-    private boolean isUnderLine = false;
-    private String textBackGroundColour = "#3d7eb6";
+    private int fontSize;
+    private String fontStyle ;
+    private String fontColour ;
+    private boolean isBold;
+    private boolean isItalic;
+    private boolean isUnderLine ;
+    private String textBackGroundColour;
     private Timestamp timestamp;
     private String emoji;
 
 
     public Message() {
-
+        recipient = null;
+        receiverId =null;
+        groupId = 0;
+        fontSize = 14;
+        fontStyle = Font.getDefault().getName();
+        fontColour= "#000000";
+        isBold = false;
+        isItalic = false;
+        isUnderLine = false;
+        textBackGroundColour ="#3d7eb6";
     }
 
     public Message(Message message){

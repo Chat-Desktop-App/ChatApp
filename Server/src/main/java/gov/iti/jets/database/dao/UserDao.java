@@ -2,6 +2,7 @@ package gov.iti.jets.database.dao;
 
 
 
+import gov.iti.jets.model.Status;
 import gov.iti.jets.model.User;
 
 import java.sql.SQLException;
@@ -19,4 +20,9 @@ public interface UserDao {
     public Map<String, Integer> getUserGender() throws SQLException;
     public Map<String, Integer> getUserCountry() throws SQLException;
     String hashPass(String pass);
+    public int updateEmail(String phoneNumber,String email) throws SQLException;
+    public int updateBio(String phoneNumber,String Bio) throws SQLException ;
+    public int updateStatus(String phoneNumber, Status status) throws SQLException ;
+    public int updateFName(String phoneNumber,String FName) throws SQLException;
+    public int updateLName(String phoneNumber,String LName) throws SQLException;
 }

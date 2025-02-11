@@ -6,10 +6,7 @@ import gov.iti.jets.model.ContactUser;
 import gov.iti.jets.model.Status;
 import gov.iti.jets.utility.PictureUtil;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,15 +23,22 @@ public class ContactDaoImpl implements  ContactDao{
     public List<ContactUser> getFriendsContacts(String phoneNumber) throws SQLException {
         Connection con = dataBaseConnection.getConnection();
         String query = """
-                SELECT c.contact_id, u.fname, u.lname,  u.status AS user_status, u.picture,  c.status, c.user_id
-                    FROM contacts c
-                    JOIN users u ON c.contact_id = u.phone_number
-                    WHERE (c.user_id = ? or c.contact_id = ?) AND c.status = 'ACCEPTED'
-                """;
+    SELECT u.phone_number as contact_id, u.fname, u.lname, u.status AS user_status, u.picture, c.status, c.user_id
+    FROM contacts c
+    JOIN users u ON (CASE 
+        WHEN c.user_id = ? THEN c.contact_id = u.phone_number
+        WHEN c.contact_id = ? THEN c.user_id = u.phone_number
+    END)
+    WHERE (c.user_id = ? OR c.contact_id = ?)
+    AND c.status = 'ACCEPTED'
+""";
         PreparedStatement ps
                 = con.prepareStatement(query);
         ps.setString(1, phoneNumber);
         ps.setString(2, phoneNumber);
+        ps.setString(3, phoneNumber);
+        ps.setString(4, phoneNumber);
+
         ResultSet rs = ps.executeQuery();
         List<ContactUser> contactUsers = new ArrayList<>();
 
@@ -215,8 +219,6 @@ public class ContactDaoImpl implements  ContactDao{
     @Override
     public int addContact(String phoneNumber, String contactPhoneNumber) throws SQLException {
         Connection con = dataBaseConnection.getConnection();
-
-        // Check existing status between users
         String checkQuery = """
         SELECT user_id, contact_id, status FROM contacts 
         WHERE (user_id = ? AND contact_id = ?) 
@@ -227,13 +229,10 @@ public class ContactDaoImpl implements  ContactDao{
         checkStmt.setString(2, contactPhoneNumber);
         checkStmt.setString(3, contactPhoneNumber);
         checkStmt.setString(4, phoneNumber);
-
         ResultSet rs = checkStmt.executeQuery();
-
         boolean senderPending = false;
         boolean receiverPending = false;
         boolean rejectedExists = false;
-
         while (rs.next()) {
             String userId = rs.getString("user_id");
             String contactId = rs.getString("contact_id");
@@ -250,7 +249,6 @@ public class ContactDaoImpl implements  ContactDao{
             }
         }
 
-        // If both requests are pending, update both to ACCEPTED
         if (senderPending && receiverPending) {
             String updateToAcceptedQuery = """
             UPDATE contacts SET status = 'ACCEPTED'
@@ -266,7 +264,6 @@ public class ContactDaoImpl implements  ContactDao{
             return updateStmt.executeUpdate(); // Should return 2 if both are updated
         }
 
-        // If the relationship was REJECTED, update to ACCEPTED
         if (rejectedExists) {
             String updateRejectedQuery = """
             UPDATE contacts SET status = 'ACCEPTED'
@@ -282,7 +279,6 @@ public class ContactDaoImpl implements  ContactDao{
             return updateStmt.executeUpdate(); // Should return 1 if updated
         }
 
-        // If no existing request, insert a new PENDING request
         String insertQuery = "INSERT INTO contacts (user_id, contact_id, status) VALUES (?, ?, ?)";
         PreparedStatement insertStmt = con.prepareStatement(insertQuery);
         insertStmt.setString(1, phoneNumber);
@@ -391,6 +387,21 @@ public class ContactDaoImpl implements  ContactDao{
         ps.setString(5, u1);
         return ps.executeUpdate() > 0;
     }
+    @Override
+    public Boolean updateLastContact(String u1, String u2, Timestamp lastChat) throws SQLException {
+        Connection con = dataBaseConnection.getConnection();
+        String query = """
+                UPDATE contacts SET last_chat_at = ?
+                WHERE (contact_id = ? AND user_id = ?) OR ((contact_id = ? AND user_id = ?))
+                """;
+        PreparedStatement ps = con.prepareStatement(query);
+        ps.setTimestamp(1, lastChat);
+        ps.setString(2, u1);
+        ps.setString(3, u2);
+        ps.setString(4, u2);
+        ps.setString(5, u1);
+        return ps.executeUpdate() > 0;
+    }
 
     @Override
     public List<ContactUser> getLastContact(String phoneNumber) throws SQLException {
@@ -435,6 +446,73 @@ public class ContactDaoImpl implements  ContactDao{
             contactUsers.add(contactUser);
         }
         return  contactUsers;
+    }
+
+    public static void main(String[] args){
+        ContactDaoImpl contactDao = new ContactDaoImpl();
+        String phoneNumber = "+1234567890";  // Janes's phone number
+        String contactPhoneNumber = "+1122334455"; // alice's phone number
+        try{
+            //contactDao.addContact(phoneNumber, contactPhoneNumber);
+            // Test for friends contacts
+            List<ContactUser> friends = contactDao.getFriendsContacts(contactPhoneNumber);
+            System.out.println("Friends Contacts: " + friends.size());
+            for (ContactUser contact : friends) {
+                System.out.println(contact);
+            }
+
+            // Test for pending contacts
+            List<ContactUser> pending = contactDao.getPendingContacts(contactPhoneNumber);
+            System.out.println("Pending Contacts: " + pending.size());
+            for (ContactUser contact : pending) {
+                System.out.println(contact);
+            }
+
+            // Test for blocked contacts
+            List<ContactUser> blocked = contactDao.getBlockedContacts(contactPhoneNumber);
+            System.out.println("Blocked Contacts: " + blocked.size());
+            for (ContactUser contact : blocked) {
+                System.out.println(contact);
+            }
+
+            // Test for all contacts
+            List<ContactUser> allContacts = contactDao.getAllContacts(contactPhoneNumber);
+            System.out.println("All Contacts: " + allContacts.size());
+            for (ContactUser contact : allContacts) {
+                System.out.println(contact);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+    public ContactUser getFriendContact(String phoneNumber) throws SQLException {
+        Connection con = dataBaseConnection.getConnection();
+        String query = """
+            SELECT c.contact_id, u.fname, u.lname, u.status AS user_status, u.picture, c.status, c.user_id
+            FROM contacts c
+            JOIN users u ON c.contact_id = u.phone_number
+            WHERE (c.user_id = ? OR c.contact_id = ?) AND c.status = 'ACCEPTED'
+            LIMIT 1
+            """;
+        PreparedStatement ps = con.prepareStatement(query);
+        ps.setString(1, phoneNumber);
+        ps.setString(2, phoneNumber);
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            ContactUser contactUser = new ContactUser(
+                    rs.getString(1),
+                    rs.getString(2),
+                    rs.getString(3), Status.valueOf(rs.getString(4)),
+                    rs.getString(5));
+            byte[] profilePicture = PictureUtil.getPicture(contactUser.getPicturePath());
+            contactUser.setPicture(profilePicture);
+            return contactUser;
+        }
+
+        return null;
     }
 
 

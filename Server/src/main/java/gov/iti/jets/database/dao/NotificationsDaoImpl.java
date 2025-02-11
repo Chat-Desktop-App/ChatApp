@@ -34,13 +34,10 @@ public class NotificationsDaoImpl implements NotificationsDao {
             statement.setString(5, String.valueOf(notifications.getNotificationType()));
             statement.setString(6, notifications.getSenderId());
 
-
-
             int affectedRows = statement.executeUpdate();
             if (affectedRows == 0) {
                 throw new SQLException("Creating notification failed, no rows affected.");
             }
-
             try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
                     notifications.setNotificationId(generatedKeys.getInt(1));

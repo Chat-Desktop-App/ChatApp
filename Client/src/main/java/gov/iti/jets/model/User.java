@@ -8,6 +8,7 @@ public class User implements Serializable{
     private String phoneNumber;
     private String fname;
     private String lname;
+    private String fullname;
     private String email;
     private String passwordHashed;
     private Gender gender;
@@ -20,8 +21,6 @@ public class User implements Serializable{
     private Boolean isAdmin = false;
     private transient String picturePath;
     private byte[] picture;
-
-
 
 
     public User(){}
@@ -68,6 +67,14 @@ public class User implements Serializable{
 
     public void setLname(String lname) {
         this.lname = lname;
+    }
+
+    public String getFullname() {
+        return fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
     }
 
     public String getEmail() {

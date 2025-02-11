@@ -121,6 +121,7 @@ public class LoginController implements Initializable {
             }else{
                 System.out.println(user.getFname()+" logged in successfully");
                 Session.getInstance().setPhoneNumber(phoneNumber.getText().trim());
+                System.out.println(user.getPhoneNumber());
                 FXMLLoader fxmlLoader = new FXMLLoader(ClientApp.class.getResource("fxml/home.fxml"));
                 HomeServiceController.setUser(user);
                 try {
