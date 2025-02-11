@@ -136,7 +136,7 @@ public class ProfileController {
     void handleProfilePic(ActionEvent event) throws IOException {
             FileChooser chooser = new FileChooser();
             chooser.setTitle("Open File");
-            chooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif", "*.bmp"));
+            chooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Image MyFile", "*.png", "*.jpg", "*.jpeg", "*.gif", "*.bmp"));
             File file = chooser.showOpenDialog(picId.getScene().getWindow()); // Use the current window
             if(file != null) {
 

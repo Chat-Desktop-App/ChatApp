@@ -13,12 +13,12 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane styleClass="borderpane_background" stylesheets="@../styles/chatArea.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.view.ChatAreaController">
+<BorderPane styleClass="borderpane_background" stylesheets="@../styles/chatArea.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.view.ChatAreaController">
     <center>
       <AnchorPane fx:id="chatAnchorPane" styleClass="Background">
          <children>
               <ListView fx:id="chatListView" layoutX="10.399999618530273" styleClass="chatListView" stylesheets="@../styles/chatArea.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-            <HBox fx:id="AttachmentHBOX" alignment="CENTER" layoutX="362.0" layoutY="231.0" prefHeight="53.0" prefWidth="168.0" spacing="5.0" style="-fx-background-color: #cbcfceb3;" visible="false" AnchorPane.bottomAnchor="-20.0" AnchorPane.rightAnchor="70.0">
+            <HBox fx:id="AttachmentHBOX" alignment="CENTER" layoutX="362.0" layoutY="231.0" prefHeight="53.0" prefWidth="168.0" spacing="5.0" style="-fx-background-color: #cbcfceb3;" visible="false" AnchorPane.bottomAnchor="-10.0" AnchorPane.rightAnchor="70.0">
                <children>
                   <Button fx:id="music" mnemonicParsing="false" onAction="#handleshareMusic" prefHeight="35.0" prefWidth="35.0" styleClass="attachments_Button" stylesheets="@../styles/chatArea.css">
                      <graphic>
@@ -38,11 +38,11 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="document" mnemonicParsing="false" onAction="#handleShareDoc" prefHeight="37.0" prefWidth="41.0" styleClass="attachments_Button">
+                  <Button fx:id="document" mnemonicParsing="false" onAction="#handleShareDoc" prefHeight="35.0" prefWidth="35.0" styleClass="attachments_Button">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0">
                            <image>
-                              <Image url="@../images/google-docs.png" />
+                              <Image url="@../images/fileIcon.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -109,11 +109,11 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="camera" mnemonicParsing="false" onAction="#camerAction">
+            <Button fx:id="AI" mnemonicParsing="false" onAction="#replyWithAI">
                <graphic>
-                      <ImageView fitHeight="32.0" fitWidth="100.0" onMouseClicked="#sendVideo" pickOnBounds="true" preserveRatio="true">
+                      <ImageView fitHeight="34.0" fitWidth="46.0" onMouseClicked="#sendVideo" pickOnBounds="true" preserveRatio="true">
                           <image>
-                              <Image url="@../images/photo-camera.png" />
+                              <Image url="@../images/AI.png" />
                           </image>
                       </ImageView>
                </graphic>
@@ -121,7 +121,7 @@
                   <Insets left="5.0" right="5.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="mic" mnemonicParsing="false" onAction="#micAction" prefHeight="46.0" prefWidth="52.0">
+            <Button fx:id="mic" mnemonicParsing="false" onAction="#micAction">
                <graphic>
                       <ImageView fitHeight="35.0" fitWidth="35.0" onMouseClicked="#recordVoice" pickOnBounds="true" preserveRatio="true">
                           <image>

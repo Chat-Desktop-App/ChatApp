@@ -16,8 +16,26 @@ public class Session {
     static  ObservableList<AnchorPane> myPendingList ;
     static  ObservableList<AnchorPane> myBlockedList ;
     public static User user ;
-    static HashMap<String, ChatsController> chatsControllerMap = new HashMap<>() ;
-    public static void clearSession(){
+    static HashMap<String, ChatsController> chatsControllerMap = new HashMap<>();
+    private static Session instance;
+    private String loggedPhoneNumber;
+
+    private Session() {}
+    public static Session getInstance() {
+        if (instance == null) {
+            instance = new Session();
+        }
+        return instance;
+    }
+    public void setPhoneNumber(String phoneNumber) {
+        this.loggedPhoneNumber = phoneNumber;
+    }
+
+    public String getPhoneNumber() {
+        return loggedPhoneNumber;
+    }
+
+    public void clearSession(){
         homeController= null;
         myLastChatList= null;
         myOnlineList = null;
@@ -26,5 +44,8 @@ public class Session {
         myPendingList = null;
         chatsControllerMap.clear();
         user = null;
+        loggedPhoneNumber = null;
+        instance = null;
+
     }
 }

@@ -125,7 +125,8 @@ public class HomeController {
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
             primaryStage.show();
-            Session.clearSession();
+            Session.getInstance().clearSession();
+            //Session.clearSession();
             MessageServiceController.setActiveChat(null);
 
 

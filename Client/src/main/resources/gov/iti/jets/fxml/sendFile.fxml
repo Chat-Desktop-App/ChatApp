@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.TextFlow?>
+
+<HBox fx:id="parentHBox" alignment="CENTER_RIGHT" styleClass="parentHBox" stylesheets="@../styles/send_message.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.view.SendFileController">
+   <children>
+      <VBox fx:id="contentVBox" alignment="TOP_RIGHT" styleClass="message-container" HBox.hgrow="NEVER">
+         <children>
+            <HBox alignment="CENTER_LEFT" spacing="5.0">
+               <children>
+                  <ImageView fx:id="fileImage" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/fileIcon.png" />
+                     </image>
+                  </ImageView>
+                  <VBox alignment="CENTER_LEFT">
+                     <children>
+                        <Label fx:id="fileName" text="file name" />
+                        <Label fx:id="fileSize" text="file size" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox alignment="BOTTOM_RIGHT" spacing="15.0">
+               <children>
+                  <TextFlow styleClass="timestamp" textAlignment="RIGHT">
+                     <children>
+                        <Label fx:id="timeStamp" styleClass="timestamp" text="wed 12:33 pm">
+                           <padding>
+                              <Insets right="5.0" />
+                           </padding></Label>
+                     </children>
+                  </TextFlow>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</HBox>
