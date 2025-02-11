@@ -27,11 +27,21 @@ public class Message implements Serializable {
     private Timestamp timestamp;
     private String emoji;
 
-
     public Message() {
-        recipient = null;
-        receiverId =null;
-        groupId = 0;
+        fontSize = 14;
+        fontStyle = Font.getDefault().getName();
+        fontColour= "#000000";
+        isBold = false;
+        isItalic = false;
+        isUnderLine = false;
+        textBackGroundColour ="#3d7eb6";
+    }
+
+    public Message(String senderId , Recipient recipient , String receiverId , int groupId) {
+        this.senderId = senderId;
+        this.recipient = recipient;
+        this.receiverId =receiverId;
+        this.groupId = groupId;
         fontSize = 14;
         fontStyle = Font.getDefault().getName();
         fontColour= "#000000";

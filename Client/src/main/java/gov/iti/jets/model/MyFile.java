@@ -1,19 +1,16 @@
 package gov.iti.jets.model;
 
-public class Files {
+public class MyFile {
     private int fileId;
     private String fileName;
-    private String fileType;
     private String filePath;
-
-    public Files() {
+    public MyFile() {
 
     }
 
-    public Files(int fileId, String fileName, String fileType, String filePath) {
+    public MyFile(int fileId, String fileName, String filePath) {
         this.fileId = fileId;
         this.fileName = fileName;
-        this.fileType = fileType;
         this.filePath = filePath;
     }
 
@@ -41,19 +38,11 @@ public class Files {
         this.fileName = fileName;
     }
 
-    public String getFileType() {
-        return fileType;
-    }
-
-    public void setFileType(String fileType) {
-        this.fileType = fileType;
-    }
     @Override
     public String toString() {
         return "FileEntity{" +
                 "fileId='" + fileId + '\'' +
                 ", fileName='" + fileName + '\'' +
-                ", fileType='" + fileType + '\'' +
                 '}';
     }
 }

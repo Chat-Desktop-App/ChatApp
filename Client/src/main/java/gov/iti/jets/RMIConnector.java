@@ -1,10 +1,6 @@
 package gov.iti.jets;
 
-import gov.iti.jets.services.interfaces.LoadHome;
-import gov.iti.jets.services.interfaces.Login;
-import gov.iti.jets.services.interfaces.MessagingService;
-import gov.iti.jets.services.interfaces.NotificationsService;
-import gov.iti.jets.services.interfaces.Register;
+import gov.iti.jets.services.interfaces.*;
 import javafx.scene.Scene;
 
 import java.rmi.NotBoundException;
@@ -21,6 +17,7 @@ public class RMIConnector {
     private LoadHome loadHome;
     private MessagingService messagingService;
     private NotificationsService notificationsService;
+    private FileTransferService fileTransferService;
 
     // Private constructor to handle the connection to services
     private RMIConnector() {
@@ -33,6 +30,7 @@ public class RMIConnector {
                 loadHome = (LoadHome) reg.lookup("LoadHome");
                 messagingService = (MessagingService) reg.lookup("MessagingService");
                 notificationsService = (NotificationsService) reg.lookup("NotificationsService");
+                fileTransferService = (FileTransferService) reg.lookup("FileTransferService");
                 break;
             } catch (RemoteException | NotBoundException e) {
                 System.out.println("Connection to services failed: " + e.getMessage());
@@ -85,6 +83,9 @@ public class RMIConnector {
     public NotificationsService getNotificationService() {
         return notificationsService;
     }
+
+    public FileTransferService getFileTransferService() {return fileTransferService;}
+
     public void shutdown() {
         System.out.println("Shutting down RMI connection...");
 
@@ -94,6 +95,7 @@ public class RMIConnector {
         messagingService = null;
         rmiConnector = null;
         notificationsService = null;
+        fileTransferService = null;
     }
 
 }

@@ -1,9 +1,8 @@
 package gov.iti.jets.database.dao;
 
 import gov.iti.jets.database.DataBaseConnection;
-import gov.iti.jets.model.GroupMessage;
-import gov.iti.jets.model.Message;
-import gov.iti.jets.model.Recipient;
+import gov.iti.jets.model.*;
+import gov.iti.jets.utility.FileUtil;
 import gov.iti.jets.utility.PictureUtil;
 
 import java.sql.*;
@@ -85,9 +84,9 @@ public class MessageDaoImpl implements MessageDao {
     }
 
     @Override
-    public List<GroupMessage> getMessagesByGroupId(int groupId) {
+    public List<Message> getMessagesByGroupId(int groupId) {
         Connection connection = dataBaseConnection.getConnection();
-        List<GroupMessage> groupMessages = new ArrayList<>();
+        List<Message> groupMessages = new ArrayList<>();
         // Updated query with JOIN
         String query = """
             SELECT m.*,u.fname AS sender_name, u.picture AS sender_profile_picture
@@ -100,26 +99,34 @@ public class MessageDaoImpl implements MessageDao {
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
-                groupMessages.add(new GroupMessage(
-                        resultSet.getInt("message_id"),
-                        resultSet.getString("sender_id"),
-                        Recipient.valueOf(resultSet.getString("recipient_type")),
-                        resultSet.getString("receiver_id"),
-                        resultSet.getInt("group_id"),
-                        resultSet.getString("content"),
-                        resultSet.getInt("file_id"),
-                        resultSet.getInt("font_size"),
-                        resultSet.getString("font_style"),
-                        resultSet.getString("font_color"),
-                        resultSet.getBoolean("is_bold"),
-                        resultSet.getBoolean("is_italic"),
-                        resultSet.getBoolean("is_underlined"),
-                        resultSet.getString("text_background_color"),
-                        resultSet.getTimestamp("time_stand"),
-                        resultSet.getString("emoji"),
-                        resultSet.getString("sender_name"),
-                        PictureUtil.getPicture(resultSet.getString("sender_profile_picture"))
-                ));
+                GroupMessage groupMessage = new GroupMessage(
+                    resultSet.getInt("message_id"),
+                    resultSet.getString("sender_id"),
+                    Recipient.valueOf(resultSet.getString("recipient_type")),
+                    resultSet.getString("receiver_id"),
+                    resultSet.getInt("group_id"),
+                    resultSet.getString("content"),
+                    resultSet.getInt("file_id"),
+                    resultSet.getInt("font_size"),
+                    resultSet.getString("font_style"),
+                    resultSet.getString("font_color"),
+                    resultSet.getBoolean("is_bold"),
+                    resultSet.getBoolean("is_italic"),
+                    resultSet.getBoolean("is_underlined"),
+                    resultSet.getString("text_background_color"),
+                    resultSet.getTimestamp("time_stand"),
+                    resultSet.getString("emoji"),
+                    resultSet.getString("sender_name"),
+                    PictureUtil.getPicture(resultSet.getString("sender_profile_picture"))
+                );
+
+                if(groupMessage.getFileId() != 0) {
+                    MyFile myFile = FileUtil.getFile(groupMessage.getFileId());
+                    FileMessage fileMessage = new FileMessage(groupMessage,myFile.getFileData(),myFile.getFileName());
+                    groupMessages.add(fileMessage);
+                }else {
+                    groupMessages.add(groupMessage);
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -144,7 +151,7 @@ public class MessageDaoImpl implements MessageDao {
         return null;
     }
     private Message mapResultSetToMessage(ResultSet resultSet) throws SQLException {
-        return new Message(
+        Message message = new Message(
                 resultSet.getInt("message_id"),
                 resultSet.getString("sender_id"),
                 Recipient.valueOf(resultSet.getString("recipient_type")),
@@ -162,6 +169,11 @@ public class MessageDaoImpl implements MessageDao {
                 resultSet.getTimestamp("time_stand"),
                 resultSet.getString("emoji")
         );
+        if(message.getFileId() != 0) {
+            MyFile f = FileUtil.getFile(message.getFileId());
+            return new FileMessage(message,f.getFileData(),f.getFileName());
+        }
+        return message;
     }
 
     @Override
@@ -231,10 +243,4 @@ public class MessageDaoImpl implements MessageDao {
             e.printStackTrace();
         }
     }
-
-    public static void main(String[] args) {
-        Message message = new Message();
-
-    }
-
 }

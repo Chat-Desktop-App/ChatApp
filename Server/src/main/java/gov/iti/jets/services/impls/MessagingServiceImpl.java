@@ -3,12 +3,10 @@ package gov.iti.jets.services.impls;
 import gov.iti.jets.database.dao.ContactDaoImpl;
 import gov.iti.jets.database.dao.GroupDaoImpl;
 import gov.iti.jets.database.dao.MessageDaoImpl;
-import gov.iti.jets.model.GroupMessage;
-import gov.iti.jets.model.Message;
-import gov.iti.jets.model.Recipient;
-import gov.iti.jets.model.User;
+import gov.iti.jets.model.*;
 import gov.iti.jets.services.interfaces.ChatClient;
 import gov.iti.jets.services.interfaces.MessagingService;
+import gov.iti.jets.utility.FileUtil;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -29,18 +27,24 @@ public class MessagingServiceImpl extends UnicastRemoteObject implements Messagi
 
     @Override
     public boolean sendMessage(Message message) throws RemoteException {
-        int rowsAffected = messageDaoImpl.addMessage(message);
+        int rowsAffected = 0;
         try {
+            if(message instanceof FileMessage fileMessage){
+                int fileId = FileUtil.addFile(fileMessage.getFileData(),fileMessage.getFileName());
+                message.setFileId(fileId);
+            }
+            rowsAffected = messageDaoImpl.addMessage(message);
             if(message.getRecipient() == Recipient.GROUP){
                 groupDao.updateLastMessage(message.getGroupId(),message.getTimestamp());
             }else {
                 contactDao.updateLastContact(message.getSenderId(), message.getReceiverId(), message.getTimestamp());
             }
+
         } catch (SQLException e) {
             System.out.println("can't update last contact");
             e.printStackTrace();
         }
-        resendMessage(message);
+        //resendMessage(message);
         return rowsAffected > 0;
     }
 
@@ -50,7 +54,7 @@ public class MessagingServiceImpl extends UnicastRemoteObject implements Messagi
     }
 
     @Override
-    public List<GroupMessage> getMessagesByGroupId(int groupId) throws RemoteException {
+    public List<Message> getMessagesByGroupId(int groupId) throws RemoteException {
         return messageDaoImpl.getMessagesByGroupId(groupId);
     }
 

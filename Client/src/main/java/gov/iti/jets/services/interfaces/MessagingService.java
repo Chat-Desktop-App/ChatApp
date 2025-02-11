@@ -9,7 +9,7 @@ import java.util.List;
 public interface MessagingService extends Remote {
     boolean sendMessage(Message message) throws RemoteException;
     List<Message> getDirectMessages(String userPhone , String contactPhone) throws RemoteException;
-    List<GroupMessage> getMessagesByGroupId(int groupId) throws RemoteException;
+    List<Message> getMessagesByGroupId(int groupId) throws RemoteException;
     Message getMessageById(int messageId) throws RemoteException;
     List<Message> getAllMessages() throws RemoteException;
     void updateMessage(Message message) throws RemoteException;
