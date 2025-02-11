@@ -22,11 +22,10 @@ public class FilesDaoImpl implements FilesDao{
     @Override
     public int addFile(MyFile file) {
         Connection connection = dataBaseConnection.getConnection();
-        String query = "INSERT INTO FILES (file_name, file_path , file_type) VALUES (?,?,?)";
+        String query = "INSERT INTO FILES (file_name, file_path , file_type) VALUES (?,?)";
         try(PreparedStatement preparedStatement = connection.prepareStatement(query,Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setString(1, file.getFileName());
             preparedStatement.setString(2, file.getFilePath());
-            preparedStatement.setString(3, file.getFileType().toString());
             int rowsAffected = preparedStatement.executeUpdate();
             if (rowsAffected > 0) {
                 ResultSet generatedKeys = preparedStatement.getGeneratedKeys();

@@ -20,8 +20,11 @@ import javafx.scene.layout.VBox;
 import javafx.scene.control.ListView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.sql.Timestamp;
 
 public class ChatAreaController {
@@ -140,25 +143,29 @@ public class ChatAreaController {
 
     @FXML
     void handleAttachmentButton(ActionEvent event) {
-
-       // AttachmentHBOX.setVisible(true);
         AttachmentHBOX.setVisible(!AttachmentHBOX.isVisible());
-
     }
 
     @FXML
     void handleShareDoc(ActionEvent event) {
-
+        FileChooser.ExtensionFilter imageFilter = new FileChooser.ExtensionFilter(
+                "All Files", "*.*");
+        AttachmentActionHandle(imageFilter,FileType.FILE);
     }
 
     @FXML
     void handleShareImage(ActionEvent event) {
+        FileChooser.ExtensionFilter imageFilter = new FileChooser.ExtensionFilter(
+                "Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif", "*.bmp");
+        AttachmentActionHandle(imageFilter,FileType.IMAGE);
 
     }
 
     @FXML
     void handleshareMusic(ActionEvent event) {
-
+        FileChooser.ExtensionFilter musicFilter = new FileChooser.ExtensionFilter(
+                "Music MyFile", "*.mp3", "*.wav", "*.flac", "*.aac", "*.ogg");
+        AttachmentActionHandle(musicFilter,FileType.MUSIC);
     }
 
     @FXML
@@ -318,6 +325,45 @@ public class ChatAreaController {
         return textArea;
     }
 
+    private void AttachmentActionHandle(FileChooser.ExtensionFilter extensionFilter , FileType fileType){
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(extensionFilter);
+        fileChooser.setTitle("Select " + fileType.toString().toLowerCase());
+
+        Stage stage = (Stage) chatAnchorPane.getScene().getWindow();
+        File selectedFile = fileChooser.showOpenDialog(stage);
+
+
+        if (selectedFile != null) {
+            message.setTimestamp(new Timestamp(System.currentTimeMillis()));
+            message.setContent("");
+            HBox hBox ;
+            if(isContact){
+                message.setReceiverId(contactUser.getPhoneNumber());
+                message.setRecipient(Recipient.PRIVATE);
+                hBox = MessageServiceController.sendFile(message,selectedFile,fileType);
+            }else {
+                message.setGroupId(group.getGroupId());
+                message.setRecipient(Recipient.GROUP);
+                GroupMessage groupMessage = new GroupMessage(message,
+                        (Session.user.getFname() + " "+ Session.user.getLname()),Session.user.getPicture());
+                hBox = MessageServiceController.sendFile(groupMessage,selectedFile,fileType);
+            }
+
+            if (hBox != null ){
+                Platform.runLater(() -> {
+                    messagesList.add(hBox);
+                    chatListView.scrollTo(messagesList.size() - 1);
+                });
+            }else {
+               Alert alert = new Alert(Alert.AlertType.ERROR, "", ButtonType.OK);
+               alert.setTitle("upload File");
+               alert.setHeaderText("upload file failed");
+               alert.showAndWait();
+            }
+        }
+    }
+
     class MessageFormat{
 
         public VBox createChatFormattingPanel() {
@@ -401,5 +447,6 @@ public class ChatAreaController {
         }
 
     }
+
 }
 

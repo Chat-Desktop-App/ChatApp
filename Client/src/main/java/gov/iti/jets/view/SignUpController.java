@@ -343,7 +343,7 @@ public class SignUpController implements Initializable {
         FileChooser fileChooser = new FileChooser();
 
 
-        FileChooser.ExtensionFilter imageFilter = new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif", "*.bmp");
+        FileChooser.ExtensionFilter imageFilter = new FileChooser.ExtensionFilter("Image MyFile", "*.png", "*.jpg", "*.jpeg", "*.gif", "*.bmp");
         fileChooser.getExtensionFilters().add(imageFilter);
 
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();

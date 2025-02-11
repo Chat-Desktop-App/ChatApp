@@ -47,7 +47,6 @@ public class SendMessageController {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("E h:mm a", Locale.ENGLISH);
         String formattedTimestamp = dateTime.format(formatter);
         timeStamp.setText(formattedTimestamp);
-//        timeStamp.setText(message.getTimestamp().toLocalDateTime().toString());
         setTextFormat();
     }
 

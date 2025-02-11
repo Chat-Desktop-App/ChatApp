@@ -28,13 +28,6 @@ public class Message implements Serializable {
     private String emoji;
 
     public Message() {
-        fontSize = 14;
-        fontStyle = Font.getDefault().getName();
-        fontColour= "#000000";
-        isBold = false;
-        isItalic = false;
-        isUnderLine = false;
-        textBackGroundColour ="#3d7eb6";
     }
     public Message(String senderId , Recipient recipient , String receiverId , int groupId) {
         this.senderId = senderId;

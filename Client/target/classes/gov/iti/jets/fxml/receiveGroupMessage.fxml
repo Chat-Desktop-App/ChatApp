@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -16,32 +15,23 @@
             <Image url="@../images/friendIcon.png" />
          </image>
       </ImageView>
-      <VBox>
+      <VBox fx:id="contentVBox" styleClass="message-container">
          <children>
-            <HBox alignment="CENTER_LEFT" spacing="10.0">
-               <padding>
-                  <Insets left="5.0" />
-               </padding>
-            </HBox>
-            <VBox fx:id="contentVBox" styleClass="message-container">
+            <Text fx:id="name" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+            <TextFlow>
                <children>
-                  <Text fx:id="name" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-                  <TextFlow>
+                  <Text fx:id="messageContent" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="message-text" text="Hello Hadeer in Chat App" />
+               </children>
+            </TextFlow>
+            <HBox alignment="CENTER_RIGHT" spacing="15.0">
+               <children>
+                  <TextFlow textAlignment="RIGHT">
                      <children>
-                        <Text fx:id="messageContent" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="message-text" text="Hello Hadeer in Chat App" />
+                        <Label fx:id="timeStamp" styleClass="timestamp" text="wed 12:33 pm" />
                      </children>
                   </TextFlow>
-                  <HBox alignment="CENTER_RIGHT" spacing="15.0">
-                     <children>
-                        <TextFlow textAlignment="RIGHT">
-                           <children>
-                              <Label fx:id="timeStamp" styleClass="timestamp" text="wed 12:33 pm" />
-                           </children>
-                        </TextFlow>
-                     </children>
-                  </HBox>
                </children>
-            </VBox>
+            </HBox>
          </children>
       </VBox>
    </children>
