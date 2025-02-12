@@ -2,15 +2,37 @@ package gov.iti.jets;
 
 import gov.iti.jets.services.impls.*;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.rmi.AlreadyBoundException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.Properties;
 
 public class RMIConnector {
     private static Registry registry;
     private static boolean isRunning;
+    private static String serverIp;
+    private static int serverPort;
+    static {
+        loadConfig();
+    }
+    private static void loadConfig() {
+        Properties properties = new Properties();
+        try (FileInputStream fis = new FileInputStream("config.properties")) {
+            properties.load(fis);
+            serverIp = properties.getProperty("server.ip", "127.0.0.1"); // Default to localhost if not found
+            serverPort = Integer.parseInt(properties.getProperty("server.port", "1099"));
+            System.setProperty("java.rmi.server.hostname", serverIp); // Set RMI hostname
+        } catch (IOException e) {
+            e.printStackTrace();
+            serverIp = "127.0.0.1"; // Fallback to localhost if file reading fails
+            serverPort = 1099;
+        }
+    }
 
     public static void startServer() {
         if (isRunning) {

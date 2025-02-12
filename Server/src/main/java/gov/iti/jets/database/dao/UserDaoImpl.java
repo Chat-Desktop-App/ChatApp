@@ -405,5 +405,4 @@ public class UserDaoImpl implements UserDao{
         System.out.println(userDao.hashPass("password456"));
 
     }
-
 }

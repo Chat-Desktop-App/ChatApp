@@ -5,10 +5,13 @@ import gov.iti.jets.controller.Session;
 import gov.iti.jets.services.interfaces.*;
 import javafx.scene.Scene;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.Properties;
 
 import static java.lang.Thread.sleep;
 
@@ -23,6 +26,28 @@ public class RMIConnector {
     private AddGroup addGroupService;
     private UserSettingsService userSettingsService;
     private ChatBot chatBot;
+
+    private static String serverIp;
+    private static int serverPort;
+
+    static {
+        try (InputStream input = RMIConnector.class.getClassLoader().getResourceAsStream("config.properties")) {
+            Properties prop = new Properties();
+            if (input != null) {
+                prop.load(input);
+                serverIp = prop.getProperty("server.ip", "localhost");
+                serverPort = Integer.parseInt(prop.getProperty("server.port", "1099"));
+            } else {
+                System.out.println("config.properties file not found! Using defaults.");
+                serverIp = "localhost";
+                serverPort = 1099;
+            }
+        } catch (IOException | NumberFormatException e) {
+            System.out.println("Error loading config.properties: " + e.getMessage());
+            serverIp = "localhost";
+            serverPort = 1099;
+        }
+    }
 
     // Private constructor to handle the connection to services
     private RMIConnector() {
