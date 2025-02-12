@@ -52,6 +52,7 @@ public class Session {
 
     public static void updateStatus(String contactPhone, Status status) throws RemoteException {
         ChatsController chatsController  =chatsControllerMap.get(contactPhone);
+        user.setStatus(status);
         if (chatsController != null){
             chatsController.updateStatus(status);
         }

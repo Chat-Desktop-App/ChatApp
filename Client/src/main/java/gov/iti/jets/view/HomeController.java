@@ -6,6 +6,7 @@ import gov.iti.jets.controller.LogInServiceController;
 import gov.iti.jets.controller.MessageServiceController;
 import gov.iti.jets.controller.Session;
 import gov.iti.jets.controller.NotificationServiceController;
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -137,6 +138,7 @@ public class HomeController {
     void handleNotificationIcon(ActionEvent event) {
         String fxmlPath = "/gov/iti/jets/fxml/notification.fxml";
         handleButtonAction(fxmlPath);
+        newNotifiction.setVisible(false);
     }
 
     @FXML
@@ -232,4 +234,17 @@ public class HomeController {
 
     }
 
+    public void setPictureIcon(Image picture) {
+        Platform.runLater(()->{
+            this.pictureIcon.setImage(picture);
+        });
+
+    }
+
+    public void setNewNotifiction(boolean flag) {
+        Platform.runLater( ()->
+                newNotifiction.setVisible(flag)
+        );
+
+    }
 }

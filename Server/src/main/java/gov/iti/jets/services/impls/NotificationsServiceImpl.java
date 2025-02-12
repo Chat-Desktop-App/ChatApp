@@ -4,6 +4,7 @@ import gov.iti.jets.database.dao.*;
 import gov.iti.jets.model.ContactUser;
 import gov.iti.jets.model.Notifications;
 import gov.iti.jets.model.User;
+import gov.iti.jets.services.interfaces.ChatClient;
 import gov.iti.jets.services.interfaces.NotificationsService;
 
 import java.rmi.RemoteException;
@@ -23,6 +24,10 @@ public class NotificationsServiceImpl extends UnicastRemoteObject implements Not
     @Override
     public void addNotification(Notifications notification) throws RemoteException {
         notificationsDao.addNotification(notification);
+        ChatClient client = LoginImpl.getOnlineClients().get(notification.getUserId());
+        if(client != null) {
+            client.receivedNotification(notification);
+        }
     }
 
     @Override

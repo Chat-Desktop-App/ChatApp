@@ -1,13 +1,13 @@
 package gov.iti.jets.view;
 
+import gov.iti.jets.controller.HomeServiceController;
 import gov.iti.jets.controller.Session;
 import gov.iti.jets.controller.UserSettingsServiceController;
 import gov.iti.jets.model.Status;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.scene.Node;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
@@ -17,8 +17,8 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import javafx.collections.FXCollections;
-import javafx.scene.control.ListCell;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
 
 public class ProfileController {
@@ -50,8 +50,12 @@ public class ProfileController {
     }
     @FXML
     void initialize() {
-        status.setItems(FXCollections.observableArrayList(Status.values()));
 
+        picId.setImage(new Image(new ByteArrayInputStream(Session.user.getPicture())));
+        status.setItems(FXCollections.observableArrayList(Status.values()));
+        email.setText(Session.user.getEmail());
+        fullName.setText(Session.user.getFname() + " " + Session.user.getLname());
+        bio.setText(Session.user.getBio());
         status.setCellFactory(listView -> new ListCell<>() {
             @Override
             protected void updateItem(Status item, boolean empty) {
@@ -81,9 +85,7 @@ public class ProfileController {
                 }
             }
         });
-
-        status.setValue(Status.AVAILABLE);
-        //status.getSelectionModel().selectFirst();
+        status.setValue(Session.user.getStatus());
     }
 
     // Helper method to return a color based on Status
@@ -104,46 +106,69 @@ public class ProfileController {
     @FXML
     void handleStatus(ActionEvent event) {
         UserSettingsServiceController.updateProfileStatus(status.getValue());
+        showSuccessPopup();
     }
     @FXML
     void handleBio(ActionEvent event) {
         String BioText = bio.getText();
         UserSettingsServiceController.updateProfileBio(BioText);
+        showSuccessPopup();
     }
     @FXML
     void handleEmail(ActionEvent event) {
         String emailText = email.getText();
         UserSettingsServiceController.updateProfileEmail(emailText);
+        showSuccessPopup();
 
     }
     @FXML
     void handleFullName(ActionEvent event) {
         String NameText = fullName.getText();
         UserSettingsServiceController.updateProfileName(NameText);
+        showSuccessPopup();
     }
     @FXML
-    void handleProfilePic(ActionEvent event) throws IOException {
-            FileChooser chooser = new FileChooser();
-            chooser.setTitle("Open File");
-            chooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Image MyFile", "*.png", "*.jpg", "*.jpeg", "*.gif", "*.bmp"));
-            File file = chooser.showOpenDialog(picId.getScene().getWindow()); // Use the current window
-            if(file != null) {
+    void handleProfilePic(ActionEvent event)  {
 
-                String imagePath = file.getAbsolutePath(); // Get the absolute path
+        FileChooser fileChooser = new FileChooser();
 
-                // Display the image
-                Image image = new Image(file.toURI().toString());
-                picId.setImage(image);
+        FileChooser.ExtensionFilter imageFilter = new FileChooser.ExtensionFilter("Image MyFile", "*.png", "*.jpg", "*.jpeg", "*.gif", "*.bmp");
+        fileChooser.getExtensionFilters().add(imageFilter);
 
-                // Update the profile picture path
-                UserSettingsServiceController.updateProfilePicture(imagePath);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        File selectedFile = fileChooser.showOpenDialog(stage);
+
+        if (selectedFile != null) {
+
+            try {
+                byte [] picByte;
+                picByte = Files.readAllBytes(selectedFile.toPath());
+                boolean flag = UserSettingsServiceController.updateProfilePicture(picByte);
+                if(flag) {
+                    Image image = new Image(selectedFile.toURI().toString());
+                    picId.setImage(image);
+                    showSuccessPopup();
+                }else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR, "", ButtonType.OK);
+                    alert.setTitle("update picture");
+                    alert.setHeaderText("update picture failed");
+                    alert.showAndWait();
+                }
+            } catch (IOException e) {
+                System.out.println("can't read file" );
             }
-            else
-            {
-               picId = picId;
-            }
+        }
+    }
 
+    private void showSuccessPopup() {
+        // Create an alert for success message
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Success");
+        alert.setHeaderText(null);  // No header
+        alert.setContentText("Update successful!");
 
+        // Show the alert
+        alert.showAndWait();
     }
 
 }
