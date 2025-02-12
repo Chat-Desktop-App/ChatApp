@@ -35,16 +35,17 @@ public class SignInController {
 
     @FXML
     private void goToRegister(ActionEvent event) {
-        FXMLLoader loaderSignIn = new FXMLLoader(getClass().getResource("/fxml/server-register.fxml"));
-        try {
-            root = loaderSignIn.load();
+        //FXMLLoader loaderSignIn = new FXMLLoader(getClass().getResource("/fxml/server-register.fxml"));
+       // try {
+            loadScene(event, "/fxml/server-register.fxml");
+            /*root = loaderSignIn.load();
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Scene newScene = new Scene(root);
             stage.setScene(newScene);
-            stage.show();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+            stage.show();*/
+        //} catch (IOException e) {
+            //throw new RuntimeException(e);
+        //}
     }
     @FXML
     private void goToHome (ActionEvent event) {

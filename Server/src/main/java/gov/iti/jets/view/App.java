@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import gov.iti.jets.view.SignInController;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -28,6 +29,11 @@ public class App extends Application {
         stage.setMinWidth(800);
         stage.setMinHeight(600);
         stage.setScene(serverScene);
+        stage.setOnCloseRequest(event -> {
+            // Optionally handle cleanup before exit
+            Platform.exit();
+            System.exit(0);  // Ensure the JVM exits
+        });
         stage.show();
     }
 

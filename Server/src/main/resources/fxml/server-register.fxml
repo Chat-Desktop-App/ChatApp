@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox fx:controller="gov.iti.jets.view.RegisterController" alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="720.0" prefHeight="600.0" prefWidth="800.0" style="-fx-background-image: blue-gradient.jpg;" stylesheets="@../Styles/register.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<HBox fx:controller="gov.iti.jets.view.RegisterController" alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="720.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-image: blue-gradient.jpg;" stylesheets="@../Styles/register.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <VBox fx:id="background" prefHeight="600.0" prefWidth="22.0" HBox.hgrow="ALWAYS" />
         <VBox fx:id="SignUpVbox" prefHeight="400.0" prefWidth="438.0" HBox.hgrow="ALWAYS">
@@ -133,6 +133,11 @@
                                 <Insets />
                             </VBox.margin>
                         </Button>
+                  <Button fx:id="signInButton" alignment="CENTER" mnemonicParsing="false" onAction="#signInInstead" prefHeight="30.0" prefWidth="135.0" styleClass="buttonStyle" text="Sign in instead">
+                     <VBox.margin>
+                        <Insets bottom="1.0" right="10.0" top="10.0" />
+                     </VBox.margin>
+                  </Button>
                     </children>
                 </VBox>
             </children>

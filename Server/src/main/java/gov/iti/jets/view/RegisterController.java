@@ -52,6 +52,7 @@ public class RegisterController implements Initializable {
     private final UserDao userDao = new UserDaoImpl();
 
 
+
     @FXML
     public void goToSignIn(ActionEvent event) {
         if (!validateInput()) return;
@@ -98,6 +99,7 @@ public class RegisterController implements Initializable {
             throw new RuntimeException(exception);
         }
     }
+
     private void showAlert(Alert.AlertType type, String title, String message) {
         Alert alert = new Alert(type);
         alert.setTitle(title);
@@ -126,8 +128,13 @@ public class RegisterController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         genderChoiceBox.getItems().addAll(Gender.values());
+    }
 
 
+    @FXML
+    public void signInInstead(ActionEvent event) {
+        navigateToSignIn(event);
     }
 }
