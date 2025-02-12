@@ -34,6 +34,7 @@ public class NotificationServiceController {
                 myNotificationsList.clear();
                 loadNotifications(fxmlPath, list);
             } catch (RemoteException ex) {
+                notificationsService = RMIConnector.rmiReconnect().getNotificationService();
                 System.out.println("Failed to reconnect: " + ex.getMessage());
             }
         }

@@ -5,10 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="29434122-bddf-47bf-bcd9-02e3da6dc58d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/RMIConnector.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/RMIConnector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/controller/GroupServiceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/controller/GroupServiceController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/controller/LogInServiceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/controller/LogInServiceController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/controller/RegisterServiceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/controller/RegisterServiceController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/controller/NotificationServiceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/controller/NotificationServiceController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/controller/UserSettingsServiceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/controller/UserSettingsServiceController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,23 +50,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "Application.RMIConnector.executor": "Run",
-    "Application.UserDaoImpl.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "com.codeium.enabled": "true",
-    "git-widget-placeholder": "reconnect-feature",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "F:/iTi/Projects/JAVA Chat-App/Repo/Server",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.RMIConnector.executor&quot;: &quot;Run&quot;,
+    &quot;Application.UserDaoImpl.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;com.codeium.enabled&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;reconnect-feature&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;F:/iTi/Projects/JAVA Chat-App/Repo/Server&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Application.RMIConnector">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="gov.iti.jets.view.Main" />
