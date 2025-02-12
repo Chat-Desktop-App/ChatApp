@@ -28,6 +28,7 @@ public class ChatClientImpl extends UnicastRemoteObject implements ChatClient  {
     @Override
     public void receive(Message message) throws RemoteException {
         MessageServiceController.receiveMessage(message);
+        MessageServiceController.handleAIResponse(message);
     }
 
     @Override

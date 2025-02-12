@@ -1,5 +1,6 @@
 package gov.iti.jets.view;
 
+import gov.iti.jets.controller.ChatBotController;
 import gov.iti.jets.controller.MessageServiceController;
 import gov.iti.jets.controller.Session;
 import gov.iti.jets.model.*;
@@ -20,10 +21,13 @@ import javafx.scene.layout.VBox;
 import javafx.scene.control.ListView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.File;
 import java.sql.Timestamp;
 
@@ -188,6 +192,7 @@ public class ChatAreaController {
 
     }
 
+
     @FXML
     void sendEmojiAction(ActionEvent event) {
 
@@ -241,6 +246,12 @@ public class ChatAreaController {
 
     }
 
+
+
+
+
+
+
     public void setChat(Chatable chatable) {
         friendName.setText(chatable.getName());
         byte [] pic = chatable.getPicture();
@@ -278,6 +289,7 @@ public class ChatAreaController {
         message.setTimestamp(new Timestamp(System.currentTimeMillis()));
         message.setContent(textArea.getText().trim());
         HBox hBox ;
+
         if(isContact){
             message.setReceiverId(contactUser.getPhoneNumber());
             message.setRecipient(Recipient.PRIVATE);

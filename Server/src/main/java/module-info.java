@@ -6,6 +6,7 @@ module gov.iti.jets.server {
     requires mysql.connector.j;
     requires java.rmi;
     requires jakarta.xml.bind;
+    requires org.json;
 
     opens gov.iti.jets to javafx.fxml;
     opens gov.iti.jets.view to javafx.graphics, javafx.fxml;
