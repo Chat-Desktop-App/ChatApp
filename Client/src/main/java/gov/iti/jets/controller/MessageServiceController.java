@@ -91,7 +91,7 @@ public class MessageServiceController {
 
             new Thread(() -> {
                 try {
-                    Thread.sleep(3000); // 3-second delay before responding (adjust as needed)
+                    Thread.sleep(1000); // 3-second delay before responding (adjust as needed)
 
                     String AI_response = ChatBotController.chatWithAI(message.getContent());
 
