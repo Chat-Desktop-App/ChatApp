@@ -44,6 +44,7 @@ public class RMIConnector {
             registry.bind("ContactService", new ContactServiceImpl());
             registry.bind("AddGroup", new AddGroupImpl());
             registry.bind("UserSettingsService", new UserSettingsServiceImpl());
+            registry.bind("ChatBot", new ChatBotImpl());
 
             isRunning = true; // Mark the server as running
             System.out.println("Server is up and running.");

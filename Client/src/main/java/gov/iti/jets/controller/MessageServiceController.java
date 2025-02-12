@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.rmi.RemoteException;
+import java.sql.Timestamp;
 import java.util.List;
 
 import static gov.iti.jets.controller.Session.chatsControllerMap;
@@ -22,6 +23,7 @@ import static gov.iti.jets.controller.Session.user;
 public class MessageServiceController {
     private static MessagingService messagingService = RMIConnector.getRmiConnector().getMessagingService();
     private static ChatAreaController activeChat;
+
 
 
     public static void receiveMessage(Message message) {
@@ -78,6 +80,44 @@ public class MessageServiceController {
             controller.getChatable().setLastChatAt(message.getTimestamp().toLocalDateTime());
         }
     }
+
+
+    public static void handleAIResponse(Message message) {
+        if (ChatBotController.isAiActivated() &&
+                message.getRecipient() == Recipient.PRIVATE &&
+                message.getReceiverId().equals(Session.user.getPhoneNumber()) &&
+                !(message instanceof FileMessage)) {
+            //System.out.println(message.getContent());
+
+            new Thread(() -> {
+                try {
+                    Thread.sleep(1000); // 3-second delay before responding (adjust as needed)
+
+                    String AI_response = ChatBotController.chatWithAI(message.getContent());
+
+                    Message message1 = new Message();
+                    message1.setTimestamp(new Timestamp(System.currentTimeMillis()));
+                    message1.setContent(AI_response);
+                    message1.setReceiverId(message.getSenderId());
+                    message1.setRecipient(Recipient.PRIVATE);
+
+                    HBox hBox = sendMessage(message1);
+                    if(activeChat.getContactUser().getPhoneNumber().equals(message.getSenderId())){
+                        activeChat.receivedMessage(hBox);
+                    }
+
+                    System.out.println("Sent AI response after delay: " + AI_response);
+
+                } catch (IOException e) {
+                    System.out.println("Failed to get AI response: " + e.getMessage());
+                } catch (InterruptedException e) {
+                    System.out.println("Response delay interrupted: " + e.getMessage());
+                }
+            }).start();
+        }
+
+    }
+
 
 
     public static HBox sendMessage(Message message) {

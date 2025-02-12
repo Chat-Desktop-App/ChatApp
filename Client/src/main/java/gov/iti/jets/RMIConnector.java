@@ -20,6 +20,7 @@ public class RMIConnector {
     private ContactService contactService;
     private AddGroup addGroupService;
     private UserSettingsService userSettingsService;
+    private ChatBot chatBot;
 
     // Private constructor to handle the connection to services
     private RMIConnector() {
@@ -37,6 +38,8 @@ public class RMIConnector {
                 addGroupService = (AddGroup) reg.lookup("AddGroup");
 
                 userSettingsService = (UserSettingsService) reg.lookup("UserSettingsService");
+
+                chatBot = (ChatBot) reg.lookup("ChatBot");
                 break;
             } catch (RemoteException | NotBoundException e) {
                 System.out.println("Connection to services failed: " + e.getMessage());
@@ -60,12 +63,9 @@ public class RMIConnector {
 
     // Method to reconnect if needed
     public static RMIConnector rmiReconnect() {
-        rmiConnector = new RMIConnector();  // Recreate the instance to reconnect
 
-        //Scene saveScene = RunHome.primaryStage.getScene();
-        //RunHome.primaryStage.setScene(RunHome.loadingScene);
-            rmiConnector = new RMIConnector();
-        //RunHome.primaryStage.setScene(saveScene);
+        rmiConnector = new RMIConnector();
+
         return rmiConnector;
     }
 
@@ -94,6 +94,9 @@ public class RMIConnector {
         return addGroupService;
     }
 
+    public ChatBot getChatBot() {
+        return chatBot;
+    }
 
     public UserSettingsService getUserSettingsService() {
         return userSettingsService;
@@ -110,6 +113,7 @@ public class RMIConnector {
         notificationsService = null;
         addGroupService = null;
         userSettingsService = null;
+        chatBot = null;
     }
 
 }

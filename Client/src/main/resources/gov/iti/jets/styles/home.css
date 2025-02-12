@@ -29,8 +29,29 @@
     -fx-background-color: transparent;
  }
 
+ .ai_button{
+     -fx-background-image: url("../images/ai.png");
+     -fx-background-size: 100% 100%;
+     -fx-background-repeat: no-repeat;
+     -fx-background-color: transparent;
+  }
+
+  .ai_selected{
+    -fx-background-image: url("../images/ai_selected.png");
+         -fx-background-size: 100% 100%;
+         -fx-background-repeat: no-repeat;
+         -fx-background-color: transparent;
+  }
+
 .notification_button{
     -fx-background-image: url("../images/notification.png");
+    -fx-background-size: 100% 100%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-color: transparent;
+ }
+
+ .serverIcon_button{
+    -fx-background-image: url("../images/orca-no-text.png");
     -fx-background-size: 100% 100%;
     -fx-background-repeat: no-repeat;
     -fx-background-color: transparent;

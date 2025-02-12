@@ -29,7 +29,7 @@ public class ClientApp extends Application {
 
     private static final String SESSION_FILE = "session.xml";
     private static final String LOGIN_FXML = "fxml/Login.fxml";
-    private static final String HOME_FXML = "fxml/home-updated.fxml";
+    private static final String HOME_FXML = "fxml/home.fxml";
     private Login login =  RMIConnector.getRmiConnector().getLoginService();
 
     @Override
@@ -39,6 +39,8 @@ public class ClientApp extends Application {
         Parent root = loadView();
         Scene scene = new Scene(root);
         stage.setTitle("Orca");
+        stage.setMinHeight(620);
+        stage.setMinWidth(800);
         stage.setScene(scene);
         stage.show();
     }
