@@ -240,7 +240,9 @@ public class HomeController {
                 aiIcon.setStyle("-fx-background-image: url("+imagePath+");\n" +
                         "         -fx-background-size: 100% 100%;\n" +
                         "         -fx-background-repeat: no-repeat;\n" +
-                        "         -fx-background-color: transparent;");
+                        "         -fx-background-color: transparent;"
+                        +" "
+                                                                        );
 
             } else {
                 ChatBotController.setAiActivated(!ChatBotController.isAiActivated());

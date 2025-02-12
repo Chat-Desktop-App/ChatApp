@@ -32,6 +32,11 @@
             <Button fx:id="serverIcon" layoutX="14.0" layoutY="409.0" mnemonicParsing="false" onAction="#goToAnnouncement" prefHeight="50.0" prefWidth="50.0" styleClass="serverIcon_button" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="465.0" />
 
             <ToggleButton fx:id="aiIcon" layoutX="19.0" layoutY="462.0" mnemonicParsing="false" onAction="#handleAi" prefHeight="40.0" prefWidth="40.0" styleClass="ai_button" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="400.0" />
+            <ImageView fx:id="newNotifiction" fitHeight="20.0" fitWidth="20.0" layoutX="40.0" layoutY="160.0" visible="false" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="160.0">
+               <image>
+                  <Image url="@../images/red.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </left>
