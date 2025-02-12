@@ -29,7 +29,7 @@ public class ClientApp extends Application {
 
     private static final String SESSION_FILE = "session.xml";
     private static final String LOGIN_FXML = "fxml/Login.fxml";
-    private static final String HOME_FXML = "fxml/home.fxml";
+    private static final String HOME_FXML = "fxml/home-updated.fxml";
     private Login login =  RMIConnector.getRmiConnector().getLoginService();
 
     @Override
@@ -118,9 +118,6 @@ public class ClientApp extends Application {
             System.exit(0);
 
         }
-
-
-
 
     }
 

@@ -1,5 +1,6 @@
 package gov.iti.jets.services.impls;
 
+import gov.iti.jets.database.dao.*;
 import gov.iti.jets.database.dao.ContactDaoImpl;
 import gov.iti.jets.database.dao.GroupDaoImpl;
 import gov.iti.jets.database.dao.MessageDaoImpl;
@@ -11,18 +12,21 @@ import gov.iti.jets.utility.FileUtil;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MessagingServiceImpl extends UnicastRemoteObject implements MessagingService {
     private MessageDaoImpl messageDaoImpl;
     private GroupDaoImpl groupDao;
     private ContactDaoImpl contactDao;
+    private AnnouncementDao announcementDao;
 
     public MessagingServiceImpl() throws RemoteException {
         super();
         this.messageDaoImpl = new MessageDaoImpl();
         this.groupDao = new GroupDaoImpl();
         this.contactDao = new ContactDaoImpl();
+        this.announcementDao = new AnnouncementDaoImpl();
     }
 
     @Override
@@ -110,6 +114,37 @@ public class MessagingServiceImpl extends UnicastRemoteObject implements Messagi
                 client.receive(message);
             }
         }
+    }
+    @Override
+    public void broadcastAnnouncement(String message) throws RemoteException {
+        System.out.println("Broadcasting announcement: " + message);
+        String timestamp = java.time.LocalDateTime.now().toString();
 
+        // Store announcement in the database
+        try {
+            announcementDao.saveAnnouncement(message);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error saving announcement to database.");
+        }
+        // Send announcement to online clients
+        for (ChatClient client : LoginImpl.getOnlineClients().values()) {
+            try {
+                client.receiveAnnouncement(message, timestamp);
+            } catch (RemoteException e) {
+                System.out.println("Failed to send announcement to a client: " + e.getMessage());
+            }
+        }
+    }
+
+    @Override
+    public List<Announcements> getAnnouncements() throws RemoteException {
+        List<Announcements> announcements = new ArrayList<>();
+        try{
+            announcements = announcementDao.getAllAnnouncements();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return announcements;
     }
 }

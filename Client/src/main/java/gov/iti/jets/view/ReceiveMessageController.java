@@ -57,4 +57,8 @@ public class ReceiveMessageController {
         contentVBox.setStyle("-fx-background-color:" + message.getTextBackGroundColour()+ ";");
     }
 
+    public void setMessage(String message, String timestamp) { // overloaded for announcement to show timestamp
+        text.setText(message);
+        timeStamp.setText(timestamp);
+    }
 }

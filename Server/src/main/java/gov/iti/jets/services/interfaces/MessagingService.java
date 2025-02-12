@@ -1,5 +1,6 @@
 package gov.iti.jets.services.interfaces;
 
+import gov.iti.jets.model.Announcements;
 import gov.iti.jets.model.FileType;
 import gov.iti.jets.model.GroupMessage;
 import gov.iti.jets.model.Message;
@@ -15,6 +16,8 @@ public interface MessagingService extends Remote {
     List<Message> getAllMessages() throws RemoteException;
     void updateMessage(Message message) throws RemoteException;
     void deleteMessage(int messageId) throws RemoteException;
+    void broadcastAnnouncement(String message) throws RemoteException;
+    List<Announcements> getAnnouncements() throws RemoteException;
     int uploadFile (byte[] fileData, String fileName , FileType fileType) throws RemoteException;
     byte[] downloadFile (int fileId) throws RemoteException;
 }

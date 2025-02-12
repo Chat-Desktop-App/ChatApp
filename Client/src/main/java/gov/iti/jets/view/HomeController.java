@@ -34,6 +34,8 @@ public class HomeController {
 
 
     @FXML
+    private ImageView serverIcon;
+    @FXML
     private ImageView newNotifiction;
 
     @FXML
@@ -234,6 +236,9 @@ public class HomeController {
 
     }
 
+    public void goToAnnouncement(MouseEvent mouseEvent) {
+        String fxmlPath = "/gov/iti/jets/fxml/server-message-area.fxml";
+        handleButtonAction(fxmlPath);
     public void setPictureIcon(Image picture) {
         Platform.runLater(()->{
             this.pictureIcon.setImage(picture);

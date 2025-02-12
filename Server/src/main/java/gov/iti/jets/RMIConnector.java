@@ -42,7 +42,6 @@ public class RMIConnector {
             registry.bind("LoadHome", new LoadHomeImp());
             registry.bind("ContactService", new ContactServiceImpl());
             registry.bind("AddGroup", new AddGroupImpl());
-
             registry.bind("UserSettingsService", new UserSettingsServiceImpl());
 
             isRunning = true; // Mark the server as running
@@ -82,5 +81,4 @@ public class RMIConnector {
         }));
         startServer();
     }
-
 }
