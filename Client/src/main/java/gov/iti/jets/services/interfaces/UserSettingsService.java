@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface UserSettingsService extends Remote {
 
-    void UpdatePicture(String phoneNumber,String picturepath) throws RemoteException;
+    boolean UpdatePicture(String phoneNumber,byte [] pic) throws RemoteException;
     void UpdateBio(String phoneNumber,String bio) throws RemoteException;
     void UpdateFullName(String phoneNumber,String fullName) throws RemoteException;
     void UpdateStatus(String phoneNumber, Status status) throws RemoteException;

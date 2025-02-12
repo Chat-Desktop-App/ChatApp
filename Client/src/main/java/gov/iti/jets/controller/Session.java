@@ -1,11 +1,13 @@
 package gov.iti.jets.controller;
 
+import gov.iti.jets.model.Status;
 import gov.iti.jets.model.User;
 import gov.iti.jets.view.ChatsController;
 import gov.iti.jets.view.HomeController;
 import javafx.collections.ObservableList;
 import javafx.scene.layout.AnchorPane;
 
+import java.rmi.RemoteException;
 import java.util.HashMap;
 
 public class Session {
@@ -46,6 +48,13 @@ public class Session {
         user = null;
         loggedPhoneNumber = null;
         instance = null;
+    }
 
+    public static void updateStatus(String contactPhone, Status status) throws RemoteException {
+        ChatsController chatsController  =chatsControllerMap.get(contactPhone);
+        user.setStatus(status);
+        if (chatsController != null){
+            chatsController.updateStatus(status);
+        }
     }
 }

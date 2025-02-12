@@ -54,7 +54,7 @@ public class NotificationCellController {
         deleteButton.setVisible(!deleteButton.isVisible());
     }
 
-    public void setNotificationData(Notifications notification) throws SQLException {
+    public void setNotificationData(Notifications notification) {
         this.notificationData = notification;
         contentOfNotification.setText(notification.getMessage());
             // Set notification type message

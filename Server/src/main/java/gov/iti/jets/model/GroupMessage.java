@@ -3,6 +3,7 @@ package gov.iti.jets.model;
 import java.io.Serial;
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Arrays;
 
 public class GroupMessage extends Message implements Serializable {
 
@@ -43,8 +44,9 @@ public class GroupMessage extends Message implements Serializable {
 
     @Override
     public String toString() {
-        return "GroupMessage{" +super.toString() +
-                "name='" + name + '\'' +
-                '}';
+        return "GroupMessage{" +
+                "profilePicture=" + Arrays.toString(profilePicture) +
+                ", name='" + name + '\'' +
+                "} " + super.toString();
     }
 }

@@ -51,8 +51,6 @@ public class NotificationServiceController {
             }
         } catch (IOException e) {
             System.out.println("Error when loading " + fxmlPath + ": " + e.getMessage());
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
         }
     }
 
@@ -77,11 +75,7 @@ public class NotificationServiceController {
         } catch (RemoteException e) {
             System.out.println("Error Adding notification: " + e.getMessage());
             notificationsService = RMIConnector.rmiReconnect().getNotificationService();
-            try {
-                notificationsService.addNotification(notifications);
-            } catch (RemoteException ex) {
-                System.out.println("Failed to add notification: " + ex.getMessage());
-            }
+            addNotification(notifications);
         }
     }
     public static ContactUser getUser(String phoneNum) {
@@ -107,4 +101,19 @@ public class NotificationServiceController {
             }
         }
     }
+
+    public static void receivedNotification(Notifications notification){
+        try {
+        String fxmlPath = "/gov/iti/jets/fxml/notificationCell.fxml";
+        FXMLLoader loader = new FXMLLoader(NotificationServiceController.class.getResource(fxmlPath));
+        AnchorPane  anchorPane = loader.load();
+        NotificationCellController controller = loader.getController();
+        controller.setNotificationData(notification);
+        myNotificationsList.add(anchorPane);
+        HomeServiceController.getHomeController().setNewNotifiction(true);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

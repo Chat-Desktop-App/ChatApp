@@ -8,7 +8,7 @@
     -fx-background-color: #ffffffe2;
 }
 .attachments_Button {
-    -fx-background-color : white;
+    -fx-background-color : transparent;
 }
 .attachments_Button:hover {
     -fx-background-color:  #cbcfceb3;

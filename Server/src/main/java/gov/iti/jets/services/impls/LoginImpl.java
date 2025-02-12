@@ -4,6 +4,9 @@ import gov.iti.jets.database.dao.AnnouncementDao;
 import gov.iti.jets.database.dao.AnnouncementDaoImpl;
 import gov.iti.jets.database.dao.UserDaoImpl;
 import gov.iti.jets.model.Announcements;
+import gov.iti.jets.database.dao.ContactDaoImpl;
+import gov.iti.jets.database.dao.UserDaoImpl;
+import gov.iti.jets.model.ContactUser;
 import gov.iti.jets.model.Status;
 import gov.iti.jets.model.User;
 import gov.iti.jets.model.LoginStatus;
@@ -49,6 +52,15 @@ public class LoginImpl extends UnicastRemoteObject implements Login {
                 updateStatusUser.setStatus(Status.AVAILABLE);
                 dao.update(updateStatusUser);
                 sendPendingAnnouncements(phoneNumber, client);
+
+                List<ContactUser> contacts  = new ContactDaoImpl().getFriendsContacts(phoneNumber);
+                for (ContactUser contactUser : contacts) {
+                    ChatClient chatClient = onlineClients.get(contactUser.getPhoneNumber());
+                    if(chatClient != null){
+                        chatClient.updateStatus(phoneNumber,Status.AVAILABLE);
+                    }
+                }
+
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

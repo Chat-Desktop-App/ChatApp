@@ -2,4 +2,6 @@
 <loginStatus>
     <phoneNumber>0987654321</phoneNumber>
     <sessionToken>a801cbef-6703-4a9e-90c8-803c28c219e9</sessionToken>
+    <phoneNumber>1234567890</phoneNumber>
+    <sessionToken>84ae6636-ced2-4f03-b77c-179622db9e7c</sessionToken>
 </loginStatus>

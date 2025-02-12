@@ -55,7 +55,6 @@ public class ReceiveGroupMessageController {
             profilePic.setImage(new Image(new ByteArrayInputStream(pic)));
         }
 
-        timeStamp.setText(message.getTimestamp().toLocalDateTime().toString());
         setTextFormat();
     }
 

@@ -38,7 +38,6 @@ public class RMIConnector {
             registry.bind("MessagingService", new MessagingServiceImpl());
             registry.bind("NotificationsService", new NotificationsServiceImpl());
             registry.bind("LoadHome", new LoadHomeImp());
-            registry.bind("FileTransferService", new FileTransferServiceImpl());
             registry.bind("ContactService", new ContactServiceImpl());
             registry.bind("AddGroup", new AddGroupImpl());
             registry.bind("UserSettingsService", new UserSettingsServiceImpl());
