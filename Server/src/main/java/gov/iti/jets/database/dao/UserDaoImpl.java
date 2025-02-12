@@ -328,8 +328,10 @@ public class UserDaoImpl implements UserDao{
         return hexString.toString();
 
     }
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         UserDaoImpl userDao = new UserDaoImpl();
+        User user = userDao.getUser("2233445566");
+        System.out.println(user.getAdmin());
 
         /*try {
          /*   // Create a test user
@@ -402,10 +404,6 @@ public class UserDaoImpl implements UserDao{
         }*/
         System.out.println(userDao.hashPass("password456"));
 
-
-
-
     }
-
 
 }
