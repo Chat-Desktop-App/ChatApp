@@ -1,6 +1,9 @@
 package gov.iti.jets.services.impls;
 
+import gov.iti.jets.database.dao.AnnouncementDao;
+import gov.iti.jets.database.dao.AnnouncementDaoImpl;
 import gov.iti.jets.database.dao.UserDaoImpl;
+import gov.iti.jets.model.Announcements;
 import gov.iti.jets.model.Status;
 import gov.iti.jets.model.User;
 import gov.iti.jets.model.LoginStatus;
@@ -12,9 +15,11 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.List;
 
 public class LoginImpl extends UnicastRemoteObject implements Login {
     private static UserDaoImpl dao = new UserDaoImpl();
+    private AnnouncementDao announcementDao = new AnnouncementDaoImpl();
 
     private static HashMap<String, ChatClient> onlineClients = new HashMap<>();
 
@@ -43,12 +48,11 @@ public class LoginImpl extends UnicastRemoteObject implements Login {
                 updateStatusUser.setPhoneNumber(phoneNumber);
                 updateStatusUser.setStatus(Status.AVAILABLE);
                 dao.update(updateStatusUser);
-
+                sendPendingAnnouncements(phoneNumber, client);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
         return user;
     }
 
@@ -138,6 +142,18 @@ public class LoginImpl extends UnicastRemoteObject implements Login {
         return null;
     }
 
+    @Override
+    public void sendPendingAnnouncements(String userId, ChatClient client) {
+        try {
+            List<Announcements> announcements = announcementDao.getAllAnnouncements();
+            for (Announcements announcement : announcements) {
+                String timestamp = announcement.getTimestamp().toString();
+                client.receiveAnnouncement(announcement.getMessage(), timestamp);
+            }
+        } catch (SQLException | RemoteException e) {
+            e.printStackTrace();
+        }
+    }
     public static HashMap<String, ChatClient> getOnlineClients() {
         return onlineClients;
     }

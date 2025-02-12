@@ -16,13 +16,12 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        // stage.setTitle("Browsar");
+        // stage.setTitle("Browser");
 
         int width = 640,height = 480;
 
         FXMLLoader registerLoader = new FXMLLoader(getClass().getResource("/fxml/server-homePage.fxml"));
 		Pane root = registerLoader.load();
-
 
         Scene serverScene = new Scene(root, width, height);
         // stage.setResizable(false);

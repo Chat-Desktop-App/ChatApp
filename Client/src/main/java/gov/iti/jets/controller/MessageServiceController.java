@@ -22,7 +22,6 @@ public class MessageServiceController {
     private static ChatAreaController activeChat;
 
 
-
     public static void receiveMessage(Message message) {
         if(activeChat != null){
             if (message.getRecipient() == Recipient.PRIVATE && activeChat.isContact()){
@@ -170,4 +169,5 @@ public class MessageServiceController {
     public static void setActiveChat(ChatAreaController activeChat) {
         MessageServiceController.activeChat = activeChat;
     }
+
 }

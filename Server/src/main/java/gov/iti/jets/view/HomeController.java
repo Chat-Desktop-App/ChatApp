@@ -3,9 +3,15 @@ package gov.iti.jets.view;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 import java.util.ResourceBundle;
 
 
+import gov.iti.jets.services.impls.MessagingServiceImpl;
+import gov.iti.jets.services.interfaces.MessagingService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -54,6 +60,17 @@ public class HomeController implements Initializable {
         FXMLLoader loaderAnnouncement = new FXMLLoader(getClass().getResource("/fxml/server-announcement.fxml"));
         try {
             gridPaneAnnouncement = loaderAnnouncement.load();
+            AnnouncementController announcementController = loaderAnnouncement.getController();
+
+            try {
+                //Registry registry = LocateRegistry.getRegistry("localhost", 1099);
+                //MessagingService messagingService = (MessagingService) registry.lookup("MessagingService");
+                MessagingServiceImpl messagingService = new MessagingServiceImpl();
+                announcementController.setMessagingService(messagingService);
+            } catch (RemoteException e) {
+                e.printStackTrace();
+                System.out.println("Error retrieving MessagingService from RMI.");
+            }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -91,6 +108,5 @@ public class HomeController implements Initializable {
             AnchorPane.setBottomAnchor(pane, 0.0);
             AnchorPane.setLeftAnchor(pane, 0.0);
             AnchorPane.setRightAnchor(pane, 0.0);
-
     }
 }

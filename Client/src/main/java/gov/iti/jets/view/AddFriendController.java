@@ -10,6 +10,7 @@ import java.util.Set;
 
 import gov.iti.jets.controller.Session;
 import gov.iti.jets.model.User;
+import gov.iti.jets.services.impls.ChatClientImpl;
 import gov.iti.jets.services.interfaces.ContactService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,6 +19,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import gov.iti.jets.services.interfaces.ChatClient;
 
 public class AddFriendController {
 
@@ -86,6 +88,7 @@ public class AddFriendController {
                     showAlert(Alert.AlertType.ERROR, "Error", "Failed to send Request to " + receiverPhone);
                 }
                 else {
+
                     showAlert(Alert.AlertType.INFORMATION, "Success", "Friend requests sent successfully.");
                 }
             }

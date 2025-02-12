@@ -11,4 +11,5 @@ public interface ChatClient extends Remote {
     
     boolean addToLastContactList(Chatable chatable) throws RemoteException;
 
+    void receiveAnnouncement(String message, String timestamp) throws RemoteException;
 }
