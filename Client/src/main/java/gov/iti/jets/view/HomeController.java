@@ -233,14 +233,14 @@ public class HomeController {
 
             if (aiIcon.isSelected()) {
                 ChatBotController.setAiActivated(!ChatBotController.isAiActivated());
-                aiIcon.setStyle("-fx-background-image: url(\"../images/ai_selected.png\");\n" +
+                aiIcon.setStyle("-fx-background-image: url(\"gov/iti/jets/images/ai_selected.png\");\n" +
                         "         -fx-background-size: 100% 100%;\n" +
                         "         -fx-background-repeat: no-repeat;\n" +
                         "         -fx-background-color: transparent;");
 
             } else {
                 ChatBotController.setAiActivated(!ChatBotController.isAiActivated());
-                aiIcon.setStyle("-fx-background-image: url(\"../images/ai.png\");\n" +
+                aiIcon.setStyle("-fx-background-image: url(\"gov/iti/jets/images/ai.png\");\n" +
                         "         -fx-background-size: 100% 100%;\n" +
                         "         -fx-background-repeat: no-repeat;\n" +
                         "         -fx-background-color: transparent;");
