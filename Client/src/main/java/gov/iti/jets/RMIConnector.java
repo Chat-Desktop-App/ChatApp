@@ -3,7 +3,10 @@ package gov.iti.jets;
 import gov.iti.jets.controller.LogInServiceController;
 import gov.iti.jets.controller.Session;
 import gov.iti.jets.services.interfaces.*;
+import javafx.application.Platform;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -45,6 +48,12 @@ public class RMIConnector {
                 break;
             } catch (RemoteException | NotBoundException e) {
                 System.out.println("Connection to services failed: " + e.getMessage());
+                try {
+                    sleep(10000);
+                } catch (InterruptedException ex) {
+                    System.out.println("can't sleep");
+                }
+//                showAlert(Alert.AlertType.CONFIRMATION, "Connection Error", "Failed to connect to server."); // Retry after a short dela
             }
         }
 
@@ -115,6 +124,23 @@ public class RMIConnector {
         addGroupService = null;
         userSettingsService = null;
         chatBot = null;
+    }
+
+    private void showAlert(Alert.AlertType alertType, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        ButtonType buttonTypeOK = new ButtonType("try again");  // Custom OK button label
+        ButtonType buttonTypeCancel = new ButtonType("exit");
+        alert.getButtonTypes().setAll(buttonTypeOK, buttonTypeCancel);
+        alert.showAndWait().ifPresent(response -> {
+            if (response == buttonTypeOK) {
+                System.out.println("Proceed clicked");
+            } else if (response == buttonTypeCancel) {
+                Platform.exit();
+            }
+        });
     }
 
 }
