@@ -180,6 +180,10 @@ public class UserDaoImpl implements UserDao{
             query.append("is_admin = ?, ");
             params.add(user.getAdmin());
         }
+//        if (user.getPicturePath() != null) {
+//            query.append("picture = ?, ");
+//            params.add(user.getPicture());
+//        }
         if (params.isEmpty()) {
             throw new SQLException("No fields to update.");
         }

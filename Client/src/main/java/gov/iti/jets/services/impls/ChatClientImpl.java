@@ -1,5 +1,6 @@
 package gov.iti.jets.services.impls;
 
+import gov.iti.jets.RMIConnector;
 import gov.iti.jets.controller.HomeServiceController;
 import gov.iti.jets.controller.MessageServiceController;
 import gov.iti.jets.controller.NotificationServiceController;
@@ -17,6 +18,7 @@ import java.rmi.server.UnicastRemoteObject;
 
 public class ChatClientImpl extends UnicastRemoteObject implements ChatClient  {
     private ServerMessageAreaController serverMessageAreaController;
+
     public ChatClientImpl() throws RemoteException {
     }
     public ChatClientImpl(ServerMessageAreaController controller) throws RemoteException {
@@ -35,6 +37,7 @@ public class ChatClientImpl extends UnicastRemoteObject implements ChatClient  {
     @Override
     // each client listens for announcements on another thread
     public void receiveAnnouncement(String message, String timestamp) throws RemoteException {
+        serverMessageAreaController = new ServerMessageAreaController();
         System.out.println("Received Announcement: " + message + " at " + timestamp);
         Platform.runLater(() -> {
             serverMessageAreaController.addAnnouncement(message, timestamp);

@@ -33,6 +33,11 @@
                   <Image url="@../images/red.png" />
                </image>
             </ImageView>
+            <ImageView fx:id="serverIcon" fitHeight="50.0" fitWidth="50.0" layoutX="1.0" layoutY="410.0" onMouseClicked="#goToAnnouncement" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="420.0">
+               <image>
+                  <Image url="@../images/orca-no-text.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </left>
