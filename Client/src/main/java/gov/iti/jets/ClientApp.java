@@ -39,6 +39,8 @@ public class ClientApp extends Application {
         Parent root = loadView();
         Scene scene = new Scene(root);
         stage.setTitle("Orca");
+        stage.setMinHeight(620);
+        stage.setMinWidth(800);
         stage.setScene(scene);
         stage.show();
     }

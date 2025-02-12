@@ -63,12 +63,9 @@ public class RMIConnector {
 
     // Method to reconnect if needed
     public static RMIConnector rmiReconnect() {
-        rmiConnector = new RMIConnector();  // Recreate the instance to reconnect
 
-        //Scene saveScene = RunHome.primaryStage.getScene();
-        //RunHome.primaryStage.setScene(RunHome.loadingScene);
-            rmiConnector = new RMIConnector();
-        //RunHome.primaryStage.setScene(saveScene);
+        rmiConnector = new RMIConnector();
+
         return rmiConnector;
     }
 

@@ -16,7 +16,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 
@@ -29,7 +28,7 @@ public class HomeController {
     private ToggleButton aiIcon;
 
     @FXML
-    private ImageView serverIcon;
+    private Button serverIcon;
     @FXML
     private ImageView newNotifiction;
 
@@ -250,13 +249,11 @@ public class HomeController {
                         "         -fx-background-size: 100% 100%;\n" +
                         "         -fx-background-repeat: no-repeat;\n" +
                         "         -fx-background-color: transparent;");
-
-
             }
     }
 
 
-    public void goToAnnouncement(MouseEvent mouseEvent) {
+    public void goToAnnouncement(ActionEvent mouseEvent) {
         String fxmlPath = "/gov/iti/jets/fxml/server-message-area.fxml";
         handleButtonAction(fxmlPath);
     }

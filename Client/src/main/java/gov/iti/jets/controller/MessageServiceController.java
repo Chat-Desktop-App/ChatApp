@@ -101,7 +101,10 @@ public class MessageServiceController {
                     message1.setReceiverId(message.getSenderId());
                     message1.setRecipient(Recipient.PRIVATE);
 
-                    sendMessage(message1);
+                    HBox hBox = sendMessage(message1);
+                    if(activeChat.getContactUser().getPhoneNumber().equals(message.getSenderId())){
+                        activeChat.receivedMessage(hBox);
+                    }
 
                     System.out.println("Sent AI response after delay: " + AI_response);
 

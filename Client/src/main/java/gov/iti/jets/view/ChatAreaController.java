@@ -286,6 +286,10 @@ public class ChatAreaController {
     }
 
     private void sendMessage(){
+        if(textArea.getText().isBlank()){
+            textArea.clear();
+            return ;
+        }
         message.setTimestamp(new Timestamp(System.currentTimeMillis()));
         message.setContent(textArea.getText().trim());
         HBox hBox ;

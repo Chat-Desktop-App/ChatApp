@@ -50,6 +50,13 @@
     -fx-background-color: transparent;
  }
 
+ .serverIcon_button{
+    -fx-background-image: url("../images/orca-no-text.png");
+    -fx-background-size: 100% 100%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-color: transparent;
+ }
+
  .addFriend_button{
      -fx-background-image: url("../images/addPerson.png");
      -fx-background-size: 100% 100%;
