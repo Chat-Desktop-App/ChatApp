@@ -39,6 +39,7 @@ public class StatsController {
    }
 
     private void updateStatistics() {
+        System.out.println("Updating statistics...");
         new Thread(() -> {
             try {
                 Map<String, Integer> statusData = userDao.getUserStatus();

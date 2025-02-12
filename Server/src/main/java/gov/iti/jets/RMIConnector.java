@@ -10,7 +10,10 @@ import java.rmi.registry.Registry;
 
 public class RMIConnector {
     private static Registry registry;
-    private static boolean isRunning;
+    private static boolean isRunning = false;
+
+
+
 
     public static void startServer() {
         if (isRunning) {
@@ -48,6 +51,12 @@ public class RMIConnector {
 
             isRunning = true; // Mark the server as running
             System.out.println("Server is up and running.");
+
+            Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+                if (isRunning) {
+                    stopServer();
+                }
+            }));
         } catch (RemoteException | AlreadyBoundException | NotBoundException e) {
             e.printStackTrace();
         }
@@ -65,7 +74,8 @@ public class RMIConnector {
                 registry.unbind(service);
                 System.out.println("Unbound service: " + service);
             }
-
+            registry = null;
+            System.gc();
             isRunning = false; // Mark the server as stopped
             System.out.println("Server is down.");
         } catch (Exception e) {
@@ -74,13 +84,5 @@ public class RMIConnector {
     }
     public static boolean isServerRunning() {
         return isRunning;
-    }
-    public static void main(String[] args) {
-        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-            if (isRunning) {
-                stopServer();
-            }
-        }));
-        startServer();
     }
 }

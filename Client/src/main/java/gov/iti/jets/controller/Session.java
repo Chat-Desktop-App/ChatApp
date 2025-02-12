@@ -6,6 +6,7 @@ import gov.iti.jets.view.ChatsController;
 import gov.iti.jets.view.HomeController;
 import javafx.collections.ObservableList;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 import java.rmi.RemoteException;
 import java.util.HashMap;
@@ -21,6 +22,8 @@ public class Session {
     static HashMap<String, ChatsController> chatsControllerMap = new HashMap<>();
     private static Session instance;
     private String loggedPhoneNumber;
+
+    private static Stage loadStage;
 
     private Session() {}
     public static Session getInstance() {
@@ -56,5 +59,13 @@ public class Session {
         if (chatsController != null){
             chatsController.updateStatus(status);
         }
+    }
+
+    public static Stage getLoadStage() {
+        return loadStage;
+    }
+
+    public static void setLoadStage(Stage loadStage) {
+        Session.loadStage = loadStage;
     }
 }

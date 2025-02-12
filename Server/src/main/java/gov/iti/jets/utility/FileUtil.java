@@ -55,7 +55,7 @@ public class FileUtil {
             fileRecord.setFileData(fileData);
             return fileRecord;
         } catch (IOException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
             return null;
         }
     }

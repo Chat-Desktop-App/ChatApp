@@ -43,6 +43,7 @@ public class ClientApp extends Application {
         stage.setMinHeight(620);
         stage.setMinWidth(800);
         stage.setScene(scene);
+        Session.setLoadStage(stage);
         Image icon = new Image(String.valueOf(ClientApp.class.getResource("images/orca-no-text.png")));
         stage.getIcons().add(icon);
         stage.show();

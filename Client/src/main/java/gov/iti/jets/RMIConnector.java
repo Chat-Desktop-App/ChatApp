@@ -45,11 +45,6 @@ public class RMIConnector {
                 break;
             } catch (RemoteException | NotBoundException e) {
                 System.out.println("Connection to services failed: " + e.getMessage());
-                try {
-                    sleep(1000); // Retry after a short delay
-                } catch (InterruptedException ex) {
-                    ex.printStackTrace();
-                }
             }
         }
 
