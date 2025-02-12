@@ -42,7 +42,7 @@
             </HBox>
             <HBox alignment="CENTER" onMouseClicked="#goToUsers" prefHeight="62.0" prefWidth="121.0" spacing="20.0" styleClass="button">
                <children>
-                  <ImageView fitHeight="42.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/group.png" />
                      </image>
@@ -56,7 +56,7 @@
             </HBox>
             <HBox alignment="CENTER" onMouseClicked="#goToStats" prefHeight="62.0" prefWidth="40.0" spacing="20.0" styleClass="button">
                <children>
-                  <ImageView fitHeight="42.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/pie-chart.png" />
                      </image>
@@ -70,7 +70,7 @@
             </HBox>
             <HBox alignment="CENTER" onMouseClicked="#goToAnnouncement" prefHeight="62.0" prefWidth="102.0" spacing="20.0" styleClass="button">
                <children>
-                  <ImageView fitHeight="42.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/telegram.png" />
                      </image>
@@ -107,7 +107,7 @@
             </Label>
             <ImageView fitHeight="109.0" fitWidth="109.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/orca1.png" />
+                  <Image url="@../images/orca2.png" />
                </image>
             </ImageView>
          </children>

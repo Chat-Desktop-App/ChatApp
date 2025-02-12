@@ -29,25 +29,20 @@
     -fx-background-color: transparent;
  }
 
- .ai_button{
-     -fx-background-image: url("../images/ai.png");
+.ai_button{
+ -fx-background-image: url("../images/ai.png");
+ -fx-background-size: 100% 100%;
+ -fx-background-repeat: no-repeat;
+ -fx-background-color: transparent;
+}
+
+.ai_selected{
+-fx-background-image: url("../images/ai_selected.png");
      -fx-background-size: 100% 100%;
      -fx-background-repeat: no-repeat;
      -fx-background-color: transparent;
-  }
+}
 
-  .ai_selected{
-    -fx-background-image: url("../images/ai_selected.png");
-         -fx-background-size: 100% 100%;
-         -fx-background-repeat: no-repeat;
-         -fx-background-color: transparent;
-  }
-
-  .ai_button:hover {
-    -fx-background-color: #50ddb7;
-    -fx-text-fill: #fff; /* White text */
-
-  }
 
 
 .notification_button{
@@ -57,37 +52,37 @@
     -fx-background-color: transparent;
  }
 
- .serverIcon_button{
-    -fx-background-image: url("../images/orca1.png");
-    -fx-background-size: 100% 100%;
-    -fx-background-repeat: no-repeat;
-    -fx-background-color: transparent;
- }
+.serverIcon_button{
+-fx-background-image: url("../images/orca1.png");
+-fx-background-size: 100% 100%;
+-fx-background-repeat: no-repeat;
+-fx-background-color: transparent;
+}
 
- .addFriend_button{
-     -fx-background-image: url("../images/addPerson.png");
-     -fx-background-size: 100% 100%;
-     -fx-background-repeat: no-repeat;
-     -fx-background-color: transparent;
-  }
+.addFriend_button{
+ -fx-background-image: url("../images/addPerson.png");
+ -fx-background-size: 100% 100%;
+ -fx-background-repeat: no-repeat;
+ -fx-background-color: transparent;
+}
 
-   .addGroup_button{
-       -fx-background-image: url("../images/group.png");
-       -fx-background-size: 100% 100%;
-       -fx-background-repeat: no-repeat;
-       -fx-background-color: transparent;
-    }
+.addGroup_button{
+   -fx-background-image: url("../images/group.png");
+   -fx-background-size: 100% 100%;
+   -fx-background-repeat: no-repeat;
+   -fx-background-color: transparent;
+}
 
-      .settings_button{
-           -fx-background-image: url("../images/settings.png");
-           -fx-background-size: 100% 100%;
-           -fx-background-repeat: no-repeat;
-           -fx-background-color: transparent;
-        }
+.settings_button{
+   -fx-background-image: url("../images/settings.png");
+   -fx-background-size: 100% 100%;
+   -fx-background-repeat: no-repeat;
+   -fx-background-color: transparent;
+}
 
-          .logout_button{
-               -fx-background-image: url("../images/logoutIcon.png");
-               -fx-background-size: 100% 100%;
-               -fx-background-repeat: no-repeat;
-               -fx-background-color: transparent;
-            }
+.logout_button{
+   -fx-background-image: url("../images/logoutIcon.png");
+   -fx-background-size: 100% 100%;
+   -fx-background-repeat: no-repeat;
+   -fx-background-color: transparent;
+}

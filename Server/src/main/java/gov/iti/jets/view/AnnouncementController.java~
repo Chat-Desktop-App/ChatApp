@@ -21,7 +21,6 @@ public class AnnouncementController {
     }
     @FXML
     private void initialize() {
-
         sendButton.setOnMouseClicked(event -> sendAnnouncement());
     }
     private void sendAnnouncement() {

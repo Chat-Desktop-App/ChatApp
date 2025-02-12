@@ -22,7 +22,7 @@ public class HomeController implements Initializable {
     @FXML
     private AnchorPane anchorPane;
     private Stage stage;
-    private VBox Announcement;
+    private GridPane gridPaneAnnouncement;
     private VBox Stats;
     private GridPane gridPaneStatus;
     private VBox UserTable;
@@ -44,7 +44,7 @@ public class HomeController implements Initializable {
     }
     @FXML
     private void goToAnnouncement() {
-        loadFxml(Announcement);
+        loadFxml(gridPaneAnnouncement);
     }
     @FXML
     private void goToSignOut() {
@@ -55,7 +55,7 @@ public class HomeController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         FXMLLoader loaderAnnouncement = new FXMLLoader(getClass().getResource("/fxml/server-announcement.fxml"));
         try {
-            Announcement = loaderAnnouncement.load();
+            gridPaneAnnouncement = loaderAnnouncement.load();
             AnnouncementController announcementController = loaderAnnouncement.getController();
 
             try {
