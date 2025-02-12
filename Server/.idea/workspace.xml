@@ -5,17 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="29434122-bddf-47bf-bcd9-02e3da6dc58d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/resources/gov/iti/jets/styles/home.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/resources/gov/iti/jets/styles/home.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/target/classes/gov/iti/jets/styles/home.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/target/classes/gov/iti/jets/styles/home.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/target/classes/gov/iti/jets/view/HomeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/target/classes/gov/iti/jets/view/HomeController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gov/iti/jets/view/AnnouncementController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gov/iti/jets/view/AnnouncementController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gov/iti/jets/view/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gov/iti/jets/view/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gov/iti/jets/view/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gov/iti/jets/view/HomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/server-announcement.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/server-announcement.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/server-homePage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/server-homePage.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/server-stats.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/server-stats.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/server-userTable.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/server-userTable.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/ClientApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/gov/iti/jets/ClientApp.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

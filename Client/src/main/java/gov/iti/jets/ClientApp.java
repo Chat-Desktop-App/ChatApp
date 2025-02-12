@@ -15,6 +15,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.FileNotFoundException;
@@ -42,7 +43,10 @@ public class ClientApp extends Application {
         stage.setMinHeight(620);
         stage.setMinWidth(800);
         stage.setScene(scene);
+        Image icon = new Image(String.valueOf(ClientApp.class.getResource("images/orca-no-text.png")));
+        stage.getIcons().add(icon);
         stage.show();
+
     }
 
     private Parent loadView() {
