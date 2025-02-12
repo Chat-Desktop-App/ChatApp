@@ -19,8 +19,10 @@ public class RMIConnector {
         }
 
         try {
+            String ip = "10.145.19.131";
             // Check if registry is already created
             if (registry == null) {
+                System.setProperty("java.rmi.server.hostname", ip);
                 registry = LocateRegistry.createRegistry(1099); // Create registry only if it doesn't exist
             } else {
                 System.out.println("Registry already exists.");
