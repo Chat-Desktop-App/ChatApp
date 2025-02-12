@@ -26,8 +26,8 @@ public class RMIConnector {
         while (true) {
             try {
                 // Get the registry and lookup each service
-                String ip = "10.145.19.131";
-                Registry reg = LocateRegistry.getRegistry(ip,1099);
+                //String ip = "10.145.19.131";
+                Registry reg = LocateRegistry.getRegistry(1099);
                 contactService = (ContactService) reg.lookup("ContactService");
                 loginService = (Login) reg.lookup("LogIn");
                 registerService = (Register) reg.lookup("Register");

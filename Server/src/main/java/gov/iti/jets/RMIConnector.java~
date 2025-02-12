@@ -15,7 +15,7 @@ public class RMIConnector {
     public static void startServer() {
         if (isRunning) {
             System.out.println("Server is already running.");
-            return;
+            return; 
         }
 
         try {
