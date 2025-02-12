@@ -39,7 +39,7 @@ public class ChatClientImpl extends UnicastRemoteObject implements ChatClient  {
         Platform.runLater(() -> {
             serverMessageAreaController.addAnnouncement(message, timestamp);
         });
-
+    }
     @Override
     public void updateStatus(String contactPhone, Status status) throws RemoteException {
         System.out.println( contactPhone + " : " +status);
