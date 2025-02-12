@@ -1,7 +1,4 @@
 .button {
-    /* -fx-background-color: linear-gradient(to bottom, #4CAF50, #45a049); */
-    /* -fx-border-radius: 15px;
-    -fx-background-radius: 15px; */
     -fx-background-color: transparent;
     -fx-padding: 10px 20px;
     -fx-alignment: center;
@@ -13,19 +10,31 @@
 .button:hover {
     -fx-background-color: linear-gradient(to right, #0e4ece, #89CFF0);
     -fx-effect: dropshadow(gaussian, #000080, 15, 0.6, 0, 0);
-    -fx-scale-x: 1.05;
-    -fx-scale-y: 1.05;
+    /* Use translate instead of scaling */
+    -fx-translate-x: 1px;
+    -fx-translate-y: 1px;
 }
 .topLeftBar {
-    -fx-background-color: linear-gradient(to right, #0e4ece, #89CFF0);
+    -fx-background-color:  #89CFF0;
+
+}
+.topBar {
+    -fx-background-color: linear-gradient(to left, #0e4ece, #89CFF0);
 
 }
 .leftBar {
-    -fx-background-color: linear-gradient(to bottom, #0e4ece, #89CFF0);
+    -fx-background-color: linear-gradient(to top, #0e4ece, #89CFF0);
 }
 .anchorPane {
-    -fx-background-color: linear-gradient(to bottom, #5c81c9, #89CFF0);
+  /*  -fx-background-color: linear-gradient(to bottom, #5c81c9, #89CFF0);*/
+    -fx-background-color: linear-gradient(to bottom right, #ffffffd7, #fffffff1);
 }
+.orca_button {
+    -fx-background-image: url("../images/orca-front.png");
+	-fx-background-size: 100% 100%;
+}
+
+
 /* Blue #0e4ece, #89CFF0 */
 /* Green #d8e4aa, #4CAF50 */
 /* button hover border green #ffcc00 */

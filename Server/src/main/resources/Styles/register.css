@@ -15,8 +15,12 @@
 }
 
 .buttonStyle{
-    -fx-background-color: #2d2d2d;
-    -fx-text-fill: white;
+    -fx-background-color: #0ece7b; 
+    -fx-text-fill: #ffffff;
+
+}
+.buttonStyle:hover {
+    -fx-background-color: #5dc0a5; 
 }
 
 .fieldLabelStyle {

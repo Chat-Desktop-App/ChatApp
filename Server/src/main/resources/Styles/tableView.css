@@ -1,0 +1,11 @@
+/* Style for the TableColumn headers */
+.table-view .column-header,
+.table-view .column-header-background .filler {
+    -fx-background-color: #0e4ece; /* Background color of the header */
+}
+
+/* Style for the text inside the TableColumn headers */
+.table-view .column-header .label {
+    -fx-text-fill: white; /* Text color */
+    -fx-font-weight: bold; /* Optional: Make the text bold */
+}

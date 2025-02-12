@@ -80,24 +80,23 @@ public class NotificationCellController {
             if (notification.getSenderId() != null) {
                 ContactUser sender = NotificationServiceController.getUser(notification.getSenderId());
                 if (sender != null) {
-                    friendName.setText(sender.getName());
 
                     if(notification.getNotificationType() == Notification.ANNOUNCEMENT){
                         Image image = new Image(getClass().getResource("/gov/iti/jets/images/orca.png").toExternalForm());
                         friendPic.setImage(image);
+                        friendName.setText("ORCA");
 
                     }else {
+                        friendName.setText(sender.getName());
                         byte[] pic = sender.getPicture();
                         if (pic != null) {
                             friendPic.setImage(new Image(new ByteArrayInputStream(pic)));
                         } else {
-                            // Set a default image
                             friendPic = friendPic;
                         }
                     }
                 } else {
                     friendName.setText("Unknown User");
-                    // Set default image
                     friendPic = friendPic;
                 }
             }

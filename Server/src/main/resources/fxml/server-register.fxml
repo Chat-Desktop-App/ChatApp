@@ -7,145 +7,153 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox fx:controller="gov.iti.jets.view.RegisterController" alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="720.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-image: blue-gradient.jpg;" stylesheets="@../Styles/register.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="720.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-image: blue-gradient.jpg;" stylesheets="@../Styles/register.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.view.RegisterController">
     <children>
-        <VBox fx:id="background" prefHeight="600.0" prefWidth="22.0" HBox.hgrow="ALWAYS" />
-        <VBox fx:id="SignUpVbox" prefHeight="400.0" prefWidth="438.0" HBox.hgrow="ALWAYS">
-            <children>
-                <Label fx:id="createLabel" alignment="TOP_CENTER" text="Create New Admin" VBox.vgrow="ALWAYS">
-                    <VBox.margin>
-                        <Insets bottom="15.0" />
-                    </VBox.margin>
-                </Label>
-                <VBox prefHeight="23.0" prefWidth="311.0" VBox.vgrow="ALWAYS">
-                    <children>
-                        <Label text="Phone Number" VBox.vgrow="ALWAYS">
-                            <VBox.margin>
-                                <Insets />
-                            </VBox.margin>
-                        </Label>
-                        <TextField fx:id="phoneNumberField" VBox.vgrow="ALWAYS" />
-                    </children>
-                </VBox>
-                <HBox prefHeight="40.0" prefWidth="311.0" spacing="10.0" VBox.vgrow="ALWAYS">
-                    <children>
-                        <VBox prefHeight="23.0" prefWidth="250.0">
-                            <children>
-                                <Label text="First name" VBox.vgrow="ALWAYS">
-                                    <VBox.margin>
-                                        <Insets />
-                                    </VBox.margin>
-                                </Label>
-                                <TextField fx:id="firstNameField" styleClass="textFieldStyle" VBox.vgrow="ALWAYS" />
-                            </children>
-                        </VBox>
-                        <VBox layoutX="10.0" layoutY="10.0" prefHeight="23.0" prefWidth="250.0">
-                            <children>
-                                <Label styleClass="fieldLabelStyle" text="Last name" VBox.vgrow="ALWAYS">
-                                    <VBox.margin>
-                                        <Insets />
-                                    </VBox.margin>
-                                </Label>
-                                <TextField fx:id="lastNameField" styleClass="textFieldStyle" VBox.vgrow="ALWAYS" />
-                            </children>
-                        </VBox>
-                        <VBox layoutX="10.0" layoutY="10.0" prefHeight="62.0" prefWidth="150.0">
-                            <children>
-                                <Label text="Gender" />
-                                <ChoiceBox fx:id="genderChoiceBox" prefHeight="26.0" prefWidth="92.0" />
-                            </children>
-                        </VBox>
-                    </children>
-                </HBox>
-                <VBox layoutX="60.0" layoutY="95.0" prefHeight="23.0" prefWidth="311.0" VBox.vgrow="ALWAYS">
-                    <children>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <VBox prefHeight="95.0" prefWidth="200.0">
-                           <children>
-                                    <Label styleClass="fieldLabelStyle" text="Email" VBox.vgrow="ALWAYS">
-                                        <VBox.margin>
-                                            <Insets />
-                                        </VBox.margin>
-                                    </Label>
-                                    <TextField fx:id="emailField" prefHeight="38.0" prefWidth="124.0" styleClass="textFieldStyle" VBox.vgrow="ALWAYS" />
-                           </children>
-                           <HBox.margin>
-                              <Insets right="10.0" />
-                           </HBox.margin>
-                        </VBox>
-                        <VBox prefHeight="95.0" prefWidth="150.0">
-                           <children>
-                              <Label styleClass="fieldLabelStyle" text="Country" VBox.vgrow="ALWAYS">
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
+      <AnchorPane prefHeight="600.0" prefWidth="705.0" style="-fx-background-color: blue-gradient.jpg;" HBox.hgrow="NEVER">
+         <children>
+              <VBox fx:id="SignUpVbox" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="523.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="76.0" AnchorPane.topAnchor="0.0">
+                  <children>
+                      <Label fx:id="createLabel" alignment="TOP_CENTER" text="Create New Admin" VBox.vgrow="ALWAYS">
+                          <VBox.margin>
+                              <Insets bottom="15.0" />
+                          </VBox.margin>
+                      </Label>
+                      <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="80.0" prefWidth="443.0" VBox.vgrow="ALWAYS">
+                          <children>
+                              <Label text="Phone Number" VBox.vgrow="ALWAYS">
+                                  <VBox.margin>
+                                      <Insets />
+                                  </VBox.margin>
                               </Label>
-                              <TextField fx:id="countryField" styleClass="textFieldStyle" VBox.vgrow="ALWAYS" />
-                           </children>
-                           <HBox.margin>
-                              <Insets left="50.0" right="10.0" />
-                           </HBox.margin>
-                           <padding>
-                              <Insets right="10.0" />
-                           </padding>
-                        </VBox>
-                        <VBox prefHeight="95.0" prefWidth="150.0">
+                              <TextField fx:id="phoneNumberField" VBox.vgrow="ALWAYS" />
+                          </children>
+                      </VBox>
+                      <HBox prefHeight="40.0" prefWidth="311.0" spacing="10.0" VBox.vgrow="ALWAYS">
+                          <children>
+                              <VBox prefHeight="23.0" prefWidth="250.0">
+                                  <children>
+                                      <Label text="First name" VBox.vgrow="ALWAYS">
+                                          <VBox.margin>
+                                              <Insets />
+                                          </VBox.margin>
+                                      </Label>
+                                      <TextField fx:id="firstNameField" styleClass="textFieldStyle" VBox.vgrow="ALWAYS" />
+                                  </children>
+                              </VBox>
+                              <VBox layoutX="10.0" layoutY="10.0" prefHeight="23.0" prefWidth="250.0">
+                                  <children>
+                                      <Label styleClass="fieldLabelStyle" text="Last name" VBox.vgrow="ALWAYS">
+                                          <VBox.margin>
+                                              <Insets />
+                                          </VBox.margin>
+                                      </Label>
+                                      <TextField fx:id="lastNameField" styleClass="textFieldStyle" VBox.vgrow="ALWAYS" />
+                                  </children>
+                              </VBox>
+                              <VBox layoutX="10.0" layoutY="10.0" prefHeight="62.0" prefWidth="150.0">
+                                  <children>
+                                      <Label text="Gender" />
+                                      <ChoiceBox fx:id="genderChoiceBox" prefHeight="26.0" prefWidth="92.0" />
+                                  </children>
+                              </VBox>
+                          </children>
+                      </HBox>
+                      <VBox layoutX="60.0" layoutY="95.0" prefHeight="23.0" prefWidth="311.0" VBox.vgrow="ALWAYS">
+                          <children>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <Label text="Birthdate" />
-                              <DatePicker fx:id="birthDatePicker" />
+                              <VBox prefHeight="95.0" prefWidth="200.0">
+                                 <children>
+                                          <Label styleClass="fieldLabelStyle" text="Email" VBox.vgrow="ALWAYS">
+                                              <VBox.margin>
+                                                  <Insets />
+                                              </VBox.margin>
+                                          </Label>
+                                          <TextField fx:id="emailField" prefHeight="38.0" prefWidth="124.0" styleClass="textFieldStyle" VBox.vgrow="ALWAYS" />
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </VBox>
+                              <VBox prefHeight="95.0" prefWidth="150.0">
+                                 <children>
+                                    <Label styleClass="fieldLabelStyle" text="Country" VBox.vgrow="ALWAYS">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </Label>
+                                    <TextField fx:id="countryField" styleClass="textFieldStyle" VBox.vgrow="ALWAYS" />
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets left="50.0" right="10.0" />
+                                 </HBox.margin>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </VBox>
+                              <VBox prefHeight="95.0" prefWidth="150.0">
+                                 <children>
+                                    <Label text="Birthdate" />
+                                    <DatePicker fx:id="birthDatePicker" />
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets left="50.0" right="10.0" />
+                                 </HBox.margin>
+                              </VBox>
                            </children>
-                           <HBox.margin>
-                              <Insets left="50.0" right="10.0" />
-                           </HBox.margin>
-                        </VBox>
-                     </children>
-                  </HBox>
-                    </children>
-                </VBox>
-                <VBox layoutX="60.0" layoutY="192.0" prefHeight="23.0" prefWidth="311.0" VBox.vgrow="ALWAYS">
-                    <children>
-                        <Label styleClass="fieldLabelStyle" text="Password" VBox.vgrow="ALWAYS">
-                            <VBox.margin>
-                                <Insets />
-                            </VBox.margin>
-                        </Label>
-                        <PasswordField fx:id="passwordField" styleClass="textFieldStyle" VBox.vgrow="ALWAYS" />
-                    </children>
-                </VBox>
-                <VBox prefHeight="23.0" prefWidth="311.0" VBox.vgrow="ALWAYS">
-                    <children>
-                        <Label styleClass="fieldLabelStyle" text="Confirmation Password" VBox.vgrow="ALWAYS">
-                            <VBox.margin>
-                                <Insets />
-                            </VBox.margin>
-                        </Label>
-                        <PasswordField fx:id="confirmPasswordField" styleClass="textFieldStyle" VBox.vgrow="ALWAYS" />
-                    </children>
-                </VBox>
-                <VBox prefHeight="10.0" prefWidth="360.0" VBox.vgrow="ALWAYS">
-                    <children>
-                        <Button fx:id="nextButton" alignment="CENTER" mnemonicParsing="false" onAction="#goToSignIn" prefHeight="30.0" prefWidth="358.0" styleClass="buttonStyle" text="Next" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
-                            <VBox.margin>
-                                <Insets />
-                            </VBox.margin>
+                        </HBox>
+                          </children>
+                      </VBox>
+                      <VBox layoutX="60.0" layoutY="192.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="80.0" prefWidth="462.0" VBox.vgrow="NEVER">
+                          <children>
+                              <Label styleClass="fieldLabelStyle" text="Password" VBox.vgrow="ALWAYS">
+                                  <VBox.margin>
+                                      <Insets />
+                                  </VBox.margin>
+                              </Label>
+                              <PasswordField fx:id="passwordField" prefHeight="37.0" prefWidth="200.0" styleClass="textFieldStyle" VBox.vgrow="SOMETIMES" />
+                          </children>
+                      </VBox>
+                      <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="94.0" prefWidth="464.0" VBox.vgrow="ALWAYS">
+                          <children>
+                              <Label styleClass="fieldLabelStyle" text="Confirmation Password" VBox.vgrow="ALWAYS">
+                                  <VBox.margin>
+                                      <Insets />
+                                  </VBox.margin>
+                              </Label>
+                              <PasswordField fx:id="confirmPasswordField" styleClass="textFieldStyle" VBox.vgrow="ALWAYS" />
+                          </children>
+                      </VBox>
+                      <VBox alignment="CENTER" prefHeight="10.0" prefWidth="360.0" VBox.vgrow="ALWAYS">
+                          <children>
+                              <Button fx:id="nextButton" alignment="CENTER" mnemonicParsing="false" onAction="#goToSignIn" prefHeight="30.0" prefWidth="233.0" styleClass="buttonStyle" text="Next" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+                                  <VBox.margin>
+                                      <Insets />
+                                  </VBox.margin>
+                              </Button>
+                        <Button fx:id="signInButton" alignment="CENTER" mnemonicParsing="false" onAction="#signInInstead" prefHeight="30.0" prefWidth="135.0" styleClass="buttonStyle" text="Sign in instead">
+                           <VBox.margin>
+                              <Insets bottom="1.0" right="10.0" top="10.0" />
+                           </VBox.margin>
                         </Button>
-                  <Button fx:id="signInButton" alignment="CENTER" mnemonicParsing="false" onAction="#signInInstead" prefHeight="30.0" prefWidth="135.0" styleClass="buttonStyle" text="Sign in instead">
-                     <VBox.margin>
-                        <Insets bottom="1.0" right="10.0" top="10.0" />
-                     </VBox.margin>
-                  </Button>
-                    </children>
-                </VBox>
-            </children>
-            <HBox.margin>
-                <Insets />
-            </HBox.margin>
-            <padding>
-                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-            </padding></VBox>
+                          </children>
+                      </VBox>
+                  </children>
+                  <padding>
+                      <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                  </padding>
+            </VBox>
+         </children>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+         <HBox.margin>
+            <Insets left="100.0" />
+         </HBox.margin>
+      </AnchorPane>
     </children>
 </HBox>

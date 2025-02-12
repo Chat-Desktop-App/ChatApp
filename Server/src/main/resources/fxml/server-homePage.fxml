@@ -4,6 +4,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -11,10 +12,10 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane fx:controller="gov.iti.jets.view.HomeController"  alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="600.0" minWidth="720.0" prefHeight="600.0" prefWidth="800.0" stylesheets="@../Styles/server.css"  xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="549.0" minWidth="720.0" prefHeight="549.0" prefWidth="837.0" stylesheets="@../Styles/server.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.view.HomeController">
   <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="400.0" minWidth="10.0" prefWidth="100.0" />
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="400.0" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="400.0" minWidth="10.0" prefWidth="248.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="424.6666870117188" minWidth="10.0" prefWidth="410.00000000000006" />
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
   <rowConstraints>
@@ -23,72 +24,72 @@
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <VBox alignment="CENTER" styleClass="leftBar" GridPane.rowIndex="1" GridPane.rowSpan="2">
+      <VBox alignment="CENTER" prefHeight="450.0" prefWidth="284.0" styleClass="leftBar" GridPane.rowIndex="1" GridPane.rowSpan="2">
          <children>
-            <HBox onMouseClicked="#goToStatus" alignment="CENTER" prefHeight="42.0" prefWidth="300.0" spacing="20.0" styleClass="button">
+            <HBox alignment="CENTER" onMouseClicked="#goToStatus" prefHeight="70.0" prefWidth="250.0" spacing="20.0" styleClass="button">
                <children>
-                  <ImageView fitHeight="42.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/home.png" />
                      </image>
                   </ImageView>
-                  <Label prefHeight="23.0" prefWidth="159.0" text="Server manager">
+                  <Label prefHeight="23.0" prefWidth="159.0" text="Server manager" textFill="WHITE">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
                </children>
             </HBox>
-            <HBox onMouseClicked="#goToUsers" alignment="CENTER" prefHeight="42.0" prefWidth="300.0" spacing="20.0" styleClass="button">
+            <HBox alignment="CENTER" onMouseClicked="#goToUsers" prefHeight="62.0" prefWidth="121.0" spacing="20.0" styleClass="button">
                <children>
                   <ImageView fitHeight="42.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/group.png" />
                      </image>
                   </ImageView>
-                  <Label prefHeight="23.0" prefWidth="159.0" text="Users">
+                  <Label prefHeight="23.0" prefWidth="159.0" text="Users" textFill="WHITE">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
                </children>
             </HBox>
-            <HBox onMouseClicked="#goToStats" alignment="CENTER" prefHeight="42.0" prefWidth="300.0" spacing="20.0" styleClass="button">
+            <HBox alignment="CENTER" onMouseClicked="#goToStats" prefHeight="62.0" prefWidth="40.0" spacing="20.0" styleClass="button">
                <children>
                   <ImageView fitHeight="42.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/pie-chart.png" />
                      </image>
                   </ImageView>
-                  <Label prefHeight="23.0" prefWidth="159.0" text="Statistics">
+                  <Label prefHeight="23.0" prefWidth="159.0" text="Statistics" textFill="#fbfafa">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
                </children>
             </HBox>
-            <HBox onMouseClicked="#goToAnnouncement" alignment="CENTER" prefHeight="42.0" prefWidth="300.0" spacing="20.0" styleClass="button">
+            <HBox alignment="CENTER" onMouseClicked="#goToAnnouncement" prefHeight="62.0" prefWidth="102.0" spacing="20.0" styleClass="button">
                <children>
                   <ImageView fitHeight="42.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/telegram.png" />
                      </image>
                   </ImageView>
-                  <Label prefHeight="23.0" prefWidth="159.0" text="Announcement">
+                  <Label prefHeight="23.0" prefWidth="159.0" text="Announcement" textFill="WHITE">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
                </children>
             </HBox>
-            <HBox onMouseClicked="#goToSignOut" alignment="CENTER" prefHeight="42.0" prefWidth="300.0" spacing="20.0" styleClass="button">
+            <HBox alignment="CENTER" onMouseClicked="#goToSignOut" prefHeight="70.0" prefWidth="189.0" spacing="20.0" styleClass="button">
                <children>
-                  <ImageView fitHeight="42.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
                      <image>
                         <Image url="@../images/arrow.png" />
                      </image>
                   </ImageView>
-                  <Label prefHeight="23.0" prefWidth="159.0" text="Sign out">
+                  <Label prefHeight="23.0" prefWidth="159.0" text="Sign out" textFill="WHITE">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -97,20 +98,27 @@
             </HBox>
          </children>
       </VBox>
-      <VBox alignment="TOP_CENTER" styleClass="topLeftBar" GridPane.vgrow="NEVER">
+      <VBox alignment="TOP_CENTER" prefHeight="78.0" prefWidth="267.0" styleClass="topLeftBar" GridPane.vgrow="NEVER">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" text="ORCA Chat-App Server">
+            <Label alignment="CENTER" contentDisplay="CENTER" text="ORCA Server" textAlignment="CENTER" textFill="#fdfcfc">
                <font>
-                  <Font size="22.0" />
+                  <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <ImageView fitHeight="109.0" fitWidth="147.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="109.0" fitWidth="109.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/orca-front.png" />
+                  <Image url="@../images/orca2.png" />
                </image>
             </ImageView>
          </children>
       </VBox>
-      <AnchorPane styleClass="anchorPane" fx:id="anchorPane" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowSpan="3" />
+      <BorderPane GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowSpan="3">
+         <center>
+            <AnchorPane fx:id="anchorPane" prefHeight="600.0" prefWidth="421.0" styleClass="anchorPane" />
+         </center>
+         <top>
+            <AnchorPane prefHeight="28.0" prefWidth="585.0" styleClass="topBar" BorderPane.alignment="CENTER" />
+         </top>
+      </BorderPane>
    </children>
 </GridPane>

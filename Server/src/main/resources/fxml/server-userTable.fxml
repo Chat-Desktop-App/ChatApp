@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane fx:controller="gov.iti.jets.view.UserTableController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.view.UserTableController">
   <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -27,21 +27,21 @@
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <TableView fx:id="userTable" prefHeight="200.0" prefWidth="800.0" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="2" GridPane.rowSpan="4">
+      <TableView fx:id="userTable" prefHeight="200.0" prefWidth="800.0" stylesheets="@../Styles/tableView.css" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="2" GridPane.rowSpan="4">
         <columns>
           <TableColumn fx:id="phoneNumberCol" prefWidth="150.0" text="Phone Number" />
           <TableColumn fx:id="fnameCol" prefWidth="75.0" text="First Name" />
-          <TableColumn fx:id="lnameCol" prefWidth="75.0" text="Last Name"/>
-          <TableColumn fx:id="emailCol" prefWidth="180.0" text="Email"/>
-          <TableColumn fx:id="genderCol" prefWidth="75.0" text="Gender"/>
-          <TableColumn fx:id="dobCol" prefWidth="120.0" text="Birthdate"/>
-          <TableColumn fx:id="statusCol" prefWidth="75.0" text="Status"/>
-          <TableColumn fx:id="lastSeenCol" prefWidth="200.0" text="Last Seen"/>
+          <TableColumn fx:id="lnameCol" prefWidth="75.0" text="Last Name" />
+          <TableColumn fx:id="emailCol" prefWidth="180.0" text="Email" />
+          <TableColumn fx:id="genderCol" prefWidth="75.0" text="Gender" />
+          <TableColumn fx:id="dobCol" prefWidth="120.0" text="Birthdate" />
+          <TableColumn fx:id="statusCol" prefWidth="75.0" text="Status" />
+          <TableColumn fx:id="lastSeenCol" prefWidth="200.0" text="Last Seen" />
         </columns>
       </TableView>
-      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="421.0" text="Users" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="421.0" text="Users" textFill="#3007d7" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.halignment="CENTER" GridPane.rowIndex="1">
          <font>
-            <Font size="27.0" />
+            <Font name="System Bold" size="30.0" />
          </font>
       </Label>
    </children>
