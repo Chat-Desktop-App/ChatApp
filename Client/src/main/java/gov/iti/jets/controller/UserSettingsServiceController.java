@@ -22,6 +22,7 @@ public class UserSettingsServiceController {
             Session.user.setPicture(pic);
             return flag;
         } catch (RemoteException e) {
+            userSettingsService = RMIConnector.getRmiConnector().getUserSettingsService();
             System.out.println("can't connect to server");
             e.printStackTrace();
         }
@@ -32,6 +33,7 @@ public class UserSettingsServiceController {
             userSettingsService.UpdateStatus(Session.user.getPhoneNumber(),status);
             Session.user.setStatus(status);
         } catch (RemoteException e) {
+            userSettingsService = RMIConnector.getRmiConnector().getUserSettingsService();
             throw new RuntimeException(e);
         }
     }
@@ -40,6 +42,7 @@ public class UserSettingsServiceController {
             userSettingsService.UpdateEmail(Session.user.getPhoneNumber(),email);
             Session.user.setEmail(email);
         } catch (RemoteException e) {
+            userSettingsService = RMIConnector.getRmiConnector().getUserSettingsService();
             throw new RuntimeException(e);
         }
     }
@@ -48,6 +51,7 @@ public class UserSettingsServiceController {
             userSettingsService.UpdateBio(Session.user.getPhoneNumber(),Bio);
             Session.user.setBio(Bio);
         } catch (RemoteException e) {
+            userSettingsService = RMIConnector.getRmiConnector().getUserSettingsService();
             throw new RuntimeException(e);
         }
     }
@@ -61,6 +65,7 @@ public class UserSettingsServiceController {
             Session.user.setFname(firstName);
             Session.user.setLname(lastName);
         } catch (RemoteException e) {
+            userSettingsService = RMIConnector.getRmiConnector().getUserSettingsService();
             throw new RuntimeException(e);
         }
     }

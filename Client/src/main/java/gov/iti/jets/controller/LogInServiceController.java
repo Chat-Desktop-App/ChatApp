@@ -17,7 +17,7 @@ import java.rmi.RemoteException;
 
 public class LogInServiceController {
     private static LoginController view;
-    private static Login service =  (Login) RMIConnector.getRmiConnector().getLoginService();;
+    private static Login service =  (Login) RMIConnector.getRmiConnector().getLoginService();
     private static ChatClient client;
     private static User user;
 
@@ -104,7 +104,46 @@ public class LogInServiceController {
         try {
             service.skipLogin(status, client);
         } catch (RemoteException e) {
+            service = RMIConnector.rmiReconnect().getLoginService();
             throw new RuntimeException(e);
         }
     }
+
+
+    public static void reconnect(){
+        try {
+            client = new ChatClientImpl();
+            service =  (Login) RMIConnector.getRmiConnector().getLoginService();
+            service.reconnect(Session.user.getPhoneNumber(), Session.user.getPasswordHashed(), client);
+
+
+            // make xml for user config
+            LoginStatus session = service.createSession(Session.user.getPhoneNumber());
+            try {
+                JAXBContext context = JAXBContext.newInstance(LoginStatus.class);
+                Marshaller marshaller = context.createMarshaller();
+
+
+                marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+                marshaller.marshal(session, new FileWriter("session.xml"));
+
+
+            } catch (JAXBException e) {
+                service = RMIConnector.rmiReconnect().getLoginService();
+                throw new RuntimeException(e);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+
+        } catch (RemoteException e) {
+            service = RMIConnector.rmiReconnect().getLoginService();
+            throw new RuntimeException(e);
+        }
+
+
+
+    }
+
+
 }

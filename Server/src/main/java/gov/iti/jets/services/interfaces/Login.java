@@ -16,5 +16,6 @@ public interface Login extends Remote {
     public void skipLogin(LoginStatus session, ChatClient client) throws RemoteException;
     public User getUser(String userPhone) throws RemoteException;
     void sendPendingAnnouncements(String userId, ChatClient client) throws RemoteException;
+    public User reconnect(String phoneNumber, String password, ChatClient client) throws RemoteException;
 
 }

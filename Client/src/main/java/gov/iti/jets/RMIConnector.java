@@ -1,5 +1,7 @@
 package gov.iti.jets;
 
+import gov.iti.jets.controller.LogInServiceController;
+import gov.iti.jets.controller.Session;
 import gov.iti.jets.services.interfaces.*;
 import javafx.scene.Scene;
 
@@ -28,7 +30,7 @@ public class RMIConnector {
             try {
                 // Get the registry and lookup each service
                 //String ip = "10.145.19.131";
-                Registry reg = LocateRegistry.getRegistry(1099);
+                Registry reg = LocateRegistry.getRegistry("localhost", 1099);
                 contactService = (ContactService) reg.lookup("ContactService");
                 loginService = (Login) reg.lookup("LogIn");
                 registerService = (Register) reg.lookup("Register");
@@ -65,9 +67,13 @@ public class RMIConnector {
     public static RMIConnector rmiReconnect() {
 
         rmiConnector = new RMIConnector();
+        LogInServiceController.reconnect();
+        System.out.println("Connected successfully");
 
         return rmiConnector;
     }
+
+
 
     // Getters for the services
     public Login getLoginService() {
