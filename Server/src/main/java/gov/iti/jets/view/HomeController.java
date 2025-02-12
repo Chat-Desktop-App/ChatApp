@@ -7,10 +7,15 @@ import java.util.ResourceBundle;
 
 
 import gov.iti.jets.services.impls.MessagingServiceImpl;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -27,6 +32,7 @@ public class HomeController implements Initializable {
     private GridPane gridPaneStatus;
     private VBox UserTable;
     private Pane gridPaneSignOut;
+    private Parent root;
 
 
     @FXML
@@ -47,8 +53,8 @@ public class HomeController implements Initializable {
         loadFxml(Announcement);
     }
     @FXML
-    private void goToSignOut() {
-        loadFxml(gridPaneSignOut);
+    private void goToSignOut(MouseEvent event) {
+        loadScene(event,"/fxml/server-signIn.fxml");
     }
 
     @Override
@@ -104,5 +110,22 @@ public class HomeController implements Initializable {
             AnchorPane.setBottomAnchor(pane, 0.0);
             AnchorPane.setLeftAnchor(pane, 0.0);
             AnchorPane.setRightAnchor(pane, 0.0);
+    }
+
+    private void loadScene(MouseEvent event, String fxmlPath) {
+        try {
+            FXMLLoader loaderSignIn = new FXMLLoader(getClass().getResource(fxmlPath));
+            root = loaderSignIn.load();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            double width = stage.getWidth();
+            double height = stage.getHeight();
+            Scene newScene = new Scene(root);
+            stage.setScene(newScene);
+            stage.setWidth(width);
+            stage.setHeight(height);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

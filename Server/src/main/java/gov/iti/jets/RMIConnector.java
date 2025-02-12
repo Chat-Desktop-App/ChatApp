@@ -6,6 +6,7 @@ import gov.iti.jets.services.impls.*;
 import java.io.FileInputStream;
 import java.io.IOException;
 
+import java.io.InputStream;
 import java.rmi.AlreadyBoundException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
