@@ -16,14 +16,14 @@
       </Label>
       <TableView fx:id="userTable" stylesheets="@../Styles/tableView.css" VBox.vgrow="ALWAYS">
         <columns>
-          <TableColumn fx:id="phoneNumberCol" prefWidth="150.0" text="Phone Number" />
+          <TableColumn fx:id="phoneNumberCol" prefWidth="120.0" text="Phone Number" />
           <TableColumn fx:id="fnameCol" prefWidth="75.0" text="First Name" />
           <TableColumn fx:id="lnameCol" prefWidth="75.0" text="Last Name" />
-          <TableColumn fx:id="emailCol" prefWidth="180.0" text="Email" />
+          <TableColumn fx:id="emailCol" prefWidth="160.0" text="Email" />
           <TableColumn fx:id="genderCol" prefWidth="75.0" text="Gender" />
           <TableColumn fx:id="dobCol" prefWidth="120.0" text="Birthdate" />
           <TableColumn fx:id="statusCol" prefWidth="75.0" text="Status" />
-          <TableColumn fx:id="lastSeenCol" prefWidth="200.0" text="Last Seen" />
+          <TableColumn fx:id="lastSeenCol" prefWidth="170.0" text="Last Seen" />
         </columns>
       </TableView>
    </children>
