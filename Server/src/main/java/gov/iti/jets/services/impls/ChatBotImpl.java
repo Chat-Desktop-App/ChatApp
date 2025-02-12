@@ -18,18 +18,18 @@ import java.rmi.server.UnicastRemoteObject;
 
 public class ChatBotImpl extends UnicastRemoteObject implements ChatBot {
     private static final String OPENROUTER_API_URL = "https://openrouter.ai/api/v1/chat/completions";
-    private static final String API_KEY = "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"; // Replace with your actual API key
+    private static final String API_KEY = "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";
     private static final String MODEL_NAME = "mistralai/Mistral-7B-Instruct";
     public ChatBotImpl() throws RemoteException {
     }
 
     @Override
     public String chatWithAI(String userMessage, String fname) throws  RemoteException {
-        // Create JSON request
+
         JSONObject jsonRequest = new JSONObject();
         jsonRequest.put("model", MODEL_NAME);
 
-        // Prepare message history (system + user message)
+
         JSONArray messagesArray = new JSONArray();
         messagesArray.put(new JSONObject().put("role", "system").put("content",
                 "You are "+fname+" , a real human chatting with your friends. Respond naturally and casually, as you would in a real conversation, keep it short."));
@@ -40,7 +40,7 @@ public class ChatBotImpl extends UnicastRemoteObject implements ChatBot {
         jsonRequest.put("max_tokens", 20);
         jsonRequest.put("temperature", 0.5);
 
-        // Open Connection
+
         URL url = null;
         try {
             url = new URL(OPENROUTER_API_URL);
@@ -62,7 +62,7 @@ public class ChatBotImpl extends UnicastRemoteObject implements ChatBot {
         conn.setRequestProperty("Authorization", "Bearer " + API_KEY);
         conn.setDoOutput(true);
 
-        // Send JSON Request
+
         try (OutputStream os = conn.getOutputStream()) {
             byte[] input = jsonRequest.toString().getBytes(StandardCharsets.UTF_8);
             os.write(input, 0, input.length);
@@ -70,7 +70,7 @@ public class ChatBotImpl extends UnicastRemoteObject implements ChatBot {
             throw new RuntimeException(e);
         }
 
-        // Read Response
+
         BufferedReader br = null;
         try {
             br = new BufferedReader(new InputStreamReader(conn.getInputStream()));

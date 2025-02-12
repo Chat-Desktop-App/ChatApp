@@ -99,9 +99,6 @@ public class ChatAreaController {
     private Button video;
 
     @FXML
-    private Button AI;
-
-    @FXML
     public void initialize() {
         // Hide the HBox when the application starts
         AttachmentHBOX.setVisible(false);
@@ -249,38 +246,11 @@ public class ChatAreaController {
 
     }
 
-    @FXML
-    void replyWithAI(ActionEvent event) {
-        if (messagesList != null && !messagesList.isEmpty()) {
-            HBox lastMessageBox = messagesList.get(messagesList.size() - 1); // Get last message HBox
-            for (var node : lastMessageBox.getChildren()) {
-                if (node instanceof VBox contentVBox) {
-                    for (var child : contentVBox.getChildren()) {
-                        if (child instanceof TextFlow textFlow) {
-                            for (var textNode : textFlow.getChildren()) {
-                                if (textNode instanceof Text text) {
-
-                                        Platform.runLater(() ->{
-                                            try {
-                                                textArea.setText(ChatBotController.chatWithAI(text.getText()));
-                                            } catch (IOException e) {
-                                                throw new RuntimeException(e);
-                                            }
-                                        });
 
 
 
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
 
 
-
-    }
 
     public void setChat(Chatable chatable) {
         friendName.setText(chatable.getName());
@@ -319,6 +289,7 @@ public class ChatAreaController {
         message.setTimestamp(new Timestamp(System.currentTimeMillis()));
         message.setContent(textArea.getText().trim());
         HBox hBox ;
+
         if(isContact){
             message.setReceiverId(contactUser.getPhoneNumber());
             message.setRecipient(Recipient.PRIVATE);
