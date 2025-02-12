@@ -6,6 +6,7 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -27,12 +28,13 @@
             <Button fx:id="addFriendIcon" layoutX="18.0" layoutY="395.0" mnemonicParsing="false" onAction="#handleAddFriendIcon" prefHeight="40.0" prefWidth="40.0" styleClass="addFriend_button" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="220.0" />
             <Button fx:id="addGroupIcon" layoutX="18.0" layoutY="397.0" mnemonicParsing="false" onAction="#handleAddGroupIcon" prefHeight="40.0" prefWidth="40.0" styleClass="addGroup_button" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="280.0" />
             <Button fx:id="settingsIcon" layoutX="18.0" layoutY="413.0" mnemonicParsing="false" onAction="#handlesettingsIcon" prefHeight="40.0" prefWidth="40.0" styleClass="settings_button" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="340.0" />
-            <Button fx:id="logOutIcon" layoutX="15.0" layoutY="422.0" mnemonicParsing="false" onAction="#handleLogOutIcon" prefHeight="40.0" prefWidth="40.0" rotate="180.0" styleClass="logout_button" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="20.0" />
+            <Button fx:id="logOutIcon" layoutX="15.0" layoutY="422.0" mnemonicParsing="false" onAction="#handleLogOutIcon" prefHeight="40.0" prefWidth="40.0" rotate="180.0" styleClass="logout_button" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" />
             <ImageView fx:id="newNotifiction" fitHeight="25.0" fitWidth="25.0" layoutX="39.0" layoutY="157.0" visible="false">
                <image>
                   <Image url="@../images/red.png" />
                </image>
             </ImageView>
+            <ToggleButton fx:id="aiIcon" layoutX="19.0" layoutY="462.0" mnemonicParsing="false" onAction="#handleAi" prefHeight="40.0" prefWidth="40.0" styleClass="ai_button" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="20.0" />
          </children>
       </AnchorPane>
    </left>

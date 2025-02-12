@@ -14,6 +14,7 @@ import java.nio.charset.StandardCharsets;
 
 public class ChatBotController {
    private static ChatBot service = RMIConnector.getRmiConnector().getChatBot();
+   private static boolean aiActivated = false;
 
     public static String chatWithAI(String userMessage) throws IOException {
 
@@ -31,5 +32,13 @@ public class ChatBotController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static boolean isAiActivated() {
+        return aiActivated;
+    }
+
+    public static void setAiActivated(boolean aiActivated) {
+        ChatBotController.aiActivated = aiActivated;
     }
 }

@@ -1,11 +1,7 @@
 package gov.iti.jets.view;
 
 import gov.iti.jets.ClientApp;
-import gov.iti.jets.controller.HomeServiceController;
-import gov.iti.jets.controller.LogInServiceController;
-import gov.iti.jets.controller.MessageServiceController;
-import gov.iti.jets.controller.Session;
-import gov.iti.jets.controller.NotificationServiceController;
+import gov.iti.jets.controller.*;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,10 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -31,6 +24,8 @@ import java.io.IOException;
 
 public class HomeController {
 
+    @FXML
+    private ToggleButton aiIcon;
 
     @FXML
     private ImageView newNotifiction;
@@ -191,6 +186,8 @@ public class HomeController {
             newNotifiction.setVisible(true);
         }
 
+
+
     }
     private void loadChatsList() {
         ObservableList<AnchorPane> items = HomeServiceController.getLast();
@@ -231,5 +228,26 @@ public class HomeController {
         MessageServiceController.setActiveChat(null);
 
     }
+    @FXML
+    void handleAi(ActionEvent actionEvent) {
+
+            if (aiIcon.isSelected()) {
+                ChatBotController.setAiActivated(!ChatBotController.isAiActivated());
+                aiIcon.setStyle("-fx-background-image: url(\"../images/ai_selected.png\");\n" +
+                        "         -fx-background-size: 100% 100%;\n" +
+                        "         -fx-background-repeat: no-repeat;\n" +
+                        "         -fx-background-color: transparent;");
+
+            } else {
+                ChatBotController.setAiActivated(!ChatBotController.isAiActivated());
+                aiIcon.setStyle("-fx-background-image: url(\"../images/ai.png\");\n" +
+                        "         -fx-background-size: 100% 100%;\n" +
+                        "         -fx-background-repeat: no-repeat;\n" +
+                        "         -fx-background-color: transparent;");
+
+
+            }
+    }
+
 
 }
