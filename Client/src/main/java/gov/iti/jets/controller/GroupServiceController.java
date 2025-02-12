@@ -30,6 +30,7 @@ public class GroupServiceController {
             return FXCollections.observableArrayList(addGroupService.getAllUsers(user.getPhoneNumber()));
 
         } catch (RemoteException e) {
+            addGroupService = RMIConnector.rmiReconnect().getAddGroupService();
             throw new RuntimeException(e);
         }
     }
@@ -53,6 +54,7 @@ public class GroupServiceController {
 
 
             } catch (RemoteException e) {
+                addGroupService = RMIConnector.rmiReconnect().getAddGroupService();
                 throw new RuntimeException(e);
             }
 

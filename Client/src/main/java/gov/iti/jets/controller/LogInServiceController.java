@@ -104,6 +104,7 @@ public class LogInServiceController {
         try {
             service.skipLogin(status, client);
         } catch (RemoteException e) {
+            service = RMIConnector.rmiReconnect().getLoginService();
             throw new RuntimeException(e);
         }
     }
@@ -136,6 +137,7 @@ public class LogInServiceController {
 
 
         } catch (RemoteException e) {
+            service = RMIConnector.rmiReconnect().getLoginService();
             throw new RuntimeException(e);
         }
 

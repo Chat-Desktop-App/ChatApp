@@ -28,6 +28,7 @@ public class RegisterServiceController {
             System.out.println("User: "+user.getFname()+" added successfully");
 
         } catch (RemoteException e) {
+            registerService = RMIConnector.rmiReconnect().getRegisterService();
             throw new RuntimeException(e);
         }
 

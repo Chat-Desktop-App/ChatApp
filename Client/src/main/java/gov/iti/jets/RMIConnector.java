@@ -68,6 +68,7 @@ public class RMIConnector {
 
         rmiConnector = new RMIConnector();
         LogInServiceController.reconnect();
+        System.out.println("Connected successfully");
 
         return rmiConnector;
     }
