@@ -28,11 +28,12 @@ public class RMIConnector {
         Properties properties = new Properties();
         Path currentPath = Paths.get("").toAbsolutePath();
         Path parentPath = currentPath.getParent();
-        File file = Paths.get(parentPath + File.separator+"db.properties").toFile();;
+        File file = Paths.get(parentPath + File.separator+"config.properties").toFile();;
         try (FileInputStream fis = new FileInputStream(file)) {
             properties.load(fis);
-            serverIp = properties.getProperty("server.ip", "127.0.0.1"); // Default to localhost if not found
-            serverPort = Integer.parseInt(properties.getProperty("server.port", "1099"));
+            serverIp = properties.getProperty("ip","127.0.0.1"); // Default to localhost if not found
+            System.out.println(serverIp);
+            serverPort = Integer.parseInt(properties.getProperty("port", "1099"));
             System.setProperty("java.rmi.server.hostname", serverIp); // Set RMI hostname
         } catch (IOException e) {
             e.printStackTrace();
@@ -49,11 +50,9 @@ public class RMIConnector {
 
         try {
 
-            //String ip = "10.145.19.131";
-
             if (registry == null) {
                 //System.setProperty("java.rmi.server.hostname", ip);
-                registry = LocateRegistry.createRegistry(1099);
+                registry = LocateRegistry.createRegistry(serverPort);
             } else {
                 System.out.println("Registry already exists.");
             }

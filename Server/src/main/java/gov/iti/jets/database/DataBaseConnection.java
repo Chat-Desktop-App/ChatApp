@@ -30,6 +30,7 @@ public class DataBaseConnection {
         try (InputStream inputStream = new FileInputStream(file)){
             properties.load(inputStream);
             this.url = properties.getProperty("URL");
+            System.out.println(url);
             this.username = properties.getProperty("USER");
             this.password = properties.getProperty("PASSWORD");
             this.connection = DriverManager.getConnection(url, username, password);
