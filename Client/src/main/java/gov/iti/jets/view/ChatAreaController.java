@@ -1,6 +1,5 @@
 package gov.iti.jets.view;
 
-import gov.iti.jets.controller.ChatBotController;
 import gov.iti.jets.controller.MessageServiceController;
 import gov.iti.jets.controller.Session;
 import gov.iti.jets.model.*;
@@ -18,28 +17,22 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.control.ListView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.io.File;
 import java.sql.Timestamp;
 
 public class ChatAreaController {
 
+    private static Message message = new Message();
+    ObservableList<HBox> messagesList;
     private ContactUser contactUser;
     private Group group;
     private boolean isContact = false;
-    private static Message message = new Message();
-    ObservableList<HBox> messagesList;
-
-
     private VBox chatFormattingPanel;
 
     @FXML
@@ -80,7 +73,6 @@ public class ChatAreaController {
 
     @FXML
     private Button image;
-
 
 
     @FXML
@@ -125,7 +117,7 @@ public class ChatAreaController {
 
         chatAnchorPane.getChildren().add(chatFormattingPanel);
         AnchorPane.setBottomAnchor(chatFormattingPanel, 0.0);
-        AnchorPane.setLeftAnchor(chatFormattingPanel,0.0);
+        AnchorPane.setLeftAnchor(chatFormattingPanel, 0.0);
         chatFormattingPanel.setVisible(false);
         textArea.setWrapText(true);
     }
@@ -154,14 +146,14 @@ public class ChatAreaController {
     void handleShareDoc(ActionEvent event) {
         FileChooser.ExtensionFilter imageFilter = new FileChooser.ExtensionFilter(
                 "All Files", "*.*");
-        AttachmentActionHandle(imageFilter,FileType.FILE);
+        AttachmentActionHandle(imageFilter, FileType.FILE);
     }
 
     @FXML
     void handleShareImage(ActionEvent event) {
         FileChooser.ExtensionFilter imageFilter = new FileChooser.ExtensionFilter(
                 "Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif", "*.bmp");
-        AttachmentActionHandle(imageFilter,FileType.IMAGE);
+        AttachmentActionHandle(imageFilter, FileType.IMAGE);
 
     }
 
@@ -169,7 +161,7 @@ public class ChatAreaController {
     void handleshareMusic(ActionEvent event) {
         FileChooser.ExtensionFilter musicFilter = new FileChooser.ExtensionFilter(
                 "Music MyFile", "*.mp3", "*.wav", "*.flac", "*.aac", "*.ogg");
-        AttachmentActionHandle(musicFilter,FileType.MUSIC);
+        AttachmentActionHandle(musicFilter, FileType.MUSIC);
     }
 
     @FXML
@@ -202,10 +194,10 @@ public class ChatAreaController {
     void textAreaKeyPressed(KeyEvent event) {
         if (event.getCode() == KeyCode.ENTER) {
             if (event.isShiftDown()) {
-                textArea.insertText(textArea.getCaretPosition(),"\n");
+                textArea.insertText(textArea.getCaretPosition(), "\n");
             } else {
-                if(!textArea.getText().equals("")){
-                   sendMessage();
+                if (!textArea.getText().equals("")) {
+                    sendMessage();
                 }
             }
             event.consume();
@@ -214,9 +206,9 @@ public class ChatAreaController {
 
     @FXML
     void textEditHandle(ActionEvent actionEvent) {
-        if(textEdit.isSelected()){
-            chatFormattingPanel.setVisible(true);        }
-        else {
+        if (textEdit.isSelected()) {
+            chatFormattingPanel.setVisible(true);
+        } else {
             chatFormattingPanel.setVisible(false);
         }
     }
@@ -247,21 +239,16 @@ public class ChatAreaController {
     }
 
 
-
-
-
-
-
     public void setChat(Chatable chatable) {
         friendName.setText(chatable.getName());
-        byte [] pic = chatable.getPicture();
-        if(pic != null){
+        byte[] pic = chatable.getPicture();
+        if (pic != null) {
             friendIcon.setImage(new Image(new ByteArrayInputStream(pic)));
         }
-        if(chatable instanceof ContactUser m){
+        if (chatable instanceof ContactUser m) {
             contactUser = m;
             isContact = true;
-        }else {
+        } else {
             group = (Group) chatable;
             isContact = false;
         }
@@ -277,44 +264,45 @@ public class ChatAreaController {
 
 
     private ObservableList<HBox> loadMessages() {
-        if (isContact){
+        if (isContact) {
             return MessageServiceController.getDirectMessages(contactUser.getPhoneNumber());
-        }else {
-           return MessageServiceController.getGroupMessages(group.getGroupId());
+        } else {
+            return MessageServiceController.getGroupMessages(group.getGroupId());
 
         }
     }
 
-    private void sendMessage(){
-        if(textArea.getText().isBlank()){
+    private void sendMessage() {
+        if (textArea.getText().isBlank()) {
             textArea.clear();
-            return ;
+            return;
         }
         message.setTimestamp(new Timestamp(System.currentTimeMillis()));
         message.setContent(textArea.getText().trim());
-        HBox hBox ;
+        HBox hBox;
 
-        if(isContact){
+        if (isContact) {
             message.setReceiverId(contactUser.getPhoneNumber());
             message.setRecipient(Recipient.PRIVATE);
             hBox = MessageServiceController.sendMessage(message);
-        }else {
+        } else {
             message.setGroupId(group.getGroupId());
             message.setRecipient(Recipient.GROUP);
             GroupMessage groupMessage = new GroupMessage(message,
-                    (Session.user.getFname() + " "+ Session.user.getLname()),Session.user.getPicture());
+                    (Session.user.getFname() + " " + Session.user.getLname()), Session.user.getPicture());
             hBox = MessageServiceController.sendMessage(groupMessage);
         }
         textArea.clear();
-        if (hBox != null ){
+        if (hBox != null) {
             Platform.runLater(() -> {
                 messagesList.add(hBox);
                 chatListView.scrollTo(messagesList.size() - 1);
             });
         }
     }
-    public void receivedMessage(HBox hBox){
-        if (hBox != null ){
+
+    public void receivedMessage(HBox hBox) {
+        if (hBox != null) {
             Platform.runLater(() -> {
                 messagesList.add(hBox);
                 chatListView.scrollTo(messagesList.size() - 1);
@@ -322,7 +310,6 @@ public class ChatAreaController {
         }
 
     }
-
 
 
     public Group getGroup() {
@@ -341,7 +328,7 @@ public class ChatAreaController {
         return textArea;
     }
 
-    private void AttachmentActionHandle(FileChooser.ExtensionFilter extensionFilter , FileType fileType){
+    private void AttachmentActionHandle(FileChooser.ExtensionFilter extensionFilter, FileType fileType) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().add(extensionFilter);
         fileChooser.setTitle("Select " + fileType.toString().toLowerCase());
@@ -353,41 +340,41 @@ public class ChatAreaController {
         if (selectedFile != null) {
             message.setTimestamp(new Timestamp(System.currentTimeMillis()));
             message.setContent("");
-            HBox hBox ;
-            if(isContact){
+            HBox hBox;
+            if (isContact) {
                 message.setReceiverId(contactUser.getPhoneNumber());
                 message.setRecipient(Recipient.PRIVATE);
-                hBox = MessageServiceController.sendFile(message,selectedFile,fileType);
-            }else {
+                hBox = MessageServiceController.sendFile(message, selectedFile, fileType);
+            } else {
                 message.setGroupId(group.getGroupId());
                 message.setRecipient(Recipient.GROUP);
                 GroupMessage groupMessage = new GroupMessage(message,
-                        (Session.user.getFname() + " "+ Session.user.getLname()),Session.user.getPicture());
-                hBox = MessageServiceController.sendFile(groupMessage,selectedFile,fileType);
+                        (Session.user.getFname() + " " + Session.user.getLname()), Session.user.getPicture());
+                hBox = MessageServiceController.sendFile(groupMessage, selectedFile, fileType);
             }
 
-            if (hBox != null ){
+            if (hBox != null) {
                 Platform.runLater(() -> {
                     messagesList.add(hBox);
                     chatListView.scrollTo(messagesList.size() - 1);
                 });
-            }else {
-               Alert alert = new Alert(Alert.AlertType.ERROR, "", ButtonType.OK);
-               alert.setTitle("upload File");
-               alert.setHeaderText("upload file failed");
-               alert.showAndWait();
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "", ButtonType.OK);
+                alert.setTitle("upload File");
+                alert.setHeaderText("upload file failed");
+                alert.showAndWait();
             }
         }
     }
 
-    class MessageFormat{
+    class MessageFormat {
 
         public VBox createChatFormattingPanel() {
             ComboBox<String> fontComboBox = new ComboBox<>();
             fontComboBox.setPrefWidth(125);
             fontComboBox.getItems().addAll(Font.getFamilies());
             fontComboBox.setValue(Font.getDefault().getName());// Default font
-            fontComboBox.setOnAction(e ->{
+            fontComboBox.setOnAction(e -> {
                 message.setFontStyle(fontComboBox.getValue());
                 setTextAreaFormat();
             });
@@ -397,19 +384,20 @@ public class ChatAreaController {
                 fontSizeComboBox.getItems().add(i);
             }
             fontSizeComboBox.setValue(14); // Default size
-            fontSizeComboBox.setOnAction(e ->{
-                message.setFontSize(fontSizeComboBox.getValue());
-                setTextAreaFormat();        }
+            fontSizeComboBox.setOnAction(e -> {
+                        message.setFontSize(fontSizeComboBox.getValue());
+                        setTextAreaFormat();
+                    }
             );
 
             ColorPicker textColorPicker = new ColorPicker(Color.BLACK);
-            textColorPicker.setOnAction(e ->{
+            textColorPicker.setOnAction(e -> {
                 message.setFontColour(toRgbString(textColorPicker.getValue()));
                 setTextAreaFormat();
             });
 
             ColorPicker bgColorPicker = new ColorPicker(Color.valueOf("#3d7eb6"));
-            bgColorPicker.setOnAction(e ->{
+            bgColorPicker.setOnAction(e -> {
                 message.setTextBackGroundColour(toRgbString(bgColorPicker.getValue()));
                 setTextAreaFormat();
             });
@@ -427,14 +415,14 @@ public class ChatAreaController {
             });
 
             ToggleButton underlineButton = new ToggleButton("U");
-            underlineButton.setOnAction(e ->{
+            underlineButton.setOnAction(e -> {
                 message.setUnderLine(underlineButton.isSelected());
                 setTextAreaFormat();
             });
 
 
-            HBox hBox = new HBox(fontSizeComboBox,boldButton, italicButton, underlineButton);
-            VBox vBox = new VBox(fontComboBox,  textColorPicker, bgColorPicker ,hBox);
+            HBox hBox = new HBox(fontSizeComboBox, boldButton, italicButton, underlineButton);
+            VBox vBox = new VBox(fontComboBox, textColorPicker, bgColorPicker, hBox);
             hBox.setAlignment(Pos.CENTER);
 
             vBox.setStyle("-fx-padding: 15px;");
@@ -449,16 +437,30 @@ public class ChatAreaController {
             );
         }
 
-        private void setTextAreaFormat(){
+        private void setTextAreaFormat() {
             StringBuilder builder = new StringBuilder();
-            if (message.isBold()) { builder.append("-fx-font-weight: bold;\n");}
-            if (message.isItalic()){builder.append("-fx-font-style: italic;\n");}
-            if (message.isUnderLine()){builder.append("-fx-underline: " ).append(message.isUnderLine()).append(";\n");}
-            if (message.getFontSize() != 0){builder.append("-fx-font-size: ").append(message.getFontSize()).append("px;\n");}
-            if (message.getFontStyle() != null){builder.append("-fx-font-family: '").append(message.getFontStyle()).append("';\n");}
-            if (message.getFontColour() != null){builder.append("-fx-text-fill: ").append(message.getFontColour()).append(";\n");}
-            if (!message.getTextBackGroundColour().equals("#3d7eb6")){builder.append("-fx-control-inner-background: ")
-                    .append(message.getTextBackGroundColour()).append(";\n");}
+            if (message.isBold()) {
+                builder.append("-fx-font-weight: bold;\n");
+            }
+            if (message.isItalic()) {
+                builder.append("-fx-font-style: italic;\n");
+            }
+            if (message.isUnderLine()) {
+                builder.append("-fx-underline: ").append(message.isUnderLine()).append(";\n");
+            }
+            if (message.getFontSize() != 0) {
+                builder.append("-fx-font-size: ").append(message.getFontSize()).append("px;\n");
+            }
+            if (message.getFontStyle() != null) {
+                builder.append("-fx-font-family: '").append(message.getFontStyle()).append("';\n");
+            }
+            if (message.getFontColour() != null) {
+                builder.append("-fx-text-fill: ").append(message.getFontColour()).append(";\n");
+            }
+            if (!message.getTextBackGroundColour().equals("#3d7eb6")) {
+                builder.append("-fx-control-inner-background: ")
+                        .append(message.getTextBackGroundColour()).append(";\n");
+            }
             textArea.setStyle(builder.toString());
         }
 

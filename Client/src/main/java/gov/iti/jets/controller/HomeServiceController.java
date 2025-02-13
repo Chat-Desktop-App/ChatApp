@@ -83,9 +83,9 @@ public class HomeServiceController {
 //        if (myPendingList == null) {
         String fxmlPath = "/gov/iti/jets/fxml/pendingCard.fxml";
         try {
-            if(myPendingList == null){
-            myPendingList = FXCollections.observableArrayList();
-            }else {
+            if (myPendingList == null) {
+                myPendingList = FXCollections.observableArrayList();
+            } else {
                 myPendingList.clear();
             }
             List<ContactUser> list = loadHome.getPendingContacts(user.getPhoneNumber());
@@ -174,19 +174,21 @@ public class HomeServiceController {
     public static boolean addToLastContactList(Chatable chatable) {
         String fxmlPath = "/gov/iti/jets/fxml/Chats.fxml";
         try {
-            if(chatable != null){
-                    FXMLLoader loader = new FXMLLoader(HomeServiceController.class.getResource(fxmlPath));
-                    AnchorPane anchorPane = loader.load();
-                    ChatsController controller = loader.getController();
-                    anchorPane.setUserData(controller);
-                    if (chatable instanceof ContactUser con) {
-                        chatsControllerMap.put(con.getPhoneNumber(), controller);
-                    } else {
-                        chatsControllerMap.put(String.valueOf(((Group)chatable).getGroupId()), controller);
-                    }
-                    controller.setChat(chatable);
-                    addListener(chatable);
-                   Platform.runLater( () -> {myLastChatList.add(0, anchorPane);});
+            if (chatable != null) {
+                FXMLLoader loader = new FXMLLoader(HomeServiceController.class.getResource(fxmlPath));
+                AnchorPane anchorPane = loader.load();
+                ChatsController controller = loader.getController();
+                anchorPane.setUserData(controller);
+                if (chatable instanceof ContactUser con) {
+                    chatsControllerMap.put(con.getPhoneNumber(), controller);
+                } else {
+                    chatsControllerMap.put(String.valueOf(((Group) chatable).getGroupId()), controller);
+                }
+                controller.setChat(chatable);
+                addListener(chatable);
+                Platform.runLater(() -> {
+                    myLastChatList.add(0, anchorPane);
+                });
             }
         } catch (IOException e) {
             System.out.println("Error when loading " + fxmlPath + ": " + e.getMessage());
@@ -194,6 +196,7 @@ public class HomeServiceController {
         }
         return true;
     }
+
     public static HomeController getHomeController() {
         return homeController;
     }

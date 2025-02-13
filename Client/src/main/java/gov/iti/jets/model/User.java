@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public class User implements Serializable{
+public class User implements Serializable {
     private String phoneNumber;
     private String fname;
     private String lname;
@@ -23,7 +23,8 @@ public class User implements Serializable{
     private byte[] picture;
 
 
-    public User(){}
+    public User() {
+    }
 
     public User(String phoneNumber, String fname, String lname, String email, String passwordHashed, Gender gender, String country, LocalDate dob, String bio) {
         this.phoneNumber = phoneNumber;

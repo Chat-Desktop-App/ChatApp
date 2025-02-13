@@ -3,7 +3,6 @@ package gov.iti.jets.controller;
 import gov.iti.jets.RMIConnector;
 import gov.iti.jets.model.ContactUser;
 import gov.iti.jets.model.Notifications;
-import gov.iti.jets.model.User;
 import gov.iti.jets.services.interfaces.NotificationsService;
 import gov.iti.jets.view.NotificationCellController;
 import javafx.collections.FXCollections;
@@ -13,7 +12,6 @@ import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
-import java.sql.SQLException;
 import java.util.List;
 
 public class NotificationServiceController {
@@ -70,6 +68,7 @@ public class NotificationServiceController {
             }
         }
     }
+
     public static void addNotification(Notifications notifications) {
         try {
             notificationsService.addNotification(notifications);
@@ -79,6 +78,7 @@ public class NotificationServiceController {
             addNotification(notifications);
         }
     }
+
     public static ContactUser getUser(String phoneNum) {
         if (phoneNum == null) {
             System.err.println("Phone number is null");
@@ -103,15 +103,15 @@ public class NotificationServiceController {
         }
     }
 
-    public static void receivedNotification(Notifications notification){
+    public static void receivedNotification(Notifications notification) {
         try {
-        String fxmlPath = "/gov/iti/jets/fxml/notificationCell.fxml";
-        FXMLLoader loader = new FXMLLoader(NotificationServiceController.class.getResource(fxmlPath));
-        AnchorPane  anchorPane = loader.load();
-        NotificationCellController controller = loader.getController();
-        controller.setNotificationData(notification);
-        myNotificationsList.add(anchorPane);
-        HomeServiceController.getHomeController().setNewNotifiction(true);
+            String fxmlPath = "/gov/iti/jets/fxml/notificationCell.fxml";
+            FXMLLoader loader = new FXMLLoader(NotificationServiceController.class.getResource(fxmlPath));
+            AnchorPane anchorPane = loader.load();
+            NotificationCellController controller = loader.getController();
+            controller.setNotificationData(notification);
+            myNotificationsList.add(anchorPane);
+            HomeServiceController.getHomeController().setNewNotifiction(true);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

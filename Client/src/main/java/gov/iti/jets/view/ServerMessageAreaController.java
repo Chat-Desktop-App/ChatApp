@@ -1,21 +1,16 @@
 package gov.iti.jets.view;
 
-import gov.iti.jets.RMIConnector;
-import gov.iti.jets.controller.MessageServiceController;
 import gov.iti.jets.model.Announcements;
 import gov.iti.jets.services.interfaces.MessagingService;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-import java.io.IOException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -23,11 +18,11 @@ import java.rmi.registry.Registry;
 import java.util.List;
 
 public class ServerMessageAreaController {
+    private final ObservableList<HBox> messages = FXCollections.observableArrayList();
     @FXML
     private AnchorPane chatAnchorPane;
     @FXML
     private ListView<HBox> serverMessageListView;
-    private final ObservableList<HBox> messages = FXCollections.observableArrayList();
 
     @FXML
     public void initialize() {
@@ -48,7 +43,7 @@ public class ServerMessageAreaController {
             messages.add(announcementBox);
 
             // Scroll to the latest announcement
-            if(!message.isEmpty()) serverMessageListView.scrollTo(messages.size() - 1);
+            if (serverMessageListView != null) serverMessageListView.scrollTo(messages.size() - 1);
         });
     }
 

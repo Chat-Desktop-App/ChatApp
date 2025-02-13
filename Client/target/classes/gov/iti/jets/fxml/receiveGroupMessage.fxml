@@ -7,32 +7,34 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
-
-<HBox fx:id="parentHBox" styleClass="parentHBox" stylesheets="@../styles/receive_message.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.view.ReceiveGroupMessageController">
-   <children>
-      <ImageView fx:id="profilePic" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/friendIcon.png" />
-         </image>
-      </ImageView>
-      <VBox fx:id="contentVBox" styleClass="message-container">
-         <children>
-            <Text fx:id="name" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-            <TextFlow>
-               <children>
-                  <Text fx:id="messageContent" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="message-text" text="Hello Hadeer in Chat App" />
-               </children>
-            </TextFlow>
-            <HBox alignment="CENTER_RIGHT" spacing="15.0">
-               <children>
-                  <TextFlow textAlignment="RIGHT">
-                     <children>
-                        <Label fx:id="timeStamp" styleClass="timestamp" text="wed 12:33 pm" />
-                     </children>
-                  </TextFlow>
-               </children>
-            </HBox>
-         </children>
-      </VBox>
-   </children>
+<HBox xmlns:fx="http://javafx.com/fxml/1" fx:id="parentHBox" styleClass="parentHBox"
+      stylesheets="@../styles/receive_message.css" xmlns="http://javafx.com/javafx/23.0.1"
+      fx:controller="gov.iti.jets.view.ReceiveGroupMessageController">
+    <children>
+        <ImageView fx:id="profilePic" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../images/friendIcon.png"/>
+            </image>
+        </ImageView>
+        <VBox fx:id="contentVBox" styleClass="message-container">
+            <children>
+                <Text fx:id="name" strokeType="OUTSIDE" strokeWidth="0.0" text="Text"/>
+                <TextFlow>
+                    <children>
+                        <Text fx:id="messageContent" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="message-text"
+                              text="Hello Hadeer in Chat App"/>
+                    </children>
+                </TextFlow>
+                <HBox alignment="CENTER_RIGHT" spacing="15.0">
+                    <children>
+                        <TextFlow textAlignment="RIGHT">
+                            <children>
+                                <Label fx:id="timeStamp" styleClass="timestamp" text="wed 12:33 pm"/>
+                            </children>
+                        </TextFlow>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
 </HBox>

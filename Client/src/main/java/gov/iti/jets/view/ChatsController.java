@@ -1,12 +1,9 @@
 package gov.iti.jets.view;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-
 import gov.iti.jets.controller.HomeServiceController;
 import gov.iti.jets.controller.MessageServiceController;
-import gov.iti.jets.model.ContactUser;
 import gov.iti.jets.model.Chatable;
+import gov.iti.jets.model.ContactUser;
 import gov.iti.jets.model.Group;
 import gov.iti.jets.model.Status;
 import javafx.application.Platform;
@@ -20,6 +17,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 
 public class ChatsController {
     Chatable chatable;
@@ -41,6 +41,7 @@ public class ChatsController {
 
     @FXML
     private Circle status;
+
     @FXML
     void initialize() {
 
@@ -49,13 +50,13 @@ public class ChatsController {
     public void setChat(Chatable chatable) {
         this.chatable = chatable;
         friendName.setText(chatable.getName());
-        byte [] pic = chatable.getPicture();
-        if (pic != null){
+        byte[] pic = chatable.getPicture();
+        if (pic != null) {
             friendIcon.setImage(new Image(new ByteArrayInputStream(pic)));
         }
-        if (chatable instanceof ContactUser m){
+        if (chatable instanceof ContactUser m) {
             updateStatus(m.getStatus());
-        }else {
+        } else {
             status.setVisible(false);
         }
     }
@@ -69,13 +70,13 @@ public class ChatsController {
         HomeServiceController.getHomeController().setMainBorderPane(region);
         MessageServiceController.setActiveChat(controller);
         messageCounter.setVisible(false);
-        messageCounter.setText(0+"");
+        messageCounter.setText(0 + "");
     }
 
     public void addMessageToCounter() {
-        Platform.runLater(()->{
+        Platform.runLater(() -> {
             messageCounter.setVisible(true);
-            messageCounter.setText((Integer.parseInt(messageCounter.getText()) + 1)+"");
+            messageCounter.setText((Integer.parseInt(messageCounter.getText()) + 1) + "");
         });
     }
 
@@ -83,8 +84,8 @@ public class ChatsController {
         return chatable;
     }
 
-    public void updateStatus(Status newstatus){
-        Platform.runLater(()->{
+    public void updateStatus(Status newstatus) {
+        Platform.runLater(() -> {
             switch (newstatus) {
                 case AVAILABLE -> status.setFill(Color.LIGHTGREEN);
                 case AWAY -> status.setFill(Color.GOLD);

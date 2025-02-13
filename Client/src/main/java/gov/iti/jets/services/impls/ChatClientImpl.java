@@ -1,6 +1,5 @@
 package gov.iti.jets.services.impls;
 
-import gov.iti.jets.RMIConnector;
 import gov.iti.jets.controller.HomeServiceController;
 import gov.iti.jets.controller.MessageServiceController;
 import gov.iti.jets.controller.NotificationServiceController;
@@ -16,11 +15,12 @@ import javafx.application.Platform;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
-public class ChatClientImpl extends UnicastRemoteObject implements ChatClient  {
+public class ChatClientImpl extends UnicastRemoteObject implements ChatClient {
     private ServerMessageAreaController serverMessageAreaController;
 
     public ChatClientImpl() throws RemoteException {
     }
+
     public ChatClientImpl(ServerMessageAreaController controller) throws RemoteException {
         this.serverMessageAreaController = controller;
     }
@@ -35,6 +35,7 @@ public class ChatClientImpl extends UnicastRemoteObject implements ChatClient  {
     public boolean addToLastContactList(Chatable chatable) throws RemoteException {
         return HomeServiceController.addToLastContactList(chatable);
     }
+
     @Override
     // each client listens for announcements on another thread
     public void receiveAnnouncement(String message, String timestamp) throws RemoteException {
@@ -44,10 +45,11 @@ public class ChatClientImpl extends UnicastRemoteObject implements ChatClient  {
             serverMessageAreaController.addAnnouncement(message, timestamp);
         });
     }
+
     @Override
     public void updateStatus(String contactPhone, Status status) throws RemoteException {
-        System.out.println( contactPhone + " : " +status);
-        Session.updateStatus(contactPhone , status);
+        System.out.println(contactPhone + " : " + status);
+        Session.updateStatus(contactPhone, status);
     }
 
     @Override

@@ -1,8 +1,8 @@
 package gov.iti.jets.view;
 
 import gov.iti.jets.ClientApp;
-import javafx.application.Platform;
 import gov.iti.jets.controller.*;
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -113,7 +113,7 @@ public class HomeController {
             LoginController view = loader.getController();
             view.setPhoneNumber(HomeServiceController.getUser().getPhoneNumber());
             view.setRemmberMe(true);
-            Stage primaryStage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
             primaryStage.show();
@@ -177,21 +177,22 @@ public class HomeController {
         String fxmlPath = "/gov/iti/jets/fxml/profile.fxml";
         handleButtonAction(fxmlPath);
     }
+
     @FXML
     void initialize() {
         HomeServiceController.setHomeController(this);
-        byte [] pic = Session.user.getPicture();
-        if (pic != null){
+        byte[] pic = Session.user.getPicture();
+        if (pic != null) {
             pictureIcon.setImage(new Image(new ByteArrayInputStream(pic)));
         }
         loadChatsList();
-        if(!NotificationServiceController.getNotifications(HomeServiceController.getUser().getPhoneNumber()).isEmpty()){
+        if (!NotificationServiceController.getNotifications(HomeServiceController.getUser().getPhoneNumber()).isEmpty()) {
             newNotifiction.setVisible(true);
         }
 
 
-
     }
+
     private void loadChatsList() {
         ObservableList<AnchorPane> items = HomeServiceController.getLast();
         chatsTree.prefWidthProperty().bind(chatsBorderPane.widthProperty());
@@ -215,6 +216,7 @@ public class HomeController {
         });
 
     }
+
     private void handleButtonAction(String fxmlPath) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
@@ -224,6 +226,7 @@ public class HomeController {
             throw new RuntimeException(e);
         }
     }
+
     public void setMainBorderPane(Region region) {
         region.prefWidthProperty().bind(mainBorderPane.widthProperty());
         region.prefHeightProperty().bind(mainBorderPane.heightProperty());
@@ -231,27 +234,28 @@ public class HomeController {
         MessageServiceController.setActiveChat(null);
 
     }
+
     @FXML
     void handleAi(ActionEvent actionEvent) {
 
-            if (aiIcon.isSelected()) {
-                ChatBotController.setAiActivated(!ChatBotController.isAiActivated());
-                String imagePath = ClientApp.class.getResource("images/ai_selected.png").toExternalForm();
-                aiIcon.setStyle("-fx-background-image: url("+imagePath+");\n" +
-                        "         -fx-background-size: 100% 100%;\n" +
-                        "         -fx-background-repeat: no-repeat;\n" +
-                        "         -fx-background-color: transparent;"
-                        +" "
-                                                                        );
+        if (aiIcon.isSelected()) {
+            ChatBotController.setAiActivated(!ChatBotController.isAiActivated());
+            String imagePath = ClientApp.class.getResource("images/ai_selected.png").toExternalForm();
+            aiIcon.setStyle("-fx-background-image: url(" + imagePath + ");\n" +
+                    "         -fx-background-size: 100% 100%;\n" +
+                    "         -fx-background-repeat: no-repeat;\n" +
+                    "         -fx-background-color: transparent;"
+                    + " "
+            );
 
-            } else {
-                ChatBotController.setAiActivated(!ChatBotController.isAiActivated());
-                String imagePath = ClientApp.class.getResource("images/AI.png").toExternalForm();
-                aiIcon.setStyle("-fx-background-image: url("+imagePath+");\n" +
-                        "         -fx-background-size: 100% 100%;\n" +
-                        "         -fx-background-repeat: no-repeat;\n" +
-                        "         -fx-background-color: transparent;");
-            }
+        } else {
+            ChatBotController.setAiActivated(!ChatBotController.isAiActivated());
+            String imagePath = ClientApp.class.getResource("images/AI.png").toExternalForm();
+            aiIcon.setStyle("-fx-background-image: url(" + imagePath + ");\n" +
+                    "         -fx-background-size: 100% 100%;\n" +
+                    "         -fx-background-repeat: no-repeat;\n" +
+                    "         -fx-background-color: transparent;");
+        }
     }
 
 
@@ -259,15 +263,16 @@ public class HomeController {
         String fxmlPath = "/gov/iti/jets/fxml/server-message-area.fxml";
         handleButtonAction(fxmlPath);
     }
+
     public void setPictureIcon(Image picture) {
-        Platform.runLater(()->{
+        Platform.runLater(() -> {
             this.pictureIcon.setImage(picture);
         });
 
     }
 
     public void setNewNotifiction(boolean flag) {
-        Platform.runLater( ()->
+        Platform.runLater(() ->
                 newNotifiction.setVisible(flag)
         );
 

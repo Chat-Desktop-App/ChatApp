@@ -1,12 +1,6 @@
 package gov.iti.jets.view;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.List;
-import java.util.ResourceBundle;
-
 import gov.iti.jets.controller.HomeServiceController;
-
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;

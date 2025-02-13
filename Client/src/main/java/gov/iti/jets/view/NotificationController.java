@@ -1,6 +1,5 @@
 package gov.iti.jets.view;
 
-import gov.iti.jets.controller.HomeServiceController;
 import gov.iti.jets.controller.NotificationServiceController;
 import gov.iti.jets.controller.Session;
 import javafx.fxml.FXML;

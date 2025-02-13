@@ -39,9 +39,17 @@ public class AddGroupCellController implements Initializable {
 
     }
 
-    public void setUser(GroupMemberDTO user){
+    public boolean isSelected() {
+        return add.isSelected();
+    }
+
+    public GroupMemberDTO getUser() {
+        return user;
+    }
+
+    public void setUser(GroupMemberDTO user) {
         this.user = user;
-        name.setText(user.firstName()+" "+user.secondName());
+        name.setText(user.firstName() + " " + user.secondName());
         phoneNum.setText(user.phoneNumber());
         if (user.profile() != null && user.profile().length > 0) {
             ByteArrayInputStream inputStream = new ByteArrayInputStream(user.profile());
@@ -50,14 +58,5 @@ public class AddGroupCellController implements Initializable {
         }
 
 
-    }
-
-    public boolean isSelected() {
-        return add.isSelected();
-    }
-
-
-    public GroupMemberDTO getUser() {
-        return user;
     }
 }

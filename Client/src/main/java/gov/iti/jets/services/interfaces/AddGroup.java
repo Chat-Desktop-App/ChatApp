@@ -10,9 +10,8 @@ import java.util.List;
 
 public interface AddGroup extends Remote {
     public List<GroupMemberDTO> getAllUsers(String phoneNumber) throws RemoteException;
+
     public Group createGroup(CreateGroupDTO group) throws RemoteException;
-
-
 
 
 }

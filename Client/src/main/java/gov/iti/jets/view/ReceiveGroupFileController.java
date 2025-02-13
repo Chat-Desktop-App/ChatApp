@@ -1,14 +1,5 @@
 package gov.iti.jets.view;
 
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Locale;
-import java.util.Objects;
-
 import gov.iti.jets.controller.MessageServiceController;
 import gov.iti.jets.model.FileMessage;
 import gov.iti.jets.model.GroupMessage;
@@ -23,6 +14,15 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
+import java.util.Objects;
 
 public class ReceiveGroupFileController {
     private FileMessage fileMessage;
@@ -104,6 +104,7 @@ public class ReceiveGroupFileController {
             }
         }
     }
+
     private void showSuccessAlert() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("File Save Status");

@@ -8,11 +8,12 @@ public class MyFile {
     private String filePath;
     private byte[] fileData;
     private FileType fileType;
+
     public MyFile() {
 
     }
 
-    public MyFile(int fileId, String fileName, String filePath , FileType fileType) {
+    public MyFile(int fileId, String fileName, String filePath, FileType fileType) {
         this.fileId = fileId;
         this.fileName = fileName;
         this.filePath = filePath;

@@ -3,10 +3,9 @@ package gov.iti.jets.model;
 import javafx.beans.value.ChangeListener;
 
 import java.io.Serial;
-import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class Group implements  Chatable {
+public class Group implements Chatable {
     @Serial
     private static final long serialVersionUID = 5677958496409793424L;
     private int groupId;

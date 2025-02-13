@@ -8,10 +8,9 @@ import gov.iti.jets.model.User;
 import javafx.application.Platform;
 import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-
-import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -31,78 +30,57 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
+    LogInServiceController controller;
+    User user;
     @FXML
     private VBox loginVbox;
-
     @FXML
     private Label welcomeLabel;
-
     @FXML
     private TextField phoneNumber;
-
     @FXML
     private TextField password;
-
-
     @FXML
     private PasswordField passwordField;
-
     @FXML
     private HBox HiddenpassHbox;
-
-
     @FXML
     private ImageView hidden;
-
     @FXML
     private HBox TextpassHbox;
-
     @FXML
     private TextField passwordText;
-
     @FXML
     private ImageView shown;
-
-
     @FXML
     private VBox passwordV;
-
     @FXML
     private VBox phoneNumberV;
-
     @FXML
     private Button login;
-
     @FXML
     private Button signUp;
-
     @FXML
     private Hyperlink DifferentAcc;
-
     private Stage primaryStage;
     private Scene nextScene;
     private Parent nextRoot;
 
-    LogInServiceController controller;
-    User user;
-
-
-
     @FXML
     void handleLoginButton(ActionEvent event) {
 
-        if(login.getText().equals("NEXT")) {
+        if (login.getText().equals("NEXT")) {
             if (phoneNumber.getText().isBlank()) {
                 Platform.exit();
 
             } else {
-                if(LogInServiceController.checkPhoneNumber(phoneNumber.getText().trim())){
+                if (LogInServiceController.checkPhoneNumber(phoneNumber.getText().trim())) {
 
                     phoneNumberV.setVisible(false);
                     passwordV.setVisible(true);
                     login.setText("LOG IN");
 
-                }else{
+                } else {
                     Stage stage;
                     stage = (Stage) login.getScene().getWindow();
                     showAlert("Phone Number doesn't exists", stage);
@@ -110,16 +88,16 @@ public class LoginController implements Initializable {
 
 
             }
-        }else{
-           user = LogInServiceController.logIn(phoneNumber.getText().trim(), passwordField.getText().trim());
-            if(user ==  null){
+        } else {
+            user = LogInServiceController.logIn(phoneNumber.getText().trim(), passwordField.getText().trim());
+            if (user == null) {
                 Stage stage;
 
-                    stage = (Stage) login.getScene().getWindow();
+                stage = (Stage) login.getScene().getWindow();
 
                 showAlert("Invalid Password", stage);
-            }else{
-                System.out.println(user.getFname()+" logged in successfully");
+            } else {
+                System.out.println(user.getFname() + " logged in successfully");
                 Session.getInstance().setPhoneNumber(phoneNumber.getText().trim());
                 System.out.println(user.getPhoneNumber());
                 FXMLLoader fxmlLoader = new FXMLLoader(ClientApp.class.getResource("fxml/home.fxml"));
@@ -127,7 +105,7 @@ public class LoginController implements Initializable {
                 try {
                     nextRoot = fxmlLoader.load();
                     nextScene = new Scene(nextRoot);
-                    primaryStage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+                    primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     primaryStage.setScene(nextScene);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
@@ -144,7 +122,7 @@ public class LoginController implements Initializable {
         nextRoot = fxmlLoader.load();
         nextScene = new Scene(nextRoot);
         nextScene.getStylesheets().add(Objects.requireNonNull(ClientApp.class.getResource("styles/signUp.css")).toExternalForm());
-        primaryStage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         primaryStage.setScene(nextScene);
     }
 
@@ -155,7 +133,6 @@ public class LoginController implements Initializable {
         //controller = new LogInServiceController(this);
         LogInServiceController.setView(this);
     }
-
 
 
     private void showAlert(String message, Stage owner) {
@@ -233,14 +210,14 @@ public class LoginController implements Initializable {
     }
 
     public void setRemmberMe(boolean remmberMe) {
-        if(remmberMe){
+        if (remmberMe) {
             phoneNumberV.setVisible(false);
             passwordV.setVisible(true);
             login.setText("LOG IN");
         }
     }
 
-    public void setPhoneNumber(String phoneNumberText){
+    public void setPhoneNumber(String phoneNumberText) {
         phoneNumber.setText(phoneNumberText);
     }
 }

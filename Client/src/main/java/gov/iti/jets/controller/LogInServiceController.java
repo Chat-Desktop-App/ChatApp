@@ -48,19 +48,11 @@ public class LogInServiceController {
                 return null;
             }
 
-            // make xml for user config
             LoginStatus session = service.createSession(phoneNumber);
             System.out.println(session.getPhoneNumber() + " " + session.getSessionToken());
 
-//                JAXBContext context = JAXBContext.newInstance(LoginStatus.class);
-//                Marshaller marshaller = context.createMarshaller();
-//
             String jarDirectory = System.getProperty("user.dir");        //check session to decide which scene to load
 
-//                File file = new File(jarDirectory, "session.xml");
-//                marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-////                marshaller.marshal(session, new FileWriter("session.xml"));
-//                marshaller.marshal(session, new FileWriter(file));
 
             File file2 = new File(jarDirectory, "session.properties");
 
@@ -128,15 +120,6 @@ public class LogInServiceController {
             // make xml for user config
             LoginStatus session = service.createSession(Session.user.getPhoneNumber());
             try {
-//                JAXBContext context = JAXBContext.newInstance(LoginStatus.class);
-//                Marshaller marshaller = context.createMarshaller();
-//
-//                String jarDirectory = System.getProperty("user.dir");        //check session to decide which scene to load
-//                File file = new File(jarDirectory,"session.xml");
-//
-//                marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-////                marshaller.marshal(session, new FileWriter("session.xml"));
-//                marshaller.marshal(session, new FileWriter(file));
 
                 String jarDirectory = System.getProperty("user.dir");        //check session to decide which scene to load
                 File file2 = new File(jarDirectory, "session.properties");

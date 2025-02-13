@@ -10,18 +10,21 @@ import java.io.Serializable;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(propOrder = { "phoneNumber", "sessionToken" })
+@XmlType(propOrder = {"phoneNumber", "sessionToken"})
 public class LoginStatus implements Serializable {
     String sessionToken;
     String phoneNumber;
 
 
-    public LoginStatus(){}
-    public LoginStatus(String sessionToken, String phoneNumber){
+    public LoginStatus() {
+    }
+
+    public LoginStatus(String sessionToken, String phoneNumber) {
         this.sessionToken = sessionToken;
         this.phoneNumber = phoneNumber;
 
     }
+
     public String getSessionToken() {
         return sessionToken;
     }

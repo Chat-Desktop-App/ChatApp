@@ -1,6 +1,5 @@
 package gov.iti.jets.view;
 
-import java.io.ByteArrayInputStream;
 import gov.iti.jets.model.ContactUser;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -9,6 +8,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+
+import java.io.ByteArrayInputStream;
 
 public class OnlineCardController {
 
@@ -38,9 +39,9 @@ public class OnlineCardController {
 
     public void setContact(ContactUser contactUser) {
         this.contactUser = contactUser;
-        friendName.setText(contactUser.getFname()+" " + contactUser.getLname());
-        byte [] pic = contactUser.getPicture();
-        if(pic != null){
+        friendName.setText(contactUser.getFname() + " " + contactUser.getLname());
+        byte[] pic = contactUser.getPicture();
+        if (pic != null) {
             friendIcon.setImage(new Image(new ByteArrayInputStream(pic)));
         }
         switch (contactUser.getStatus()) {

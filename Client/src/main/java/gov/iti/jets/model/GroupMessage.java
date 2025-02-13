@@ -19,14 +19,15 @@ public class GroupMessage extends Message implements Serializable {
                         String emoji, String name, byte[] profilePicture) {
 
         super(messageId, senderId, recipient, receiverId, groupId, content, fileId, fontSize, fontStyle, fontColour,
-                isBold, isItalic,isUnderLine, textBackGroundColour, timestamp, emoji);
+                isBold, isItalic, isUnderLine, textBackGroundColour, timestamp, emoji);
 
-        this.profilePicture =profilePicture;
+        this.profilePicture = profilePicture;
         this.name = name;
     }
+
     public GroupMessage(Message message, String name, byte[] profilePicture) {
         super(message);
-        this.profilePicture =profilePicture;
+        this.profilePicture = profilePicture;
         this.name = name;
     }
 

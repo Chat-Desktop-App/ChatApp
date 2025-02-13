@@ -1,12 +1,13 @@
 package gov.iti.jets.view;
 
-import java.net.URL;
-import java.util.ResourceBundle;
+import gov.iti.jets.model.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import gov.iti.jets.model.User;
 import javafx.scene.layout.AnchorPane;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public class AddFriendCellController {
 
@@ -32,12 +33,14 @@ public class AddFriendCellController {
         assert imageIcon != null : "fx:id=\"imageIcon\" was not injected: check your FXML file 'addFriendCell.fxml'.";
 
     }
+
+    public User getUser() {
+        return user;
+    }
+
     public void setUser(User user) {
         this.user = user;
         friendName.setText(user.getFname());
-    }
-    public User getUser() {
-        return user;
     }
 
 }
