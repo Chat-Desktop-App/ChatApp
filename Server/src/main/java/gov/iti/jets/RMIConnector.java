@@ -1,16 +1,47 @@
+
 package gov.iti.jets;
 
 import gov.iti.jets.services.impls.*;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.rmi.AlreadyBoundException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.Properties;
 
 public class RMIConnector {
     private static Registry registry;
     private static boolean isRunning;
+    private static String serverIp;
+    private static int serverPort;
+    static {
+        loadConfig();
+    }
+    private static void loadConfig() {
+        Properties properties = new Properties();
+
+        String jarDirectory = System.getProperty("user.dir"); // This points to the directory where the JAR is being run
+        File propertiesFile = new File(jarDirectory, "config.properties");
+
+        try (FileInputStream fis = new FileInputStream(propertiesFile)) {
+            properties.load(fis);
+            serverIp = properties.getProperty("ip","127.0.0.1"); // Default to localhost if not found
+            System.out.println(serverIp);
+            serverPort = Integer.parseInt(properties.getProperty("port", "1099"));
+            System.setProperty("java.rmi.server.hostname", serverIp); // Set RMI hostname
+        } catch (IOException e) {
+            e.printStackTrace();
+            serverIp = "127.0.0.1"; // Fallback to localhost if file reading fails
+            serverPort = 1099;
+        }
+    }
 
     public static void startServer() {
         if (isRunning) {
@@ -20,11 +51,9 @@ public class RMIConnector {
 
         try {
 
-            //String ip = "10.145.19.131";
-
             if (registry == null) {
                 //System.setProperty("java.rmi.server.hostname", ip);
-                registry = LocateRegistry.createRegistry(1099);
+                registry = LocateRegistry.createRegistry(serverPort);
             } else {
                 System.out.println("Registry already exists.");
             }

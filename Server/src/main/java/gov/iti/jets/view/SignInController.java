@@ -58,7 +58,7 @@ public class SignInController {
         }
         try {
             User user = userDao.getUser(phone);
-            if (user != null) {
+            if (user != null && user.getAdmin()) {
                 String hashedInputPass = userDao.hashPass(pass);
                 if (hashedInputPass.equals(user.getPasswordHashed())) {
                     loadScene(event, "/fxml/server-homePage.fxml");

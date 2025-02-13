@@ -39,17 +39,11 @@ public class StatsController {
    }
 
     private void updateStatistics() {
-        System.out.println("Updating statistics...");
         new Thread(() -> {
             try {
                 Map<String, Integer> statusData = userDao.getUserStatus();
                 Map<String, Integer> genderData = userDao.getUserGender();
                 Map<String, Integer> countryData = userDao.getUserCountry();
-
-                System.out.println("Fetched statusData: " + statusData);
-                System.out.println("Fetched genderData: " + genderData);
-                System.out.println("Fetched countryData: " + countryData);
-
                 Platform.runLater(() -> {
                     updatePieChart(statusPieChart, statusData);
                     updatePieChart(genderPieChart, genderData);

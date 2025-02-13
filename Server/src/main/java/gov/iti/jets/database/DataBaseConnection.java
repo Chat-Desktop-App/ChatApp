@@ -2,12 +2,15 @@ package gov.iti.jets.database;
 
 
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Objects;
 import java.util.Properties;
 
 public class DataBaseConnection {
@@ -22,9 +25,13 @@ public class DataBaseConnection {
         DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
         Properties properties = new Properties();
 
-        try (InputStream inputStream = getClass().getResourceAsStream("/db.properties")){
+        String jarDirectory = System.getProperty("user.dir"); // This points to the directory where the JAR is being run
+        File propertiesFile = new File(jarDirectory, "db.properties");
+        System.out.println("......................"+jarDirectory);
+        try (InputStream inputStream = new FileInputStream(propertiesFile)){
             properties.load(inputStream);
             this.url = properties.getProperty("URL");
+            System.out.println(url);
             this.username = properties.getProperty("USER");
             this.password = properties.getProperty("PASSWORD");
             this.connection = DriverManager.getConnection(url, username, password);
