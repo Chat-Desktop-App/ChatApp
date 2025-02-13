@@ -7,26 +7,27 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-
-<HBox prefWidth="320.0" spacing="10.0" styleClass="check_box" stylesheets="@../styles/addGroupCell.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.view.AddGroupCellController">
-   <children>
-      <ImageView fx:id="friendIcon" fitHeight="40.0" fitWidth="40.0">
-         <image>
-            <Image url="@../images/person.png" />
-         </image>
-      </ImageView>
-      <VBox prefHeight="40.0" prefWidth="250.0">
-         <Label fx:id="name" stylesheets="@../styles/addGroupCell.css" text="Amin">
-            <font>
-               <Font name="System Bold" size="12.800000190734863" />
-            </font>
-         </Label>
-         <Label fx:id="phoneNum" text="Phone Number" />
-      </VBox>
-      <HBox alignment="CENTER_RIGHT" prefHeight="0.0" prefWidth="107.0">
-         <children>
-            <CheckBox fx:id="add" mnemonicParsing="false" onAction="#handleAdd" />
-         </children>
-      </HBox>
-   </children>
+<HBox xmlns:fx="http://javafx.com/fxml/1" prefWidth="320.0" spacing="10.0" styleClass="check_box"
+      stylesheets="@../styles/addGroupCell.css" xmlns="http://javafx.com/javafx/9.0.1"
+      fx:controller="gov.iti.jets.view.AddGroupCellController">
+    <children>
+        <ImageView fx:id="friendIcon" fitHeight="40.0" fitWidth="40.0">
+            <image>
+                <Image url="@../images/person.png"/>
+            </image>
+        </ImageView>
+        <VBox prefHeight="40.0" prefWidth="250.0">
+            <Label fx:id="name" stylesheets="@../styles/addGroupCell.css" text="Amin">
+                <font>
+                    <Font name="System Bold" size="12.800000190734863"/>
+                </font>
+            </Label>
+            <Label fx:id="phoneNum" text="Phone Number"/>
+        </VBox>
+        <HBox alignment="CENTER_RIGHT" prefHeight="0.0" prefWidth="107.0">
+            <children>
+                <CheckBox fx:id="add" mnemonicParsing="false" onAction="#handleAdd"/>
+            </children>
+        </HBox>
+    </children>
 </HBox>

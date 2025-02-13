@@ -1,7 +1,6 @@
 package gov.iti.jets.controller;
 
 
-
 import gov.iti.jets.RMIConnector;
 import gov.iti.jets.model.Status;
 import gov.iti.jets.services.interfaces.UserSettingsService;
@@ -14,10 +13,9 @@ public class UserSettingsServiceController {
     private static UserSettingsService userSettingsService = RMIConnector.getRmiConnector().getUserSettingsService();
 
 
-
-    public static boolean updateProfilePicture(byte [] pic){
+    public static boolean updateProfilePicture(byte[] pic) {
         try {
-            boolean flag = userSettingsService.UpdatePicture(Session.user.getPhoneNumber(),pic);
+            boolean flag = userSettingsService.UpdatePicture(Session.user.getPhoneNumber(), pic);
             HomeServiceController.getHomeController().setPictureIcon(new Image(new ByteArrayInputStream(pic)));
             Session.user.setPicture(pic);
             return flag;
@@ -28,36 +26,40 @@ public class UserSettingsServiceController {
         }
         return false;
     }
-    public static void updateProfileStatus(Status status){
+
+    public static void updateProfileStatus(Status status) {
         try {
-            userSettingsService.UpdateStatus(Session.user.getPhoneNumber(),status);
+            userSettingsService.UpdateStatus(Session.user.getPhoneNumber(), status);
             Session.user.setStatus(status);
         } catch (RemoteException e) {
             userSettingsService = RMIConnector.getRmiConnector().getUserSettingsService();
             throw new RuntimeException(e);
         }
     }
-    public static void updateProfileEmail(String email){
+
+    public static void updateProfileEmail(String email) {
         try {
-            userSettingsService.UpdateEmail(Session.user.getPhoneNumber(),email);
+            userSettingsService.UpdateEmail(Session.user.getPhoneNumber(), email);
             Session.user.setEmail(email);
         } catch (RemoteException e) {
             userSettingsService = RMIConnector.getRmiConnector().getUserSettingsService();
             throw new RuntimeException(e);
         }
     }
-    public static void updateProfileBio(String Bio){
+
+    public static void updateProfileBio(String Bio) {
         try {
-            userSettingsService.UpdateBio(Session.user.getPhoneNumber(),Bio);
+            userSettingsService.UpdateBio(Session.user.getPhoneNumber(), Bio);
             Session.user.setBio(Bio);
         } catch (RemoteException e) {
             userSettingsService = RMIConnector.getRmiConnector().getUserSettingsService();
             throw new RuntimeException(e);
         }
     }
-    public static void updateProfileName(String fullName){
+
+    public static void updateProfileName(String fullName) {
         try {
-            userSettingsService.UpdateFullName(Session.user.getPhoneNumber(),fullName);
+            userSettingsService.UpdateFullName(Session.user.getPhoneNumber(), fullName);
             String[] nameParts = fullName.trim().split("\\s+"); // Split by spaces
 
             String firstName = nameParts[0]; // First word

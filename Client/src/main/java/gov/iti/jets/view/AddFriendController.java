@@ -1,25 +1,30 @@
 package gov.iti.jets.view;
 
-import java.io.IOException;
-import java.net.URL;
-import java.rmi.Naming;
-import java.rmi.RemoteException;
-import java.util.HashSet;
-import java.util.ResourceBundle;
-import java.util.Set;
-
+import gov.iti.jets.controller.NotificationServiceController;
 import gov.iti.jets.controller.Session;
+import gov.iti.jets.model.Notification;
+import gov.iti.jets.model.Notifications;
 import gov.iti.jets.model.User;
-import gov.iti.jets.services.impls.ChatClientImpl;
 import gov.iti.jets.services.interfaces.ContactService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import gov.iti.jets.services.interfaces.ChatClient;
+
+import java.io.IOException;
+import java.net.URL;
+import java.rmi.Naming;
+import java.rmi.RemoteException;
+import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.ResourceBundle;
+import java.util.Set;
 
 public class AddFriendController {
 
@@ -60,8 +65,7 @@ public class AddFriendController {
             if (user != null) {
                 addUserToList(user);
                 phoneField.clear();
-            }
-            else {
+            } else {
                 showAlert(Alert.AlertType.ERROR, "User not found", "No user is found with this phone number");
             }
         } catch (RemoteException e) {
@@ -69,7 +73,6 @@ public class AddFriendController {
             e.printStackTrace();
         }
     }
-
 
 
     @FXML
@@ -84,11 +87,11 @@ public class AddFriendController {
                 String receiverPhone = controller.getUser().getPhoneNumber();
                 String senderPhone = Session.getInstance().getPhoneNumber();
                 boolean requestSent = contactService.sendFriendRequest(senderPhone, receiverPhone);
-                if(!requestSent) {
+                if (!requestSent) {
                     showAlert(Alert.AlertType.ERROR, "Error", "Failed to send Request to " + receiverPhone);
-                }
-                else {
-
+                } else {
+                    Notifications notifications = new Notifications(receiverPhone,senderPhone,"You have a pending friend request ", LocalDateTime.now(),false, Notification.FRIENDREQUEST);
+                    NotificationServiceController.addNotification(notifications);
                     showAlert(Alert.AlertType.INFORMATION, "Success", "Friend requests sent successfully.");
                 }
             }
@@ -146,15 +149,16 @@ public class AddFriendController {
         });*/
 
     }
+
     private void addUserToList(User user) {
-        try{
+        try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/gov/iti/jets/fxml/addFriendCell.fxml"));
             AnchorPane cell = loader.load();
             AddFriendCellController controller = loader.getController();
             controller.setUser(user);
             friendList.add(cell);
             addedPhoneNumbers.add(user.getPhoneNumber());
-        } catch(IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
             showAlert(Alert.AlertType.ERROR, "Error", "Failed to load user cell");
         }

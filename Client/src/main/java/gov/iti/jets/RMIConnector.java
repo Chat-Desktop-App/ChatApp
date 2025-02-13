@@ -1,10 +1,7 @@
 package gov.iti.jets;
 
 import gov.iti.jets.controller.LogInServiceController;
-import gov.iti.jets.controller.Session;
 import gov.iti.jets.services.interfaces.*;
-import javafx.application.Platform;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 
@@ -12,35 +9,21 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.Properties;
 
-import static java.lang.Thread.sleep;
-
 public class RMIConnector {
     private static RMIConnector rmiConnector;
-    private Login loginService;
-    private Register registerService;
-    private LoadHome loadHome;
-    private MessagingService messagingService;
-    private NotificationsService notificationsService;
-    private ContactService contactService;
-    private AddGroup addGroupService;
-    private UserSettingsService userSettingsService;
-    private ChatBot chatBot;
-
     private static String serverIp;
     private static int serverPort;
 
     static {
         String jarDirectory = System.getProperty("user.dir"); // This points to the directory where the JAR is being run
         File propertiesFile = new File(jarDirectory, "config.properties");
-        try (InputStream input =new FileInputStream(propertiesFile)) {
+        try (InputStream input = new FileInputStream(propertiesFile)) {
             Properties prop = new Properties();
             if (input != null) {
                 prop.load(input);
@@ -59,13 +42,23 @@ public class RMIConnector {
         }
     }
 
+    private Login loginService;
+    private Register registerService;
+    private LoadHome loadHome;
+    private MessagingService messagingService;
+    private NotificationsService notificationsService;
+    private ContactService contactService;
+    private AddGroup addGroupService;
+    private UserSettingsService userSettingsService;
+    private ChatBot chatBot;
+
     // Private constructor to handle the connection to services
     private RMIConnector() {
         while (true) {
             try {
                 // Get the registry and lookup each service
                 //String ip = "10.145.19.131";
-                Registry reg = LocateRegistry.getRegistry( serverIp , serverPort);
+                Registry reg = LocateRegistry.getRegistry(serverIp, serverPort);
                 contactService = (ContactService) reg.lookup("ContactService");
                 loginService = (Login) reg.lookup("LogIn");
                 registerService = (Register) reg.lookup("Register");
@@ -104,7 +97,6 @@ public class RMIConnector {
 
         return rmiConnector;
     }
-
 
 
     // Getters for the services

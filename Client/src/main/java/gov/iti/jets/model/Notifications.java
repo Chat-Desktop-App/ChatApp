@@ -1,7 +1,7 @@
 package gov.iti.jets.model;
 
-import java.time.LocalDateTime;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 public class Notifications implements Serializable {
     private int notificationId;
@@ -11,10 +11,11 @@ public class Notifications implements Serializable {
     private LocalDateTime sentAt;
     private boolean isRead;
     private Notification notificationType;
+
     public Notifications() {
     }
 
-    public Notifications(int notificationId, String userId,String senderId, String message, LocalDateTime sentAt, boolean isRead, Notification type) {
+    public Notifications(int notificationId, String userId, String senderId, String message, LocalDateTime sentAt, boolean isRead, Notification type) {
         this.notificationId = notificationId;
         this.userId = userId;
         this.senderId = senderId;
@@ -40,6 +41,7 @@ public class Notifications implements Serializable {
     public void setNotificationId(int notificationId) {
         this.notificationId = notificationId;
     }
+
     public String getSenderId() {
         return senderId;
     }

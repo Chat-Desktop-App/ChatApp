@@ -11,7 +11,7 @@ public class RegisterServiceController {
     private SignUpController view;
     private Register registerService;
 
-    public RegisterServiceController(SignUpController view){
+    public RegisterServiceController(SignUpController view) {
         registerService = (Register) RMIConnector.getRmiConnector().getRegisterService();
         this.view = view;
         // add callbacks later
@@ -19,13 +19,13 @@ public class RegisterServiceController {
 
     }
 
-    public boolean signUp(User user){
+    public boolean signUp(User user) {
         try {
-            if(registerService.SignUp(user) == null){
+            if (registerService.SignUp(user) == null) {
                 return false;
             }
 
-            System.out.println("User: "+user.getFname()+" added successfully");
+            System.out.println("User: " + user.getFname() + " added successfully");
 
         } catch (RemoteException e) {
             registerService = RMIConnector.rmiReconnect().getRegisterService();
@@ -34,7 +34,6 @@ public class RegisterServiceController {
 
         return true;
     }
-
 
 
 }

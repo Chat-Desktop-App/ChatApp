@@ -1,24 +1,23 @@
 package gov.iti.jets.view;
 
-import gov.iti.jets.controller.HomeServiceController;
 import gov.iti.jets.controller.Session;
 import gov.iti.jets.controller.UserSettingsServiceController;
 import gov.iti.jets.model.Status;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import javafx.collections.FXCollections;
-import javafx.scene.paint.Color;
-import javafx.stage.Stage;
 
 
 public class ProfileController {
@@ -48,6 +47,7 @@ public class ProfileController {
     void handleEditButton(ActionEvent event) {
 
     }
+
     @FXML
     void initialize() {
 
@@ -108,12 +108,14 @@ public class ProfileController {
         UserSettingsServiceController.updateProfileStatus(status.getValue());
         showSuccessPopup();
     }
+
     @FXML
     void handleBio(ActionEvent event) {
         String BioText = bio.getText();
         UserSettingsServiceController.updateProfileBio(BioText);
         showSuccessPopup();
     }
+
     @FXML
     void handleEmail(ActionEvent event) {
         String emailText = email.getText();
@@ -121,14 +123,16 @@ public class ProfileController {
         showSuccessPopup();
 
     }
+
     @FXML
     void handleFullName(ActionEvent event) {
         String NameText = fullName.getText();
         UserSettingsServiceController.updateProfileName(NameText);
         showSuccessPopup();
     }
+
     @FXML
-    void handleProfilePic(ActionEvent event)  {
+    void handleProfilePic(ActionEvent event) {
 
         FileChooser fileChooser = new FileChooser();
 
@@ -141,21 +145,21 @@ public class ProfileController {
         if (selectedFile != null) {
 
             try {
-                byte [] picByte;
+                byte[] picByte;
                 picByte = Files.readAllBytes(selectedFile.toPath());
                 boolean flag = UserSettingsServiceController.updateProfilePicture(picByte);
-                if(flag) {
+                if (flag) {
                     Image image = new Image(selectedFile.toURI().toString());
                     picId.setImage(image);
                     showSuccessPopup();
-                }else {
+                } else {
                     Alert alert = new Alert(Alert.AlertType.ERROR, "", ButtonType.OK);
                     alert.setTitle("update picture");
                     alert.setHeaderText("update picture failed");
                     alert.showAndWait();
                 }
             } catch (IOException e) {
-                System.out.println("can't read file" );
+                System.out.println("can't read file");
             }
         }
     }

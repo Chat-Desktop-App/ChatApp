@@ -2,36 +2,37 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
-
-<HBox fx:id="parentHBox" styleClass="parentHBox" stylesheets="@../styles/receive_message.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.view.ReceiveMessageController">
-   <children>
-      <VBox fx:id="contentVBox" alignment="TOP_RIGHT" styleClass="message-container" HBox.hgrow="NEVER">
-         <children>
-            <TextFlow>
-               <children>
-                  <Text fx:id="text" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="message-text" text="Hello Hadeer in Chat App" wrappingWidth="223.94061279296875" />
-               </children>
-            </TextFlow>
-            <HBox alignment="CENTER_RIGHT" spacing="15.0">
-               <children>
-                  <TextFlow styleClass="timestamp" textAlignment="RIGHT">
-                     <children>
-                        <Label fx:id="timeStamp" styleClass="timestamp" text="wed 12:33 pm" />
-                     </children>
-                  </TextFlow>
-               </children>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </HBox>
-         </children>
-         <padding>
-            <Insets bottom="15.0" left="15.0" right="15.0" top="20.0" />
-         </padding>
-      </VBox>
-   </children>
+<HBox xmlns:fx="http://javafx.com/fxml/1" fx:id="parentHBox" styleClass="parentHBox"
+      stylesheets="@../styles/receive_message.css" xmlns="http://javafx.com/javafx/23.0.1"
+      fx:controller="gov.iti.jets.view.ReceiveMessageController">
+    <children>
+        <VBox fx:id="contentVBox" alignment="TOP_RIGHT" styleClass="message-container" HBox.hgrow="NEVER">
+            <children>
+                <TextFlow>
+                    <children>
+                        <Text fx:id="text" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="message-text"
+                              text="Hello Hadeer in Chat App" wrappingWidth="223.94061279296875"/>
+                    </children>
+                </TextFlow>
+                <HBox alignment="CENTER_RIGHT" spacing="15.0">
+                    <children>
+                        <TextFlow styleClass="timestamp" textAlignment="RIGHT">
+                            <children>
+                                <Label fx:id="timeStamp" styleClass="timestamp" text="wed 12:33 pm"/>
+                            </children>
+                        </TextFlow>
+                    </children>
+                    <VBox.margin>
+                        <Insets/>
+                    </VBox.margin>
+                </HBox>
+            </children>
+            <padding>
+                <Insets bottom="15.0" left="15.0" right="15.0" top="20.0"/>
+            </padding>
+        </VBox>
+    </children>
 </HBox>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="chat" minWidth="150.0" onMouseClicked="#handleChatClick" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.view.ChatsController">
+   <children>
+      <ImageView fx:id="friendIcon" fitHeight="40.0" fitWidth="40.0" layoutX="10.399999618530273" layoutY="10.399999618530273" AnchorPane.leftAnchor="0.0">
+         <image>
+            <Image url="@../images/friendIcon.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="friendName" layoutX="45.0" layoutY="20.0" text="Alyaa" AnchorPane.leftAnchor="45.0">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="messageCounter" layoutX="120.80000305175781" layoutY="23.200000762939453" styleClass="messageCounter" stylesheets="@../styles/allChats.css" text="0" visible="false" AnchorPane.rightAnchor="0.0" />
+      <Circle fx:id="status" fill="#22da56" layoutX="45.0" layoutY="20.0" radius="5.0" stroke="#00000007" strokeType="INSIDE" />
+   </children>
+   <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+   </padding>
+</AnchorPane>

@@ -1,4 +1,5 @@
 package gov.iti.jets.model;
+
 import javafx.scene.text.Font;
 
 import java.io.Serial;
@@ -14,15 +15,15 @@ public class Message implements Serializable {
     private String senderId;
     private Recipient recipient = null;
     private String receiverId = null;
-    private int groupId ;
+    private int groupId;
     private String content;
     private int fileId;
     private int fontSize;
-    private String fontStyle ;
-    private String fontColour ;
+    private String fontStyle;
+    private String fontColour;
     private boolean isBold;
     private boolean isItalic;
-    private boolean isUnderLine ;
+    private boolean isUnderLine;
     private String textBackGroundColour;
     private Timestamp timestamp;
     private String emoji;
@@ -30,28 +31,28 @@ public class Message implements Serializable {
     public Message() {
         fontSize = 14;
         fontStyle = Font.getDefault().getName();
-        fontColour= "#000000";
+        fontColour = "#000000";
         isBold = false;
         isItalic = false;
         isUnderLine = false;
-        textBackGroundColour ="#3d7eb6";
+        textBackGroundColour = "#3d7eb6";
     }
 
-    public Message(String senderId , Recipient recipient , String receiverId , int groupId) {
+    public Message(String senderId, Recipient recipient, String receiverId, int groupId) {
         this.senderId = senderId;
         this.recipient = recipient;
-        this.receiverId =receiverId;
+        this.receiverId = receiverId;
         this.groupId = groupId;
         fontSize = 14;
         fontStyle = Font.getDefault().getName();
-        fontColour= "#000000";
+        fontColour = "#000000";
         isBold = false;
         isItalic = false;
         isUnderLine = false;
-        textBackGroundColour ="#3d7eb6";
+        textBackGroundColour = "#3d7eb6";
     }
 
-    public Message(Message message){
+    public Message(Message message) {
         messageId = message.getMessageId();
         senderId = message.getSenderId();
         recipient = message.getRecipient();
@@ -69,6 +70,7 @@ public class Message implements Serializable {
         timestamp = message.gettimestamp();
         emoji = message.getEmoji();
     }
+
     public Message(int messageId, String senderId, Recipient recipient, String receiverId, int groupId, String content, int fileId, int fontSize, String fontStyle, String fontColour, boolean isBold, boolean isItalic, boolean isUnderLine, String textBackGroundColour, Timestamp timestamp, String emoji) {
         this.messageId = messageId;
         this.senderId = senderId;

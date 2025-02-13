@@ -5,5 +5,5 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 public interface ChatBot extends Remote {
-    String chatWithAI(String userMessage, String fname)  throws RemoteException;
+    String chatWithAI(String userMessage, String fname) throws RemoteException;
 }

@@ -1,10 +1,6 @@
 package gov.iti.jets.view;
 
 
-import java.io.ByteArrayInputStream;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Locale;
 import gov.iti.jets.model.GroupMessage;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -14,6 +10,11 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
+
+import java.io.ByteArrayInputStream;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 public class ReceiveGroupMessageController {
 
@@ -50,25 +51,35 @@ public class ReceiveGroupMessageController {
         String formattedTimestamp = dateTime.format(formatter);
         timeStamp.setText(formattedTimestamp);
         name.setText(message.getName());
-        byte [] pic = message.getProfilePicture();
-        if (pic != null){
+        byte[] pic = message.getProfilePicture();
+        if (pic != null) {
             profilePic.setImage(new Image(new ByteArrayInputStream(pic)));
         }
 
         setTextFormat();
     }
 
-    private void setTextFormat(){
+    private void setTextFormat() {
         StringBuilder builder = new StringBuilder();
-        if (message.isBold()) { builder.append("-fx-font-weight: bold;\n");}
-        if (message.isItalic()){builder.append("-fx-font-style: italic;\n");}
-        if (message.isUnderLine()){builder.append("-fx-underline: " ).append(message.isUnderLine()).append(";\n");}
-        if (message.getFontSize() != 0){builder.append("-fx-font-size: ").append(message.getFontSize()).append("px;\n");}
-        if (message.getFontStyle() != null){builder.append("-fx-font-family: '").append(message.getFontStyle()).append("';\n");}
+        if (message.isBold()) {
+            builder.append("-fx-font-weight: bold;\n");
+        }
+        if (message.isItalic()) {
+            builder.append("-fx-font-style: italic;\n");
+        }
+        if (message.isUnderLine()) {
+            builder.append("-fx-underline: ").append(message.isUnderLine()).append(";\n");
+        }
+        if (message.getFontSize() != 0) {
+            builder.append("-fx-font-size: ").append(message.getFontSize()).append("px;\n");
+        }
+        if (message.getFontStyle() != null) {
+            builder.append("-fx-font-family: '").append(message.getFontStyle()).append("';\n");
+        }
 
         messageContent.setStyle(builder.toString());
 
         messageContent.setFill(Paint.valueOf(message.getFontColour()));
-        contentVBox.setStyle("-fx-background-color:" + message.getTextBackGroundColour()+ ";");
+        contentVBox.setStyle("-fx-background-color:" + message.getTextBackGroundColour() + ";");
     }
 }

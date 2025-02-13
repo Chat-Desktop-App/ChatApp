@@ -1,258 +1,274 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Hyperlink?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToggleGroup?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
-
-<HBox alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@../styles/signUp.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.view.SignUpController">
-   <children>
-      <VBox fx:id="background" alignment="CENTER" prefHeight="600.0" prefWidth="338.0" HBox.hgrow="ALWAYS">
-         <children>
-            <ImageView fx:id="logo" fitHeight="273.0" fitWidth="293.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
-               <image>
-                  <Image fx:id="orca" url="@../images/orca.png" />
-               </image>
-            </ImageView>
-         </children></VBox>
-      <StackPane prefHeight="600.0" prefWidth="468.0" HBox.hgrow="ALWAYS">
-         <children>
-            <VBox fx:id="SignUp1Vbox" prefHeight="579.0" prefWidth="475.0" styleClass="SignUpVbox">
-               <children>
-                  <Label fx:id="createLabel" alignment="TOP_CENTER" styleClass="createLabel" text="Create Account" VBox.vgrow="ALWAYS">
-                     <VBox.margin>
-                        <Insets bottom="15.0" />
-                     </VBox.margin>
-                  </Label>
-                  <VBox prefHeight="23.0" prefWidth="311.0" VBox.vgrow="ALWAYS">
-                     <children>
-                        <Label styleClass="fieldLabelStyle" text="Phone Number" VBox.vgrow="ALWAYS">
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<HBox xmlns:fx="http://javafx.com/fxml/1" alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+      minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@../styles/signUp.css"
+      xmlns="http://javafx.com/javafx/23.0.1" fx:controller="gov.iti.jets.view.SignUpController">
+    <children>
+        <VBox fx:id="background" alignment="CENTER" prefHeight="600.0" prefWidth="338.0" HBox.hgrow="ALWAYS">
+            <children>
+                <ImageView fx:id="logo" fitHeight="273.0" fitWidth="293.0" pickOnBounds="true" preserveRatio="true"
+                           VBox.vgrow="ALWAYS">
+                    <image>
+                        <Image fx:id="orca" url="@../images/orca.png"/>
+                    </image>
+                </ImageView>
+            </children>
+        </VBox>
+        <StackPane prefHeight="600.0" prefWidth="468.0" HBox.hgrow="ALWAYS">
+            <children>
+                <VBox fx:id="SignUp1Vbox" prefHeight="579.0" prefWidth="475.0" styleClass="SignUpVbox">
+                    <children>
+                        <Label fx:id="createLabel" alignment="TOP_CENTER" styleClass="createLabel" text="Create Account"
+                               VBox.vgrow="ALWAYS">
+                            <VBox.margin>
+                                <Insets bottom="15.0"/>
+                            </VBox.margin>
                         </Label>
-                        <TextField fx:id="phoneNum" styleClass="textFieldStyle" VBox.vgrow="ALWAYS" />
-                     </children>
-                  </VBox>
-                  <HBox prefHeight="40.0" prefWidth="311.0" spacing="10.0" VBox.vgrow="ALWAYS">
-                     <children>
-                        <VBox prefHeight="23.0" prefWidth="311.0" HBox.hgrow="ALWAYS">
-                           <children>
-                              <Label styleClass="fieldLabelStyle" text="First name" VBox.vgrow="ALWAYS">
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
-                              </Label>
-                              <TextField fx:id="fname" styleClass="textFieldStyle" VBox.vgrow="ALWAYS" />
-                           </children>
+                        <VBox prefHeight="23.0" prefWidth="311.0" VBox.vgrow="ALWAYS">
+                            <children>
+                                <Label styleClass="fieldLabelStyle" text="Phone Number" VBox.vgrow="ALWAYS">
+                                    <VBox.margin>
+                                        <Insets/>
+                                    </VBox.margin>
+                                </Label>
+                                <TextField fx:id="phoneNum" styleClass="textFieldStyle" VBox.vgrow="ALWAYS"/>
+                            </children>
                         </VBox>
-                        <VBox layoutX="10.0" layoutY="10.0" prefHeight="23.0" prefWidth="311.0" HBox.hgrow="ALWAYS">
-                           <children>
-                              <Label styleClass="fieldLabelStyle" text="Last name" VBox.vgrow="ALWAYS">
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
-                              </Label>
-                              <TextField fx:id="lname" styleClass="textFieldStyle" VBox.vgrow="ALWAYS" />
-                           </children>
-                        </VBox>
-                     </children>
-                  </HBox>
-                  <VBox layoutX="60.0" layoutY="95.0" prefHeight="23.0" prefWidth="311.0" VBox.vgrow="ALWAYS">
-                     <children>
-                        <Label styleClass="fieldLabelStyle" text="Email" VBox.vgrow="ALWAYS">
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                        </Label>
-                        <TextField fx:id="email" styleClass="textFieldStyle" VBox.vgrow="ALWAYS" />
-                     </children>
-                  </VBox>
-                  <VBox layoutX="60.0" layoutY="192.0" prefHeight="23.0" prefWidth="311.0" VBox.vgrow="ALWAYS">
-                     <children>
-                        <Label styleClass="fieldLabelStyle" text="Password" VBox.vgrow="ALWAYS">
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                        </Label>
-                        <StackPane>
-                           <children>
-                              <HBox fx:id="hiddenPassHbox" spacing="10.0">
-                                 <children>
-                                    <PasswordField fx:id="password" prefHeight="9.0" prefWidth="319.0" styleClass="textFieldStyle" />
-                                    <ImageView fitHeight="31.0" fitWidth="21.0" onMouseClicked="#handleShowPass" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
-                                       <image>
-                                          <Image url="@../images/eyeClosed.png" />
-                                       </image>
-                                    </ImageView>
-                                 </children>
-                              </HBox>
-                              <HBox fx:id="showPassHbox" spacing="10.0" visible="false">
-                                 <children>
-                                    <TextField fx:id="passwordText" prefHeight="9.0" prefWidth="319.0" styleClass="textFieldStyle" />
-                                    <ImageView fitHeight="31.0" fitWidth="21.0" onMouseClicked="#handleHidePass" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
-                                       <image>
-                                          <Image url="@../images/eyeOpen.png" />
-                                       </image>
-                                    </ImageView>
-                                 </children>
-                              </HBox>
-                           </children>
-                        </StackPane>
-                     </children>
-                  </VBox>
-                  <VBox prefHeight="23.0" prefWidth="311.0" VBox.vgrow="ALWAYS">
-                     <children>
-                        <Label styleClass="fieldLabelStyle" text="Confirmation Password" VBox.vgrow="ALWAYS">
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                        </Label>
-                        <StackPane>
-                           <children>
-                              <HBox fx:id="hiddenCpass" spacing="10.0">
-                                 <children>
-                                    <PasswordField fx:id="cpassword" prefHeight="9.0" prefWidth="319.0" styleClass="textFieldStyle" />
-                                 </children>
-                              </HBox>
-                              <HBox fx:id="shownCpass" spacing="10.0" visible="false">
-                                 <children>
-                                    <TextField fx:id="cpasswordText" prefHeight="9.0" prefWidth="319.0" styleClass="textFieldStyle" />
-                                 </children>
-                              </HBox>
-                           </children>
-                        </StackPane>
-                     </children>
-                  </VBox>
-                  <VBox prefHeight="10.0" prefWidth="360.0" VBox.vgrow="ALWAYS">
-                     <children>
-                        <Button fx:id="next" alignment="CENTER" mnemonicParsing="false" onAction="#handleNextButton" prefHeight="30.0" prefWidth="358.0" styleClass="buttonStyle" text="Next" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                        </Button>
-                     </children>
-                  </VBox>
-                  <Hyperlink onAction="#handleLoginLink" text="Already Have an Account" />
-               </children>
-               <padding>
-                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-               </padding>
-               <StackPane.margin>
-                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-               </StackPane.margin>
-            </VBox>
-      
-            <VBox fx:id="SignUp2Vbox" prefHeight="600.0" prefWidth="495.0" styleClass="SignUpVbox" visible="false">
-               <children>
-                  <Label fx:id="createLabel2" alignment="TOP_CENTER" styleClass="createLabel" text="Create Account" VBox.vgrow="ALWAYS">
-                     <VBox.margin>
-                        <Insets bottom="15.0" />
-                     </VBox.margin>
-                  </Label>
-                  <HBox prefHeight="126.0" prefWidth="449.0" VBox.vgrow="ALWAYS">
-                     <children>
-                        <ImageView fx:id="profilePicture" fitHeight="150.0" fitWidth="162.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
-                           <image>
-                              <Image fx:id="profile" url="@../images/profile-icon-png-898.png" />
-                           </image>
-                        </ImageView>
-                        <Region prefHeight="178.0" prefWidth="131.0" HBox.hgrow="NEVER" />
-                        <Button fx:id="choosePicture" mnemonicParsing="false" onAction="#handleChoosePicButton" prefHeight="30.0" prefWidth="122.0" styleClass="buttonStyle" text="Choose Picture" HBox.hgrow="ALWAYS">
-                           <HBox.margin>
-                              <Insets top="60.0" />
-                           </HBox.margin>
-                        </Button>
-                     </children>
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                  </HBox>
-                  <VBox prefHeight="23.0" prefWidth="311.0" spacing="5.0" VBox.vgrow="ALWAYS">
-                     <children>
-                        <Label styleClass="fieldLabelStyle" text="Gender" VBox.vgrow="ALWAYS">
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                        </Label>
-                        <HBox prefHeight="29.0" prefWidth="442.0">
-                           <children>
-      
-                              <RadioButton fx:id="female" mnemonicParsing="false" prefHeight="19.0" prefWidth="140.0" text="Female">
-                                 <toggleGroup>
-                                    <ToggleGroup fx:id="gender" />
-                                 </toggleGroup>
-                              </RadioButton>
-                              <RadioButton fx:id="male" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="140.0" text="Male" toggleGroup="$gender" />
-                           </children>
+                        <HBox prefHeight="40.0" prefWidth="311.0" spacing="10.0" VBox.vgrow="ALWAYS">
+                            <children>
+                                <VBox prefHeight="23.0" prefWidth="311.0" HBox.hgrow="ALWAYS">
+                                    <children>
+                                        <Label styleClass="fieldLabelStyle" text="First name" VBox.vgrow="ALWAYS">
+                                            <VBox.margin>
+                                                <Insets/>
+                                            </VBox.margin>
+                                        </Label>
+                                        <TextField fx:id="fname" styleClass="textFieldStyle" VBox.vgrow="ALWAYS"/>
+                                    </children>
+                                </VBox>
+                                <VBox layoutX="10.0" layoutY="10.0" prefHeight="23.0" prefWidth="311.0"
+                                      HBox.hgrow="ALWAYS">
+                                    <children>
+                                        <Label styleClass="fieldLabelStyle" text="Last name" VBox.vgrow="ALWAYS">
+                                            <VBox.margin>
+                                                <Insets/>
+                                            </VBox.margin>
+                                        </Label>
+                                        <TextField fx:id="lname" styleClass="textFieldStyle" VBox.vgrow="ALWAYS"/>
+                                    </children>
+                                </VBox>
+                            </children>
                         </HBox>
-                     </children>
-                  </VBox>
-                  <VBox prefHeight="0.0" prefWidth="449.0" VBox.vgrow="ALWAYS">
-                     <children>
-                        <Label styleClass="fieldLabelStyle" text="Date of Birth" VBox.vgrow="ALWAYS">
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
+                        <VBox layoutX="60.0" layoutY="95.0" prefHeight="23.0" prefWidth="311.0" VBox.vgrow="ALWAYS">
+                            <children>
+                                <Label styleClass="fieldLabelStyle" text="Email" VBox.vgrow="ALWAYS">
+                                    <VBox.margin>
+                                        <Insets/>
+                                    </VBox.margin>
+                                </Label>
+                                <TextField fx:id="email" styleClass="textFieldStyle" VBox.vgrow="ALWAYS"/>
+                            </children>
+                        </VBox>
+                        <VBox layoutX="60.0" layoutY="192.0" prefHeight="23.0" prefWidth="311.0" VBox.vgrow="ALWAYS">
+                            <children>
+                                <Label styleClass="fieldLabelStyle" text="Password" VBox.vgrow="ALWAYS">
+                                    <VBox.margin>
+                                        <Insets/>
+                                    </VBox.margin>
+                                </Label>
+                                <StackPane>
+                                    <children>
+                                        <HBox fx:id="hiddenPassHbox" spacing="10.0">
+                                            <children>
+                                                <PasswordField fx:id="password" prefHeight="9.0" prefWidth="319.0"
+                                                               styleClass="textFieldStyle"/>
+                                                <ImageView fitHeight="31.0" fitWidth="21.0"
+                                                           onMouseClicked="#handleShowPass" pickOnBounds="true"
+                                                           preserveRatio="true" style="-fx-cursor: hand;">
+                                                    <image>
+                                                        <Image url="@../images/eyeClosed.png"/>
+                                                    </image>
+                                                </ImageView>
+                                            </children>
+                                        </HBox>
+                                        <HBox fx:id="showPassHbox" spacing="10.0" visible="false">
+                                            <children>
+                                                <TextField fx:id="passwordText" prefHeight="9.0" prefWidth="319.0"
+                                                           styleClass="textFieldStyle"/>
+                                                <ImageView fitHeight="31.0" fitWidth="21.0"
+                                                           onMouseClicked="#handleHidePass" pickOnBounds="true"
+                                                           preserveRatio="true" style="-fx-cursor: hand;">
+                                                    <image>
+                                                        <Image url="@../images/eyeOpen.png"/>
+                                                    </image>
+                                                </ImageView>
+                                            </children>
+                                        </HBox>
+                                    </children>
+                                </StackPane>
+                            </children>
+                        </VBox>
+                        <VBox prefHeight="23.0" prefWidth="311.0" VBox.vgrow="ALWAYS">
+                            <children>
+                                <Label styleClass="fieldLabelStyle" text="Confirmation Password" VBox.vgrow="ALWAYS">
+                                    <VBox.margin>
+                                        <Insets/>
+                                    </VBox.margin>
+                                </Label>
+                                <StackPane>
+                                    <children>
+                                        <HBox fx:id="hiddenCpass" spacing="10.0">
+                                            <children>
+                                                <PasswordField fx:id="cpassword" prefHeight="9.0" prefWidth="319.0"
+                                                               styleClass="textFieldStyle"/>
+                                            </children>
+                                        </HBox>
+                                        <HBox fx:id="shownCpass" spacing="10.0" visible="false">
+                                            <children>
+                                                <TextField fx:id="cpasswordText" prefHeight="9.0" prefWidth="319.0"
+                                                           styleClass="textFieldStyle"/>
+                                            </children>
+                                        </HBox>
+                                    </children>
+                                </StackPane>
+                            </children>
+                        </VBox>
+                        <VBox prefHeight="10.0" prefWidth="360.0" VBox.vgrow="ALWAYS">
+                            <children>
+                                <Button fx:id="next" alignment="CENTER" mnemonicParsing="false"
+                                        onAction="#handleNextButton" prefHeight="30.0" prefWidth="358.0"
+                                        styleClass="buttonStyle" text="Next" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+                                    <VBox.margin>
+                                        <Insets/>
+                                    </VBox.margin>
+                                </Button>
+                            </children>
+                        </VBox>
+                        <Hyperlink onAction="#handleLoginLink" text="Already Have an Account"/>
+                    </children>
+                    <padding>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+                    </padding>
+                    <StackPane.margin>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+                    </StackPane.margin>
+                </VBox>
+
+                <VBox fx:id="SignUp2Vbox" prefHeight="600.0" prefWidth="495.0" styleClass="SignUpVbox" visible="false">
+                    <children>
+                        <Label fx:id="createLabel2" alignment="TOP_CENTER" styleClass="createLabel"
+                               text="Create Account" VBox.vgrow="ALWAYS">
+                            <VBox.margin>
+                                <Insets bottom="15.0"/>
+                            </VBox.margin>
                         </Label>
-                        <DatePicker fx:id="dob" maxWidth="1.7976931348623157E308" prefHeight="30.0" prefWidth="486.0" VBox.vgrow="ALWAYS" />
-                     </children>
-                  </VBox>
-                  <VBox layoutX="60.0" layoutY="95.0" prefHeight="14.0" prefWidth="449.0" VBox.vgrow="ALWAYS">
-                     <children>
-                        <Label styleClass="fieldLabelStyle" text="Country" VBox.vgrow="ALWAYS">
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                        </Label>
-                        <ComboBox fx:id="country" maxWidth="1.7976931348623157E308" prefHeight="30.0" prefWidth="462.0" VBox.vgrow="ALWAYS" />
-                     </children>
-                  </VBox>
-                  <VBox prefHeight="14.0" prefWidth="449.0" VBox.vgrow="ALWAYS">
-                     <children>
-                        <Label styleClass="fieldLabelStyle" text="Bio" VBox.vgrow="ALWAYS">
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                        </Label>
-                        <TextField fx:id="bio" styleClass="textFieldStyle" VBox.vgrow="ALWAYS" />
-                     </children>
-                  </VBox>
-                  <HBox VBox.vgrow="ALWAYS">
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                     <children>
-                        <Button fx:id="prev" alignment="CENTER" mnemonicParsing="false" onAction="#handlePrevButton" prefHeight="30.0" prefWidth="126.0" styleClass="buttonStyle" text="Previous" />
-                        <Region prefHeight="10.0" prefWidth="202.0" />
-                        <Button fx:id="submit" alignment="CENTER" mnemonicParsing="false" onAction="#handleSubmitButton" prefHeight="30.0" prefWidth="126.0" styleClass="buttonStyle" text="Submit" />
-                     </children>
-                  </HBox>
-                  <Hyperlink onAction="#handleLoginLink" text="Already have an Account" />
-               </children>
-               <padding>
-                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-               </padding>
-               <StackPane.margin>
-                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-               </StackPane.margin>
-            </VBox>
-         </children>
-         <HBox.margin>
-            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-         </HBox.margin>
-      </StackPane>
-   </children>
+                        <HBox prefHeight="126.0" prefWidth="449.0" VBox.vgrow="ALWAYS">
+                            <children>
+                                <ImageView fx:id="profilePicture" fitHeight="150.0" fitWidth="162.0" pickOnBounds="true"
+                                           preserveRatio="true" HBox.hgrow="ALWAYS">
+                                    <image>
+                                        <Image fx:id="profile" url="@../images/profile-icon-png-898.png"/>
+                                    </image>
+                                </ImageView>
+                                <Region prefHeight="178.0" prefWidth="131.0" HBox.hgrow="NEVER"/>
+                                <Button fx:id="choosePicture" mnemonicParsing="false" onAction="#handleChoosePicButton"
+                                        prefHeight="30.0" prefWidth="122.0" styleClass="buttonStyle"
+                                        text="Choose Picture" HBox.hgrow="ALWAYS">
+                                    <HBox.margin>
+                                        <Insets top="60.0"/>
+                                    </HBox.margin>
+                                </Button>
+                            </children>
+                            <VBox.margin>
+                                <Insets/>
+                            </VBox.margin>
+                        </HBox>
+                        <VBox prefHeight="23.0" prefWidth="311.0" spacing="5.0" VBox.vgrow="ALWAYS">
+                            <children>
+                                <Label styleClass="fieldLabelStyle" text="Gender" VBox.vgrow="ALWAYS">
+                                    <VBox.margin>
+                                        <Insets/>
+                                    </VBox.margin>
+                                </Label>
+                                <HBox prefHeight="29.0" prefWidth="442.0">
+                                    <children>
+
+                                        <RadioButton fx:id="female" mnemonicParsing="false" prefHeight="19.0"
+                                                     prefWidth="140.0" text="Female">
+                                            <toggleGroup>
+                                                <ToggleGroup fx:id="gender"/>
+                                            </toggleGroup>
+                                        </RadioButton>
+                                        <RadioButton fx:id="male" layoutX="10.0" layoutY="10.0" mnemonicParsing="false"
+                                                     prefHeight="19.0" prefWidth="140.0" text="Male"
+                                                     toggleGroup="$gender"/>
+                                    </children>
+                                </HBox>
+                            </children>
+                        </VBox>
+                        <VBox prefHeight="0.0" prefWidth="449.0" VBox.vgrow="ALWAYS">
+                            <children>
+                                <Label styleClass="fieldLabelStyle" text="Date of Birth" VBox.vgrow="ALWAYS">
+                                    <VBox.margin>
+                                        <Insets/>
+                                    </VBox.margin>
+                                </Label>
+                                <DatePicker fx:id="dob" maxWidth="1.7976931348623157E308" prefHeight="30.0"
+                                            prefWidth="486.0" VBox.vgrow="ALWAYS"/>
+                            </children>
+                        </VBox>
+                        <VBox layoutX="60.0" layoutY="95.0" prefHeight="14.0" prefWidth="449.0" VBox.vgrow="ALWAYS">
+                            <children>
+                                <Label styleClass="fieldLabelStyle" text="Country" VBox.vgrow="ALWAYS">
+                                    <VBox.margin>
+                                        <Insets/>
+                                    </VBox.margin>
+                                </Label>
+                                <ComboBox fx:id="country" maxWidth="1.7976931348623157E308" prefHeight="30.0"
+                                          prefWidth="462.0" VBox.vgrow="ALWAYS"/>
+                            </children>
+                        </VBox>
+                        <VBox prefHeight="14.0" prefWidth="449.0" VBox.vgrow="ALWAYS">
+                            <children>
+                                <Label styleClass="fieldLabelStyle" text="Bio" VBox.vgrow="ALWAYS">
+                                    <VBox.margin>
+                                        <Insets/>
+                                    </VBox.margin>
+                                </Label>
+                                <TextField fx:id="bio" styleClass="textFieldStyle" VBox.vgrow="ALWAYS"/>
+                            </children>
+                        </VBox>
+                        <HBox VBox.vgrow="ALWAYS">
+                            <VBox.margin>
+                                <Insets/>
+                            </VBox.margin>
+                            <children>
+                                <Button fx:id="prev" alignment="CENTER" mnemonicParsing="false"
+                                        onAction="#handlePrevButton" prefHeight="30.0" prefWidth="126.0"
+                                        styleClass="buttonStyle" text="Previous"/>
+                                <Region prefHeight="10.0" prefWidth="202.0"/>
+                                <Button fx:id="submit" alignment="CENTER" mnemonicParsing="false"
+                                        onAction="#handleSubmitButton" prefHeight="30.0" prefWidth="126.0"
+                                        styleClass="buttonStyle" text="Submit"/>
+                            </children>
+                        </HBox>
+                        <Hyperlink onAction="#handleLoginLink" text="Already have an Account"/>
+                    </children>
+                    <padding>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+                    </padding>
+                    <StackPane.margin>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+                    </StackPane.margin>
+                </VBox>
+            </children>
+            <HBox.margin>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+            </HBox.margin>
+        </StackPane>
+    </children>
 </HBox>

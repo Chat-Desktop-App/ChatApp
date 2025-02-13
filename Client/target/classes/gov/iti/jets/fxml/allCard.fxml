@@ -7,22 +7,24 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
-
-<AnchorPane minWidth="150.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.iti.jets.view.AllCardController">
-   <children>
-      <ImageView fx:id="friendIcon" fitHeight="40.0" fitWidth="40.0" layoutX="47.8" layoutY="8.0" nodeOrientation="INHERIT" AnchorPane.leftAnchor="0.0">
-         <image>
-            <Image url="@../images/friendIcon.png" />
-         </image>
-      </ImageView>
-      <Label fx:id="friendName" layoutX="45.0" layoutY="18.0" text="Omer" AnchorPane.leftAnchor="45.0">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
-      <Circle fx:id="status" fill="#6e716f99" layoutX="40.0" layoutY="18.0" radius="5.0" stroke="#00000007" strokeType="INSIDE" AnchorPane.leftAnchor="35.0" />
-   </children>
-   <padding>
-      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-   </padding>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" minWidth="150.0" xmlns="http://javafx.com/javafx/23.0.1"
+            fx:controller="gov.iti.jets.view.AllCardController">
+    <children>
+        <ImageView fx:id="friendIcon" fitHeight="40.0" fitWidth="40.0" layoutX="47.8" layoutY="8.0"
+                   nodeOrientation="INHERIT" AnchorPane.leftAnchor="0.0">
+            <image>
+                <Image url="@../images/friendIcon.png"/>
+            </image>
+        </ImageView>
+        <Label fx:id="friendName" layoutX="45.0" layoutY="18.0" text="Omer" AnchorPane.leftAnchor="45.0">
+            <font>
+                <Font name="System Bold" size="15.0"/>
+            </font>
+        </Label>
+        <Circle fx:id="status" fill="#6e716f99" layoutX="40.0" layoutY="18.0" radius="5.0" stroke="#00000007"
+                strokeType="INSIDE" AnchorPane.leftAnchor="35.0"/>
+    </children>
+    <padding>
+        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+    </padding>
 </AnchorPane>

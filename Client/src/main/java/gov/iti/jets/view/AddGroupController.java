@@ -34,38 +34,30 @@ import java.util.ResourceBundle;
 
 public class AddGroupController implements Initializable {
 
+    private final List<AddGroupCellController> cellControllers = new ArrayList<>();
     @FXML
     private TextField GroupName_Field;
-
     @FXML
     private ListView<GroupMemberDTO> ListView_OfCheckBox;
-
     @FXML
     private Button choosePictureButton;
-
     @FXML
     private Button createGroupButton;
-
     @FXML
     private ImageView groupImage;
-
     @FXML
     private TextField selectFriend_Field;
-
     private byte[] selectedImageBytes;
-
-
-    private final List<AddGroupCellController> cellControllers = new ArrayList<>();
     private FilteredList<GroupMemberDTO> filteredList;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-       ObservableList<GroupMemberDTO> friends = GroupServiceController.getUsersList();
+        ObservableList<GroupMemberDTO> friends = GroupServiceController.getUsersList();
 
-       filteredList = new FilteredList<>(friends, user -> true);
-       ListView_OfCheckBox.setItems(filteredList);
-       ListView_OfCheckBox.setCellFactory(lv -> new ListCell<>() {
+        filteredList = new FilteredList<>(friends, user -> true);
+        ListView_OfCheckBox.setItems(filteredList);
+        ListView_OfCheckBox.setCellFactory(lv -> new ListCell<>() {
             @Override
             protected void updateItem(GroupMemberDTO user, boolean empty) {
                 super.updateItem(user, empty);
@@ -146,38 +138,30 @@ public class AddGroupController implements Initializable {
         // make groupservice method and give the group and list of its member including its admin
         if (!GroupName_Field.getText().isBlank() && !selectedUsers.isEmpty()) {
             CreateGroupDTO group = new CreateGroupDTO(GroupName_Field.getText().trim(),
-                    HomeServiceController.getUser().getPhoneNumber(), selectedImageBytes,selectedUsers);
+                    HomeServiceController.getUser().getPhoneNumber(), selectedImageBytes, selectedUsers);
             GroupServiceController.createGroup(group);
             Stage stage = (Stage) createGroupButton.getScene().getWindow();
-            showSucess("Group "+GroupName_Field.getText().trim()+" has been created Successfully", stage);
+            showSucess("Group " + GroupName_Field.getText().trim() + " has been created Successfully", stage);
 
         }
         // handle that the group name not blank
-        if(GroupName_Field.getText().isBlank()){
+        if (GroupName_Field.getText().isBlank()) {
             GroupName_Field.setTooltip(new Tooltip("Please enter group Name"));
             GroupName_Field.setStyle("-fx-border-color: red; -fx-border-width: 2px;");
-        }else {
+        } else {
             GroupName_Field.setTooltip(null);
             GroupName_Field.setStyle("");
         }
-        if(selectedUsers.isEmpty()){
+        if (selectedUsers.isEmpty()) {
             ListView_OfCheckBox.setTooltip(new Tooltip("Please add memebers to your group"));
             ListView_OfCheckBox.setStyle("-fx-border-color: red; -fx-border-width: 2px;");
 
-        }else{
+        } else {
 
             ListView_OfCheckBox.setTooltip(null);
             ListView_OfCheckBox.setStyle("");
 
         }
-
-
-
-
-
-
-
-
 
 
     }
@@ -233,11 +217,10 @@ public class AddGroupController implements Initializable {
 
 
         // Scene
-        Scene scene = new Scene(layout,600,400);
+        Scene scene = new Scene(layout, 600, 400);
         alertStage.setScene(scene);
         alertStage.showAndWait();
     }
-
 
 
 }

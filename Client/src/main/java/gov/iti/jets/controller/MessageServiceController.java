@@ -25,7 +25,6 @@ public class MessageServiceController {
     private static ChatAreaController activeChat;
 
 
-
     public static void receiveMessage(Message message) {
         if (activeChat != null) {
             if (message.getRecipient() == Recipient.PRIVATE && activeChat.isContact()) {
@@ -102,7 +101,7 @@ public class MessageServiceController {
                     message1.setRecipient(Recipient.PRIVATE);
 
                     HBox hBox = sendMessage(message1);
-                    if(activeChat.getContactUser().getPhoneNumber().equals(message.getSenderId())){
+                    if (activeChat.getContactUser().getPhoneNumber().equals(message.getSenderId())) {
                         activeChat.receivedMessage(hBox);
                     }
 
@@ -117,7 +116,6 @@ public class MessageServiceController {
         }
 
     }
-
 
 
     public static HBox sendMessage(Message message) {
@@ -160,13 +158,15 @@ public class MessageServiceController {
     public static HBox sendFile(Message message, File file, FileType fileType) {
         try {
             byte[] fileData = Files.readAllBytes(file.toPath());
-            int fileId = messagingService.uploadFile(fileData,file.getName(),fileType);
-            if (fileId == 0){ return null;}
+            int fileId = messagingService.uploadFile(fileData, file.getName(), fileType);
+            if (fileId == 0) {
+                return null;
+            }
             FileMessage fileMessage;
             if (message instanceof GroupMessage groupMessage) {
-                fileMessage = new FileMessage(groupMessage, fileData.length, file.getName(), fileType );
+                fileMessage = new FileMessage(groupMessage, fileData.length, file.getName(), fileType);
             } else {
-                fileMessage = new FileMessage(message, fileData.length, file.getName(), fileType );
+                fileMessage = new FileMessage(message, fileData.length, file.getName(), fileType);
             }
             fileMessage.setFileId(fileId);
             return sendMessage(fileMessage);
@@ -277,7 +277,7 @@ public class MessageServiceController {
         MessageServiceController.activeChat = activeChat;
     }
 
-    public static byte [] getFileData(int fileId) {
+    public static byte[] getFileData(int fileId) {
         try {
             return messagingService.downloadFile(fileId);
         } catch (RemoteException e) {

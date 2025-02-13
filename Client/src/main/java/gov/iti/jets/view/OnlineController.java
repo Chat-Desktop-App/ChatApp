@@ -1,22 +1,15 @@
 package gov.iti.jets.view;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.List;
-import java.util.ResourceBundle;
-
 import gov.iti.jets.controller.HomeServiceController;
-import gov.iti.jets.model.ContactUser;
-import gov.iti.jets.services.interfaces.LoadHome;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.control.ScrollBar;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public class OnlineController {
     HomeServiceController homeServiceController;

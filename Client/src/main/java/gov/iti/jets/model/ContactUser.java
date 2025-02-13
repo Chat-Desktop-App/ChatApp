@@ -4,10 +4,9 @@ package gov.iti.jets.model;
 import javafx.beans.value.ChangeListener;
 
 import java.io.Serial;
-import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class ContactUser implements  Chatable {
+public class ContactUser implements Chatable {
     @Serial
     private static final long serialVersionUID = 5677958496409793424L;
     private String phoneNumber;
@@ -21,8 +20,6 @@ public class ContactUser implements  Chatable {
     private ChangeListener<LocalDateTime> lastChatAtListener;
 
 
-
-
     public ContactUser(String phoneNumber, String fname, String lname, Status status, String picturePath) {
         this.phoneNumber = phoneNumber;
         this.fname = fname;
@@ -30,6 +27,18 @@ public class ContactUser implements  Chatable {
         name = fname + " " + lname;
         this.status = status;
         this.picturePath = picturePath;
+    }
+
+    public ContactUser(String phoneNumber, String fname, String lname, Status status, LocalDateTime lastChatAt) {
+        this.phoneNumber = phoneNumber;
+        this.fname = fname;
+        this.lname = lname;
+        name = fname + " " + lname;
+        this.status = status;
+        this.lastChatAt = lastChatAt;
+    }
+
+    public ContactUser() {
     }
 
     @Override
@@ -43,18 +52,6 @@ public class ContactUser implements  Chatable {
         if (lastChatAtListener != null) {
             lastChatAtListener.changed(null, oldValue, lastChatAt);
         }
-    }
-
-    public ContactUser(String phoneNumber, String fname, String lname, Status status, LocalDateTime lastChatAt) {
-        this.phoneNumber = phoneNumber;
-        this.fname = fname;
-        this.lname = lname;
-        name = fname + " " + lname;
-        this.status = status;
-        this.lastChatAt = lastChatAt;
-    }
-
-    public ContactUser() {
     }
 
     public String getPhoneNumber() {
@@ -80,7 +77,6 @@ public class ContactUser implements  Chatable {
     public void setLname(String lname) {
         this.lname = lname;
     }
-
 
 
     public Status getStatus() {

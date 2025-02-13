@@ -2,22 +2,14 @@ package gov.iti.jets.view;
 
 import gov.iti.jets.ClientApp;
 import gov.iti.jets.controller.RegisterServiceController;
-
 import gov.iti.jets.model.Gender;
 import gov.iti.jets.model.User;
 import javafx.application.Platform;
 import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
-import java.nio.file.Files;
-import java.util.ResourceBundle;
-
-import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -32,115 +24,15 @@ import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
+
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.nio.file.Files;
+import java.util.ResourceBundle;
 
 
 public class SignUpController implements Initializable {
-    @FXML
-    private VBox background;
-
-    @FXML
-    private ImageView logo;
-
-    @FXML
-    private Image orca;
-
-    @FXML
-    private VBox SignUp1Vbox;
-
-    @FXML
-    private Label createLabel;
-
-    @FXML
-    private TextField phoneNum;
-
-    @FXML
-    private TextField fname;
-
-    @FXML
-    private TextField lname;
-
-    @FXML
-    private TextField email;
-
-    @FXML
-    private HBox hiddenPassHbox;
-
-    @FXML
-    private PasswordField password;
-
-    @FXML
-    private HBox showPassHbox;
-
-    @FXML
-    private TextField passwordText;
-
-    @FXML
-    private HBox hiddenCpass;
-
-    @FXML
-    private PasswordField cpassword;
-
-    @FXML
-    private HBox shownCpass;
-
-    @FXML
-    private TextField cpasswordText;
-
-
-    @FXML
-    private Button next;
-
-    @FXML
-    private VBox SignUp2Vbox;
-
-    @FXML
-    private Label createLabel2;
-
-    @FXML
-    private ImageView profilePicture;
-
-    @FXML
-    private Image profile;
-
-    @FXML
-    private Button choosePicture;
-
-    @FXML
-    private RadioButton female;
-
-    @FXML
-    private ToggleGroup gender;
-
-    @FXML
-    private RadioButton male;
-
-    @FXML
-    private DatePicker dob;
-
-    @FXML
-    private ComboBox<String> country;
-
-    @FXML
-    private TextField bio;
-
-    @FXML
-    private Button prev;
-
-    @FXML
-    private Button submit;
-
-    private Stage primaryStage;
-
-    private Scene nextScene;
-
-    private Parent nextRoot;
-
-    private User user;
-
-
-    private byte[] selectedImageBytes;
-
     /*
         * +1 234 567 8901
            +20 100 123 4567
@@ -151,7 +43,6 @@ public class SignUpController implements Initializable {
            * min digits 8 max 11
     * */
     private static final String PHONE_REGEX = "^(\\+?\\d{1,3} ?\\(?\\d{1,4}\\)? ?\\d{3,4} ?\\d{4})$";
-
     /*
                 *  user@example.com
                     user.name@example.com
@@ -160,7 +51,6 @@ public class SignUpController implements Initializable {
                     U123@domain.net
      */
     private static final String EMAIL_REGEX = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
-
     /*
     *   At least one letter ([A-Za-z])
         At least one digit (\d)
@@ -168,8 +58,73 @@ public class SignUpController implements Initializable {
         Allows only letters and numbers (No special characters required)
     * */
     private static final String PASS_REGEX = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$";
-
-
+    @FXML
+    private VBox background;
+    @FXML
+    private ImageView logo;
+    @FXML
+    private Image orca;
+    @FXML
+    private VBox SignUp1Vbox;
+    @FXML
+    private Label createLabel;
+    @FXML
+    private TextField phoneNum;
+    @FXML
+    private TextField fname;
+    @FXML
+    private TextField lname;
+    @FXML
+    private TextField email;
+    @FXML
+    private HBox hiddenPassHbox;
+    @FXML
+    private PasswordField password;
+    @FXML
+    private HBox showPassHbox;
+    @FXML
+    private TextField passwordText;
+    @FXML
+    private HBox hiddenCpass;
+    @FXML
+    private PasswordField cpassword;
+    @FXML
+    private HBox shownCpass;
+    @FXML
+    private TextField cpasswordText;
+    @FXML
+    private Button next;
+    @FXML
+    private VBox SignUp2Vbox;
+    @FXML
+    private Label createLabel2;
+    @FXML
+    private ImageView profilePicture;
+    @FXML
+    private Image profile;
+    @FXML
+    private Button choosePicture;
+    @FXML
+    private RadioButton female;
+    @FXML
+    private ToggleGroup gender;
+    @FXML
+    private RadioButton male;
+    @FXML
+    private DatePicker dob;
+    @FXML
+    private ComboBox<String> country;
+    @FXML
+    private TextField bio;
+    @FXML
+    private Button prev;
+    @FXML
+    private Button submit;
+    private Stage primaryStage;
+    private Scene nextScene;
+    private Parent nextRoot;
+    private User user;
+    private byte[] selectedImageBytes;
     private RegisterServiceController registerController;
 
     @FXML
@@ -181,7 +136,7 @@ public class SignUpController implements Initializable {
         StringProperty cpasswordTextProperty = cpasswordText.textProperty();
         cpassword.textProperty().bindBidirectional(cpasswordTextProperty);
 
-        registerController  = new RegisterServiceController(this);
+        registerController = new RegisterServiceController(this);
         country.getItems().addAll("Afghanistan", "Albania", "Algeria", "Andorra", "Angola",
                 "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan",
                 "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus",
@@ -232,11 +187,10 @@ public class SignUpController implements Initializable {
         passwordText.setTooltip(new Tooltip("Password must contain at least 8 characters, one letter, and one number"));
 
 
-
     }
 
     private void validatePassword() {
-        if(hiddenPassHbox.isVisible()) {
+        if (hiddenPassHbox.isVisible()) {
             String storedPassword = password.getText().trim();
             if (!storedPassword.matches(PASS_REGEX)) {
 
@@ -247,7 +201,7 @@ public class SignUpController implements Initializable {
                 password.setStyle("");
 
             }
-        }else{
+        } else {
             String storedPassword = passwordText.getText().trim();
             if (!storedPassword.matches(PASS_REGEX)) {
 
@@ -294,15 +248,14 @@ public class SignUpController implements Initializable {
         if (phoneNum.getText().isBlank() || fname.getText().isBlank() || lname.getText().isBlank() || email.getText().isBlank() || password.getText().isBlank() || password.getText().isBlank()) {
 
             showAlert("Please enter all fields", stage);
-        }
-        else if ( !passwordText.getStyle().equals("") || !password.getStyle().equals("") || !email.getStyle().equals("") || !phoneNum.getStyle().equals("")) {
+        } else if (!passwordText.getStyle().equals("") || !password.getStyle().equals("") || !email.getStyle().equals("") || !phoneNum.getStyle().equals("")) {
             // All inputs are valid, proceed with the action (e.g., submitting the form)
             showAlert("Invalid Data", stage);
         }
         // check password is same as cpassword
         else if (!password.getText().equals(cpassword.getText())) {
 
-            showAlert("Passwords do not match. Please make sure both passwords are the same",stage);
+            showAlert("Passwords do not match. Please make sure both passwords are the same", stage);
         } else {
 
             // add it to a user object
@@ -409,7 +362,7 @@ public class SignUpController implements Initializable {
 
         if (!registerController.signUp(user)) {
             showAlert("User already exists", stage);
-        }else {
+        } else {
 
 
             showSucess("Registration Successful! Your account has been created. You can now log in and start chatting!!", stage);
@@ -417,7 +370,7 @@ public class SignUpController implements Initializable {
             try {
                 nextRoot = fxmlLoader.load();
                 nextScene = new Scene(nextRoot);
-                primaryStage = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
+                primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
                 primaryStage.setScene(nextScene);
             } catch (IOException e) {
                 throw new RuntimeException(e);
@@ -528,7 +481,7 @@ public class SignUpController implements Initializable {
 
 
         // Scene
-        Scene scene = new Scene(layout,600,400);
+        Scene scene = new Scene(layout, 600, 400);
         alertStage.setScene(scene);
         alertStage.showAndWait();
     }
