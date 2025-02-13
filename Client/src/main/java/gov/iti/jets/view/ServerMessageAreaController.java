@@ -48,7 +48,7 @@ public class ServerMessageAreaController {
             messages.add(announcementBox);
 
             // Scroll to the latest announcement
-            serverMessageListView.scrollTo(messages.size() - 1);
+            if(!message.isEmpty()) serverMessageListView.scrollTo(messages.size() - 1);
         });
     }
 
