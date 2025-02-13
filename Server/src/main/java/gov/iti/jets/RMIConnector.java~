@@ -28,8 +28,8 @@ public class RMIConnector {
         Properties properties = new Properties();
         Path currentPath = Paths.get("").toAbsolutePath();
         Path parentPath = currentPath.getParent();
-        File file = Paths.get(parentPath + File.separator+"db.properties").toFile();;
-        try (FileInputStream fis = new FileInputStream(file)) {
+        System.out.println(parentPath + File.separator+"db.properties" );
+        try (FileInputStream fis = new FileInputStream(parentPath + File.separator+"config.properties")) {
             properties.load(fis);
             serverIp = properties.getProperty("server.ip", "127.0.0.1"); // Default to localhost if not found
             serverPort = Integer.parseInt(properties.getProperty("server.port", "1099"));
