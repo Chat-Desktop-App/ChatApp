@@ -80,8 +80,8 @@ public class RMIConnector {
                 break;
             } catch (RemoteException | NotBoundException e) {
                 System.out.println("Connection to services failed: " + e.getMessage());
-                showAlert(Alert.AlertType.CONFIRMATION, "Connection Error", "Failed to connect to server."); // Retry after a short dela
-
+                    showAlert(Alert.AlertType.CONFIRMATION, "Connection Error", "Failed to connect to server."); // Retry after a short dela
+                
             }
         }
 

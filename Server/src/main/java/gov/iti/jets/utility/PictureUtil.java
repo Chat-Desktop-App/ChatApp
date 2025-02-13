@@ -59,7 +59,6 @@ public class PictureUtil{
 
         File file = new File(picturePath);
         if (!file.exists()) {
-            System.err.println("File not found: " + picturePath);
             return null;
         }
         try (FileInputStream fis = new FileInputStream(file);
