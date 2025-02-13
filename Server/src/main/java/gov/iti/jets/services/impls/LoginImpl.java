@@ -79,6 +79,14 @@ public class LoginImpl extends UnicastRemoteObject implements Login {
 
             dao.update(user);
 
+            List<ContactUser> contacts  = new ContactDaoImpl().getFriendsContacts(phoneNumber);
+            for (ContactUser contactUser : contacts) {
+                ChatClient chatClient = onlineClients.get(contactUser.getPhoneNumber());
+                if(chatClient != null){
+                    chatClient.updateStatus(phoneNumber,Status.OFFLINE);
+                }
+            }
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -117,6 +125,14 @@ public class LoginImpl extends UnicastRemoteObject implements Login {
 
             dao.update(user);
 
+            List<ContactUser> contacts  = new ContactDaoImpl().getFriendsContacts(phoneNumber);
+            for (ContactUser contactUser : contacts) {
+                ChatClient chatClient = onlineClients.get(contactUser.getPhoneNumber());
+                if(chatClient != null){
+                    chatClient.updateStatus(phoneNumber,Status.OFFLINE);
+                }
+            }
+
             System.out.println(phoneNumber + " exited");
 
         } catch (SQLException e) {
@@ -139,6 +155,13 @@ public class LoginImpl extends UnicastRemoteObject implements Login {
 
         try {
             dao.update(user);
+            List<ContactUser> contacts  = new ContactDaoImpl().getFriendsContacts(session.getPhoneNumber());
+            for (ContactUser contactUser : contacts) {
+                ChatClient chatClient = onlineClients.get(contactUser.getPhoneNumber());
+                if(chatClient != null){
+                    chatClient.updateStatus(session.getPhoneNumber(),Status.OFFLINE);
+                }
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
