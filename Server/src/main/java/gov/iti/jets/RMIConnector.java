@@ -26,10 +26,11 @@ public class RMIConnector {
     }
     private static void loadConfig() {
         Properties properties = new Properties();
-        Path currentPath = Paths.get("").toAbsolutePath();
-        Path parentPath = currentPath.getParent();
-        File file = Paths.get(parentPath + File.separator+"config.properties").toFile();;
-        try (FileInputStream fis = new FileInputStream(file)) {
+
+        String jarDirectory = System.getProperty("user.dir"); // This points to the directory where the JAR is being run
+        File propertiesFile = new File(jarDirectory, "config.properties");
+
+        try (FileInputStream fis = new FileInputStream(propertiesFile)) {
             properties.load(fis);
             serverIp = properties.getProperty("ip","127.0.0.1"); // Default to localhost if not found
             System.out.println(serverIp);

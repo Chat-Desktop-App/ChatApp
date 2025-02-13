@@ -30,14 +30,14 @@
  }
 
 .ai_button{
- -fx-background-image: url("../images/ai.png");
+ -fx-background-image: url("../images/AI.png");
  -fx-background-size: 100% 100%;
  -fx-background-repeat: no-repeat;
  -fx-background-color: transparent;
 }
 
 .ai_selected{
--fx-background-image: url("../images/ai_selected.png");
+    -fx-background-image: url("../images/ai_selected.png");
      -fx-background-size: 100% 100%;
      -fx-background-repeat: no-repeat;
      -fx-background-color: transparent;

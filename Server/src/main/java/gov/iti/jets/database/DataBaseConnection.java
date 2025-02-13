@@ -24,10 +24,11 @@ public class DataBaseConnection {
     private DataBaseConnection() throws SQLException {
         DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
         Properties properties = new Properties();
-        Path currentPath = Paths.get("").toAbsolutePath();
-        Path parentPath = currentPath.getParent();
-        File file = Paths.get(parentPath + File.separator+"db.properties").toFile();
-        try (InputStream inputStream = new FileInputStream(file)){
+
+        String jarDirectory = System.getProperty("user.dir"); // This points to the directory where the JAR is being run
+        File propertiesFile = new File(jarDirectory, "db.properties");
+        System.out.println("......................"+jarDirectory);
+        try (InputStream inputStream = new FileInputStream(propertiesFile)){
             properties.load(inputStream);
             this.url = properties.getProperty("URL");
             System.out.println(url);
