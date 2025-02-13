@@ -46,7 +46,6 @@ public class HomeServiceController {
         }
         return observableList;
     }
-
     public static ObservableList<AnchorPane> getLast() {
         String fxmlPath = "/gov/iti/jets/fxml/Chats.fxml";
         try {

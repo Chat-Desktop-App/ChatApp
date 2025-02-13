@@ -4,11 +4,16 @@ import java.io.IOException;
 import java.net.URL;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.ResourceBundle;
 import java.util.Set;
 
+import gov.iti.jets.controller.HomeServiceController;
+import gov.iti.jets.controller.NotificationServiceController;
 import gov.iti.jets.controller.Session;
+import gov.iti.jets.model.Notification;
+import gov.iti.jets.model.Notifications;
 import gov.iti.jets.model.User;
 import gov.iti.jets.services.impls.ChatClientImpl;
 import gov.iti.jets.services.interfaces.ContactService;
@@ -60,6 +65,7 @@ public class AddFriendController {
             if (user != null) {
                 addUserToList(user);
                 phoneField.clear();
+
             }
             else {
                 showAlert(Alert.AlertType.ERROR, "User not found", "No user is found with this phone number");
@@ -90,6 +96,8 @@ public class AddFriendController {
                 else {
 
                     showAlert(Alert.AlertType.INFORMATION, "Success", "Friend requests sent successfully.");
+                    Notifications notifications = new Notifications(receiverPhone,senderPhone,"You have a pending friend request ",LocalDateTime.now(),false, Notification.FRIENDREQUEST);
+                    NotificationServiceController.addNotification(notifications);
                 }
             }
             friendList.clear();
