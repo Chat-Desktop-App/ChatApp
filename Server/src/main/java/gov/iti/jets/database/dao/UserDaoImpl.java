@@ -144,10 +144,10 @@ public class UserDaoImpl implements UserDao{
             query.append("email = ?, ");
             params.add(user.getEmail());
         }
-        if (user.getPasswordHashed() != null) {
-            query.append("password = ?, ");
-            params.add(hashPass(user.getPasswordHashed()));
-        }
+//        if (user.getPasswordHashed() != null) {
+//            query.append("password = ?, ");
+//            params.add(hashPass(user.getPasswordHashed()));
+//        }
         if (user.getGender() != null) {
             query.append("gender = ?, ");
             params.add(user.getGender().toString());

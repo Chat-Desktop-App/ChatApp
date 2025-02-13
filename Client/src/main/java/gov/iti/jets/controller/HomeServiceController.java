@@ -84,7 +84,11 @@ public class HomeServiceController {
 //        if (myPendingList == null) {
         String fxmlPath = "/gov/iti/jets/fxml/pendingCard.fxml";
         try {
+            if(myPendingList == null){
             myPendingList = FXCollections.observableArrayList();
+            }else {
+                myPendingList.clear();
+            }
             List<ContactUser> list = loadHome.getPendingContacts(user.getPhoneNumber());
             if (list != null) myPendingList.addAll(getContacts(fxmlPath, list));
         } catch (IOException e) {
