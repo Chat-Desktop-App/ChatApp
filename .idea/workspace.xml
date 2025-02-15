@@ -4,7 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e8ea2565-13f4-4c48-a0c7-777514fb736b" name="Changes" comment="delete old server" />
+    <list default="true" id="e8ea2565-13f4-4c48-a0c7-777514fb736b" name="Changes" comment="delete old server">
+      <change beforePath="$PROJECT_DIR$/Client/dependency-reduced-pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Client/dependency-reduced-pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/session.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Client/session.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/java/gov/iti/jets/controller/HomeServiceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/gov/iti/jets/controller/HomeServiceController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/java/gov/iti/jets/services/impls/ChatClientImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/gov/iti/jets/services/impls/ChatClientImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/java/gov/iti/jets/services/interfaces/ChatClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/gov/iti/jets/services/interfaces/ChatClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Server/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/gov/iti/jets/services/impls/LoadHomeImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/gov/iti/jets/services/impls/LoadHomeImp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/gov/iti/jets/services/interfaces/ChatClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/gov/iti/jets/services/interfaces/ChatClient.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,6 +27,18 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "AhmedAshraf8228"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Chat-Desktop-App/ChatApp.git",
+    "accountId": "31b6e34d-80f6-4d0d-8884-909eff46b356"
+  }
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
 }</component>
@@ -32,7 +53,8 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "reconnect-feature",
+    "com.codeium.enabled": "true",
+    "git-widget-placeholder": "newMain",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/medom/IdeaProjects/ChatApp/Client",

@@ -6,6 +6,7 @@ import gov.iti.jets.model.ContactStatus;
 import gov.iti.jets.model.ContactUser;
 import gov.iti.jets.model.Group;
 import gov.iti.jets.model.Chatable;
+import gov.iti.jets.services.interfaces.ChatClient;
 import gov.iti.jets.services.interfaces.LoadHome;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -106,7 +107,12 @@ public class LoadHomeImp extends UnicastRemoteObject implements LoadHome {
     @Override
     public boolean updateContact(String u1, String u2, ContactStatus status) throws RemoteException {
         try {
-            return contactDao.updateContact(u1,u2,status);
+            boolean flag = contactDao.updateContact(u1,u2,status);
+            ChatClient chatClient = LoginImpl.getOnlineClients().get(u1);
+            if(chatClient!=null){
+                chatClient.updateContactList(contactDao.getFriendContact(u2));
+            }
+            return flag ;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

@@ -4,10 +4,7 @@ import gov.iti.jets.controller.HomeServiceController;
 import gov.iti.jets.controller.MessageServiceController;
 import gov.iti.jets.controller.NotificationServiceController;
 import gov.iti.jets.controller.Session;
-import gov.iti.jets.model.Chatable;
-import gov.iti.jets.model.Message;
-import gov.iti.jets.model.Notifications;
-import gov.iti.jets.model.Status;
+import gov.iti.jets.model.*;
 import gov.iti.jets.services.interfaces.ChatClient;
 import gov.iti.jets.view.ServerMessageAreaController;
 import javafx.application.Platform;
@@ -55,5 +52,10 @@ public class ChatClientImpl extends UnicastRemoteObject implements ChatClient {
     @Override
     public void receivedNotification(Notifications notifications) throws RemoteException {
         NotificationServiceController.receivedNotification(notifications);
+    }
+
+    @Override
+    public void updateContactList(ContactUser contactUser) throws RemoteException {
+        HomeServiceController.addToLastContactList(contactUser);
     }
 }
