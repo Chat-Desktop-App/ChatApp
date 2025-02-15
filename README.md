@@ -37,6 +37,7 @@ During our 9-Month ITI Program, we turned our knowledge into a fully functional 
 🎯 From Learning to Real-World Application
 A huge thank you to our amazing instructors: Amr Elshafey , Ahmed Lotfy , Eman Hesham, DBA, M.Sc. for their guidance! 🙌
 
+![Screenshot 2025-02-15 204741](https://github.com/user-attachments/assets/4bc94566-35e4-42ff-b2f3-989bb7aa2717)
 ![Screenshot 2025-02-15 204935](https://github.com/user-attachments/assets/587f54d6-2b52-4a44-9f9e-d53b916a82b5)
 ![Screenshot 2025-02-15 205000](https://github.com/user-attachments/assets/1cce6d1b-2c44-4035-9111-7e700b3fb75a)
 ![Screenshot 2025-02-15 205048](https://github.com/user-attachments/assets/a13a97af-986d-4a55-8573-90ab95823441)
@@ -51,4 +52,3 @@ A huge thank you to our amazing instructors: Amr Elshafey , Ahmed Lotfy , Eman H
 ![Screenshot 2025-02-15 205949](https://github.com/user-attachments/assets/7e2b8f41-c25b-424b-8846-d556382dae00)
 ![Screenshot 2025-02-15 210238](https://github.com/user-attachments/assets/5c58db0b-8dbe-4f82-869e-02e2d964052f)
 ![Screenshot 2025-02-15 210943](https://github.com/user-attachments/assets/a70bffcf-1df3-44cd-b8be-91ecb28103ca)
-![Screenshot 2025-02-15 204741](https://github.com/user-attachments/assets/4bc94566-35e4-42ff-b2f3-989bb7aa2717)
