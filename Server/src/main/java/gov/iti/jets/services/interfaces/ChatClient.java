@@ -1,9 +1,6 @@
 package gov.iti.jets.services.interfaces;
 
-import gov.iti.jets.model.Chatable;
-import gov.iti.jets.model.Message;
-import gov.iti.jets.model.Notifications;
-import gov.iti.jets.model.Status;
+import gov.iti.jets.model.*;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -18,4 +15,5 @@ public interface ChatClient extends Remote {
 
     void receivedNotification(Notifications notifications) throws RemoteException;
 
+    void updateContactList(ContactUser contactUser) throws RemoteException;
 }
