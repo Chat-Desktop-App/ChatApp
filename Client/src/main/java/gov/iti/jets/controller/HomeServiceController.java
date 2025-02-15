@@ -38,7 +38,6 @@ public class HomeServiceController {
                 } else if (controller instanceof OnlineCardController) {
                     ((OnlineCardController) controller).setContact(contactUser);
                 }
-
                 observableList.add(anchorPane);
             }
         } catch (IOException e) {

@@ -23,8 +23,6 @@ public class AddGroupImpl extends UnicastRemoteObject implements AddGroup {
     private static ContactDao contactDao = new ContactDaoImpl();
     private static GroupDao groupDao = new GroupDaoImpl();
 
-
-
     public AddGroupImpl() throws RemoteException {
 
     }
@@ -72,13 +70,9 @@ public class AddGroupImpl extends UnicastRemoteObject implements AddGroup {
                     groupDao.addGroupMember(group_id, member.phoneNumber());
                 }
             }
-
-
-
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return  resGroup;
-
     }
 }

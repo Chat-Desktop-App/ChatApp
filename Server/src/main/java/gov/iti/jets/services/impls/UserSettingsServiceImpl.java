@@ -23,6 +23,7 @@ public class UserSettingsServiceImpl extends UnicastRemoteObject implements User
         super();
         this.userDao = new UserDaoImpl();
     }
+
     @Override
     public boolean UpdatePicture(String phoneNumber, byte [] picByte) throws RemoteException {
         try {

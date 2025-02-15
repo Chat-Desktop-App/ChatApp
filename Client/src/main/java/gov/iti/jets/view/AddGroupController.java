@@ -54,7 +54,6 @@ public class AddGroupController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ObservableList<GroupMemberDTO> friends = GroupServiceController.getUsersList();
-
         filteredList = new FilteredList<>(friends, user -> true);
         ListView_OfCheckBox.setItems(filteredList);
         ListView_OfCheckBox.setCellFactory(lv -> new ListCell<>() {
@@ -132,10 +131,7 @@ public class AddGroupController implements Initializable {
             }
 
         }
-        // make a dto have group info including its admin id and list of its memebers and including its admin as memeber
-        // send to server
 
-        // make groupservice method and give the group and list of its member including its admin
         if (!GroupName_Field.getText().isBlank() && !selectedUsers.isEmpty()) {
             CreateGroupDTO group = new CreateGroupDTO(GroupName_Field.getText().trim(),
                     HomeServiceController.getUser().getPhoneNumber(), selectedImageBytes, selectedUsers);
@@ -144,7 +140,7 @@ public class AddGroupController implements Initializable {
             showSucess("Group " + GroupName_Field.getText().trim() + " has been created Successfully", stage);
 
         }
-        // handle that the group name not blank
+
         if (GroupName_Field.getText().isBlank()) {
             GroupName_Field.setTooltip(new Tooltip("Please enter group Name"));
             GroupName_Field.setStyle("-fx-border-color: red; -fx-border-width: 2px;");
@@ -157,13 +153,9 @@ public class AddGroupController implements Initializable {
             ListView_OfCheckBox.setStyle("-fx-border-color: red; -fx-border-width: 2px;");
 
         } else {
-
             ListView_OfCheckBox.setTooltip(null);
             ListView_OfCheckBox.setStyle("");
-
         }
-
-
     }
 
     private byte[] convertFileToBytes(File file) {
@@ -214,7 +206,6 @@ public class AddGroupController implements Initializable {
         VBox layout = new VBox(10, icon, errorLabel, okButton);
         layout.setStyle("-fx-padding: 20px; -fx-alignment: center; -fx-border-radius: 10px;");
         layout.setStyle("-fx-background-color: white; -fx-padding: 20px; -fx-alignment: center;");
-
 
         // Scene
         Scene scene = new Scene(layout, 600, 400);

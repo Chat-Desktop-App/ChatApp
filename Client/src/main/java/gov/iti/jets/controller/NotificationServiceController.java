@@ -16,7 +16,7 @@ import java.util.List;
 
 public class NotificationServiceController {
     private static NotificationsService notificationsService = RMIConnector.getRmiConnector().getNotificationService();
-    private static ObservableList<AnchorPane> myNotificationsList = FXCollections.observableArrayList();
+    private static final ObservableList<AnchorPane> myNotificationsList = FXCollections.observableArrayList();
 
     public static ObservableList<AnchorPane> getNotifications(String phoneNumber) {
         String fxmlPath = "/gov/iti/jets/fxml/notificationCell.fxml";

@@ -144,10 +144,7 @@ public class UserDaoImpl implements UserDao{
             query.append("email = ?, ");
             params.add(user.getEmail());
         }
-//        if (user.getPasswordHashed() != null) {
-//            query.append("password = ?, ");
-//            params.add(hashPass(user.getPasswordHashed()));
-//        }
+
         if (user.getGender() != null) {
             query.append("gender = ?, ");
             params.add(user.getGender().toString());
@@ -326,83 +323,6 @@ public class UserDaoImpl implements UserDao{
         }
 
         return hexString.toString();
-
-    }
-    public static void main(String[] args) throws SQLException {
-        UserDaoImpl userDao = new UserDaoImpl();
-        User user = userDao.getUser("2233445566");
-        System.out.println(user.getAdmin());
-
-        /*try {
-         /*   // Create a test user
-            User testUser = new User();
-            testUser.setPhoneNumber("+1234567890");
-            testUser.setFname("John");
-            testUser.setLname("Doe");
-            testUser.setEmail("john.doe@example.com");
-            testUser.setPasswordHashed("testpassword");
-            testUser.setGender(Gender.MALE);
-            testUser.setCountry("USA");
-            testUser.setDob(LocalDate.of(1990, 1, 1));
-            testUser.setBio("Test user biography");
-            //testUser.setStatus(Status.ONLINE); default available
-            //testUser.setNumberEnteries(0L); default 1L
-            //testUser.setLastSeen(LocalDateTime.now()); default
-            //testUser.setAdmin(false); default false
-
-
-            // Test addUser method
-
-            int addResult = userDao.addUser(testUser);
-            System.out.println("User Added: " + (addResult > 0));
-
-            // Test getUser method
-            User retrievedUser = userDao.getUser("+1234567890");
-            System.out.println("Retrieved User: " + (retrievedUser != null));
-            System.out.println("User Name: " + retrievedUser.getFname() + " " + retrievedUser.getLname());
-
-            // Test getUsers method
-            List<User> users = userDao.getUsers();
-            System.out.println("Total Users: " + users.size());
-
-            // Test update method
-            retrievedUser.setFname("Jane");
-            int updateResult = userDao.update(retrievedUser);
-            System.out.println("User Updated: " + (updateResult > 0));
-
-
-            User newUser = new User();
-            newUser.setPhoneNumber("+1122");
-            newUser.setFname("Alice");
-            newUser.setLname("Johnson");
-            newUser.setEmail("alice2.joon@example.net");
-            newUser.setPasswordHashed("mypassword456");
-            newUser.setGender(Gender.FEMALE);
-            newUser.setCountry("UK");
-            newUser.setDob(LocalDate.of(1995, 3, 25));
-            newUser.setBio("Tech enthusiast and avid traveler, exploring the world one line of code at a time.");
-
-            userDao.addUser(newUser);
-
-            User newUser2 = new User();
-            newUser2.setPhoneNumber("+1125867");
-            newUser2.setFname("Alice");
-            newUser2.setLname("Johnson");
-            newUser2.setEmail("alice.nn@example.net");
-            newUser2.setPasswordHashed("mypassword456");
-            newUser2.setGender(Gender.MALE);
-            newUser2.setCountry("USA");
-            newUser2.setDob(LocalDate.of(1995, 3, 25));
-            newUser2.setBio("Tech enthusiast and avid traveler, exploring the world one line of code at a time.");
-            newUser2.setStatus(Status.BUSY);
-
-            userDao.addUser(newUser2);
-
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }*/
-        System.out.println(userDao.hashPass("password456"));
 
     }
 }

@@ -3,10 +3,8 @@ package gov.iti.jets.services.impls;
 import gov.iti.jets.database.dao.*;
 import gov.iti.jets.model.ContactUser;
 import gov.iti.jets.model.Notifications;
-import gov.iti.jets.model.User;
 import gov.iti.jets.services.interfaces.ChatClient;
 import gov.iti.jets.services.interfaces.NotificationsService;
-
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.SQLException;

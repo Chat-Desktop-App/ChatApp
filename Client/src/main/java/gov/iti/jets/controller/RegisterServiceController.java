@@ -8,15 +8,12 @@ import gov.iti.jets.view.SignUpController;
 import java.rmi.RemoteException;
 
 public class RegisterServiceController {
-    private SignUpController view;
+    private final SignUpController view;
     private Register registerService;
 
     public RegisterServiceController(SignUpController view) {
-        registerService = (Register) RMIConnector.getRmiConnector().getRegisterService();
+        registerService = RMIConnector.getRmiConnector().getRegisterService();
         this.view = view;
-        // add callbacks later
-
-
     }
 
     public boolean signUp(User user) {
@@ -31,7 +28,6 @@ public class RegisterServiceController {
             registerService = RMIConnector.rmiReconnect().getRegisterService();
             throw new RuntimeException(e);
         }
-
         return true;
     }
 

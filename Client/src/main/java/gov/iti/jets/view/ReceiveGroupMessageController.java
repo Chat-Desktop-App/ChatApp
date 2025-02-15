@@ -55,7 +55,6 @@ public class ReceiveGroupMessageController {
         if (pic != null) {
             profilePic.setImage(new Image(new ByteArrayInputStream(pic)));
         }
-
         setTextFormat();
     }
 
@@ -78,7 +77,6 @@ public class ReceiveGroupMessageController {
         }
 
         messageContent.setStyle(builder.toString());
-
         messageContent.setFill(Paint.valueOf(message.getFontColour()));
         contentVBox.setStyle("-fx-background-color:" + message.getTextBackGroundColour() + ";");
     }

@@ -21,18 +21,12 @@ public class RegisterImpl  extends UnicastRemoteObject implements Register {
 
     @Override
     public User SignUp(User user) throws RemoteException {
-
-
-
         UserDao dao = new UserDaoImpl();
-
-
         try {
             if(dao.getUser(user.getPhoneNumber()) != null){
 
                 return null;
             }
-
             if(user.getPicture() != null && user.getPicture().length > 0){
                 String uploadedPicturePath = PictureUtil.saveUserProfilePicture(user.getPicture(), user);
                 user.setPicturePath(uploadedPicturePath);
@@ -46,10 +40,6 @@ public class RegisterImpl  extends UnicastRemoteObject implements Register {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
-
         return user;
     }
-
-
 }

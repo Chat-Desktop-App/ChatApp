@@ -116,8 +116,6 @@ public class LogInServiceController {
             service = RMIConnector.getRmiConnector().getLoginService();
             service.reconnect(Session.user.getPhoneNumber(), Session.user.getPasswordHashed(), client);
 
-
-            // make xml for user config
             LoginStatus session = service.createSession(Session.user.getPhoneNumber());
             try {
 
@@ -134,14 +132,9 @@ public class LogInServiceController {
                 throw new RuntimeException(e);
             }
 
-
         } catch (RemoteException e) {
             service = RMIConnector.rmiReconnect().getLoginService();
             throw new RuntimeException(e);
         }
-
-
     }
-
-
 }

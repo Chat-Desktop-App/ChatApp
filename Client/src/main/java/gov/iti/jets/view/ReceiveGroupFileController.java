@@ -54,7 +54,6 @@ public class ReceiveGroupFileController {
     @FXML
     void dowloadButtonHandle(ActionEvent actionEvent) {
         byte[] fileData = MessageServiceController.getFileData(fileMessage.getFileId());
-
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Save File");
         fileChooser.setInitialFileName(fileMessage.getFileName());

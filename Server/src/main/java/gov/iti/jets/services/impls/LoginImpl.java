@@ -60,7 +60,6 @@ public class LoginImpl extends UnicastRemoteObject implements Login {
                         chatClient.updateStatus(phoneNumber,Status.AVAILABLE);
                     }
                 }
-
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -76,9 +75,7 @@ public class LoginImpl extends UnicastRemoteObject implements Login {
             User user = new User();
             user.setPhoneNumber(phoneNumber);
             user.setStatus(Status.OFFLINE);
-
             dao.update(user);
-
             List<ContactUser> contacts  = new ContactDaoImpl().getFriendsContacts(phoneNumber);
             for (ContactUser contactUser : contacts) {
                 ChatClient chatClient = onlineClients.get(contactUser.getPhoneNumber());
@@ -91,9 +88,7 @@ public class LoginImpl extends UnicastRemoteObject implements Login {
             throw new RuntimeException(e);
         }
         onlineClients.remove(phoneNumber);
-        // remove from session
         LoginTokenUtil.removeSession(phoneNumber);
-
         return true;
     }
 
@@ -138,8 +133,6 @@ public class LoginImpl extends UnicastRemoteObject implements Login {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        //onlineClients.remove(phoneNumber);
-
     }
 
     @Override
@@ -165,7 +158,6 @@ public class LoginImpl extends UnicastRemoteObject implements Login {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        //onlineClients.put(session.getPhoneNumber(),client);
     }
 
     @Override
@@ -219,7 +211,6 @@ public class LoginImpl extends UnicastRemoteObject implements Login {
                         chatClient.updateStatus(phoneNumber,Status.AVAILABLE);
                     }
                 }
-
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -230,6 +221,5 @@ public class LoginImpl extends UnicastRemoteObject implements Login {
     public static HashMap<String, ChatClient> getOnlineClients() {
         return onlineClients;
     }
-
 
 }

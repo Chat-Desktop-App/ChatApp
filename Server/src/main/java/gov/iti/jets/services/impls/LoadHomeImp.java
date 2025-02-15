@@ -65,8 +65,6 @@ public class LoadHomeImp extends UnicastRemoteObject implements LoadHome {
         }
     }
 
-
-    
     @Override
     public List<ContactUser> getPendingContacts(String phoneNumber) throws RemoteException {
         try {

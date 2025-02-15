@@ -127,7 +127,6 @@ public class NotificationsDaoImpl implements NotificationsDao {
         notification.setRead(resultSet.getBoolean("is_read"));
         notification.setNotificationtype(Notification.valueOf(resultSet.getString("type")));
         notification.setSenderId(resultSet.getString("sender_id"));
-
         return notification;
     }
 

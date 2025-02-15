@@ -23,8 +23,6 @@ import java.rmi.RemoteException;
 import java.util.Properties;
 
 public class ClientApp extends Application {
-
-    //    private static final String SESSION_FILE =  "session.xml";
     private static final String LOGIN_FXML = "fxml/Login.fxml";
     private static final String HOME_FXML = "fxml/home.fxml";
     private Login login = RMIConnector.getRmiConnector().getLoginService();
@@ -52,21 +50,11 @@ public class ClientApp extends Application {
 
     private Parent loadView() {
         String jarDirectory = System.getProperty("user.dir");        //check session to decide which scene to load
-//        File file = new File(jarDirectory,"session.xml");
         File propertiesFile = new File(jarDirectory, "session.properties");
-        // Path path = Paths.get("session.xml");
         FXMLLoader loader = null;
 
         if (Files.exists(propertiesFile.toPath())) {
-            // unmarshall it to a UserSession
             try {
-//                JAXBContext context = JAXBContext.newInstance(LoginStatus.class);
-//                Unmarshaller unmarshaller = context.createUnmarshaller();
-////                LoginStatus loginStatus = (LoginStatus) unmarshaller.unmarshal(new FileReader(SESSION_FILE));
-//                LoginStatus loginStatus = (LoginStatus) unmarshaller.unmarshal(new FileReader(file));
-                // if session is valid go to home page
-                // else load login page with user phone number
-
                 Properties prop = new Properties();
                 InputStream input = new FileInputStream(propertiesFile);
                 prop.load(input);
@@ -79,7 +67,6 @@ public class ClientApp extends Application {
                     loader = new FXMLLoader(ClientApp.class.getResource(HOME_FXML));
                     HomeServiceController.setUser(login.getUser(loginStatus.getPhoneNumber()));
                     return loader.load();
-                    // set home page with phone numb
                 } else {
                     loader = new FXMLLoader(ClientApp.class.getResource(LOGIN_FXML));
                     Parent root = loader.load();
@@ -99,7 +86,6 @@ public class ClientApp extends Application {
 
 
         } else {
-            // load log in page normally
             loader = new FXMLLoader(ClientApp.class.getResource(LOGIN_FXML));
             try {
                 return loader.load();
@@ -112,16 +98,9 @@ public class ClientApp extends Application {
 
     @Override
     public void stop() {
-        // exit
         JAXBContext context = null;
         try {
             String jarDirectory = System.getProperty("user.dir");        //check session to decide which scene to load
-//            File file = new File(jarDirectory,"session.xml");
-//            context = JAXBContext.newInstance(LoginStatus.class);
-//            Unmarshaller unmarshaller = context.createUnmarshaller();
-////            LoginStatus loginStatus = (LoginStatus) unmarshaller.unmarshal(new FileReader("session.xml"));
-//            LoginStatus loginStatus = (LoginStatus) unmarshaller.unmarshal(new FileReader(file));
-
             File propertiesFile = new File(jarDirectory, "session.properties");
             Properties prop = new Properties();
             InputStream input = new FileInputStream(propertiesFile);
@@ -129,7 +108,6 @@ public class ClientApp extends Application {
             String phoneNumber = prop.getProperty("phoneNumber");
             String token = prop.getProperty("sessionToken");
             LoginStatus loginStatus = new LoginStatus(token, phoneNumber);
-
             login.exit(loginStatus.getPhoneNumber());
             RMIConnector.getRmiConnector().shutdown();
         } catch (RemoteException e) {
@@ -141,6 +119,5 @@ public class ClientApp extends Application {
             System.exit(0);
 
         }
-
     }
 }

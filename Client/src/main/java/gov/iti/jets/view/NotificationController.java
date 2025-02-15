@@ -14,12 +14,7 @@ public class NotificationController {
     @FXML
     void initialize() {
         assert listOFNotifications != null : "fx:id=\"listOFNotifications\" was not injected: check your FXML file 'notification.fxml'.";
-
-        // Load actual notifications
-        //listOFNotifications.setItems(NotificationServiceController.getNotifications(HomeServiceController.getUser().getPhoneNumber()));
         listOFNotifications.setItems(NotificationServiceController.getNotifications(Session.user.getPhoneNumber()));
-
-        // Customize the ListView appearance
         listOFNotifications.setStyle("-fx-background-color: transparent;");
         listOFNotifications.setCellFactory(lv -> new ListCell<>() {
             @Override

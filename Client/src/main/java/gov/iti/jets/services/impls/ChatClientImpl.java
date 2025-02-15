@@ -34,7 +34,6 @@ public class ChatClientImpl extends UnicastRemoteObject implements ChatClient {
     }
 
     @Override
-    // each client listens for announcements on another thread
     public void receiveAnnouncement(String message, String timestamp) throws RemoteException {
         serverMessageAreaController = new ServerMessageAreaController();
         System.out.println("Received Announcement: " + message + " at " + timestamp);

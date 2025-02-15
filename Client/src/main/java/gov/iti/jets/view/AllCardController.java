@@ -54,7 +54,6 @@ public class AllCardController {
             case AWAY -> status.setFill(Color.GOLD);
             case BUSY -> status.setFill(Color.INDIANRED);
             case OFFLINE -> status.setFill(Color.GRAY);
-
         }
     }
 }

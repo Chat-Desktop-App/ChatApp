@@ -7,7 +7,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
@@ -39,7 +38,6 @@ public class ReceiveMessageController {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("E h:mm a", Locale.ENGLISH);
         String formattedTimestamp = dateTime.format(formatter);
         timeStamp.setText(formattedTimestamp);
-//        timeStamp.setText(message.getTimestamp().toLocalDateTime().toString());
         setTextFormat();
     }
 

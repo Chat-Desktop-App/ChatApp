@@ -86,7 +86,6 @@ public class MessageServiceController {
                 message.getRecipient() == Recipient.PRIVATE &&
                 message.getReceiverId().equals(Session.user.getPhoneNumber()) &&
                 !(message instanceof FileMessage)) {
-            //System.out.println(message.getContent());
 
             new Thread(() -> {
                 try {
@@ -185,7 +184,6 @@ public class MessageServiceController {
         String sendFile = "/gov/iti/jets/fxml/sendFile.fxml";
         String receivedFile = "/gov/iti/jets/fxml/receivedFile.fxml";
 
-
         try {
             List<Message> list = messagingService.getDirectMessages(user.getPhoneNumber(), contactPhoneNumber);
             for (Message m : list) {
@@ -231,7 +229,6 @@ public class MessageServiceController {
         String receiveMessage = "/gov/iti/jets/fxml/receiveGroupMessage.fxml";
         String sendFile = "/gov/iti/jets/fxml/sendFile.fxml";
         String receivedFile = "/gov/iti/jets/fxml/receiveGroupFile.fxml";
-
 
         try {
             List<Message> list = messagingService.getMessagesByGroupId(groupId);
@@ -286,6 +283,4 @@ public class MessageServiceController {
             return getFileData(fileId);
         }
     }
-
-
 }

@@ -56,7 +56,5 @@ public class AddGroupCellController implements Initializable {
             Image image = new Image(inputStream);
             friendIcon.setImage(image);
         }
-
-
     }
 }

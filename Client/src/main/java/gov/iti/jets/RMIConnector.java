@@ -4,7 +4,6 @@ import gov.iti.jets.controller.LogInServiceController;
 import gov.iti.jets.services.interfaces.*;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -66,15 +65,12 @@ public class RMIConnector {
                 messagingService = (MessagingService) reg.lookup("MessagingService");
                 notificationsService = (NotificationsService) reg.lookup("NotificationsService");
                 addGroupService = (AddGroup) reg.lookup("AddGroup");
-
                 userSettingsService = (UserSettingsService) reg.lookup("UserSettingsService");
-
                 chatBot = (ChatBot) reg.lookup("ChatBot");
                 break;
             } catch (RemoteException | NotBoundException e) {
                 System.out.println("Connection to services failed: " + e.getMessage());
                 showAlert(Alert.AlertType.CONFIRMATION, "Connection Error", "Failed to connect to server."); // Retry after a short dela
-
             }
         }
 

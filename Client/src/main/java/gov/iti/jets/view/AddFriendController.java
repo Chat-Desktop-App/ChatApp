@@ -113,41 +113,6 @@ public class AddFriendController {
         }
 
         listViewOf_Friend_Request.setItems(friendList);
-        /*assert addFriend != null : "fx:id=\"addFriend\" was not injected: check your FXML file 'addFriend.fxml'.";
-        assert listViewOf_Friend_Request != null : "fx:id=\"listViewOf_Friend_Request\" was not injected: check your FXML file 'addFriend.fxml'.";
-        assert phoneField != null : "fx:id=\"phoneField\" was not injected: check your FXML file 'addFriend.fxml'.";
-        assert sendInvetation != null : "fx:id=\"sendInvetation\" was not injected: check your FXML file 'addFriend.fxml'.";
-
-        ObservableList<AnchorPane> observableList = loadFXMLIntoList("/gov/iti/jets/fxml/addFriendCell.fxml", 20);
-        listViewOf_Friend_Request.setItems(observableList);
-
-        // Customize the ListView appearance
-        listViewOf_Friend_Request.setStyle("-fx-background-color: white;");
-        listViewOf_Friend_Request.setCellFactory(lv -> new ListCell<>() {
-            @Override
-            protected void updateItem(AnchorPane item, boolean empty) {
-                super.updateItem(item, empty);
-                if (empty || item == null) {
-                    setGraphic(null);
-                    setStyle("-fx-background-color: transparent;");
-                } else {
-                    setGraphic(item);
-                    setStyle("-fx-background-color: transparent;");
-                }
-            }
-        });
-
-        listViewOf_Friend_Request.skinProperty().addListener((obs, oldSkin, newSkin) -> {
-            for (ScrollBar scrollBar : listViewOf_Friend_Request.lookupAll(".scroll-bar").stream()
-                    .filter(ScrollBar.class::isInstance)
-                    .map(ScrollBar.class::cast)
-                    .toList()) {
-                scrollBar.setOpacity(0);
-                scrollBar.setPrefSize(0, 0);
-                scrollBar.setDisable(true);
-            }
-        });*/
-
     }
 
     private void addUserToList(User user) {
@@ -164,7 +129,6 @@ public class AddFriendController {
         }
     }
 
-
     private void showAlert(Alert.AlertType alertType, String title, String message) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
@@ -172,50 +136,4 @@ public class AddFriendController {
         alert.setContentText(message);
         alert.showAndWait();
     }
-
-
-    /*private ObservableList<AnchorPane> loadFXMLIntoList(String fxmlPath, int count) {
-        ObservableList<AnchorPane> list = FXCollections.observableArrayList();
-        for (int i = 0; i < count; i++) {
-            try {
-                AnchorPane anchorPane = new FXMLLoader(getClass().getResource(fxmlPath)).load();
-                list.add(anchorPane);
-            } catch (IOException e) {
-                System.out.println("Error when loading " + fxmlPath + ": " + e.getMessage());
-                //e.printStackTrace();
-            }
-        }
-        return list;
-    }*/
-
-
-    /*private ListView<AnchorPane> createListView(ObservableList<AnchorPane> items) {
-        ListView<AnchorPane> listView = new ListView<>(items);
-        listView.setStyle("-fx-background-color: white;");
-        listView.skinProperty().addListener((obs, oldSkin, newSkin) -> {
-            for (ScrollBar scrollBar : listView.lookupAll(".scroll-bar").stream()
-                    .filter(ScrollBar.class::isInstance)
-                    .map(ScrollBar.class::cast)
-                    .toList()) {
-                scrollBar.setOpacity(0);
-                scrollBar.setPrefSize(0, 0);
-                scrollBar.setDisable(true);
-            }
-        });
-        listView.setCellFactory(lv -> new ListCell<>() {
-            @Override
-            protected void updateItem(AnchorPane item, boolean empty) {
-                super.updateItem(item, empty);
-                if (empty || item == null) {
-                    setGraphic(null);
-                    setStyle("-fx-background-color: transparent;");
-                } else {
-                    setGraphic(item);
-                    setStyle("-fx-background-color: transparent;");
-                }
-            }
-        });
-        return listView;
-    }*/
-
 }

@@ -38,11 +38,7 @@ public class ServerMessageAreaController {
             System.out.println("Adding Announcement: " + message + " at " + timestamp);
             // Create a UI element to show the announcement
             HBox announcementBox = createAnnouncementBox(message, timestamp);
-
-            // Add the announcement to the ListView
             messages.add(announcementBox);
-
-            // Scroll to the latest announcement
             if (serverMessageListView != null) serverMessageListView.scrollTo(messages.size() - 1);
         });
     }
@@ -62,10 +58,7 @@ public class ServerMessageAreaController {
             try {
                 Registry registry = LocateRegistry.getRegistry("localhost", 1099);
                 MessagingService messagingService = (MessagingService) registry.lookup("MessagingService");
-
                 List<Announcements> announcements = messagingService.getAnnouncements();
-
-                // Update UI on JavaFX thread
                 Platform.runLater(() -> {
                     for (Announcements announcement : announcements) {
                         addAnnouncement(announcement.getMessage(), announcement.getTimestamp().toString());

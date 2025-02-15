@@ -9,7 +9,7 @@ public class GroupMessage extends Message implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 5677958496409756424L;
-    private byte[] profilePicture;
+    private final byte[] profilePicture;
     private String name;
 
 
