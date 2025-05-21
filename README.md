@@ -1,47 +1,35 @@
-👨‍💻 Team Members:
+👨‍💻 Team Members
+----------------
 Yusuf Salahuddin
 Lama Khaled 
 Hadeer Adel
 
 🔹 What Makes ORCA Special?
-
-✅ Secure Authentication: Easy sign-up & login 
-
-✅ Smart Contact Management: Add & manage friends 
-
-✅ Real-Time Messaging: One-on-one & group chats 
-
-✅ File Sharing: Send images, docs, and more 
-
-✅ AI Chatbot: Let AI handle your messages 
-
-✅ Instant Notifications: Stay updated in real time 
-
-✅ Profile Customization: Edit your profile & preferences 
-
-✅ Online Presence Tracking: See who’s online at a glance 
+---------------------------
+- Secure Authentication: Easy sign-up & login 
+- Smart Contact Management: Add & manage friends 
+- Real-Time Messaging: One-on-one & group chats 
+- File Sharing: Send images, docs, and more 
+- AI Chatbot: Let AI handle your messages 
+- Instant Notifications: Stay updated in real time 
+- Profile Customization: Edit your profile & preferences 
+- Online Presence Tracking: See who’s online at a glance 
 
 ⚙ Under the Hood – ORCA’s Backend Power
-🔹 Handles authentication & friend requests
-
-🔹 Supports real-time messaging & presence tracking
-
-🔹 Provides server announcements & user statistics
-
-🔹 Ensures persistent data storage for users & chats
+----------------------------------------
+- Handles authentication & friend requests
+- Supports real-time messaging & presence tracking
+- Provides server announcements & user statistics
+- Ensures persistent data storage for users & chats
 
 💻 Tech Stack & Skills We Applied
-🚀 Core Java – OOP, multi-threading, concurrent programming
-
-🎨 JavaFX – Interactive & user-friendly UI
-
-🗄 Database Management – Optimized data storage
-
-🌐 IO, NIO & Networking – Real-time client-server communication
-
-⚙ Maven – Dependency & project management
-
-🌍 GitHub – Collaboration & version control
+----------------------------------
+- Core Java – OOP, multi-threading, concurrent programming
+- JavaFX – Interactive & user-friendly UI
+- Database Management – Optimized data storage
+- IO, NIO & Networking – Real-time client-server communication
+- Maven – Dependency & project management
+- GitHub – Collaboration & version control
 
 ![Screenshot 2025-02-15 204741](https://github.com/user-attachments/assets/4bc94566-35e4-42ff-b2f3-989bb7aa2717)
 ![Screenshot 2025-02-15 204935](https://github.com/user-attachments/assets/587f54d6-2b52-4a44-9f9e-d53b916a82b5)
