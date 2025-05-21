@@ -1,8 +1,13 @@
 👨‍💻 Team Members
 ----------------
-Yusuf Salahuddin
-Lama Khaled 
+Lama Khaled
+
 Hadeer Adel
+
+Ahmed Ashraf
+
+Yusuf Salahuddin
+
 
 🔹 What Makes ORCA Special?
 ---------------------------
